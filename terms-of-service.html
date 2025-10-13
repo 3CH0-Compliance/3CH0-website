@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service – 3CH0</title>
+  <meta name="description" content="Terms of Service for 3CH0 AI-Powered Compliance Solutions">
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-text: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent: #92cdec;
+      --secondary-text: #a0a0a0;
+      --glass-panel: rgba(15, 15, 15, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .main-content {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+
+    .glass-panel {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation - Fixed */
+    nav {
+      background: rgba(10, 10, 10, 0.98);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fdfdfe;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .logo-img {
+      height: 60px;
+      filter: brightness(120%);
+    }
+
+    /* Content Container */
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .terms-content {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 60px 50px;
+      margin: 0 auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .effective-date {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 40px 0 20px 0;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    p {
+      color: var(--secondary-text);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    ul {
+      color: var(--secondary-text);
+      padding-left: 25px;
+      margin-bottom: 25px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #f0f0f0;
+      text-decoration: underline;
+    }
+
+    /* Button design */
+    button, .btn, .submit-btn, .pay-btn {
+      display: inline-block;
+      padding: 16px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--button-text);
+      border: none;
+      border-radius: 30px;
+      background: var(--gradient);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      margin-top: 30px;
+    }
+
+    button:hover, .btn:hover, .submit-btn:hover, .pay-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 20px rgba(146, 205, 236, 0.4);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      background-color: rgba(9, 6, 3, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      width: 100%;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    .footer-links {
+      margin-bottom: 20px;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      .container {
+        margin: 40px auto;
+        padding: 0 15px;
+      }
+      
+      .terms-content {
+        padding: 40px 25px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
+      footer {
+        padding: 30px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="glass-panel">
+      <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
+      <div>
+        <a href="home.html">Home</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </nav>
+
+    <!-- Terms Content -->
+    <div class="container">
+      <div class="terms-content glass-panel animate">
+        <h1>Terms of Service</h1>
+        <p class="effective-date">Effective Date: June 1, 2025</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using this website and any of our AI compliance services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+
+        <h2>2. Services Provided</h2>
+        <p>We offer AI-powered compliance tools, templates, and reports to help startups align with international data privacy standards (e.g., GDPR, CCPA, POPIA). Our services are not legal advice and should not replace consultation with a qualified attorney.</p>
+
+        <h2>3. Use Restrictions</h2>
+        <p>You may not use our services for unlawful or unethical purposes. Reselling, redistributing, or copying our workflows, reports, or outputs without written permission is strictly prohibited.</p>
+
+        <h2>4. Payments</h2>
+        <p>We offer free and paid subscriptions. All paid services must be settled via supported methods (PayPal, bank transfer, etc.). Failure to pay on time may result in account suspension.</p>
+
+        <h2>5. AI Accuracy Disclaimer</h2>
+        <p>While our services use AI to generate compliance reports and documents, we do not guarantee accuracy or completeness. Outputs are provided "as is" and may require manual review. We are not liable for fines, losses, or damages resulting from incorrect or incomplete AI-generated content.</p>
+
+        <h2>6. Intellectual Property</h2>
+        <p>All content, branding, documents, and tools provided remain the intellectual property of 3CH0 Compliance. Users are granted limited, non-transferable licenses to use outputs for internal use only.</p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, we disclaim all liability for any direct, indirect, incidental, or consequential damages resulting from the use of our services.</p>
+
+        <h2>8. Termination</h2>
+        <p>We reserve the right to terminate or suspend access at any time, with or without notice, for violations of these terms or other misuse.</p>
+
+        <h2>9. Governing Law</h2>
+        <p>These terms are governed by the laws of South Africa. Any disputes shall be resolved in local courts unless otherwise agreed in writing.</p>
+
+        <h2>10. Changes to These Terms</h2>
+        <p>We may update these Terms of Service from time to time. The latest version will always be available on this page, with the effective date noted at the top.</p>
+
+        <p>If you have questions about these terms, please <a href="mailto:3CH0.The.Only@gmail.com">contact us</a>.</p>
+
+        <a href="home.html" class="btn btn-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a> |
+      <a href="terms-of-service.html">Terms of Service</a> |
+      <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+      <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
+    </div>
+    &copy; 2025 3CH0 Compliance. All rights reserved.
+  </footer>
+
+  <script>
+    // Add animation on scroll
+    document.addEventListener("DOMContentLoaded", function() {
+      const animateElements = document.querySelectorAll('.animate');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animateElements.forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

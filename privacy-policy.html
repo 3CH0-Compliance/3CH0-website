@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – 3CH0</title>
+  <meta name="description" content="Learn how 3CH0 collects, stores, and protects your data.">
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-text: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent: #92cdec;
+      --secondary-text: #a0a0a0;
+      --glass-panel: rgba(15, 15, 15, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .main-content {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+
+    .glass-panel {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation - Fixed */
+    nav {
+      background: rgba(10, 10, 10, 0.98);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fdfdfe;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .logo-img {
+      height: 60px;
+      filter: brightness(120%);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 20px 40px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 60px 40px;
+      margin: 0 auto;
+      max-width: 900px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--secondary-text);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Content Section */
+    .content-section {
+      padding: 60px 20px;
+    }
+
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .content-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin: 25px 0 15px 0;
+      color: var(--accent);
+    }
+
+    p {
+      color: var(--secondary-text);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      color: var(--secondary-text);
+      padding-left: 25px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #fdfdfe;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      background-color: rgba(9, 6, 3, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    .footer-links {
+      margin-bottom: 20px;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .content-card {
+        padding: 30px 20px;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
+      footer {
+        padding: 30px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-content">
+    <!-- Nav - Fixed -->
+    <nav class="glass-panel">
+      <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
+      <div>
+        <a href="home.html">Home</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="animate">Privacy Policy</h1>
+        <p class="animate">Your privacy is our priority. Learn how we collect, protect, and use your data to provide exceptional compliance services.</p>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+      <div class="content-container">
+        
+        <div class="content-card glass-panel animate">
+          <h2>1. What Data We Collect</h2>
+          <p>We believe in transparency and only collect data necessary to provide you with exceptional compliance services:</p>
+          <ul>
+            <li><strong>Business Information:</strong> Company name, industry, and contact details</li>
+            <li><strong>Contact Data:</strong> Email address and communication preferences</li>
+            <li><strong>Compliance Requirements:</strong> Legal and regulatory information you provide for document generation</li>
+            <li><strong>Usage Analytics:</strong> Anonymous data to improve our service experience</li>
+          </ul>
+        </div>
+
+        <div class="content-card glass-panel animate">
+          <h2>2. How We Use Your Data</h2>
+          <p>Your data is handled with care and used exclusively for:</p>
+          <ul>
+            <li><strong>Document Generation:</strong> Creating personalized compliance documents tailored to your business</li>
+            <li><strong>Service Communication:</strong> Updates about your requests and important service notifications</li>
+            <li><strong>Product Improvement:</strong> Anonymous analytics to enhance user experience</li>
+            <li><strong>Legal Compliance:</strong> Meeting our regulatory obligations</li>
+          </ul>
+        </div>
+
+        <div class="content-card glass-panel animate">
+          <h2>3. Cookies and Tracking</h2>
+          <p>We respect your browsing privacy and use technology responsibly:</p>
+          <ul>
+            <li><strong>Essential Cookies:</strong> Required for core functionality and service delivery</li>
+            <li><strong>Analytics:</strong> Anonymous usage data to improve our platform</li>
+            <li><strong>No Cross-Site Tracking:</strong> We don't track your activity across other websites</li>
+            <li><strong>Data Ownership:</strong> We never sell your personal information to third parties</li>
+          </ul>
+        </div>
+
+        <div class="content-card glass-panel animate">
+          <h2>4. Your Rights and Control</h2>
+          <p>You maintain complete control over your data with the following rights:</p>
+          <ul>
+            <li><strong>Access:</strong> Request a copy of all data we store about you</li>
+            <li><strong>Correction:</strong> Update or correct any inaccurate information</li>
+            <li><strong>Deletion:</strong> Request removal of your personal data</li>
+            <li><strong>Portability:</strong> Receive your data in a machine-readable format</li>
+            <li><strong>Document Access:</strong> Download your generated compliance documents anytime</li>
+          </ul>
+        </div>
+
+        <div class="content-card glass-panel animate">
+          <h2>5. Security and Protection</h2>
+          <p>We implement enterprise-grade security measures to protect your information:</p>
+          <ul>
+            <li><strong>Encryption:</strong> All data is encrypted in transit and at rest</li>
+            <li><strong>Secure Infrastructure:</strong> Enterprise-level hosting with regular security audits</li>
+            <li><strong>Limited Access:</strong> Strict internal controls and access limitations</li>
+            <li><strong>Third-Party Vetting:</strong> All service providers undergo rigorous security assessments</li>
+          </ul>
+        </div>
+
+        <div class="content-card glass-panel animate">
+          <h2>6. Contact and Support</h2>
+          <p>Have questions about your privacy or data handling?</p>
+          <p>Our team is here to help. Contact us at:</p>
+          <p style="text-align: center; margin-top: 20px;">
+            <a href="mailto:3CH0.The.Only@gmail.com" style="font-size: 1.1rem; font-weight: 600;">
+              📧 3CH0.The.Only@gmail.com
+            </a>
+          </p>
+          <p style="text-align: center; color: var(--accent); margin-top: 10px;">
+            We typically respond within 24 hours
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="settings.html">Privacy & Terms</a> |
+      <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+      <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
+    </div>
+    &copy; 2025 3CH0 Compliance. All rights reserved.
+  </footer>
+
+  <script>
+    // Add animation on scroll
+    document.addEventListener("DOMContentLoaded", function() {
+      const animateElements = document.querySelectorAll('.animate');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animateElements.forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

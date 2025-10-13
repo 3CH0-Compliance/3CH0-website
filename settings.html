@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings - 3CH0</title>
+  <meta name="description" content="Manage your privacy, data, and preferences on 3CH0.">
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-text: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent: #92cdec;
+      --secondary-text: #a0a0a0;
+      --glass-panel: rgba(15, 15, 15, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px; /* For fixed nav */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .main-content {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+
+    .glass-panel {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation - Fixed */
+    nav {
+      background: rgba(10, 10, 10, 0.98);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fdfdfe;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .logo-img {
+      height: 60px;
+      filter: brightness(120%);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    h1, h2 {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    p {
+      color: var(--secondary-text);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-top: 15px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Ultra narrow button styling */
+    .btn {
+      display: inline-block;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--button-text);
+      border: none;
+      border-radius: 18px;
+      background: var(--gradient);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(146, 205, 236, 0.3);
+      transition: all 0.2s ease;
+      text-align: center;
+      width: fit-content  ;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(146, 205, 236, 0.4);
+    }
+
+    .btn-full {
+      width: 24%;
+      white-space: normal;
+      padding: 10px 12px;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      background-color: rgba(21, 18, 16, 0.7);
+      color: var(--text-color);
+      font-size: 14px;
+      border: none;
+      margin-bottom: 10px;
+      box-shadow: inset 0 0 0 1px var(--border-color);
+      backdrop-filter: blur(5px);
+    }
+
+    ::placeholder {
+      color: var(--secondary-text);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 40px 20px;
+      background-color: rgba(9, 6, 3, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    /* Enhanced Dropdown Styles */
+    .select {
+      width: fit-content;
+      cursor: pointer;
+      position: relative;
+      color: white;
+      overflow: visible;
+      z-index: 900;
+    }
+
+    .selected {
+      background-color: var(--card-bg);
+      padding: 14px 16px;
+      border-radius: 12px;
+      position: relative;
+      z-index: 1002;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 200px;
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .selected:hover {
+      border-color: rgba(146, 205, 236, 0.5);
+    }
+
+    .arrow {
+      position: relative;
+      height: 10px;
+      transform: rotate(-90deg);
+      width: 25px;
+      fill: white;
+      transition: 300ms;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      padding: 8px;
+      background-color: var(--card-bg);
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 300ms ease;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1001;
+      margin-top: 0;
+      border: 1px solid var(--border-color);
+      max-height: 300px;
+      overflow-y: auto;
+      transform: translateY(-10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .select.active .options {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .select.active .selected .arrow {
+      transform: rotate(0deg);
+    }
+
+    .option {
+      border-radius: 8px;
+      padding: 12px;
+      transition: 300ms;
+      background-color: var(--card-bg);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .option:hover {
+      background-color: rgba(146, 205, 236, 0.1);
+    }
+
+    .options input[type="radio"] {
+      display: none;
+    }
+
+    .flag {
+      width: 20px;
+      height: 15px;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+
+    .country-name {
+      flex-grow: 1;
+      color: var(--text-color);
+    }
+
+    /* Hide radio buttons */
+    .options input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      .container {
+        margin: 40px auto;
+        padding: 0 15px;
+      }
+      
+      h1, h2 {
+        font-size: 24px;
+      }
+      
+      .selected {
+        min-width: 100%;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
+      .btn-row {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <!-- Nav -->
+    <nav class="glass-panel">
+      <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
+      <div>
+        <a href="home.html">Home</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+
+      <!-- Country Selector -->
+      <h1>Select Your Country</h1>
+      </br>
+      <div class="select">
+        <div class="selected" data-default="Choose your country" data-selected="">
+          <span class="selected-text">Choose your country</span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="arrow">
+            <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
+          </svg>
+        </div>
+        <div class="options">
+          <!-- Americas -->
+          <div class="option">
+            <input id="us" name="country" type="radio" value="US" data-title="United States" />
+            <label for="us">
+              <img src="https://flagcdn.com/w20/us.png" class="flag" alt="US Flag">
+              <span class="country-name">United States</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="ca" name="country" type="radio" value="CA" data-title="Canada" />
+            <label for="ca">
+              <img src="https://flagcdn.com/w20/ca.png" class="flag" alt="Canada Flag">
+              <span class="country-name">Canada</span>
+            </label>
+          </div>
+
+          <!-- Europe -->
+          <div class="option">
+            <input id="gb" name="country" type="radio" value="GB" data-title="United Kingdom" />
+            <label for="gb">
+              <img src="https://flagcdn.com/w20/gb.png" class="flag" alt="UK Flag">
+              <span class="country-name">United Kingdom</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="de" name="country" type="radio" value="DE" data-title="Germany" />
+            <label for="de">
+              <img src="https://flagcdn.com/w20/de.png" class="flag" alt="Germany Flag">
+              <span class="country-name">Germany</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="fr" name="country" type="radio" value="FR" data-title="France" />
+            <label for="fr">
+              <img src="https://flagcdn.com/w20/fr.png" class="flag" alt="France Flag">
+              <span class="country-name">France</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="it" name="country" type="radio" value="IT" data-title="Italy" />
+            <label for="it">
+              <img src="https://flagcdn.com/w20/it.png" class="flag" alt="Italy Flag">
+              <span class="country-name">Italy</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="es" name="country" type="radio" value="ES" data-title="Spain" />
+            <label for="es">
+              <img src="https://flagcdn.com/w20/es.png" class="flag" alt="Spain Flag">
+              <span class="country-name">Spain</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="nl" name="country" type="radio" value="NL" data-title="Netherlands" />
+            <label for="nl">
+              <img src="https://flagcdn.com/w20/nl.png" class="flag" alt="Netherlands Flag">
+              <span class="country-name">Netherlands</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="se" name="country" type="radio" value="SE" data-title="Sweden" />
+            <label for="se">
+              <img src="https://flagcdn.com/w20/se.png" class="flag" alt="Sweden Flag">
+              <span class="country-name">Sweden</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="ch" name="country" type="radio" value="CH" data-title="Switzerland" />
+            <label for="ch">
+              <img src="https://flagcdn.com/w20/ch.png" class="flag" alt="Switzerland Flag">
+              <span class="country-name">Switzerland</span>
+            </label>
+          </div>
+          <div class="option">
+            <input id="be" name="country" type="radio" value="BE" data-title="Belgium" />
+            <label for="be">
+              <img src="https://flagcdn.com/w20/be.png" class="flag" alt="Belgium Flag">
+              <span class="country-name">Belgium</span>
+            </label>
+          </div>
+          
+          <!-- South Africa -->
+          <div class="option">
+            <input id="za" name="country" type="radio" value="ZA" data-title="South Africa" />
+            <label for="za">
+              <img src="https://flagcdn.com/w20/za.png" class="flag" alt="South Africa Flag">
+              <span class="country-name">South Africa</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </br>
+      <!-- Legal Partnership Section -->
+      <div class="section">
+        <h2>Legal Partnership Opportunity</h2>
+        <p>We're seeking 5 exclusive legal partners to join our mission of making compliance accessible to all businesses. This is a unique opportunity to shape the future of legal tech while earning equity and recurring revenue.</p>
+        
+        <div class="card glass-panel">
+          <h3 style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">Partnership Benefits</h3>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 25px;">
+            <div style="background: rgba(146, 205, 236, 0.1); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+              <h4 style="color: var(--accent); margin-bottom: 10px;">Equity Stake</h4>
+              <p style="color: var(--secondary-text); font-size: 14px; margin: 0;">Receive 2% company shares as a founding legal partner</p>
+            </div>
+            
+            <div style="background: rgba(146, 205, 236, 0.1); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+              <h4 style="color: var(--accent); margin-bottom: 10px;">Revenue Share</h4>
+              <p style="color: var(--secondary-text); font-size: 14px; margin: 0;">15% commission on all sales from your verified documents</p>
+            </div>
+            
+            <div style="background: rgba(146, 205, 236, 0.1); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+              <h4 style="color: var(--accent); margin-bottom: 10px;">Exclusive Slots</h4>
+              <p style="color: var(--secondary-text); font-size: 14px; margin: 0;">Only 5 partnership positions available globally</p>
+            </div>
+          </div>
+
+          <h4 style="color: var(--accent); margin-bottom: 15px;">Partner Responsibilities</h4>
+          <ul style="color: var(--secondary-text); margin-bottom: 25px; padding-left: 20px;">
+            <li style="margin-bottom: 8px;">Provide legal advice to customers through our platform</li>
+            <li style="margin-bottom: 8px;">Verify and approve AI-generated compliance documents</li>
+            <li style="margin-bottom: 8px;">Help maintain document accuracy with changing regulations</li>
+            <li style="margin-bottom: 8px;">Participate in quarterly legal review sessions</li>
+          </ul>
+
+          <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+            <h4 style="color: #f59e0b; margin-bottom: 10px;">🚀 Limited Availability</h4>
+            <p style="color: var(--secondary-text); margin: 0; font-size: 14px;">
+              <strong>Only 3 of 5 partnership slots remaining.</strong> This exclusive opportunity closes once all positions are filled.
+            </p>
+          </div>
+
+          <a href="sign-up.html" class="btn btn-full">
+            Apply for Legal Partnership
+          </a>
+          
+          <p style="text-align: center; color: var(--secondary-text); font-size: 12px; margin-top: 15px; margin-bottom: 0;">
+            Application process includes verification of legal credentials and practice areas
+          </p>
+        </div>
+      </div>
+
+      <!-- Privacy Links -->
+      <div class="section">
+        <h1>Privacy and Data</h1>
+        <p>We respect your data. Below you can find links to our privacy policy, terms of service, and request full deletion of your data.</p>
+        <div class="card glass-panel">
+          <div class="btn-container">
+            <a href="privacy-policy.html" class="btn">View Privacy Policy</a>
+            <a href="terms-of-service.html" class="btn">View Terms of Service</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Agreement -->
+      <div class="section">
+        <h2>User Agreement</h2>
+        <p>We take intellectual property seriously. Review our usage agreement to understand your rights and responsibilities regarding 3CH0 materials.</p>
+        <div class="card glass-panel">
+          <div class="btn-row">
+            <a href="user-agreement.html" class="btn">View User Agreement</a>
+            <a href="3CH0-user-agreement.pdf" class="btn">Download Full PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete Request -->
+      <div class="section">
+        <h2>Delete My Data</h2>
+        <p>If you'd like to have all of your personal/business data removed from our system, enter your email below and submit the request.</p>
+        <form name="delete-request" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="delete-request">
+          <div class="card glass-panel">
+            <input type="email" name="email" placeholder="Your business or login email" required />
+            <button type="submit" class="btn btn-full">Request Deletion</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Security Summary -->
+      <div class="section">
+        <h2>Security and Storage</h2>
+        <div class="card glass-panel">
+          <p>We store data in encrypted environments and only collect the minimum necessary to generate compliance documents. Submissions are stored securely on Netlify and optionally sent to a business inbox.</p>
+        </div>
+      </div>
+
+      <!-- reCAPTCHA Info -->
+      <div class="section">
+        <h2>reCAPTCHA Protection</h2>
+        <div class="card glass-panel">
+          <p>This website is protected by reCAPTCHA to prevent spam. Your usage of this site is subject to Google's Privacy Policy and Terms of Service.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 3CH0 Compliance. All rights reserved.
+    <br>
+    <a href="settings.html">Privacy & Terms</a> |
+    <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+    <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const select = document.querySelector('.select');
+      const selected = select.querySelector('.selected');
+      const options = select.querySelector('.options');
+      const selectedText = select.querySelector('.selected-text');
+      
+      // Fixed currency mapping
+      const CURRENCY_MAP = {
+        // USD countries
+        US: { currency: 'USD', symbol: '$' },
+        CA: { currency: 'USD', symbol: '$' },
+        MX: { currency: 'USD', symbol: '$' },
+        
+        // EUR countries
+        DE: { currency: 'EUR', symbol: '€' },
+        FR: { currency: 'EUR', symbol: '€' },
+        IT: { currency: 'EUR', symbol: '€' },
+        ES: { currency: 'EUR', symbol: '€' },
+        NL: { currency: 'EUR', symbol: '€' },
+        BE: { currency: 'EUR', symbol: '€' },
+        IE: { currency: 'EUR', symbol: '€' },
+        PT: { currency: 'EUR', symbol: '€' },
+        AT: { currency: 'EUR', symbol: '€' },
+        
+        // GBP countries
+        GB: { currency: 'GBP', symbol: '£' },
+        
+        // ZAR countries
+        ZA: { currency: 'ZAR', symbol: 'R' }
+      };
+
+      // 1. Load saved selection or auto-detect
+      let savedCountry = localStorage.getItem('userCountry');
+      let savedCurrency = localStorage.getItem('userCurrency');
+      
+      // Auto-detect if no saved preference
+      if (!savedCountry) {
+        try {
+          const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          if (timezone.includes("Europe")) {
+            savedCountry = 'DE'; // Default to Germany for EU
+            savedCurrency = 'EUR';
+          } else if (timezone.includes("London")) {
+            savedCountry = 'GB';
+            savedCurrency = 'GBP';
+          } else if (timezone.includes("Africa")) {
+            savedCountry = 'ZA';
+            savedCurrency = 'ZAR';
+          } else {
+            savedCountry = 'US';
+            savedCurrency = 'USD';
+          }
+        } catch {
+          savedCountry = 'US';
+          savedCurrency = 'USD';
+        }
+      }
+
+      // 2. Set initial selected country
+      const initialOption = document.querySelector(`input[value="${savedCountry}"]`);
+      if (initialOption) {
+        initialOption.checked = true;
+        selectedText.textContent = initialOption.getAttribute('data-title');
+        localStorage.setItem('userCountry', savedCountry);
+        localStorage.setItem('userCurrency', savedCurrency);
+      }
+
+      // 3. Toggle dropdown
+      selected.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.select').forEach(s => {
+          if (s !== select) s.classList.remove('active');
+        });
+        select.classList.toggle('active');
+      });
+
+      // 4. Close when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!select.contains(e.target)) {
+          select.classList.remove('active');
+        }
+      });
+
+      // 5. Country selection handler
+      select.querySelectorAll('.option').forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const radio = item.querySelector('input[type="radio"]');
+          const countryCode = radio.value;
+          const countryName = radio.getAttribute('data-title');
+          
+          // Update UI
+          selectedText.textContent = countryName;
+          select.classList.remove('active');
+          
+          // Get currency from our fixed mapping
+          const currencyData = CURRENCY_MAP[countryCode] || { currency: 'USD', symbol: '$' };
+          
+          // Save to storage
+          localStorage.setItem('userCountry', countryCode);
+          localStorage.setItem('userCurrency', currencyData.currency);
+          localStorage.setItem('currencySymbol', currencyData.symbol);
+          
+          // Notify other tabs
+          window.dispatchEvent(new StorageEvent('storage', {
+            key: 'userCountry',
+            newValue: countryCode
+          }));
+          
+          console.log(`Country set to: ${countryCode}, Currency: ${currencyData.currency}`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

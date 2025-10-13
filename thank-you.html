@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Documents Processing - 3CH0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-text: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent: #92cdec;
+      --secondary-text: #a0a0a0;
+      --glass-panel: rgba(15, 15, 15, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .glass-panel {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation - Fixed */
+    nav {
+      background: rgba(10, 10, 10, 0.98);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fdfdfe;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .logo-img {
+      height: 60px;
+      filter: brightness(120%);
+    }
+
+    .main-content {
+      flex: 1 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .checkmark {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    .checkmark circle {
+      stroke: #92cdec;
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .checkmark path {
+      stroke: #92cdec;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+      fill: none;
+    }
+
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .subtext {
+      font-size: 1.25rem;
+      color: var(--secondary-text);
+      max-width: 600px;
+      margin: 0 auto 50px;
+      line-height: 1.6;
+    }
+
+    .status-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto 50px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .status-item:last-child {
+      border-bottom: none;
+    }
+
+    .status-item span {
+      color: var(--secondary-text);
+    }
+
+    .status-item strong {
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: var(--button-text);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(146, 205, 236, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(146, 205, 236, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .progress-text {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .progress-text svg {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    /* Footer - At Bottom */
+    footer {
+      padding: 40px 20px;
+      background-color: rgba(9, 6, 3, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    .footer-links {
+      margin-bottom: 20px;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .subtext {
+        font-size: 1.1rem;
+      }
+      
+      .status-card {
+        padding: 30px 20px;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
+      footer {
+        padding: 30px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Nav - Fixed -->
+  <nav class="glass-panel">
+    <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
+    <div>
+      <a href="home.html">Home</a>
+      <a href="subscription.html">Subscription</a>
+      <a href="settings.html">Settings</a>
+    </div>
+  </nav>
+
+</br>
+</br>
+
+  <div class="main-content">
+    <div class="checkmark animate">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="25"/>
+        <path d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+    </div>
+
+    <h1 class="animate">Submission Complete</h1>
+    <p class="subtext animate">Your compliance documents are being generated by our AI system. You'll receive them via email shortly.</p>
+
+    <div class="status-card glass-panel animate">
+      <div class="status-item">
+        <span>Document Type</span>
+        <strong>Compliance Pack</strong>
+      </div>
+      <div class="status-item">
+        <span>Delivery Method</span>
+        <strong>Email</strong>
+      </div>
+      <div class="status-item">
+        <span>Estimated Delivery</span>
+        <strong>5-15 minutes</strong>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <a href="home.html" class="btn btn-secondary animate" id="dashboardBtn">
+        Return to Dashboard
+      </a>
+      <a href="checkout-agency.html" class="btn btn-primary animate" id="upgradeBtn">
+        Upgrade to Agency Pro
+      </a>
+    </div>
+
+    <p class="progress-text animate">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#92cdec" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+      AI is analyzing your business requirements
+    </p>
+  </div>
+
+</br>
+</br>
+
+  <!-- Footer - At Bottom -->
+  <footer>
+    <div class="footer-links">
+      <a href="settings.html">Privacy & Terms</a> |
+      <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+      <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
+    </div>
+    &copy; 2025 3CH0 Compliance. All rights reserved.
+  </footer>
+
+  <script>
+    // Handle free submission count
+    document.getElementById('dashboardBtn').addEventListener('click', function() {
+      const now = new Date();
+      const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
+      
+      // Only decrement if not already 0
+      const current = parseInt(localStorage.getItem(storageKey)) || 1;
+      if (current > 0) {
+        localStorage.setItem(storageKey, current - 1);
+      }
+    });
+
+    // Show upgrade button if no submissions left
+    document.addEventListener('DOMContentLoaded', function() {
+      const now = new Date();
+      const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
+      const remaining = parseInt(localStorage.getItem(storageKey)) || 1;
+      
+      if (remaining <= 0) {
+        document.getElementById('upgradeBtn').style.display = 'inline-block';
+      }
+
+      // Add animation on scroll
+      const animateElements = document.querySelectorAll('.animate');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animateElements.forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

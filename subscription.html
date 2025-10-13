@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing - 3CH0</title>
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-text: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent: #92cdec;
+      --secondary-text: #a0a0a0;
+      --glass-panel: rgba(15, 15, 15, 0.8);
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px; /* For fixed nav */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .main-content {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+
+    .glass-panel {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation - Fixed */
+    nav {
+      background: rgba(10, 10, 10, 0.98);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fdfdfe;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .logo-img {
+      height: 60px;
+      filter: brightness(120%);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 36px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .subheader {
+      font-size: 18px;
+      color: var(--secondary-text);
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .plan-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 30px;
+      position: relative;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      border-color: rgba(146, 205, 236, 0.3);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--gradient);
+      color: var(--button-text);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .plan-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .price-container {
+      margin: 20px 0;
+    }
+
+    .price {
+      font-size: 42px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .price-period {
+      font-size: 16px;
+      color: var(--secondary-text);
+    }
+
+    .features {
+      margin: 30px 0;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 15px;
+      color: var(--secondary-text);
+    }
+
+    .feature svg {
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--button-text);
+      background: var(--gradient);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: auto;
+      max-width: 200px;
+      margin: 0 auto;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 20px rgba(146, 205, 236, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: rgba(146, 205, 236, 0.1);
+    }
+
+    .testimonial {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 60px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .testimonial-text {
+      font-size: 18px;
+      font-style: italic;
+      margin-bottom: 20px;
+      color: var(--secondary-text);
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: white;
+    }
+
+    .testimonial-role {
+      color: var(--secondary-text);
+      font-size: 14px;
+    }
+
+/* Currency Indicator - Narrower Version */
+.currency-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  background: rgba(146, 205, 236, 0.1);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.currency-indicator span {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.currency-change-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.currency-change-btn:hover {
+  background: rgba(146, 205, 236, 0.2);
+  transform: translateY(-1px);
+}
+
+    /* Footer - At Bottom */
+    footer {
+      padding: 40px 20px;
+      background-color: rgba(9, 6, 3, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    /* Animation */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .plans {
+        grid-template-columns: 1fr;
+      }
+      
+      .plan-card {
+        padding: 30px 20px;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: none;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
+      .container {
+        margin: 40px auto;
+      }
+    }
+
+        /* Security Badge - Subtle */
+    .security-badge-indicator {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 10px;
+      color: var(--success);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <!-- Nav - Fixed -->
+    <nav class="glass-panel">
+      <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
+      <div>
+        <a href="home.html">Home</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="header">
+        <h1>Simple, Transparent Pricing</h1>
+        <p class="subheader">Get compliant in minutes, not weeks. Start with our free plan or unlock unlimited documents with Agency Pro.</p>
+        
+<!-- Currency Indicator -->
+<div class="currency-indicator">
+  <span id="current-currency">USD ($)</span>
+  <button class="currency-change-btn" onclick="openSettings()">Change</button>
+</div>
+
+</br>
+</br>
+
+      <div class="plans">
+        <!-- Free Plan -->
+        <div class="plan-card glass-panel">
+          <div class="plan-name">Free</div>
+          <div class="price-container">
+            <span class="price" id="free-price">$0.00</span>
+            <span class="price-period" id="free-period">forever</span>
+          </div>
+          <div class="features">
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>1 full compliance document (no watermark)</span>
+            </div>
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Basic Discord support</span>
+            </div>
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 18L18 6M6 6l12 12" stroke="#ff6b6b" stroke-width="2"/>
+              </svg>
+              <span style="color: #888;">No real-time updates</span>
+            </div>
+          </div>
+          <a href="checkout-free.html" class="btn btn-outline">Start Free Trial</a>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="plan-card glass-panel" style="border: 1px solid rgba(146, 205, 236, 0.3);">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="plan-name">Agency Pro</div>
+          <div class="price-container">
+            <span class="price" id="pro-price">$99.00</span>
+            <span class="price-period" id="pro-period">per month</span>
+          </div>
+          <div class="features">
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Unlimited compliance documents</span>
+            </div>
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Real-time legal updates</span>
+            </div>
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>White-label branding</span>
+            </div>
+            <div class="feature">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Priority Slack support</span>
+            </div>
+          </div>
+          <a href="checkout-agency.html" class="btn pulse">Get Started</a>
+          <div style="text-align: center; margin-top: 10px; font-size: 13px; color: var(--secondary-text);">
+            Cancel anytime
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="testimonial glass-panel">
+        <p class="testimonial-text">"3CH0 saved our agency over $15,000 in legal fees last quarter. The AI-generated docs passed our client audits with zero changes."</p>
+        <div class="testimonial-author">Rachel W.</div>
+        <div class="testimonial-role">Founder, Digital Compliance Agency</div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Security Badge -->
+  <div class="security-badge-indicator">🔒 Secure</div>
+
+  <!-- Footer - At Bottom -->
+  <footer>
+    <div class="footer-links">
+      <a href="settings.html">Privacy & Terms</a> |
+      <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+      <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
+    </div>
+    &copy; 2025 3CH0 Compliance. All rights reserved.
+  </footer>
+
+  <!-- Enhanced Currency Conversion Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Fixed prices by currency
+      const FIXED_PRICES = {
+        USD: {
+          free: 0.00,
+          pro: 99.00,
+          annual: 948.00, // $79/month equivalent
+          symbol: '$',
+          periodText: {
+            free: 'forever',
+            pro: 'per month',
+            annual: '/month billed annually'
+          },
+          displayName: 'USD ($)'
+        },
+        EUR: {
+          free: 0.00,
+          pro: 89.00,
+          annual: 828.00, // €69/month
+          symbol: '€',
+          periodText: {
+            free: 'forever',
+            pro: 'per month',
+            annual: '/month billed annually'
+          },
+          displayName: 'EUR (€)'
+        },
+        GBP: {
+          free: 0.00,
+          pro: 79.00,
+          annual: 708.00, // £59/month
+          symbol: '£',
+          periodText: {
+            free: 'forever',
+            pro: 'per month',
+            annual: '/month billed annually'
+          },
+          displayName: 'GBP (£)'
+        },
+        ZAR: {
+          free: 0.00,
+          pro: 1899.00,
+          annual: 13200.00, // R1100/month
+          symbol: 'R',
+          periodText: {
+            free: 'forever',
+            pro: 'per month',
+            annual: '/month billed annually'
+          },
+          displayName: 'ZAR (R)'
+        }
+      };
+
+      // Get user's currency from settings with fallback
+      function getUserCurrency() {
+        const userCountry = localStorage.getItem('userCountry') || 'US';
+        const currencySymbol = localStorage.getItem('currencySymbol') || '$';
+        let userCurrency = 'USD';
+        
+        // Map country to currency (must match settings page)
+        const euroCountries = ['DE','FR','IT','ES','NL','BE','IE','PT','AT'];
+        if (euroCountries.includes(userCountry)) userCurrency = 'EUR';
+        else if (userCountry === 'GB') userCurrency = 'GBP';
+        else if (userCountry === 'ZA') userCurrency = 'ZAR';
+
+        return userCurrency;
+      }
+
+      // Update prices with fixed amounts
+      function updatePrices() {
+        const userCurrency = getUserCurrency();
+        const prices = FIXED_PRICES[userCurrency];
+        
+        if (!prices) {
+          console.error('No prices found for currency:', userCurrency);
+          return;
+        }
+        
+        // Format numbers with proper spacing for ZAR
+        const formatPrice = (price) => {
+          if (userCurrency === 'ZAR') {
+            return price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+          }
+          return price.toFixed(2);
+        };
+        
+        // Free plan
+        document.getElementById('free-price').textContent = 
+          `${prices.symbol}${formatPrice(prices.free)}`;
+        document.getElementById('free-period').textContent = 
+          prices.periodText.free;
+          
+        // Pro plan
+        document.getElementById('pro-price').textContent = 
+          `${prices.symbol}${formatPrice(prices.pro)}`;
+        document.getElementById('pro-period').textContent = 
+          prices.periodText.pro;
+
+        // Update currency indicator
+        document.getElementById('current-currency').textContent = prices.displayName;
+
+        console.log(`Prices updated to ${userCurrency} (${prices.symbol})`);
+      }
+
+      // Listen for storage changes (when settings are updated in another tab)
+      function setupStorageListener() {
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'userCountry' || e.key === 'userCurrency' || e.key === 'currencySymbol') {
+            console.log('Currency settings changed, updating prices...');
+            updatePrices();
+          }
+        });
+      }
+
+      // Also listen for changes in the same tab (for when user navigates back)
+      function setupVisibilityListener() {
+        document.addEventListener('visibilitychange', function() {
+          if (!document.hidden) {
+            // Page became visible, check for currency changes
+            const lastUpdate = localStorage.getItem('lastCurrencyUpdate');
+            const currentTime = Date.now();
+            
+            if (!lastUpdate || (currentTime - lastUpdate) < 5000) {
+              updatePrices();
+            }
+          }
+        });
+      }
+
+      // Function to open settings
+      window.openSettings = function() {
+        window.location.href = 'settings.html';
+      };
+
+      // Initialize
+      updatePrices();
+      setupStorageListener();
+      setupVisibilityListener();
+
+      // Force update every 2 seconds for demo purposes (remove in production)
+      // setInterval(updatePrices, 2000);
+
+      // Show current currency to user
+      const userCurrency = getUserCurrency();
+      console.log(`Displaying prices in ${userCurrency}`);
+    });
+
+    // Additional: Update prices when page becomes visible (for back navigation)
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'visible') {
+        // Trigger a small delay to ensure localStorage is updated
+        setTimeout(() => {
+          const event = new Event('storage');
+          window.dispatchEvent(event);
+        }, 100);
+      }
+    });
+
+    // Listen for page show event (for browser back/forward)
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        // Page was loaded from cache, update prices
+        setTimeout(() => {
+          const event = new Event('storage');
+          window.dispatchEvent(event);
+        }, 100);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activate Free Plan – 3CH0</title>
+  <meta name="description" content="Start generating compliance docs instantly with 3CH0's free tier">
+  
+  <!-- SECURITY HEADERS -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://api.exchangerate-api.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.exchangerate-api.com">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-text: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent: #92cdec;
+      --secondary-text: #a0a0a0;
+      --glass-panel: rgba(15, 15, 15, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px; /* For fixed nav */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .main-content {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+
+    .glass-panel {
+      background: var(--glass-panel);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation - Fixed */
+    nav {
+      background: rgba(10, 10, 10, 0.98);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      color: #fdfdfe;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .logo-img {
+      height: 60px;
+      filter: brightness(120%);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(146, 205, 236, 0.5);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .price-display {
+      font-size: 22px;
+      margin: 20px 0;
+      min-height: 30px;
+    }
+
+    .price-amount {
+      font-size: 32px;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .features {
+      text-align: left;
+      margin: 25px 0;
+      font-size: 15px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      color: var(--secondary-text);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .feature-item:last-child {
+      border-bottom: none;
+    }
+
+    .feature-item svg {
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--button-text);
+      border: none;
+      border-radius: 30px;
+      background: var(--gradient);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(146, 205, 236, 0.3);
+      width: auto;
+      max-width: 200px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(146, 205, 236, 0.5);
+    }
+
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: var(--secondary-text);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+    }
+
+    .trust-badge svg {
+      margin-right: 8px;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: var(--secondary-text);
+      margin-top: 25px;
+      line-height: 1.5;
+    }
+
+    .disclaimer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .disclaimer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Security Features */
+    .security-features {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      text-align: left;
+    }
+
+    .security-features h3 {
+      color: #10b981;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .security-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .security-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--secondary-text);
+    }
+
+    .security-list li:before {
+      content: '✓';
+      color: #10b981;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* Footer - At Bottom */
+    footer {
+      padding: 40px 20px;
+      background-color: rgba(9, 6, 3, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    /* Pulse animation for CTA */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Security Badge */
+    .security-badge {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 10px;
+      color: #10b981;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Loading State */
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      .card {
+        padding: 30px 20px;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: none;
+      }
+      
+      body {
+        padding-top: 70px;
+      }
+      
+      footer {
+        padding: 30px 15px;
+      }
+      
+      .trust-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <!-- Nav - Fixed -->
+    <nav class="glass-panel">
+      <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
+      <div>
+        <a href="home.html">Home</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <div class="container">
+      <div class="card glass-panel">
+        <h1>Start Generating Compliance Docs</h1>
+        
+        <div class="price-display">
+          <div class="price-amount" id="converted-price">$0</div>
+          <div id="price-period">forever</div>
+        </div>
+
+
+        <div class="features">
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>1 full compliance document (no watermark)</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L9 17L4 12" stroke="#92cdec" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Basic Discord support</span>
+          </div>
+          <div class="feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 18L18 6M6 6l12 12" stroke="#ff6b6b" stroke-width="2"/>
+            </svg>
+            <span style="color: #888;">No real-time legal updates</span>
+          </div>
+        </div>
+
+        <a href="thank-you.html" class="btn pulse" id="activate-btn">Get Started Now</a>
+
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L4 5v6.09a10 10 0 005.52 8.96L12 22l2.48-1.95A10 10 0 0020 11.09V5l-8-3z" fill="#92cdec"/>
+            </svg>
+            <span>Secure SSL Encryption</span>
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 10h8M8 14h4m5-8a5 5 0 00-10 0h10z" stroke="#92cdec" stroke-width="2"/>
+            </svg>
+            <span>No Credit Card Needed</span>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          By continuing, you agree to our <a href="terms.html">Terms</a> and 
+          <a href="privacy.html">Privacy Policy</a>. 
+          You can cancel anytime.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer - At Bottom -->
+  <footer>
+    &copy; 2025 3CH0 Compliance. All rights reserved.
+    <br>
+    <a href="settings.html">Privacy & Terms</a> |
+    <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+    <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
+  </footer>
+
+  <!-- Security Badge -->
+  <div class="security-badge">🔒 Secure</div>
+
+  <!-- Enhanced Security Script -->
+  <script>
+    // ======================
+    // SECURITY CONFIGURATION
+    // ======================
+    const SECURITY_CONFIG = {
+        enableRateLimiting: true,
+        enableActivityMonitoring: true,
+        enableCurrencyValidation: true,
+        maxActivationAttempts: 3,
+        activationTimeout: 30000, // 30 seconds
+        securityLogEndpoint: 'https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu'
+    };
+
+    // ======================
+    // SECURITY UTILITIES
+    // ======================
+    const SecurityUtils = {
+        // Generate session ID
+        generateSessionId() {
+            const sessionId = 'free_plan_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('free_plan_session', sessionId);
+            sessionStorage.setItem('session_start', Date.now().toString());
+            return sessionId;
+        },
+
+        // Validate session
+        validateSession() {
+            const sessionId = sessionStorage.getItem('free_plan_session');
+            const sessionStart = sessionStorage.getItem('session_start');
+            
+            if (!sessionId || !sessionStart) {
+                return false;
+            }
+
+            const sessionAge = Date.now() - parseInt(sessionStart);
+            return sessionAge < 3600000; // 1 hour session limit
+        },
+
+        // Rate limiting
+        checkRateLimit() {
+            const attempts = parseInt(localStorage.getItem('free_plan_attempts') || '0');
+            const lastAttempt = localStorage.getItem('last_free_attempt');
+            const now = Date.now();
+
+            if (lastAttempt && (now - lastAttempt) < 60000) { // 1 minute cooldown
+                if (attempts >= SECURITY_CONFIG.maxActivationAttempts) {
+                    return false;
+                }
+            }
+
+            localStorage.setItem('free_plan_attempts', (attempts + 1).toString());
+            localStorage.setItem('last_free_attempt', now.toString());
+            return true;
+        },
+
+        // Reset rate limit (for successful activations)
+        resetRateLimit() {
+            localStorage.removeItem('free_plan_attempts');
+            localStorage.removeItem('last_free_attempt');
+        },
+
+        // Hash user data for tracking
+        hashUserData(data) {
+            let hash = 0;
+            for (let i = 0; i < data.length; i++) {
+                const char = data.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(16);
+        },
+
+        // Log security events
+        logSecurityEvent(eventType, details) {
+            const eventData = {
+                type: eventType,
+                timestamp: new Date().toISOString(),
+                page: 'checkout-free',
+                session_id: sessionStorage.getItem('free_plan_session'),
+                user_hash: this.hashUserData(navigator.userAgent + navigator.language),
+                details: details
+            };
+
+            console.log('🔒 Free Plan Security Event:', eventData);
+
+            // Send to security monitoring
+            this.sendToSecurityLog(eventData);
+        },
+
+        // Send to security log
+        sendToSecurityLog(eventData) {
+            fetch(SECURITY_CONFIG.securityLogEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    security_event: true,
+                    free_plan_activation: true,
+                    ...eventData
+                })
+            }).catch(error => {
+                console.error('Failed to log security event:', error);
+            });
+        },
+
+        // Validate currency data
+        validateCurrency(currency, amount) {
+            if (typeof amount !== 'number' || isNaN(amount)) {
+                return false;
+            }
+
+            // Free plan should always be 0
+            if (amount !== 0) {
+                console.error('Invalid free plan price:', amount);
+                return false;
+            }
+
+            const validCurrencies = ['USD', 'EUR', 'GBP', 'ZAR'];
+            return validCurrencies.includes(currency);
+        },
+
+        // Sanitize input
+        sanitizeInput(input) {
+            if (typeof input !== 'string') return input;
+            return input.replace(/[<>]/g, '');
+        }
+    };
+
+    // ======================
+    // FREE PLAN MANAGER
+    // ======================
+    const FreePlanManager = {
+        currentCurrency: 'USD',
+        userCountry: 'US',
+        activationInProgress: false,
+
+        init() {
+            this.loadUserPreferences();
+            this.setupEventListeners();
+            this.initializeSession();
+            this.updatePriceDisplay();
+            this.setupSecurityMonitoring();
+
+            SecurityUtils.logSecurityEvent('free_plan_page_loaded', {
+                currency: this.currentCurrency,
+                country: this.userCountry
+            });
+        },
+
+        loadUserPreferences() {
+            try {
+                this.userCountry = localStorage.getItem('userCountry') || 'US';
+                const currencySymbol = localStorage.getItem('currencySymbol') || '$';
+                
+                // Map country to currency
+                const euroCountries = ['DE','FR','IT','ES','NL','BE','IE','PT','AT'];
+                if (euroCountries.includes(this.userCountry)) {
+                    this.currentCurrency = 'EUR';
+                } else if (this.userCountry === 'GB') {
+                    this.currentCurrency = 'GBP';
+                } else if (this.userCountry === 'ZAR') {
+                    this.currentCurrency = 'ZAR';
+                } else {
+                    this.currentCurrency = 'USD';
+                }
+
+            } catch (error) {
+                console.error('Error loading user preferences:', error);
+                this.currentCurrency = 'USD';
+                this.userCountry = 'US';
+            }
+        },
+
+        initializeSession() {
+            if (!SecurityUtils.validateSession()) {
+                SecurityUtils.generateSessionId();
+            }
+        },
+
+        updatePriceDisplay() {
+            const symbols = { 
+                USD: '$', 
+                EUR: '€', 
+                GBP: '£',
+                ZAR: 'R' 
+            };
+            
+            const basePrice = 0; // Free plan is always 0
+            
+            if (!SecurityUtils.validateCurrency(this.currentCurrency, basePrice)) {
+                console.error('Currency validation failed, using USD fallback');
+                this.currentCurrency = 'USD';
+            }
+
+            const convertedPrice = basePrice.toFixed(2);
+            document.getElementById('converted-price').textContent = 
+                `${symbols[this.currentCurrency]}${convertedPrice}`;
+            
+            // Localize "forever" text
+            const periodText = {
+                USD: 'forever',
+                EUR: 'forever',
+                GBP: 'forever',
+                ZAR: 'forever'
+            };
+            document.getElementById('price-period').textContent = 
+                periodText[this.currentCurrency] || 'forever';
+        },
+
+        setupEventListeners() {
+            const activateBtn = document.getElementById('activate-btn');
+            
+            if (activateBtn) {
+                activateBtn.addEventListener('click', (e) => {
+                    this.handleActivation(e);
+                });
+            }
+
+            // Monitor for storage changes
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'userCountry' || e.key === 'userCurrency') {
+                    SecurityUtils.logSecurityEvent('currency_preference_changed', {
+                        key: e.key,
+                        newValue: e.newValue
+                    });
+                    this.loadUserPreferences();
+                    this.updatePriceDisplay();
+                }
+            });
+
+            // Prevent multiple rapid clicks
+            this.setupClickProtection();
+        },
+
+        async handleActivation(e) {
+            e.preventDefault();
+            
+            if (this.activationInProgress) {
+                SecurityUtils.logSecurityEvent('activation_already_in_progress', {});
+                return;
+            }
+
+            // Security checks
+            if (!this.performSecurityChecks()) {
+                return;
+            }
+
+            this.activationInProgress = true;
+            this.setLoadingState(true);
+
+            try {
+                // Log activation attempt
+                SecurityUtils.logSecurityEvent('free_plan_activation_attempt', {
+                    currency: this.currentCurrency,
+                    country: this.userCountry,
+                    session_valid: SecurityUtils.validateSession()
+                });
+
+                // Simulate processing delay (in real scenario, this would be API call)
+                await this.simulateActivationProcess();
+
+                // Success - reset rate limit and redirect
+                SecurityUtils.resetRateLimit();
+                
+                SecurityUtils.logSecurityEvent('free_plan_activation_success', {
+                    redirect_to: 'thank-you.html'
+                });
+
+                // Redirect to thank you page
+                window.location.href = "thank-you.html";
+
+            } catch (error) {
+                SecurityUtils.logSecurityEvent('free_plan_activation_error', {
+                    error: error.message
+                });
+                
+                this.showError('Activation failed. Please try again.');
+            } finally {
+                this.activationInProgress = false;
+                this.setLoadingState(false);
+            }
+        },
+
+        performSecurityChecks() {
+            const errors = [];
+
+            // Rate limiting
+            if (!SecurityUtils.checkRateLimit()) {
+                errors.push('Too many activation attempts. Please wait a moment.');
+            }
+
+            // Session validation
+            if (!SecurityUtils.validateSession()) {
+                errors.push('Session expired. Please refresh the page.');
+            }
+
+            // Currency validation
+            if (!SecurityUtils.validateCurrency(this.currentCurrency, 0)) {
+                errors.push('Currency validation failed.');
+            }
+
+            if (errors.length > 0) {
+                SecurityUtils.logSecurityEvent('security_check_failed', {
+                    errors: errors
+                });
+                
+                this.showError(errors.join(' '));
+                return false;
+            }
+
+            return true;
+        },
+
+        async simulateActivationProcess() {
+            // Simulate API call delay
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // In a real scenario, this would:
+                    // 1. Call your backend API
+                    // 2. Create user account
+                    // 3. Set free plan limits
+                    // 4. Return success
+                    resolve();
+                }, 1500);
+            });
+        },
+
+        setupClickProtection() {
+            let lastClickTime = 0;
+            const activateBtn = document.getElementById('activate-btn');
+
+            if (activateBtn) {
+                activateBtn.addEventListener('click', (e) => {
+                    const currentTime = Date.now();
+                    if (currentTime - lastClickTime < 1000) { // 1 second cooldown
+                        e.preventDefault();
+                        SecurityUtils.logSecurityEvent('rapid_click_prevented', {
+                            time_since_last_click: currentTime - lastClickTime
+                        });
+                        return;
+                    }
+                    lastClickTime = currentTime;
+                });
+            }
+        },
+
+        setupSecurityMonitoring() {
+            // Monitor for price tampering
+            this.monitorPriceElements();
+            
+            // Monitor for suspicious activities
+            this.monitorSuspiciousActivities();
+            
+            // Monitor for developer tools
+            this.monitorDevTools();
+        },
+
+        monitorPriceElements() {
+            const priceElement = document.getElementById('converted-price');
+            const originalPrice = priceElement.textContent;
+
+            setInterval(() => {
+                if (priceElement.textContent !== originalPrice) {
+                    SecurityUtils.logSecurityEvent('price_tampering_detected', {
+                        original: originalPrice,
+                        current: priceElement.textContent
+                    });
+                    
+                    // Restore original price
+                    this.updatePriceDisplay();
+                }
+            }, 2000);
+        },
+
+        monitorSuspiciousActivities() {
+            // Monitor for console access
+            const originalConsole = console.log;
+            console.log = function(...args) {
+                const message = args.join(' ');
+                if (message.toLowerCase().includes('free') || 
+                    message.toLowerCase().includes('plan') || 
+                    message.toLowerCase().includes('activation')) {
+                    SecurityUtils.logSecurityEvent('console_activity_detected', {
+                        message: message.substring(0, 100)
+                    });
+                }
+                originalConsole.apply(console, args);
+            };
+
+            // Monitor for right-click attempts
+            document.addEventListener('contextmenu', (e) => {
+                if (e.target.closest('.card')) {
+                    SecurityUtils.logSecurityEvent('context_menu_attempt', {
+                        target: e.target.tagName
+                    });
+                }
+            });
+        },
+
+        monitorDevTools() {
+            const checkDevTools = () => {
+                const widthThreshold = window.outerWidth - window.innerWidth > 160;
+                const heightThreshold = window.outerHeight - window.innerHeight > 160;
+                
+                if (widthThreshold || heightThreshold) {
+                    SecurityUtils.logSecurityEvent('dev_tools_detected', {});
+                }
+            };
+            
+            setInterval(checkDevTools, 5000);
+        },
+
+        setLoadingState(loading) {
+            const card = document.querySelector('.card');
+            const btn = document.getElementById('activate-btn');
+            
+            if (loading) {
+                card.classList.add('loading');
+                btn.textContent = 'Activating...';
+                btn.style.opacity = '0.7';
+            } else {
+                card.classList.remove('loading');
+                btn.textContent = 'Get Started Now';
+                btn.style.opacity = '1';
+            }
+        },
+
+        showError(message) {
+            // Create error message
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                background: rgba(220, 53, 69, 0.1);
+                border: 1px solid rgba(220, 53, 69, 0.3);
+                border-radius: 8px;
+                padding: 12px;
+                margin: 15px 0;
+                color: #dc3545;
+                font-size: 14px;
+            `;
+            errorDiv.textContent = message;
+
+            // Remove existing error
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            // Add to card
+            const card = document.querySelector('.card');
+            card.insertBefore(errorDiv, card.querySelector('.btn'));
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+    };
+
+    // ======================
+    // INITIALIZATION
+    // ======================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize free plan manager
+        FreePlanManager.init();
+
+        // Log page view
+        SecurityUtils.logSecurityEvent('page_loaded', {
+            user_agent: navigator.userAgent,
+            referrer: document.referrer || 'direct'
+        });
+    });
+
+    // Handle page unload (user leaving)
+    window.addEventListener('beforeunload', function() {
+        SecurityUtils.logSecurityEvent('user_leaving_page', {
+            time_on_page: Date.now() - parseInt(sessionStorage.getItem('session_start') || '0')
+        });
+    });
+
+    // Update if currency changes in another tab
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'userCurrency' || e.key === 'userCountry') {
+            location.reload();
+        }
+    });
+  </script>
+</body>
+</html>

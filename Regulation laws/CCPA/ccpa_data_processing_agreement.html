@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        h1, h2, h3 {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-top: 50px;
+        }
+        
+        p {
+            margin: 20px 0;
+            text-align: justify;
+        }
+        
+        .placeholder {
+            background-color: #f0f8ff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px dashed #0069d9;
+        }
+        
+        .section {
+            margin: 50px 0;
+        }
+        
+        .signature-area {
+            margin-top: 100px;
+            padding-top: 30px;
+            border-top: 2px solid #92cdec;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DATA PROCESSING AGREEMENT</h1>
+        <h2>California Consumer Privacy Act (CCPA) Compliance</h2>
+        
+        <div class="section">
+            <p><strong>Effective Date:</strong> <span class="placeholder">{{current_date}}</span></p>
+            <p><strong>Between:</strong> <span class="placeholder">{{company_name}}</span> ("Business")</p>
+            <p><strong>And:</strong> <span class="placeholder">{{service_provider_name}}</span> ("Service Provider")</p>
+        </div>
+
+        <div class="section">
+            <h2>1. PURPOSE AND SCOPE</h2>
+            <p>This Data Processing Agreement ("DPA") reflects the parties' commitment to comply with the California Consumer Privacy Act of 2018 (CCPA) and any subsequent amendments concerning the processing of personal information.</p>
+            
+            <p>The Business discloses personal information to the Service Provider solely for limited and specified business purposes as described in Exhibit A. The Service Provider shall comply with applicable obligations under the CCPA and provide the same level of privacy protection as is required by the CCPA.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. OBLIGATIONS OF SERVICE PROVIDER</h2>
+            <p>The Service Provider agrees to:</p>
+            <p>(a) Process personal information only for the business purposes specified in this agreement and not for any other commercial purpose</p>
+            <p>(b) Not sell or share the personal information</p>
+            <p>(c) Not retain, use, or disclose the personal information for any purpose other than for the specific purpose of performing the services specified in the contract</p>
+            <p>(d) Not retain, use, or disclose the personal information outside of the direct business relationship between the Service Provider and the Business</p>
+            <p>(e) Comply with all applicable sections of the CCPA, including providing the same level of privacy protection as required for businesses</p>
+        </div>
+
+        <div class="section">
+            <h2>3. CONSUMER RIGHTS REQUESTS</h2>
+            <p>The Service Provider shall assist the Business in responding to consumer rights requests under the CCPA, including but not limited to:</p>
+            <p>• Requests to know what personal information is being collected</p>
+            <p>• Requests to access specific pieces of personal information</p>
+            <p>• Requests to delete personal information</p>
+            <p>• Requests to correct inaccurate personal information</p>
+            <p>• Requests to opt-out of sale or sharing of personal information</p>
+        </div>
+
+        <div class="section">
+            <h2>4. SECURITY MEASURES</h2>
+            <p>The Service Provider shall implement reasonable security procedures and practices appropriate to the nature of the personal information to protect the personal information from unauthorized or illegal access, destruction, use, modification, or disclosure.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. NOTIFICATION REQUIREMENTS</h2>
+            <p>The Service Provider shall notify the Business if it makes a determination that it can no longer meet its obligations under the CCPA. Upon notice, the Business shall have the right to take reasonable and appropriate steps to stop and remediate unauthorized use of personal information.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. AUDIT RIGHTS</h2>
+            <p>The Business reserves the right to take reasonable and appropriate steps to help ensure that the Service Provider uses the personal information transferred in a manner consistent with the Business' obligations under the CCPA. This includes the right to conduct audits and assessments of the Service Provider's compliance with this DPA.</p>
+        </div>
+
+        <div class="signature-area">
+            <p>IN WITNESS WHEREOF, the parties have executed this Data Processing Agreement as of the Effective Date.</p>
+            
+            <div style="margin-top: 60px;">
+                <p><strong>BUSINESS:</strong> <span class="placeholder">{{company_name}}</span></p>
+                <p>By: ___________________________________</p>
+                <p>Name: <span class="placeholder">{{authorized_signatory}}</span></p>
+                <p>Title: ___________________________________</p>
+                <p>Date: ___________________________________</p>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <p><strong>SERVICE PROVIDER:</strong> <span class="placeholder">{{service_provider_name}}</span></p>
+                <p>By: ___________________________________</p>
+                <p>Name: ___________________________________</p>
+                <p>Title: ___________________________________</p>
+                <p>Date: ___________________________________</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

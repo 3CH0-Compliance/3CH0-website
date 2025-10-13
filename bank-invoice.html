@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bank Invoice – 3CH0</title>
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #242321;
+      --gradient: linear-gradient(135deg, #fdfdfe, #92cdec, #0069d9);
+      --text-color: #ffffff;
+      --button-bg: #92cdec;
+      --button-text: #242321;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --accent: #92cdec;
+      --warning: #ff6b6b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-color);
+      margin: 0;
+      padding: 40px 20px;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Full Page Watermark */
+    .full-watermark {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.02;
+      background-image: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 50px,
+          var(--accent) 50px,
+          var(--accent) 100px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 50px,
+          var(--accent) 50px,
+          var(--accent) 100px
+        );
+    }
+
+    .watermark-text {
+      position: absolute;
+      font-size: 120px;
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.03;
+      transform: rotate(-45deg);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .watermark-1 { top: 20%; left: -10%; }
+    .watermark-2 { top: 50%; left: 30%; }
+    .watermark-3 { top: 80%; left: -5%; }
+    .watermark-4 { top: 40%; left: 60%; }
+
+    .invoice-container {
+      background-color: #1a1a1a;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .invoice-header img {
+      height: 60px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 0;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .invoice-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .invoice-from, .invoice-to {
+      flex: 1;
+    }
+
+    .invoice-from {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .invoice-to {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .invoice-to strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .invoice-details {
+      margin: 30px 0;
+    }
+
+    .detail-row {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .detail-label {
+      width: 150px;
+      color: #aaa;
+    }
+
+    .detail-value {
+      flex: 1;
+    }
+
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+    }
+
+    .invoice-table th {
+      text-align: left;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.05);
+      color: #aaa;
+      font-weight: 600;
+    }
+
+    .invoice-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .total-row {
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .total-amount {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Plan Type Display */
+    .plan-display {
+      background: rgba(146, 205, 236, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin: 10px 0;
+      display: inline-block;
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Overseas Notice */
+    .overseas-notice {
+      background: rgba(146, 205, 236, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 25px;
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .overseas-notice h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .overseas-notice p {
+      margin: 10px 0;
+      color: var(--text-color);
+    }
+
+    .email-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .email-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Secure Bank Details Container */
+    .secure-bank-container {
+      background: rgba(255, 60, 60, 0.05);
+      border: 2px solid rgba(255, 60, 60, 0.3);
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .secure-bank-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .secure-bank-header h3 {
+      margin: 0;
+      color: var(--warning);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .view-counter {
+      background: rgba(255, 60, 60, 0.2);
+      color: var(--warning);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .bank-details {
+      background: rgba(255,255,255,0.03);
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .bank-details h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .bank-info {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .bank-label {
+      color: #aaa;
+    }
+
+    .bank-value {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .secure-view-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .secure-view-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .reveal-btn {
+      background: var(--gradient);
+      color: var(--button-text);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .reveal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(146, 205, 236, 0.4);
+    }
+
+    .warning-text {
+      color: var(--warning);
+      text-align: center;
+      max-width: 400px;
+      font-size: 14px;
+    }
+
+    .important-note {
+      background: rgba(255,60,60,0.1);
+      border-left: 3px solid #ff3c3c;
+      padding: 15px;
+      margin: 30px 0;
+      font-size: 14px;
+    }
+
+    .important-note strong {
+      color: #ff6b6b;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--button-text);
+      background: var(--gradient);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(146, 205, 236, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    /* Currency Display */
+    .currency-display {
+      background: rgba(146, 205, 236, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+    }
+
+    .currency-info {
+      font-size: 14px;
+      color: var(--accent);
+    }
+
+    /* Security Badge */
+    .security-badge {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 10px;
+      color: #10b981;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Print Styles */
+    @media print {
+      .secure-view-overlay,
+      .reveal-btn,
+      .view-counter,
+      .security-badge {
+        display: none !important;
+      }
+      
+      .full-watermark {
+        opacity: 0.1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .invoice-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .invoice-meta {
+        flex-direction: column;
+      }
+      
+      .invoice-to {
+        margin-top: 20px;
+      }
+      
+      .bank-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .secure-bank-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+      
+      .watermark-text {
+        font-size: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Full Page Watermark -->
+  <div class="full-watermark">
+    <div class="watermark-text watermark-1">3CH0 COMPLIANCE</div>
+    <div class="watermark-text watermark-2">SECURE INVOICE</div>
+    <div class="watermark-text watermark-3">BANK TRANSFER</div>
+    <div class="watermark-text watermark-4">CONFIDENTIAL</div>
+  </div>
+
+  <div class="invoice-container">
+    <div class="invoice-header">
+      <img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo">
+      <h1>BANK INVOICE</h1>
+    </div>
+
+    <div class="invoice-meta">
+      <div class="invoice-from">
+        <strong>3CH0 Compliance</strong>
+        Johannesburg, South Africa<br>
+        Email: 3CH0.The.Only@gmail.com<br>
+      </div>
+      
+      <div class="invoice-to">
+        <strong>Billed To:</strong>
+        <span id="client-name">Client Name</span><br>
+        <span id="client-email">client@email.com</span><br>
+        <span id="client-company">Company Name</span>
+      </div>
+    </div>
+
+    <div class="invoice-details">
+      <div class="detail-row">
+        <div class="detail-label">Invoice Number:</div>
+        <div class="detail-value">INV-<span id="invoice-id"></span></div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Date Issued:</div>
+        <div class="detail-value" id="invoice-date">2025-06-01</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Due Date:</div>
+        <div class="detail-value" id="due-date">2025-06-15</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Payment Method:</div>
+        <div class="detail-value">Bank Transfer</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Plan Type:</div>
+        <div class="detail-value">
+          <span class="plan-display" id="plan-type-display">Annual Plan</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Currency Information -->
+    <div class="currency-display">
+      <div class="currency-info">
+        Amount displayed in: <strong id="display-currency">ZAR (South African Rand)</strong>
+      </div>
+    </div>
+
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="service-description">Agency Pro Compliance Subscription (1 month)</td>
+          <td id="invoice-amount">R 1,899.00</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total Due</td>
+          <td class="total-amount" id="total-amount">R 1,899.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Overseas Customer Notice -->
+    <div class="overseas-notice">
+      <h3>🌍 International Customers</h3>
+      <p>If you're located outside South Africa and need an international invoice or alternative payment methods:</p>
+      <p>
+        <strong>Email us at:</strong><br>
+        <a href="mailto:3CH0.The.Only@gmail.com" class="email-link">3CH0.The.Only@gmail.com</a>
+      </p>
+      <p>We'll provide you with international payment options and customized invoicing.</p>
+    </div>
+
+    <!-- Secure Bank Details Section -->
+    <div class="secure-bank-container">
+      <div class="secure-bank-header">
+        <h3>🔒 Secure Bank Details</h3>
+        <div class="view-counter" id="viewCounter">Views: 1/3</div>
+      </div>
+      
+      <div class="bank-details">
+        <h3>🇿🇦 South African Bank Details</h3>
+        
+        <!-- Bank Details Content -->
+        <div id="bankDetailsContent">
+          <div class="bank-info">
+            <div class="bank-label">Bank Name:</div>
+            <div class="bank-value">First National Bank (FNB)</div>
+          </div>
+          <div class="bank-info">
+            <div class="bank-label">Account Holder:</div>
+            <div class="bank-value">Jean-Pierre Pretorius</div>
+          </div>
+          <div class="bank-info">
+            <div class="bank-label">Account Number:</div>
+            <div class="bank-value">63139480634</div>
+          </div>
+          <div class="bank-info">
+            <div class="bank-label">Branch Code:</div>
+            <div class="bank-value">250655</div>
+          </div>
+          <div class="bank-info">
+            <div class="bank-label">Account Type:</div>
+            <div class="bank-value">FNB Next Transact Account</div>
+          </div>
+          <div class="bank-info">
+            <div class="bank-label">Reference:</div>
+            <div class="bank-value" id="payment-reference">3CH0-[INVOICE-ID]</div>
+          </div>
+        </div>
+        
+        <!-- Secure View Overlay -->
+        <div class="secure-view-overlay" id="secureOverlay">
+          <button class="reveal-btn" id="revealBtn">Click to Reveal Bank Details</button>
+          <div class="warning-text">
+            ⚠️ For security reasons, bank details are hidden. You have <strong id="remainingViews">3</strong> views remaining.
+            Details will be permanently hidden after the limit is reached.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="important-note">
+      <strong>❗ Important Security Notice:</strong> 
+      Bank details are protected by view limiting. Please save this information securely. 
+      Do not share this invoice with unauthorized parties.
+    </div>
+
+    <div style="display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap;">
+      <button class="btn" id="download-btn">Download PDF Invoice</button>
+      <a href="checkout-agency.html" class="btn btn-secondary">← Back to Checkout</a>
+      <button class="btn btn-secondary" onclick="window.print()">Print Invoice</button>
+    </div>
+  </div>
+
+  <!-- Security Badge -->
+  <div class="security-badge">🔒 View-Limited</div>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      // Security Configuration
+      const SECURITY_CONFIG = {
+        maxViews: 3,
+        viewTimeout: 30000, // 30 seconds auto-hide
+        enableLogging: true,
+        storageKey: 'bank_invoice_views'
+      };
+      
+      // Fixed Price Configuration - MUST MATCH CHECKOUT PAGE
+      const PRICE_CONFIG = {
+        USD: {
+          monthly: 99.00,
+          annual: 948.00,
+          symbol: '$',
+          name: 'USD (US Dollar)',
+          format: 'en-US'
+        },
+        EUR: {
+          monthly: 89.00,
+          annual: 828.00,
+          symbol: '€',
+          name: 'EUR (Euro)',
+          format: 'de-DE'
+        },
+        GBP: {
+          monthly: 79.00,
+          annual: 708.00,
+          symbol: '£',
+          name: 'GBP (British Pound)',
+          format: 'en-GB'
+        },
+        ZAR: {
+          monthly: 1899.00,
+          annual: 13200.00,
+          symbol: 'R',
+          name: 'ZAR (South African Rand)',
+          format: 'en-ZA'
+        }
+      };
+      
+      let currentViews = 0;
+      let isRevealed = false;
+      let currentCurrency = 'ZAR';
+      let currentPlan = 'annual'; // Default to annual
+      
+      // Initialize everything
+      document.addEventListener('DOMContentLoaded', function() {
+        initializeCurrencyAndPlan();
+        initializeInvoiceData();
+        initializeViewProtection();
+        setupEventListeners();
+        
+        logSecurityEvent('page_loaded', {
+          page: 'bank-invoice',
+          currency: currentCurrency,
+          plan: currentPlan,
+          timestamp: new Date().toISOString()
+        });
+      });
+      
+      // Initialize Currency and Plan from Checkout - FIXED VERSION
+      function initializeCurrencyAndPlan() {
+        // Get plan from URL parameters first
+        const params = new URLSearchParams(window.location.search);
+        const urlPlan = params.get('plan');
+        
+        console.log('URL Plan parameter:', urlPlan);
+        console.log('Full URL:', window.location.href);
+        
+        if (urlPlan === 'monthly' || urlPlan === 'annual') {
+          currentPlan = urlPlan;
+          console.log('✅ Using URL plan:', currentPlan);
+        } else {
+          // Fallback to localStorage (from checkout page)
+          const storedPlan = localStorage.getItem('selectedPlan');
+          console.log('LocalStorage selectedPlan:', storedPlan);
+          
+          if (storedPlan === 'monthly' || storedPlan === 'annual') {
+            currentPlan = storedPlan;
+            console.log('✅ Using localStorage plan:', currentPlan);
+          } else {
+            currentPlan = 'annual'; // Default fallback
+            console.log('⚠️ Using default plan:', currentPlan);
+          }
+        }
+        
+        // Get currency from localStorage (set by checkout page)
+        const savedCurrency = localStorage.getItem('userCurrency') || 'USD';
+        const savedCountry = localStorage.getItem('userCountry') || 'US';
+        
+        // Use the same logic as checkout page to determine currency
+        const euroCountries = ['DE','FR','IT','ES','NL','BE','IE','PT','AT'];
+        if (euroCountries.includes(savedCountry)) {
+          currentCurrency = 'EUR';
+        } else if (savedCountry === 'GB') {
+          currentCurrency = 'GBP';
+        } else if (savedCountry === 'ZA') {
+          currentCurrency = 'ZAR';
+        } else {
+          currentCurrency = savedCurrency;
+        }
+        
+        console.log('🏦 Bank Invoice - Final Currency:', currentCurrency, 'Final Plan:', currentPlan);
+      }
+      
+      // Initialize Invoice Data with Currency and Plan
+      function initializeInvoiceData() {
+        const params = new URLSearchParams(window.location.search);
+        
+        // Set client details
+        document.getElementById('client-name').textContent = params.get('name') || 'Client Name';
+        document.getElementById('client-email').textContent = params.get('email') || 'client@email.com';
+        document.getElementById('client-company').textContent = params.get('company') || 'Company Name';
+        
+        // Generate invoice ID
+        const now = new Date();
+        const dateString = now.toISOString().slice(0, 10).replace(/-/g, '');
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const invoiceId = `${dateString}-${randomNum}`;
+        document.getElementById('invoice-id').textContent = invoiceId;
+        
+        // Set dates
+        document.getElementById('invoice-date').textContent = now.toISOString().slice(0, 10);
+        const dueDate = new Date(now);
+        dueDate.setDate(now.getDate() + 14);
+        document.getElementById('due-date').textContent = dueDate.toISOString().slice(0, 10);
+        
+        // Update payment reference
+        const reference = `3CH0-${invoiceId}`;
+        document.getElementById('payment-reference').textContent = reference;
+        
+        // Update amounts with current currency and plan
+        updateCurrencyAndPlanDisplay();
+      }
+      
+      // Update Currency and Plan Display
+      function updateCurrencyAndPlanDisplay() {
+        const currencyConfig = PRICE_CONFIG[currentCurrency] || PRICE_CONFIG.USD;
+        
+        // Update currency display
+        document.getElementById('display-currency').textContent = currencyConfig.name;
+        
+        // Update plan display
+        const planDisplay = currentPlan === 'annual' ? 'Annual Plan' : 'Monthly Plan';
+        document.getElementById('plan-type-display').textContent = planDisplay;
+        
+        // Update amounts
+        const amount = currencyConfig[currentPlan];
+        const description = currentPlan === 'annual' 
+          ? "Agency Pro Compliance Subscription (1 year) - Save 20%" 
+          : "Agency Pro Compliance Subscription (1 month)";
+        
+        // Format the amount based on currency
+        let formattedAmount;
+        if (currentCurrency === 'ZAR') {
+          formattedAmount = amount.toLocaleString(currencyConfig.format, {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+          });
+        } else {
+          formattedAmount = amount.toLocaleString(currencyConfig.format, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          });
+        }
+        
+        document.getElementById('service-description').textContent = description;
+        document.getElementById('invoice-amount').textContent = `${currencyConfig.symbol} ${formattedAmount}`;
+        document.getElementById('total-amount').textContent = `${currencyConfig.symbol} ${formattedAmount}`;
+        
+        console.log('💰 Updated display - Plan:', currentPlan, 'Amount:', `${currencyConfig.symbol} ${formattedAmount}`);
+      }
+      
+      // Initialize View Protection
+      function initializeViewProtection() {
+        const storedViews = localStorage.getItem(SECURITY_CONFIG.storageKey);
+        currentViews = storedViews ? parseInt(storedViews) : 0;
+        
+        if (currentViews >= SECURITY_CONFIG.maxViews) {
+          disableBankDetails();
+        } else {
+          updateViewCounter();
+        }
+      }
+      
+      // Setup Event Listeners
+      function setupEventListeners() {
+        // Reveal button
+        document.getElementById('revealBtn').addEventListener('click', revealBankDetails);
+        
+        // Download button
+        document.getElementById('download-btn').addEventListener('click', function(e) {
+          e.preventDefault();
+          if (currentViews < SECURITY_CONFIG.maxViews) {
+            revealBankDetails();
+          }
+          setTimeout(() => window.print(), 1000);
+        });
+        
+        // Auto-hide protection
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden && isRevealed) {
+            setTimeout(hideBankDetails, 1000);
+          }
+        });
+        
+        // Attempt to prevent right-click and text selection on bank details
+        const bankContainer = document.querySelector('.secure-bank-container');
+        bankContainer.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+          return false;
+        });
+        
+        bankContainer.style.userSelect = 'none';
+        bankContainer.style.webkitUserSelect = 'none';
+        
+        // Listen for currency/plan changes from checkout page
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'userCurrency' || e.key === 'userCountry' || e.key === 'selectedPlan') {
+            console.log('🔄 Storage updated:', e.key, '=', e.newValue);
+            initializeCurrencyAndPlan();
+            updateCurrencyAndPlanDisplay();
+            
+            logSecurityEvent('settings_updated', {
+              key: e.key,
+              newValue: e.newValue,
+              currency: currentCurrency,
+              plan: currentPlan,
+              timestamp: new Date().toISOString()
+            });
+          }
+        });
+      }
+      
+      // Reveal Bank Details
+      function revealBankDetails() {
+        if (currentViews >= SECURITY_CONFIG.maxViews) {
+          alert('Bank details viewing limit reached. Please contact support.');
+          return;
+        }
+        
+        const overlay = document.getElementById('secureOverlay');
+        overlay.classList.add('hidden');
+        isRevealed = true;
+        
+        // Increment view count
+        currentViews++;
+        localStorage.setItem(SECURITY_CONFIG.storageKey, currentViews.toString());
+        updateViewCounter();
+        
+        // Log security event
+        logSecurityEvent('bank_details_revealed', {
+          views: currentViews,
+          currency: currentCurrency,
+          plan: currentPlan,
+          timestamp: new Date().toISOString()
+        });
+        
+        // Auto-hide after timeout
+        setTimeout(hideBankDetails, SECURITY_CONFIG.viewTimeout);
+        
+        // Disable if max views reached
+        if (currentViews >= SECURITY_CONFIG.maxViews) {
+          setTimeout(disableBankDetails, SECURITY_CONFIG.viewTimeout + 1000);
+        }
+      }
+      
+      // Hide Bank Details
+      function hideBankDetails() {
+        if (currentViews < SECURITY_CONFIG.maxViews) {
+          const overlay = document.getElementById('secureOverlay');
+          overlay.classList.remove('hidden');
+          isRevealed = false;
+        }
+      }
+      
+      // Disable Bank Details Permanently
+      function disableBankDetails() {
+        const overlay = document.getElementById('secureOverlay');
+        const revealBtn = document.getElementById('revealBtn');
+        const bankContent = document.getElementById('bankDetailsContent');
+        
+        overlay.classList.remove('hidden');
+        revealBtn.disabled = true;
+        revealBtn.textContent = 'Viewing Limit Reached';
+        revealBtn.style.background = '#666';
+        revealBtn.style.cursor = 'not-allowed';
+        
+        document.getElementById('remainingViews').textContent = '0';
+        document.querySelector('.warning-text').innerHTML = 
+          '❌ Bank details are no longer available. Viewing limit reached.<br>Please contact support for assistance.';
+        
+        // Clear sensitive data from DOM
+        bankContent.innerHTML = '<div style="text-align: center; color: #ff6b6b; padding: 20px;">Bank details no longer available. Please contact support.</div>';
+        
+        logSecurityEvent('bank_details_disabled', {
+          reason: 'max_views_reached',
+          timestamp: new Date().toISOString()
+        });
+      }
+      
+      // Update View Counter
+      function updateViewCounter() {
+        document.getElementById('viewCounter').textContent = `Views: ${currentViews}/${SECURITY_CONFIG.maxViews}`;
+        document.getElementById('remainingViews').textContent = SECURITY_CONFIG.maxViews - currentViews;
+      }
+      
+      // Security Logging
+      function logSecurityEvent(eventType, details) {
+        if (!SECURITY_CONFIG.enableLogging) return;
+        
+        const eventData = {
+          type: eventType,
+          timestamp: new Date().toISOString(),
+          url: window.location.href,
+          userAgent: navigator.userAgent,
+          details: details
+        };
+        
+        console.log('Security Event:', eventData);
+      }
+      
+      // Export for debugging
+      window.BankInvoiceSecurity = {
+        config: SECURITY_CONFIG,
+        prices: PRICE_CONFIG,
+        getCurrentViews: () => currentViews,
+        getCurrentCurrency: () => currentCurrency,
+        getCurrentPlan: () => currentPlan,
+        setCurrency: (currency) => {
+          if (PRICE_CONFIG[currency]) {
+            currentCurrency = currency;
+            updateCurrencyAndPlanDisplay();
+          }
+        },
+        setPlan: (plan) => {
+          if (plan === 'monthly' || plan === 'annual') {
+            currentPlan = plan;
+            updateCurrencyAndPlanDisplay();
+          }
+        },
+        resetViews: () => {
+          currentViews = 0;
+          localStorage.removeItem(SECURITY_CONFIG.storageKey);
+          location.reload();
+        }
+      };
+      
+    })();
+  </script>
+</body>
+</html>

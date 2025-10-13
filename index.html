@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3CH0 Compliance</title>
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #242321;
+      --gradient: linear-gradient(135deg, #fdfdfe, #92cdec, #0069d9);
+      --button-bg: #92cdec;
+      --button-text: #242321;
+      --text-light: rgba(255,255,255,0.85);
+      --text-muted: rgba(255,255,255,0.6);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--primary-bg);
+      color: var(--text-light);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Particle background */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    /* Logo animation */
+    .welcome-logo {
+      height: 180px;
+      width: auto;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.2s 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      
+    }
+
+    /* Content container */
+    .hero-content {
+      max-width: 680px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Button styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      border-radius: 50px;
+      padding: 16px 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(146, 205, 236, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(146, 205, 236, 0.4);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(255,255,255,0.2), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .welcome-logo {
+        height: 140px;
+        margin-bottom: 32px;
+      }
+      
+      .btn {
+        padding: 14px 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background particles -->
+  <canvas class="particles" id="particles"></canvas>
+
+  <!-- Main content -->
+  <div class="hero-content">
+    <img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="welcome-logo">
+    <h1 class="title">AI-Powered Compliance Guardian</h1>
+    <p class="subtitle">Real-time legal protection and automated compliance for small businesses</p>
+    <a href="loading.html" class="btn">Get Started</a>
+  </div>
+
+  <script>
+    // Particle background animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const particles = [];
+      const particleCount = Math.floor(window.innerWidth / 10);
+      
+      // Particle class
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 3 + 1;
+          this.speedX = Math.random() * 1 - 0.5;
+          this.speedY = Math.random() * 1 - 0.5;
+          this.color = `rgba(146, 205, 236, ${Math.random() * 0.5 + 0.1})`;
+        }
+        
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          
+          if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+          if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+        }
+        
+        draw() {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      // Initialize particles
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+      
+      // Animation loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let particle of particles) {
+          particle.update();
+          particle.draw();
+        }
+        
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+      
+      // Resize handler
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    });
+  </script>
+</body>
+</html>
