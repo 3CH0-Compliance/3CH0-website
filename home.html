@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home - 3CH0</title>
+  <title>3CH0 – AI-Powered Compliance Solutions</title>
   <meta name="description" content="AI-powered compliance generation for startups and businesses. Get GDPR, CCPA, HIPAA documents in minutes.">
   <meta property="og:title" content="3CH0 – AI Compliance Assistant">
   <meta property="og:description" content="Secure your business with AI-generated privacy policies and legal docs.">
@@ -352,36 +352,6 @@
       animation: fadeIn 0.5s ease forwards;
     }
 
-    /* Regulation Switcher */
-    .regulation-switcher {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-
-    .regulation-btn {
-      padding: 12px 20px;
-      border: 2px solid var(--border-color);
-      background: var(--card-bg);
-      color: var(--secondary-text);
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      flex: 1;
-      min-width: 120px;
-      text-align: center;
-    }
-
-    .regulation-btn.active {
-      background: var(--gradient);
-      color: var(--button-text);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(146, 205, 236, 0.3);
-    }
-
     .submission-counter {
       text-align: right;
       font-size: 14px;
@@ -491,16 +461,6 @@
       background-repeat: no-repeat;
       background-position: right 12px center;
       background-size: 10px;
-    }
-
-    /* Regulation-specific field styling */
-    .regulation-specific {
-      background: rgba(146, 205, 236, 0.05);
-      border-left: 4px solid var(--accent);
-    }
-
-    .field-hidden {
-      display: none;
     }
 
     /* Testimonials */
@@ -947,14 +907,6 @@
         max-width: 300px;
         min-height: 240px;
       }
-
-      .regulation-switcher {
-        flex-direction: column;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* Loading States */
@@ -1112,22 +1064,14 @@
       </button>
         
       <div id="form-container" class="form-container glass-panel">
-        <!-- Regulation Switcher -->
-        <div class="regulation-switcher">
-          <button type="button" class="regulation-btn active" data-regulation="GDPR">GDPR</button>
-          <button type="button" class="regulation-btn" data-regulation="CCPA">CCPA</button>
-          <button type="button" class="regulation-btn" data-regulation="HIPAA">HIPAA</button>
-          <button type="button" class="regulation-btn" data-regulation="POPIA">POPIA</button>
-        </div>
-
         <div class="submission-counter">
           Submissions left this month: <strong id="submissions-count">1</strong>
           <small title="For free users only. Paid users get unlimited submissions.">[∞]</small>
         </div>
 
-        <form id="ComplianceFormWebhook">
+        <form action="https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu" method="POST" id="ComplianceFormWebhook">
           <input type="hidden" name="form-name" value="ComplianceFormWebhook" />
-          <input type="hidden" id="selected_regulation" name="selected_regulation" value="GDPR">
+          <input type="hidden" name="csrf_token" id="csrf_token" value="">
 
           <!-- Honeypot Field -->
           <div style="display: none;">
@@ -1187,27 +1131,21 @@
                 <label for="privacy_officer">Privacy Officer Name</label>
                 <input type="text" id="privacy_officer" name="privacy_officer" required placeholder="Name of privacy officer or contact person">
               </div>
-              <div id="security_officer_container" class="field-hidden">
+              <div>
                 <label for="security_officer">Security Officer Name (For HIPAA)</label>
-                <input type="text" id="security_officer" name="security_officer" placeholder="Name of security officer">
+                <input type="text" id="security_officer" name="security_officer" required placeholder="Name of security officer">
               </div>
             </div>
 
             <div class="form-grid">
-              <div id="dpo_name_container" class="field-hidden">
+              <div>
                 <label for="dpo_name">Data Protection Officer (For GDPR)</label>
-                <input type="text" id="dpo_name" name="dpo_name" placeholder="Name of Data Protection Officer">
+                <input type="text" id="dpo_name" name="dpo_name" required placeholder="Name of Data Protection Officer">
               </div>
               <div>
                 <label for="authorized_signatory">Authorized Signatory Name</label>
                 <input type="text" id="authorized_signatory" name="authorized_signatory" required placeholder="Name of person authorized to sign documents">
               </div>
-            </div>
-
-            <!-- POPIA Information Officer -->
-            <div id="information_officer_container" class="field-hidden">
-              <label for="information_officer">Information Officer (For POPIA)</label>
-              <input type="text" id="information_officer" name="information_officer" placeholder="Name of Information Officer">
             </div>
           </div>
 
@@ -1255,43 +1193,8 @@
               <option value="No">No, one-time compliance only</option>
             </select>
 
-            <div id="trainer_name_container" class="field-hidden">
-              <label for="trainer_name">Training Coordinator Name (For Training Scripts)</label>
-              <input type="text" id="trainer_name" name="trainer_name" placeholder="Name of person conducting employee training">
-            </div>
-
-            <!-- CCPA Specific Fields -->
-            <div id="ccpa_specific" class="field-hidden regulation-specific">
-              <label for="toll_free_number">Toll-Free Number (For CCPA)</label>
-              <input type="tel" id="toll_free_number" name="toll_free_number" placeholder="+1-800-XXX-XXXX">
-              
-              <label for="opt_out_mechanism">Opt-Out Mechanism Description</label>
-              <textarea id="opt_out_mechanism" name="opt_out_mechanism" rows="2" placeholder="Describe how consumers can opt-out of data sales"></textarea>
-            </div>
-
-            <!-- HIPAA Specific Fields -->
-            <div id="hipaa_specific" class="field-hidden regulation-specific">
-              <label for="covered_entity_type">Covered Entity Type (For HIPAA)</label>
-              <select id="covered_entity_type" name="covered_entity_type">
-                <option value="">Select</option>
-                <option>Healthcare Provider</option>
-                <option>Health Plan</option>
-                <option>Healthcare Clearinghouse</option>
-                <option>Business Associate</option>
-              </select>
-              
-              <label for="phi_categories">PHI Categories Handled</label>
-              <textarea id="phi_categories" name="phi_categories" rows="2" placeholder="Describe categories of Protected Health Information handled"></textarea>
-            </div>
-
-            <!-- POPIA Specific Fields -->
-            <div id="popia_specific" class="field-hidden regulation-specific">
-              <label for="paia_manual_url">PAIA Manual URL (For POPIA)</label>
-              <input type="url" id="paia_manual_url" name="paia_manual_url" placeholder="https://yourcompany.com/paia-manual">
-              
-              <label for="direct_marketing_consent">Direct Marketing Consent Mechanism</label>
-              <textarea id="direct_marketing_consent" name="direct_marketing_consent" rows="2" placeholder="Describe your direct marketing consent process"></textarea>
-            </div>
+            <label for="trainer_name">Training Coordinator Name (For Training Scripts)</label>
+            <input type="text" id="trainer_name" name="trainer_name" required placeholder="Name of person conducting employee training">
           </div>
 
           <!-- LEGAL DISCLAIMER -->
@@ -1440,395 +1343,7 @@
 
   <script>
     // ======================
-    // REGULATION SWITCHER LOGIC
-    // ======================
-    class RegulationSwitcher {
-      constructor() {
-        this.currentRegulation = 'GDPR';
-        this.initializeSwitcher();
-      }
-
-      initializeSwitcher() {
-        const regulationBtns = document.querySelectorAll('.regulation-btn');
-        const hiddenRegulationField = document.getElementById('selected_regulation');
-
-        regulationBtns.forEach(btn => {
-          btn.addEventListener('click', () => {
-            const regulation = btn.getAttribute('data-regulation');
-            this.switchRegulation(regulation, btn);
-            hiddenRegulationField.value = regulation;
-          });
-        });
-
-        // Initialize for GDPR
-        this.switchRegulation('GDPR', document.querySelector('.regulation-btn[data-regulation="GDPR"]'));
-      }
-
-      switchRegulation(regulation, clickedBtn) {
-        // Update active button
-        document.querySelectorAll('.regulation-btn').forEach(btn => {
-          btn.classList.remove('active');
-        });
-        clickedBtn.classList.add('active');
-
-        this.currentRegulation = regulation;
-        this.updateFormFields(regulation);
-      }
-
-      updateFormFields(regulation) {
-        // Hide all regulation-specific fields first
-        document.querySelectorAll('[id$="_container"], [id$="_specific"]').forEach(el => {
-          el.classList.add('field-hidden');
-        });
-
-        // Reset all regulation-specific required fields
-        document.querySelectorAll('[id$="_container"] input, [id$="_specific"] input, [id$="_specific"] select, [id$="_specific"] textarea').forEach(field => {
-          field.removeAttribute('required');
-        });
-
-        // Show fields based on regulation
-        switch(regulation) {
-          case 'GDPR':
-            document.getElementById('dpo_name_container').classList.remove('field-hidden');
-            document.getElementById('dpo_name').setAttribute('required', 'true');
-            break;
-          
-          case 'CCPA':
-            document.getElementById('ccpa_specific').classList.remove('field-hidden');
-            document.getElementById('toll_free_number').setAttribute('required', 'true');
-            document.getElementById('opt_out_mechanism').setAttribute('required', 'true');
-            break;
-          
-          case 'HIPAA':
-            document.getElementById('security_officer_container').classList.remove('field-hidden');
-            document.getElementById('hipaa_specific').classList.remove('field-hidden');
-            document.getElementById('security_officer').setAttribute('required', 'true');
-            document.getElementById('covered_entity_type').setAttribute('required', 'true');
-            document.getElementById('phi_categories').setAttribute('required', 'true');
-            break;
-          
-          case 'POPIA':
-            document.getElementById('information_officer_container').classList.remove('field-hidden');
-            document.getElementById('popia_specific').classList.remove('field-hidden');
-            document.getElementById('information_officer').setAttribute('required', 'true');
-            document.getElementById('paia_manual_url').setAttribute('required', 'true');
-            document.getElementById('direct_marketing_consent').setAttribute('required', 'true');
-            break;
-        }
-
-        // Update training field based on document selection
-        this.updateTrainingField(document.getElementById('docs-needed').value);
-      }
-
-      updateTrainingField(selectedDoc) {
-        const trainerContainer = document.getElementById('trainer_name_container');
-        const trainerInput = document.getElementById('trainer_name');
-        
-        if (selectedDoc === 'Employee Training Script') {
-          trainerContainer.classList.remove('field-hidden');
-          trainerInput.setAttribute('required', 'true');
-        } else {
-          trainerContainer.classList.add('field-hidden');
-          trainerInput.removeAttribute('required');
-        }
-      }
-    }
-
-    // ======================
-    // ENHANCED FORM HANDLER WITH REGULATION SUPPORT
-    // ======================
-    const SecureFormHandler = {
-      formStartTime: null,
-      regulationSwitcher: null,
-
-      init() {
-        this.formStartTime = Date.now();
-        this.regulationSwitcher = new RegulationSwitcher();
-        this.addCSRFToken();
-        this.initializeFormHandler();
-        this.initializeSecurityMonitoring();
-        
-        SecurityUtils.logSecurityEvent('page_loaded', {
-          page: 'home',
-          formStartTime: this.formStartTime
-        });
-      },
-
-      addCSRFToken() {
-        const form = document.getElementById('ComplianceFormWebhook');
-        if (form) {
-          const csrfToken = SecurityUtils.generateCSRFToken();
-          let csrfField = form.querySelector('input[name="csrf_token"]');
-          
-          if (!csrfField) {
-            csrfField = document.createElement('input');
-            csrfField.type = 'hidden';
-            csrfField.name = 'csrf_token';
-            csrfField.value = csrfToken;
-            form.appendChild(csrfField);
-          } else {
-            csrfField.value = csrfToken;
-          }
-        }
-      },
-
-      initializeFormHandler() {
-        const form = document.getElementById('ComplianceFormWebhook');
-        if (form) {
-          form.addEventListener('submit', (e) => this.handleSecureSubmit(e));
-          this.addInputSanitization(form);
-          
-          // Add document type change listener
-          document.getElementById('docs-needed').addEventListener('change', (e) => {
-            this.regulationSwitcher.updateTrainingField(e.target.value);
-          });
-        }
-      },
-
-      addInputSanitization(form) {
-        const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-          input.addEventListener('blur', (e) => {
-            if (e.target.value) {
-              e.target.value = SecurityUtils.sanitizeInput(e.target.value);
-            }
-          });
-        });
-      },
-
-      async handleSecureSubmit(e) {
-        e.preventDefault();
-        const form = e.target;
-        
-        const securityChecks = this.performSecurityChecks(form);
-        if (!securityChecks.isValid) {
-          this.showSecurityError(securityChecks.errors);
-          return;
-        }
-
-        const formData = this.prepareSecureFormData(form);
-        await this.submitToMakeWebhook(formData);
-      },
-
-      performSecurityChecks(form) {
-        const errors = [];
-        const now = Date.now();
-        const formFillTime = now - this.formStartTime;
-
-        if (formFillTime < SECURITY_CONFIG.minFormFillTime) {
-          errors.push('Form submitted too quickly');
-        }
-
-        if (formFillTime > SECURITY_CONFIG.maxFormFillTime) {
-          errors.push('Form session expired');
-        }
-
-        if (this.isRateLimited()) {
-          errors.push('Rate limit exceeded');
-        }
-
-        const csrfToken = form.querySelector('input[name="csrf_token"]')?.value;
-        if (!csrfToken || !SecurityUtils.validateCSRFToken(csrfToken)) {
-          errors.push('Security token invalid');
-        }
-
-        // Honeypot check
-        const honeypot = form.querySelector('input[name="website"]')?.value;
-        if (honeypot && honeypot.length > 0) {
-          errors.push('Spam detection triggered');
-        }
-
-        const requiredFields = form.querySelectorAll('[required]');
-        requiredFields.forEach(field => {
-          if (!field.value.trim()) {
-            errors.push(`${field.name} is required`);
-          }
-        });
-
-        return {
-          isValid: errors.length === 0,
-          errors: errors
-        };
-      },
-
-      prepareSecureFormData(form) {
-        const formData = new FormData(form);
-        const secureData = {
-          regulation: document.getElementById('selected_regulation').value,
-          document_type: document.getElementById('docs-needed').value,
-          company_info: {
-            company_name: document.getElementById('company').value,
-            company_address: document.getElementById('company_address').value,
-            phone_number: document.getElementById('phone_number').value,
-            website_url: document.getElementById('website_url').value,
-            industry: document.getElementById('industry').value,
-            location: document.getElementById('location').value
-          },
-          contact_info: {
-            email: document.getElementById('email').value,
-            privacy_officer: document.getElementById('privacy_officer').value,
-            security_officer: document.getElementById('security_officer').value || null,
-            dpo_name: document.getElementById('dpo_name').value || null,
-            authorized_signatory: document.getElementById('authorized_signatory').value,
-            information_officer: document.getElementById('information_officer').value || null
-          },
-          compliance_data: {
-            data_collected: document.getElementById('data').value,
-            third_party_tools: document.getElementById('thirdparty').value,
-            service_provider: document.getElementById('service_provider_name').value
-          },
-          regulation_specific: {
-            toll_free_number: document.getElementById('toll_free_number').value || null,
-            opt_out_mechanism: document.getElementById('opt_out_mechanism').value || null,
-            covered_entity_type: document.getElementById('covered_entity_type').value || null,
-            phi_categories: document.getElementById('phi_categories').value || null,
-            paia_manual_url: document.getElementById('paia_manual_url').value || null,
-            direct_marketing_consent: document.getElementById('direct_marketing_consent').value || null
-          }
-        };
-        
-        secureData.security_metadata = {
-          submission_time: new Date().toISOString(),
-          user_agent: navigator.userAgent,
-          form_fill_time: Date.now() - this.formStartTime,
-          ip_hash: this.hashUserData(navigator.userAgent + window.location.href)
-        };
-        
-        return secureData;
-      },
-
-      async submitToMakeWebhook(formData) {
-        try {
-          this.setLoadingState(true);
-          
-          const response = await fetch(SECURITY_CONFIG.webhookUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-          });
-
-          if (response.ok) {
-            SecurityUtils.logSecurityEvent('form_submission_success', {
-              regulation: formData.regulation,
-              document_type: formData.document_type
-            });
-            
-            // Update submission counter
-            this.updateSubmissionCounter();
-            
-            window.location.href = "bank-invoice.html";
-          } else {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          
-        } catch (error) {
-          SecurityUtils.logSecurityEvent('form_submission_error', {
-            error: error.message
-          });
-          this.showError('Submission failed. Please try again.');
-        } finally {
-          this.setLoadingState(false);
-        }
-      },
-
-      updateSubmissionCounter() {
-        const now = new Date();
-        const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
-        const currentCount = parseInt(localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions);
-        const newCount = currentCount - 1;
-        
-        localStorage.setItem(storageKey, newCount);
-        document.getElementById('submissions-count').textContent = newCount;
-        
-        if (newCount <= 0) {
-          document.getElementById('rateLimitMessage').style.display = 'block';
-        }
-      },
-
-      isRateLimited() {
-        const lastSubmission = localStorage.getItem('lastSubmissionTime');
-        const now = Date.now();
-        
-        if (lastSubmission && (now - lastSubmission) < SECURITY_CONFIG.rateLimitPeriod) {
-          return true;
-        }
-        
-        localStorage.setItem('lastSubmissionTime', now);
-        return false;
-      },
-
-      hashUserData(data) {
-        let hash = 0;
-        for (let i = 0; i < data.length; i++) {
-          const char = data.charCodeAt(i);
-          hash = ((hash << 5) - hash) + char;
-          hash = hash & hash;
-        }
-        return Math.abs(hash).toString(16);
-      },
-
-      showSecurityError(errors) {
-        const errorHtml = `
-          <div class="error-message" style="
-            background: rgba(220, 53, 69, 0.1);
-            border: 1px solid rgba(220, 53, 69, 0.3);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            color: #dc3545;
-          ">
-            <strong>Security Check Failed:</strong>
-            <ul style="margin: 10px 0 0 0; padding-left: 20px;">
-              ${errors.map(error => `<li>${error}</li>`).join('')}
-            </ul>
-          </div>
-        `;
-        
-        const existingError = document.querySelector('.error-message');
-        if (existingError) {
-          existingError.remove();
-        }
-        
-        const form = document.getElementById('ComplianceFormWebhook');
-        form.insertAdjacentHTML('afterbegin', errorHtml);
-      },
-
-      showError(message) {
-        alert(message);
-      },
-
-      setLoadingState(loading) {
-        const submitBtn = document.querySelector('.submit-btn');
-        if (submitBtn) {
-          submitBtn.disabled = loading;
-          submitBtn.textContent = loading ? 'Generating Documents...' : 'Generate My AI Compliance Pack';
-          submitBtn.style.opacity = loading ? '0.7' : '1';
-        }
-      },
-
-      initializeSecurityMonitoring() {
-        document.addEventListener('click', (e) => {
-          SecurityUtils.logSecurityEvent('user_click', {
-            element: e.target.tagName,
-            text: e.target.textContent?.substring(0, 50)
-          });
-        });
-
-        document.addEventListener('input', (e) => {
-          if (e.target.form?.id === 'ComplianceFormWebhook') {
-            SecurityUtils.logSecurityEvent('form_input', {
-              field: e.target.name,
-              value_length: e.target.value.length
-            });
-          }
-        });
-      }
-    };
-
-    // ======================
-    // SECURITY CONFIGURATION & UTILITIES (Keep existing)
+    // SECURITY CONFIGURATION
     // ======================
     const SECURITY_CONFIG = {
         webhookUrl: 'https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu',
@@ -1847,6 +1362,9 @@
         minFormFillTime: 3000
     };
 
+    // ======================
+    // SECURITY UTILITIES
+    // ======================
     const SecurityUtils = {
         generateCSRFToken() {
             const token = btoa(Date.now() + '-' + Math.random().toString(36) + '-' + navigator.userAgent);
@@ -1875,6 +1393,8 @@
                 .replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#x27;')
+                .replace(/\//g, '&#x2F;')
+                .replace(/\\/g, '&#x5C;')
                 .replace(/`/g, '&#x60;')
                 .trim();
         },
@@ -1918,7 +1438,264 @@
     };
 
     // ======================
-    // EXISTING FUNCTIONALITY (Keep existing)
+    // ENHANCED FORM HANDLER
+    // ======================
+    const SecureFormHandler = {
+        formStartTime: null,
+
+        init() {
+            this.formStartTime = Date.now();
+            this.addCSRFToken();
+            this.initializeFormHandler();
+            this.initializeSecurityMonitoring();
+            
+            SecurityUtils.logSecurityEvent('page_loaded', {
+                page: 'home',
+                formStartTime: this.formStartTime
+            });
+        },
+
+        addCSRFToken() {
+            const form = document.getElementById('ComplianceFormWebhook');
+            if (form) {
+                const csrfToken = SecurityUtils.generateCSRFToken();
+                let csrfField = form.querySelector('input[name="csrf_token"]');
+                
+                if (!csrfField) {
+                    csrfField = document.createElement('input');
+                    csrfField.type = 'hidden';
+                    csrfField.name = 'csrf_token';
+                    csrfField.value = csrfToken;
+                    form.appendChild(csrfField);
+                } else {
+                    csrfField.value = csrfToken;
+                }
+            }
+        },
+
+        initializeFormHandler() {
+            const form = document.getElementById('ComplianceFormWebhook');
+            if (form) {
+                form.addEventListener('submit', (e) => this.handleSecureSubmit(e));
+                this.addInputSanitization(form);
+            }
+        },
+
+        addInputSanitization(form) {
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', (e) => {
+                    if (e.target.value) {
+                        e.target.value = SecurityUtils.sanitizeInput(e.target.value);
+                    }
+                });
+            });
+        },
+
+        async handleSecureSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            
+            const securityChecks = this.performSecurityChecks(form);
+            if (!securityChecks.isValid) {
+                this.showSecurityError(securityChecks.errors);
+                return;
+            }
+
+            const formData = this.prepareSecureFormData(form);
+            await this.submitToMakeWebhook(formData);
+        },
+
+        performSecurityChecks(form) {
+            const errors = [];
+            const now = Date.now();
+            const formFillTime = now - this.formStartTime;
+
+            if (formFillTime < SECURITY_CONFIG.minFormFillTime) {
+                errors.push('Form submitted too quickly');
+            }
+
+            if (formFillTime > SECURITY_CONFIG.maxFormFillTime) {
+                errors.push('Form session expired');
+            }
+
+            if (this.isRateLimited()) {
+                errors.push('Rate limit exceeded');
+            }
+
+            const csrfToken = form.querySelector('input[name="csrf_token"]')?.value;
+            if (!csrfToken || !SecurityUtils.validateCSRFToken(csrfToken)) {
+                errors.push('Security token invalid');
+            }
+
+            // Honeypot check
+            const honeypot = form.querySelector('input[name="website"]')?.value;
+            if (honeypot && honeypot.length > 0) {
+                errors.push('Spam detection triggered');
+            }
+
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    errors.push(`${field.name} is required`);
+                }
+            });
+
+            return {
+                isValid: errors.length === 0,
+                errors: errors
+            };
+        },
+
+        prepareSecureFormData(form) {
+            const formData = new FormData(form);
+            const secureData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                secureData[key] = SecurityUtils.sanitizeInput(value);
+            }
+            
+            secureData.security_metadata = {
+                submission_time: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                form_fill_time: Date.now() - this.formStartTime,
+                ip_hash: this.hashUserData(navigator.userAgent + window.location.href)
+            };
+            
+            return secureData;
+        },
+
+        async submitToMakeWebhook(formData) {
+            try {
+                this.setLoadingState(true);
+                
+                const response = await fetch(SECURITY_CONFIG.webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    SecurityUtils.logSecurityEvent('form_submission_success', {
+                        formData: Object.keys(formData).filter(k => k !== 'security_metadata')
+                    });
+                    
+                    // Update submission counter
+                    this.updateSubmissionCounter();
+                    
+                    window.location.href = "bank-invoice.html";
+                } else {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+            } catch (error) {
+                SecurityUtils.logSecurityEvent('form_submission_error', {
+                    error: error.message
+                });
+                this.showError('Submission failed. Please try again.');
+            } finally {
+                this.setLoadingState(false);
+            }
+        },
+
+        updateSubmissionCounter() {
+            const now = new Date();
+            const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
+            const currentCount = parseInt(localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions);
+            const newCount = currentCount - 1;
+            
+            localStorage.setItem(storageKey, newCount);
+            document.getElementById('submissions-count').textContent = newCount;
+            
+            if (newCount <= 0) {
+                document.getElementById('rateLimitMessage').style.display = 'block';
+            }
+        },
+
+        isRateLimited() {
+            const lastSubmission = localStorage.getItem('lastSubmissionTime');
+            const now = Date.now();
+            
+            if (lastSubmission && (now - lastSubmission) < SECURITY_CONFIG.rateLimitPeriod) {
+                return true;
+            }
+            
+            localStorage.setItem('lastSubmissionTime', now);
+            return false;
+        },
+
+        hashUserData(data) {
+            let hash = 0;
+            for (let i = 0; i < data.length; i++) {
+                const char = data.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(16);
+        },
+
+        showSecurityError(errors) {
+            const errorHtml = `
+                <div class="error-message" style="
+                    background: rgba(220, 53, 69, 0.1);
+                    border: 1px solid rgba(220, 53, 69, 0.3);
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    color: #dc3545;
+                ">
+                    <strong>Security Check Failed:</strong>
+                    <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+                        ${errors.map(error => `<li>${error}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            const form = document.getElementById('ComplianceFormWebhook');
+            form.insertAdjacentHTML('afterbegin', errorHtml);
+        },
+
+        showError(message) {
+            alert(message);
+        },
+
+        setLoadingState(loading) {
+            const submitBtn = document.querySelector('.submit-btn');
+            if (submitBtn) {
+                submitBtn.disabled = loading;
+                submitBtn.textContent = loading ? 'Generating Documents...' : 'Generate My AI Compliance Pack';
+                submitBtn.style.opacity = loading ? '0.7' : '1';
+            }
+        },
+
+        initializeSecurityMonitoring() {
+            document.addEventListener('click', (e) => {
+                SecurityUtils.logSecurityEvent('user_click', {
+                    element: e.target.tagName,
+                    text: e.target.textContent?.substring(0, 50)
+                });
+            });
+
+            document.addEventListener('input', (e) => {
+                if (e.target.form?.id === 'ComplianceFormWebhook') {
+                    SecurityUtils.logSecurityEvent('form_input', {
+                        field: e.target.name,
+                        value_length: e.target.value.length
+                    });
+                }
+            });
+        }
+    };
+
+    // ======================
+    // EXISTING FUNCTIONALITY
     // ======================
     function checkCookieConsent() {
         if (!localStorage.getItem('cookiesAccepted')) {
@@ -2022,7 +1799,7 @@
         const currentCount = localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions;
         document.getElementById('submissions-count').textContent = currentCount;
 
-        // Initialize secure form handler with regulation switcher
+        // Initialize secure form handler
         SecureFormHandler.init();
         
         // Initialize existing functionality
