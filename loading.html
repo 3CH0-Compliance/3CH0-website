@@ -4,14 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Loading</title>
+  
+  <link rel="icon" href="3CH0 logo.png" type="image/png">
   <style>
+    :root {
+      --main-bg: #0a0a0a;
+      --gradient: linear-gradient(135deg, #ffffff, #92cdec, #0069d9);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background-color: #242321;
+      background-color: var(--main-bg);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background matching other pages */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(146, 205, 236, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
     }
 
     .wrapper {
@@ -26,10 +62,11 @@
       height: 40px;
       position: absolute;
       border-radius: 50%;
-      background: linear-gradient(135deg, #fdfdfe, #92cdec, #0069d9);
+      background: var(--gradient);
       left: 15%;
       transform-origin: 50%;
       animation: circle7124 .5s alternate infinite ease;
+      box-shadow: 0 0 20px rgba(146, 205, 236, 0.4);
     }
 
     @keyframes circle7124 {
@@ -66,7 +103,7 @@
       width: 40px;
       height: 6px;
       border-radius: 50%;
-      background-color: rgba(54, 54, 54, 0.9);
+      background-color: rgba(146, 205, 236, 0.3);
       position: absolute;
       top: 102px;
       transform-origin: 50%;
