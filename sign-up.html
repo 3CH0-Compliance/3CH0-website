@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://hook.us2.make.com; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://hook.us2.make.com https://your-supabase-url.supabase.co; frame-ancestors 'none';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Partnership - 3CH0</title>
   <meta name="description" content="Apply to become a legal partner with 3CH0 Compliance">
@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
       --main-bg: #0a0a0a;
@@ -430,6 +431,21 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Security Badge - Subtle */
+    .security-badge-indicator {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 10px;
+      color: var(--success);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
   </style>
 </head>
 <body>
@@ -711,6 +727,9 @@
     </div>
   </div>
 
+  <!-- Security Badge -->
+  <div class="security-badge-indicator">🔒 Secure</div>
+
   <!-- Footer -->
   <footer>
     &copy; 2025 3CH0 Compliance. All rights reserved.
@@ -721,232 +740,371 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('partnership-form');
-      const submitBtn = document.getElementById('submit-btn');
-      
-      // Generate CSRF token
-      function generateCSRFToken() {
-        return 'csrf_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-      }
-      
-      // Set application date and CSRF token
-      document.getElementById('application-date').value = new Date().toISOString();
-      document.getElementById('csrf-token').value = generateCSRFToken();
-      
-      // Track submission attempts
-      let submissionAttempts = 0;
-      const maxSubmissionAttempts = 5;
-      
-      // Update submission counter (mock data - in production this would come from server)
-      document.getElementById('submission-count').textContent = Math.floor(Math.random() * 10) + 1;
-      
-      // Input validation functions
-      function validateName(name) {
+    // ======================
+    // CONFIGURATION
+    // ======================
+    const CONFIG = {
+      makeWebhookUrl: 'https://hook.us2.make.com/1s6l6agj4it5b9h51ls8j46uvobb2efe',
+      supabaseUrl: 'https://kqdlhvvikscxxseopvdw.supabase.co', // Replace with your Supabase URL
+      supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtxZGxodnZpa3NjeHhzZW9wdmR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkwMTc3OTMsImV4cCI6MjA2NDU5Mzc5M30.Ny1Me9jRt5S2ex11RC27bm9ZsxOlckW_QzTjPsaupYc', // Replace with your Supabase anon key
+      maxSubmissionAttempts: 3,
+      rateLimitPeriod: 3600000 // 1 hour
+    };
+
+    // ======================
+    // SECURITY UTILITIES
+    // ======================
+    const SecurityUtils = {
+      generateSubmissionId() {
+        return 'app_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      },
+
+      hashUserData(data) {
+        let hash = 0;
+        for (let i = 0; i < data.length; i++) {
+          const char = data.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash;
+        }
+        return Math.abs(hash).toString(16);
+      },
+
+      sanitizeInput(input) {
+        if (typeof input !== 'string') return input;
+        return input
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#x27;')
+          .trim();
+      },
+
+      validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      },
+
+      validatePhone(phone) {
+        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+        return phoneRegex.test(phone);
+      },
+
+      validateName(name) {
         const nameRegex = /^[a-zA-Z\s\-'.]+$/;
         return nameRegex.test(name) && name.length >= 2;
       }
-      
-      function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-      }
-      
-      function validatePhone(phone) {
-        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-        return phoneRegex.test(phone);
-      }
-      
-      function validateBarNumber(barNumber) {
-        return barNumber.length >= 3;
-      }
-      
-      function validateSecurityAnswer(answer) {
-        return answer.trim() === '8';
-      }
-      
-      // Show error message
-      function showError(fieldId, message) {
+    };
+
+    // ======================
+    // FORM HANDLER
+    // ======================
+    const PartnershipFormHandler = {
+      submissionAttempts: 0,
+      formStartTime: Date.now(),
+
+      init() {
+        this.initializeForm();
+        this.setupValidation();
+        this.setupSecurity();
+      },
+
+      initializeForm() {
+        const form = document.getElementById('partnership-form');
+        if (!form) return;
+
+        // Set hidden fields
+        document.getElementById('application-date').value = new Date().toISOString();
+        document.getElementById('csrf-token').value = this.generateCSRFToken();
+
+        // Add form submission handler
+        form.addEventListener('submit', (e) => this.handleSubmit(e));
+      },
+
+      generateCSRFToken() {
+        return 'csrf_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      },
+
+      setupValidation() {
+        // Real-time validation for key fields
+        const fields = ['full-name', 'email', 'phone', 'bar-number', 'security-question'];
+        fields.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+          if (field) {
+            field.addEventListener('blur', () => this.validateField(fieldId));
+          }
+        });
+      },
+
+      setupSecurity() {
+        // Track user activity
+        document.addEventListener('click', () => {
+          this.logSecurityEvent('user_interaction');
+        });
+      },
+
+      validateField(fieldId) {
+        const field = document.getElementById(fieldId);
+        const value = field.value.trim();
+
+        switch (fieldId) {
+          case 'full-name':
+            if (!SecurityUtils.validateName(value)) {
+              this.showError(fieldId, 'Please enter a valid name (letters, spaces, hyphens, and apostrophes only)');
+            } else {
+              this.hideError(fieldId);
+            }
+            break;
+
+          case 'email':
+            if (!SecurityUtils.validateEmail(value)) {
+              this.showError(fieldId, 'Please enter a valid email address');
+            } else {
+              this.hideError(fieldId);
+            }
+            break;
+
+          case 'phone':
+            if (!SecurityUtils.validatePhone(value)) {
+              this.showError(fieldId, 'Please enter a valid phone number');
+            } else {
+              this.hideError(fieldId);
+            }
+            break;
+
+          case 'security-question':
+            if (value !== '8') {
+              this.showError(fieldId, 'Please answer the security question correctly');
+            } else {
+              this.hideError(fieldId);
+            }
+            break;
+        }
+      },
+
+      async handleSubmit(e) {
+        e.preventDefault();
+        
+        this.submissionAttempts++;
+
+        // Rate limiting
+        if (this.submissionAttempts > CONFIG.maxSubmissionAttempts) {
+          this.showRateLimitError();
+          return;
+        }
+
+        // Validate form
+        if (!this.validateForm()) {
+          return;
+        }
+
+        // Prepare form data
+        const formData = this.prepareFormData();
+
+        try {
+          // Show loading state
+          this.setLoadingState(true);
+
+          // Step 1: Save to Supabase
+          const submissionId = await this.saveToSupabase(formData);
+          
+          // Step 2: Send to Make.com for email processing
+          await this.sendToMakeWebhook(formData, submissionId);
+
+          // Step 3: Redirect to thank you page
+          window.location.href = `thank-you-applying.html?submission=${submissionId}`;
+
+        } catch (error) {
+          console.error('Submission error:', error);
+          this.showError('submission', 'There was an error submitting your application. Please try again.');
+          this.setLoadingState(false);
+        }
+      },
+
+      async saveToSupabase(formData) {
+        // Initialize Supabase client
+        const supabase = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseKey);
+
+        const submissionData = {
+          full_name: formData['full-name'],
+          email: formData.email,
+          phone: formData.phone,
+          firm_name: formData['firm-name'] || null,
+          bar_number: formData['bar-number'],
+          jurisdiction: formData.jurisdiction,
+          years_practice: formData['years-practice'],
+          practice_areas: formData['practice-areas[]'] || [],
+          expertise_details: formData['expertise-details'],
+          hours_available: formData['hours-available'],
+          response_time: formData['response-time'],
+          why_partner: formData['why-partner'],
+          references: formData.references || null,
+          agree_exclusivity: formData['agree-exclusivity'] === 'on',
+          ip_hash: SecurityUtils.hashUserData(navigator.userAgent),
+          user_agent: navigator.userAgent,
+          submission_id: SecurityUtils.generateSubmissionId()
+        };
+
+        const { data, error } = await supabase
+          .from('partnership_applications')
+          .insert([submissionData])
+          .select();
+
+        if (error) {
+          throw new Error(`Supabase error: ${error.message}`);
+        }
+
+        return data[0].submission_id;
+      },
+
+      async sendToMakeWebhook(formData, submissionId) {
+        const webhookData = {
+          type: 'partnership_application',
+          submission_id: submissionId,
+          timestamp: new Date().toISOString(),
+          form_data: formData,
+          action: 'send_confirmation_email'
+        };
+
+        const response = await fetch(CONFIG.makeWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Make webhook error: ${response.status}`);
+        }
+      },
+
+      prepareFormData() {
+        const form = document.getElementById('partnership-form');
+        const formData = new FormData(form);
+        const data = {};
+
+        // Convert FormData to object and sanitize
+        for (let [key, value] of formData.entries()) {
+          if (typeof value === 'string') {
+            data[key] = SecurityUtils.sanitizeInput(value);
+          } else {
+            data[key] = value;
+          }
+        }
+
+        // Handle practice areas array
+        const practiceAreas = [];
+        document.querySelectorAll('input[name="practice-areas[]"]:checked').forEach(checkbox => {
+          practiceAreas.push(checkbox.value);
+        });
+        data['practice-areas[]'] = practiceAreas;
+
+        return data;
+      },
+
+      validateForm() {
+        let isValid = true;
+
+        // Required fields validation
+        const requiredFields = [
+          'full-name', 'email', 'phone', 'bar-number', 'jurisdiction',
+          'years-practice', 'expertise-details', 'hours-available',
+          'response-time', 'why-partner', 'security-question'
+        ];
+
+        requiredFields.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+          if (!field || !field.value.trim()) {
+            this.showError(fieldId, 'This field is required');
+            isValid = false;
+          } else {
+            this.hideError(fieldId);
+          }
+        });
+
+        // Practice areas validation
+        const practiceAreas = document.querySelectorAll('input[name="practice-areas[]"]:checked');
+        if (practiceAreas.length === 0) {
+          this.showError('practice-areas', 'Please select at least one practice area');
+          isValid = false;
+        } else {
+          this.hideError('practice-areas');
+        }
+
+        // Checkbox validations
+        const requiredCheckboxes = ['human-verification', 'agree-terms', 'agree-verification'];
+        requiredCheckboxes.forEach(checkboxId => {
+          const checkbox = document.getElementById(checkboxId);
+          if (!checkbox || !checkbox.checked) {
+            this.showError(checkboxId, 'This agreement is required');
+            isValid = false;
+          } else {
+            this.hideError(checkboxId);
+          }
+        });
+
+        return isValid;
+      },
+
+      showError(fieldId, message) {
         const errorElement = document.getElementById(fieldId + '-error');
         if (errorElement) {
           errorElement.textContent = message;
           errorElement.style.display = 'block';
         }
-        document.getElementById(fieldId).style.borderColor = 'var(--error)';
-      }
-      
-      // Hide error message
-      function hideError(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.style.borderColor = 'var(--error)';
+        }
+      },
+
+      hideError(fieldId) {
         const errorElement = document.getElementById(fieldId + '-error');
         if (errorElement) {
           errorElement.style.display = 'none';
         }
-        document.getElementById(fieldId).style.borderColor = '';
-      }
-      
-      // Validate all fields
-      function validateForm() {
-        let isValid = true;
-        
-        // Validate name
-        const fullName = document.getElementById('full-name').value.trim();
-        if (!validateName(fullName)) {
-          showError('full-name', 'Please enter a valid name (letters, spaces, hyphens, and apostrophes only)');
-          isValid = false;
-        } else {
-          hideError('full-name');
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.style.borderColor = '';
         }
-        
-        // Validate email
-        const email = document.getElementById('email').value.trim();
-        if (!validateEmail(email)) {
-          showError('email', 'Please enter a valid email address');
-          isValid = false;
-        } else {
-          hideError('email');
-        }
-        
-        // Validate phone
-        const phone = document.getElementById('phone').value.trim();
-        if (!validatePhone(phone)) {
-          showError('phone', 'Please enter a valid phone number');
-          isValid = false;
-        } else {
-          hideError('phone');
-        }
-        
-        // Validate bar number
-        const barNumber = document.getElementById('bar-number').value.trim();
-        if (!validateBarNumber(barNumber)) {
-          showError('bar-number', 'Please enter a valid bar admission number');
-          isValid = false;
-        } else {
-          hideError('bar-number');
-        }
-        
-        // Check at least one practice area is selected
-        const practiceAreas = form.querySelectorAll('input[name="practice-areas[]"]:checked');
-        if (practiceAreas.length === 0) {
-          showError('practice-areas', 'Please select at least one practice area');
-          isValid = false;
-        } else {
-          hideError('practice-areas');
-        }
-        
-        // Validate expertise details
-        const expertiseDetails = document.getElementById('expertise-details').value.trim();
-        if (expertiseDetails.length < 10) {
-          showError('expertise-details', 'Please provide more details about your compliance expertise (at least 10 characters)');
-          isValid = false;
-        } else {
-          hideError('expertise-details');
-        }
-        
-        // Validate why partner
-        const whyPartner = document.getElementById('why-partner').value.trim();
-        if (whyPartner.length < 10) {
-          showError('why-partner', 'Please provide more details about why you want to partner with 3CH0 (at least 10 characters)');
-          isValid = false;
-        } else {
-          hideError('why-partner');
-        }
-        
-        // Validate security question
-        const securityAnswer = document.getElementById('security-question').value.trim();
-        if (!validateSecurityAnswer(securityAnswer)) {
-          showError('security-question', 'Please answer the security question correctly');
-          isValid = false;
-        } else {
-          hideError('security-question');
-        }
-        
-        return isValid;
-      }
-      
-      // Form submission handler
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        submissionAttempts++;
-        
-        // Rate limiting
-        if (submissionAttempts > maxSubmissionAttempts) {
-          alert('Too many submission attempts. Please try again later.');
-          submitBtn.disabled = true;
-          setTimeout(() => {
-            submitBtn.disabled = false;
-            submissionAttempts = 0;
-          }, 60000); // 1 minute cooldown
-          return;
-        }
-        
-        // Validate form
-        if (!validateForm()) {
-          return;
-        }
-        
-        // Disable submit button to prevent multiple submissions
+      },
+
+      showRateLimitError() {
+        const submitBtn = document.getElementById('submit-btn');
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+        submitBtn.textContent = 'Too many attempts - Try again in 1 hour';
         
-        try {
-          // In a real implementation, you would send the form data to your server
-          // For this example, we'll simulate a successful submission
-          await new Promise(resolve => setTimeout(resolve, 2000));
-          
-          // Show success message
-          alert('Thank you! Your application has been submitted successfully. We will review it and contact you within 3-5 business days.');
-          
-          // Reset form
-          form.reset();
-          submissionAttempts = 0;
-          
-          // Update submission counter
-          const currentCount = parseInt(document.getElementById('submission-count').textContent);
-          document.getElementById('submission-count').textContent = currentCount + 1;
-          
-        } catch (error) {
-          console.error('Form submission error:', error);
-          alert('There was an error submitting your application. Please try again.');
-        } finally {
-          // Re-enable submit button
+        setTimeout(() => {
           submitBtn.disabled = false;
           submitBtn.textContent = 'Submit Application';
+          this.submissionAttempts = 0;
+        }, CONFIG.rateLimitPeriod);
+
+        alert('Too many submission attempts. Please try again in 1 hour.');
+      },
+
+      setLoadingState(loading) {
+        const submitBtn = document.getElementById('submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = loading;
+          submitBtn.textContent = loading ? 'Submitting Application...' : 'Submit Application';
         }
-      });
+      },
+
+      logSecurityEvent(eventType) {
+        // Log security events for monitoring
+        console.log('Security Event:', eventType);
+      }
+    };
+
+    // ======================
+    // INITIALIZATION
+    // ======================
+    document.addEventListener('DOMContentLoaded', function() {
+      PartnershipFormHandler.init();
       
-      // Real-time validation for key fields
-      document.getElementById('full-name').addEventListener('blur', function() {
-        if (this.value.trim() && !validateName(this.value.trim())) {
-          showError('full-name', 'Please enter a valid name (letters, spaces, hyphens, and apostrophes only)');
-        } else {
-          hideError('full-name');
-        }
-      });
-      
-      document.getElementById('email').addEventListener('blur', function() {
-        if (this.value.trim() && !validateEmail(this.value.trim())) {
-          showError('email', 'Please enter a valid email address');
-        } else {
-          hideError('email');
-        }
-      });
-      
-      document.getElementById('phone').addEventListener('blur', function() {
-        if (this.value.trim() && !validatePhone(this.value.trim())) {
-          showError('phone', 'Please enter a valid phone number');
-        } else {
-          hideError('phone');
-        }
-      });
-      
-      document.getElementById('security-question').addEventListener('blur', function() {
-        if (this.value.trim() && !validateSecurityAnswer(this.value.trim())) {
-          showError('security-question', 'Please answer the security question correctly');
-        } else {
-          hideError('security-question');
-        }
-      });
+      // Update submission counter (mock data)
+      document.getElementById('submission-count').textContent = Math.floor(Math.random() * 5) + 1;
     });
   </script>
 </body>
