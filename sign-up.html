@@ -739,7 +739,7 @@
     <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
   </footer>
 
-  <script>
+   <script>
     // ======================
     // CONFIGURATION
     // ======================
@@ -904,13 +904,19 @@
           // Show loading state
           this.setLoadingState(true);
 
-          // Step 1: Save to Supabase
-          const submissionId = await this.saveToSupabase(formData);
-          
-          // Step 2: Send to Make.com for email processing
+          // ✅ STEP 1: Send to Make.com webhook FIRST (this always works)
+          const submissionId = SecurityUtils.generateSubmissionId();
           await this.sendToMakeWebhook(formData, submissionId);
 
-          // Step 3: Redirect to thank you page
+          // ✅ STEP 2: Try to save to Supabase (if credentials are set)
+          try {
+            await this.saveToSupabase(formData, submissionId);
+          } catch (supabaseError) {
+            console.warn('Supabase save failed, but Make.com received data:', supabaseError);
+            // Continue anyway since Make.com has the data
+          }
+
+          // ✅ STEP 3: Redirect to thank you page
           window.location.href = `thank-you-applying.html?submission=${submissionId}`;
 
         } catch (error) {
@@ -920,7 +926,7 @@
         }
       },
 
-      async saveToSupabase(formData) {
+      async saveToSupabase(formData, submissionId) {
         // Initialize Supabase client
         const supabase = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseKey);
 
@@ -941,7 +947,7 @@
           agree_exclusivity: formData['agree-exclusivity'] === 'on',
           ip_hash: SecurityUtils.hashUserData(navigator.userAgent),
           user_agent: navigator.userAgent,
-          submission_id: SecurityUtils.generateSubmissionId()
+          submission_id: submissionId
         };
 
         const { data, error } = await supabase
