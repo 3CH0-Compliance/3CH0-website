@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDPR Employee Training Script Template</title>
+    <title>GDPR Employee Training Script</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,23 +12,27 @@
             margin: 0 auto;
             padding: 20px;
             color: #333;
+            background-color: #ffffff;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        h1, h2, h3 {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
         }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
         h2 {
-            color: #2980b9;
             margin-top: 25px;
             background-color: #f8f9fa;
             padding: 10px;
             border-left: 4px solid #3498db;
         }
         h3 {
-            color: #3498db;
             margin-top: 20px;
+            text-align: left;
         }
         .placeholder {
             background-color: #f0f8ff;
@@ -70,9 +74,9 @@
     <h1>GDPR Employee Training Script</h1>
     
     <div class="section">
-        <p><strong>Training Date:</strong> <span class="placeholder">[Date]</span></p>
-        <p><strong>Trainer:</strong> <span class="placeholder">[Trainer Name]</span></p>
-        <p><strong>Company:</strong> <span class="placeholder">[Company Name]</span></p>
+        <p><strong>Training Date:</strong> <span class="placeholder">{{current_date}}</span></p>
+        <p><strong>Trainer:</strong> <span class="placeholder">{{trainer_name}}</span></p>
+        <p><strong>Company:</strong> <span class="placeholder">{{company}}</span></p>
     </div>
 
     <div class="section">
@@ -90,7 +94,7 @@
 
     <div class="section">
         <h2>Key GDPR Principles</h2>
-        <p><strong>Trainer Script:</strong> "Let's review the core principles that guide how we handle personal data at <span class="placeholder">[Company Name]</span>:"</p>
+        <p><strong>Trainer Script:</strong> "Let's review the core principles that guide how we handle personal data at <span class="placeholder">{{company}}</span>:"</p>
         
         <ul>
             <li><strong>Lawfulness, fairness, and transparency:</strong> We process personal data legally, fairly, and transparently</li>
@@ -105,7 +109,9 @@
 
     <div class="section">
         <h2>What is Personal Data?</h2>
-        <p><strong>Trainer Script:</strong> "Personal data is any information that relates to an identified or identifiable living individual. This includes:"</p>
+        <p><strong>Trainer Script:</strong> "Personal data is any information that relates to an identified or identifiable living individual. At <span class="placeholder">{{company}}</span>, this includes:"</p>
+        
+        <p><span class="placeholder">{{data}}</span></p>
         
         <ul>
             <li>Names, addresses, email addresses</li>
@@ -113,7 +119,6 @@
             <li>Location data</li>
             <li>Online identifiers (IP addresses, cookies)</li>
             <li>Factors specific to physical, physiological, genetic, mental, economic, cultural or social identity</li>
-            <li><span class="placeholder">[Add examples specific to your business]</span></li>
         </ul>
         
         <p><strong>Sensitive Personal Data (Special Categories):</strong></p>
@@ -130,17 +135,16 @@
 
     <div class="section">
         <h2>Employee Responsibilities</h2>
-        <p><strong>Trainer Script:</strong> "As an employee of <span class="placeholder">[Company Name]</span>, you play a crucial role in protecting personal data. Here's what you need to do:"</p>
+        <p><strong>Trainer Script:</strong> "As an employee of <span class="placeholder">{{company}}</span>, you play a crucial role in protecting personal data. Here's what you need to do:"</p>
         
         <ul>
             <li>Only access personal data when necessary for your job responsibilities</li>
             <li>Keep passwords secure and never share them</li>
             <li>Lock your computer when stepping away from your desk</li>
             <li>Use secure methods when transferring personal data</li>
-            <li>Report any suspected data breaches immediately to <span class="placeholder">[Data Protection Officer/Manager]</span></li>
+            <li>Report any suspected data breaches immediately to <span class="placeholder">{{dpo_name}}</span></li>
             <li>Follow our data retention policies</li>
             <li>Attend regular GDPR training sessions</li>
-            <li><span class="placeholder">[Add company-specific responsibilities]</span></li>
         </ul>
     </div>
 
@@ -151,7 +155,7 @@
         <ol>
             <li>Listen carefully to their request</li>
             <li>Do not attempt to handle the request yourself</li>
-            <li>Immediately direct them to <span class="placeholder">[Data Protection Officer/Privacy Team Contact]</span></li>
+            <li>Immediately direct them to <span class="placeholder">{{privacy_officer}}</span> or <span class="placeholder">{{dpo_name}}</span></li>
             <li>Document the date and time of the request</li>
             <li>Be polite and professional</li>
         </ol>
@@ -171,7 +175,9 @@
 
     <div class="section">
         <h2>Data Security Best Practices</h2>
-        <p><strong>Trainer Script:</strong> "Follow these security practices to protect personal data at <span class="placeholder">[Company Name]</span>:"</p>
+        <p><strong>Trainer Script:</strong> "Follow these security practices to protect personal data at <span class="placeholder">{{company}}</span>:"</p>
+        
+        <p><strong>Our Security Measures:</strong> <span class="placeholder">{{security_measures}}</span></p>
         
         <ul>
             <li>Use strong, unique passwords and change them regularly</li>
@@ -180,7 +186,19 @@
             <li>Encrypt sensitive data when storing or transmitting</li>
             <li>Securely dispose of paper documents containing personal data</li>
             <li>Use secure Wi-Fi networks, especially when working remotely</li>
-            <li>Follow our <span class="placeholder">[Company-specific security policy]</span></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Third-Party Data Sharing</h2>
+        <p><strong>Trainer Script:</strong> "We share data with certain third-party tools and platforms. Be aware of how data flows:"</p>
+        
+        <p><strong>Third-Party Tools We Use:</strong> <span class="placeholder">{{thirdparty}}</span></p>
+        
+        <ul>
+            <li>Only share data with approved third parties</li>
+            <li>Ensure data processing agreements are in place</li>
+            <li>Report any concerns about third-party data handling</li>
         </ul>
     </div>
 
@@ -191,7 +209,7 @@
             <h3>Scenario 1: Customer Data Request</h3>
             <p><strong>Situation:</strong> A customer emails asking for a copy of all the data you have about them.</p>
             <p><strong>Question:</strong> What should you do?</p>
-            <p><strong>Correct Response:</strong> Forward the request immediately to <span class="placeholder">[Data Protection Officer/Privacy Team]</span>. Do not attempt to gather or send any data yourself.</p>
+            <p><strong>Correct Response:</strong> Forward the request immediately to <span class="placeholder">{{privacy_officer}}</span> or <span class="placeholder">{{dpo_name}}</span>. Do not attempt to gather or send any data yourself.</p>
         </div>
         
         <div class="scenario">
@@ -205,14 +223,7 @@
             <h3>Scenario 3: Lost Device</h3>
             <p><strong>Situation:</strong> You realize you've left your company laptop on public transportation.</p>
             <p><strong>Question:</strong> What are the immediate steps you should take?</p>
-            <p><strong>Correct Response:</strong> Immediately contact <span class="placeholder">[IT Security/Manager]</span> to report the loss and follow company procedures for lost devices.</p>
-        </div>
-        
-        <div class="scenario">
-            <h3>Scenario 4: <span class="placeholder">[Add company-specific scenario]</span></h3>
-            <p><strong>Situation:</strong> <span class="placeholder">[Describe scenario]</span></p>
-            <p><strong>Question:</strong> <span class="placeholder">[Pose question to employees]</span></p>
-            <p><strong>Correct Response:</strong> <span class="placeholder">[Provide correct response]</span></p>
+            <p><strong>Correct Response:</strong> Immediately contact <span class="placeholder">{{security_officer}}</span> or your manager to report the loss and follow company procedures for lost devices.</p>
         </div>
     </div>
 
@@ -221,7 +232,7 @@
         <p><strong>Trainer Script:</strong> "If you suspect a data breach has occurred, you must:"</p>
         
         <ol>
-            <li>Immediately report it to <span class="placeholder">[Data Protection Officer/Security Team]</span></li>
+            <li>Immediately report it to <span class="placeholder">{{dpo_name}}</span> or <span class="placeholder">{{privacy_officer}}</span></li>
             <li>Do not attempt to investigate or resolve it yourself</li>
             <li>Document what you observed</li>
             <li>Follow company procedures for incident response</li>
@@ -242,19 +253,29 @@
         <p><strong>2. What should you do if you receive a data subject request?</strong></p>
         <p><strong>3. Who should you report a suspected data breach to?</strong></p>
         <p><strong>4. What is considered personal data?</strong></p>
-        <p><strong>5. <span class="placeholder">[Add company-specific question]</span></strong></p>
+        <p><strong>5. What is our data retention period?</strong> <span class="placeholder">{{retention_period}}</span></p>
     </div>
 
     <div class="section">
         <h2>Resources and Contacts</h2>
-        <p><strong>Data Protection Officer:</strong> <span class="placeholder">[Name and Contact Information]</span></p>
-        <p><strong>Privacy Team:</strong> <span class="placeholder">[Contact Information]</span></p>
-        <p><strong>IT Security:</strong> <span class="placeholder">[Contact Information]</span></p>
-        <p><strong>Company Policies:</strong> <span class="placeholder">[Location of policies]</span></p>
+        <p><strong>Data Protection Officer:</strong> <span class="placeholder">{{dpo_name}}</span></p>
+        <p><strong>Privacy Officer:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+        <p><strong>Security Officer:</strong> <span class="placeholder">{{security_officer}}</span></p>
+        <p><strong>Company Email:</strong> <span class="placeholder">{{email}}</span></p>
+        <p><strong>Company Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
+    </div>
+
+    <div class="section">
+        <h2>Training Acknowledgement</h2>
+        <p>I acknowledge that I have received and completed GDPR compliance training on <span class="placeholder">{{current_date}}</span>. I understand my responsibilities in protecting personal data and handling data subject requests appropriately at <span class="placeholder">{{company}}</span>.</p>
+        
+        <p><strong>Employee Name:</strong> _________________________</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <p><strong>Date:</strong> _________________________</p>
     </div>
 
     <div class="disclaimer">
-        <p>This is a template employee training script. Please customize it according to your specific business practices and training needs.</p>
+        <p>This training script was generated for <span class="placeholder">{{company}}</span>. Please customize it according to your specific business practices and training needs.</p>
     </div>
 </body>
 </html>
