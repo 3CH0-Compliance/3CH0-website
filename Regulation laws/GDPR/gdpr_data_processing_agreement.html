@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDPR Data Processing Agreement Template</title>
+    <title>GDPR Data Processing Agreement</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,15 +12,19 @@
             margin: 0 auto;
             padding: 20px;
             color: #333;
+            background-color: #ffffff;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        h1, h2 {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
         }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
         h2 {
-            color: #2980b9;
             margin-top: 25px;
         }
         .placeholder {
@@ -49,21 +53,28 @@
             padding-top: 15px;
             margin-top: 30px;
         }
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
     <h1>Data Processing Agreement</h1>
     
     <div class="section">
-        <p>This Data Processing Agreement ("DPA") forms part of the <span class="placeholder">[Master Agreement/Services Agreement]</span> between:</p>
+        <p>This Data Processing Agreement ("DPA") forms part of the Services Agreement between:</p>
         
-        <p><strong>The Controller:</strong> <span class="placeholder">[Company Name]</span>, with offices at <span class="placeholder">[Company Address]</span> ("Controller")</p>
+        <p><strong>The Controller:</strong> <span class="placeholder">{{company}}</span>, with offices at <span class="placeholder">{{company_address}}</span> ("Controller")</p>
         
-        <p><strong>The Processor:</strong> <span class="placeholder">[Processor Company Name]</span>, with offices at <span class="placeholder">[Processor Address]</span> ("Processor")</p>
+        <p><strong>The Processor:</strong> <span class="placeholder">{{service_provider_name}}</span> ("Processor")</p>
         
         <p>Collectively referred to as the "Parties".</p>
         
-        <p><strong>Effective Date:</strong> <span class="placeholder">[Date]</span></p>
+        <p><strong>Effective Date:</strong> <span class="placeholder">{{current_date}}</span></p>
     </div>
 
     <div class="section">
@@ -76,16 +87,16 @@
 
     <div class="section">
         <h2>2. Subject Matter and Duration</h2>
-        <p><strong>Subject Matter:</strong> This DPA applies to the processing of personal data by the Processor on behalf of the Controller in connection with the services under the <span class="placeholder">[Master Agreement/Services Agreement]</span>.</p>
+        <p><strong>Subject Matter:</strong> This DPA applies to the processing of personal data by the Processor on behalf of the Controller in connection with the services agreement.</p>
         <p><strong>Duration:</strong> This DPA shall remain in effect as long as the Processor processes personal data on behalf of the Controller.</p>
-        <p><strong>Nature and Purpose of Processing:</strong> <span class="placeholder">[Describe the processing activities]</span></p>
-        <p><strong>Types of Personal Data:</strong> <span class="placeholder">[List categories of personal data processed]</span></p>
-        <p><strong>Categories of Data Subjects:</strong> <span class="placeholder">[List categories of data subjects, e.g., customers, employees, website visitors]</span></p>
+        <p><strong>Nature and Purpose of Processing:</strong> <span class="placeholder">{{processing_purposes}}</span></p>
+        <p><strong>Types of Personal Data:</strong> <span class="placeholder">{{data}}</span></p>
+        <p><strong>Categories of Data Subjects:</strong> <span class="placeholder">{{data_subjects}}</span></p>
     </div>
 
     <div class="section">
         <h2>3. Processing of Controller's Personal Data</h2>
-        <p>3.1 The Processor shall:</p>
+        <p>The Processor shall:</p>
         <ul>
             <li>Process personal data only on documented instructions from the Controller</li>
             <li>Ensure that persons authorized to process personal data have committed themselves to confidentiality</li>
@@ -110,20 +121,21 @@
             <li>The ability to ensure the ongoing confidentiality, integrity, availability, and resilience of processing systems</li>
             <li>The ability to restore availability and access to personal data in a timely manner</li>
             <li>A process for regularly testing, assessing, and evaluating the effectiveness of security measures</li>
-            <li><span class="placeholder">[Add any specific security measures required]</span></li>
         </ul>
+        <p><strong>Security Measures Implemented:</strong> <span class="placeholder">{{security_measures}}</span></p>
     </div>
 
     <div class="section">
         <h2>6. Subprocessing</h2>
         <p>The Processor shall not appoint a subprocessor without prior specific or general written authorization of the Controller. In the case of general written authorization, the Processor shall inform the Controller of any intended changes concerning the addition or replacement of subprocessors.</p>
-        
-        <p><strong>Authorized Subprocessors:</strong> The Controller authorizes the engagement of the following subprocessors: <span class="placeholder">[List authorized subprocessors or state "none"]</span></p>
+        <p><strong>Third Party Tools/Platforms:</strong> <span class="placeholder">{{thirdparty}}</span></p>
     </div>
 
     <div class="section">
         <h2>7. Data Subject Rights</h2>
         <p>The Processor shall assist the Controller by appropriate technical and organizational measures, insofar as possible, for the fulfillment of the Controller's obligation to respond to requests for exercising the data subject's rights.</p>
+        <p><strong>Privacy Officer Contact:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+        <p><strong>Data Protection Officer:</strong> <span class="placeholder">{{dpo_name}}</span></p>
     </div>
 
     <div class="section">
@@ -139,6 +151,7 @@
     <div class="section">
         <h2>10. Deletion or Return of Personal Data</h2>
         <p>At the choice of the Controller, the Processor shall delete or return all personal data to the Controller after the end of the provision of services relating to processing, and delete existing copies unless Union or Member State law requires storage of the personal data.</p>
+        <p><strong>Data Retention Period:</strong> <span class="placeholder">{{retention_period}}</span></p>
     </div>
 
     <div class="section">
@@ -148,29 +161,33 @@
 
     <div class="section">
         <h2>12. International Transfers</h2>
-        <p><span class="placeholder">[Specify any international transfers of personal data and the appropriate safeguards in place, e.g., "The Processor shall not transfer personal data outside the European Economic Area without the prior written consent of the Controller and without implementing appropriate safeguards in accordance with GDPR Chapter V."]</span></p>
+        <p><strong>International Transfer Status:</strong> <span class="placeholder">{{international_transfers}}</span></p>
+        <p><strong>Transfer Countries:</strong> <span class="placeholder">{{transfer_countries}}</span></p>
+        <p>The Processor shall not transfer personal data outside the European Economic Area without the prior written consent of the Controller and without implementing appropriate safeguards in accordance with GDPR Chapter V.</p>
     </div>
 
     <div class="signature-area">
         <div class="party">
             <p><strong>FOR THE CONTROLLER:</strong></p>
-            <p>Name: <span class="placeholder">[Name]</span></p>
-            <p>Title: <span class="placeholder">[Title]</span></p>
+            <p><strong>Company:</strong> <span class="placeholder">{{company}}</span></p>
+            <p><strong>Name:</strong> <span class="placeholder">{{authorized_signatory}}</span></p>
+            <p>Title: _________________________</p>
             <p>Signature: _________________________</p>
-            <p>Date: <span class="placeholder">[Date]</span></p>
+            <p>Date: _________________________</p>
         </div>
         
         <div class="party">
             <p><strong>FOR THE PROCESSOR:</strong></p>
-            <p>Name: <span class="placeholder">[Name]</span></p>
-            <p>Title: <span class="placeholder">[Title]</span></p>
+            <p><strong>Company:</strong> <span class="placeholder">{{service_provider_name}}</span></p>
+            <p>Name: _________________________</p>
+            <p>Title: _________________________</p>
             <p>Signature: _________________________</p>
-            <p>Date: <span class="placeholder">[Date]</span></p>
+            <p>Date: _________________________</p>
         </div>
     </div>
 
     <div class="disclaimer">
-        <p>This is a template Data Processing Agreement. Please review and customize it according to your specific business relationships and legal requirements.</p>
+        <p>This Data Processing Agreement was generated for <span class="placeholder">{{company}}</span>. Please review and customize it according to your specific business relationships and legal requirements.</p>
     </div>
 </body>
 </html>
