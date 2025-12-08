@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIPAA Employee Training Script Template</title>
+    <title>HIPAA Employee Training Script</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,17 +24,26 @@
         h1 {
             font-size: 28px;
             margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
         h2 {
             font-size: 22px;
         }
         h3 {
             font-size: 18px;
+            text-align: left;
         }
         .section {
             margin-bottom: 30px;
             padding: 20px;
             border-radius: 5px;
+        }
+        .placeholder {
+            background-color: #f0f8ff;
+            border: 1px dashed #0069d9;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
         .note {
             font-style: italic;
@@ -49,15 +58,41 @@
             padding: 15px;
             border-radius: 5px;
             margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+        .scenario {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .signature-area {
+            margin-top: 40px;
+            border-top: 2px solid #92cdec;
+            padding-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>HIPAA Employee Training Script Template</h1>
+    <h1>HIPAA Employee Training Script</h1>
+    
+    <div class="section">
+        <p><strong>Training Date:</strong> <span class="placeholder">{{current_date}}</span></p>
+        <p><strong>Organization:</strong> <span class="placeholder">{{company}}</span></p>
+        <p><strong>Trainer:</strong> <span class="placeholder">{{trainer_name}}</span></p>
+        <p><strong>Covered Entity Type:</strong> <span class="placeholder">{{covered_entity_type}}</span></p>
+    </div>
     
     <div class="section">
         <h2>Training Introduction</h2>
-        <p><strong>Trainer:</strong> "Welcome to [Organization Name]'s HIPAA compliance training. Today we'll cover the essential information you need to know to protect patient privacy and ensure our organization complies with the Health Insurance Portability and Accountability Act (HIPAA)."</p>
+        <p><strong>Trainer:</strong> "Welcome to <span class="placeholder">{{company}}</span>'s HIPAA compliance training. Today we'll cover the essential information you need to know to protect patient privacy and ensure our organization complies with the Health Insurance Portability and Accountability Act (HIPAA)."</p>
         <p><strong>Objective:</strong> By the end of this training, you will understand your responsibilities in protecting patient health information and the consequences of non-compliance.</p>
     </div>
     
@@ -82,6 +117,9 @@
             <li>Payment for the provision of health care</li>
         </ul>
         <p>PHI includes common identifiers like name, address, birth date, Social Security Number, and medical record number."</p>
+        
+        <p><strong>Types of PHI we handle at <span class="placeholder">{{company}}</span>:</strong></p>
+        <p><span class="placeholder">{{phi_types}}</span></p>
         
         <div class="quiz">
             <p><strong>Scenario:</strong> A patient's name and diagnosis appear together on a document. Is this PHI?</p>
@@ -122,18 +160,20 @@
             <li>Right to request confidential communications</li>
             <li>Right to receive a notice of privacy practices</li>
         </ul>
-        <p>If a patient exercises any of these rights, direct them to our Privacy Officer."</p>
+        <p>If a patient exercises any of these rights, direct them to our Privacy Officer: <span class="placeholder">{{privacy_officer}}</span>."</p>
     </div>
     
     <div class="section">
         <h2>6. Safeguarding PHI</h2>
-        <p><strong>Trainer:</strong> "We all share responsibility for protecting PHI:</p>
+        <p><strong>Trainer:</strong> "We all share responsibility for protecting PHI at <span class="placeholder">{{company}}</span>:</p>
         <ul>
             <li>Never discuss patient information in public areas</li>
             <li>Secure paper records - don't leave them unattended</li>
             <li>Log out of computer systems when stepping away</li>
             <li>Use secure methods when transmitting PHI</li>
             <li>Shred documents containing PHI before disposal</li>
+            <li>Use strong passwords and change them regularly</li>
+            <li>Be cautious of phishing emails</li>
         </ul>
         
         <div class="quiz">
@@ -143,42 +183,82 @@
     </div>
     
     <div class="section">
-        <h2>7. Reporting Violations</h2>
+        <h2>7. Business Associates</h2>
+        <p><strong>Trainer:</strong> "We work with Business Associates who may have access to PHI. They are also required to protect patient information."</p>
+        <p><strong>Our Business Associates include:</strong></p>
+        <p><span class="placeholder">{{business_associates}}</span></p>
+        <p><strong>Third-Party Tools/Platforms:</strong></p>
+        <p><span class="placeholder">{{thirdparty}}</span></p>
+    </div>
+    
+    <div class="section">
+        <h2>8. Reporting Violations</h2>
         <p><strong>Trainer:</strong> "If you suspect a privacy violation has occurred:</p>
         <ol>
             <li>Report it immediately to your supervisor or our Privacy Officer</li>
             <li>Do not attempt to investigate on your own</li>
             <li>Document what you observed without accessing additional PHI</li>
         </ol>
+        <p><strong>Privacy Officer:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+        <p><strong>Security Officer:</strong> <span class="placeholder">{{security_officer}}</span></p>
+        <p><strong>Contact Email:</strong> <span class="placeholder">{{email}}</span></p>
         <p>We have a non-retaliation policy - you will not face consequences for reporting in good faith."</p>
     </div>
     
     <div class="section">
-        <h2>8. Consequences of Non-Compliance</h2>
+        <h2>9. Consequences of Non-Compliance</h2>
         <p><strong>Trainer:</strong> "HIPAA violations can result in:</p>
         <ul>
             <li>Disciplinary action up to and including termination</li>
             <li>Civil penalties up to $25,000 per violation type per year</li>
             <li>Criminal penalties including fines up to $250,000 and imprisonment up to 10 years</li>
             <li>Damage to our organization's reputation</li>
+            <li>Loss of patient trust</li>
         </ul>
     </div>
     
     <div class="section">
+        <h2>10. Scenario-Based Training</h2>
+        
+        <div class="scenario">
+            <h3>Scenario 1: Unauthorized Access</h3>
+            <p><strong>Situation:</strong> You notice a coworker looking up a celebrity patient's records out of curiosity.</p>
+            <p><strong>Question:</strong> What should you do?</p>
+            <p><strong>Correct Response:</strong> Report the incident to <span class="placeholder">{{privacy_officer}}</span> immediately. This is a HIPAA violation regardless of whether the information was shared.</p>
+        </div>
+        
+        <div class="scenario">
+            <h3>Scenario 2: Lost Device</h3>
+            <p><strong>Situation:</strong> You lose a laptop that contains unencrypted patient data.</p>
+            <p><strong>Question:</strong> What should you do?</p>
+            <p><strong>Correct Response:</strong> Report immediately to <span class="placeholder">{{security_officer}}</span>. This may constitute a breach requiring notification.</p>
+        </div>
+        
+        <div class="scenario">
+            <h3>Scenario 3: Family Member Request</h3>
+            <p><strong>Situation:</strong> A patient's spouse calls asking about test results.</p>
+            <p><strong>Question:</strong> Can you share the information?</p>
+            <p><strong>Correct Response:</strong> Verify the patient has authorized release to this individual. If unsure, take a message and consult your supervisor.</p>
+        </div>
+    </div>
+
+    <div class="section">
         <h2>Training Conclusion</h2>
         <p><strong>Trainer:</strong> "Protecting patient privacy is not just a legal requirement - it's fundamental to maintaining trust with our patients.</p>
-        <p>Remember - when in doubt about whether you can use or disclose PHI, ask your supervisor or our Privacy Officer.</p>
+        <p>Remember - when in doubt about whether you can use or disclose PHI, ask your supervisor or contact our Privacy Officer: <span class="placeholder">{{privacy_officer}}</span>.</p>
         <p>Do you have any questions about your responsibilities under HIPAA?"</p>
     </div>
     
-    <div class="section">
+    <div class="signature-area">
         <h2>Employee Acknowledgement</h2>
-        <p>I, __________________________, acknowledge that I have received HIPAA training on _______________ and understand my responsibilities to protect patient privacy and comply with HIPAA regulations.</p>
-        <p>Signature: _________________________ Date: _______________</p>
+        <p>I acknowledge that I have received HIPAA training at <span class="placeholder">{{company}}</span> on <span class="placeholder">{{current_date}}</span> and understand my responsibilities to protect patient privacy and comply with HIPAA regulations.</p>
+        <p><strong>Employee Name:</strong> _________________________</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <p><strong>Date:</strong> _________________________</p>
     </div>
     
     <div class="note">
-        <p>This training script should be customized to reflect your organization's specific practices and procedures. Document all training sessions and retain records for six years.</p>
+        <p>This training script was prepared for <span class="placeholder">{{company}}</span>. Document all training sessions and retain records for six years as required by HIPAA.</p>
     </div>
 </body>
 </html>
