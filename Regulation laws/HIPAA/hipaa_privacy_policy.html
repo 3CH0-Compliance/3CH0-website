@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIPAA Privacy Policy Template</title>
+    <title>HIPAA Privacy Policy</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,17 +24,26 @@
         h1 {
             font-size: 28px;
             margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
         h2 {
             font-size: 22px;
         }
         h3 {
             font-size: 18px;
+            text-align: left;
         }
         .section {
             margin-bottom: 30px;
             padding: 20px;
             border-radius: 5px;
+        }
+        .placeholder {
+            background-color: #f0f8ff;
+            border: 1px dashed #0069d9;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
         .note {
             font-style: italic;
@@ -44,15 +53,36 @@
             background-color: #f5f5f5;
             border-left: 3px solid #0069d9;
         }
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
-    <h1>HIPAA Privacy Policy Template</h1>
+    <h1>HIPAA Privacy Policy</h1>
+    <h2>Notice of Privacy Practices</h2>
     
     <div class="section">
+        <p><strong>Effective Date:</strong> <span class="placeholder">{{current_date}}</span></p>
+        <p><strong>Organization:</strong> <span class="placeholder">{{company}}</span></p>
+        <p><strong>Address:</strong> <span class="placeholder">{{company_address}}</span></p>
+        <p><strong>Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
+        <p><strong>Website:</strong> <span class="placeholder">{{website_url}}</span></p>
+    </div>
+    
+    <div class="note">
+        <p>THIS NOTICE DESCRIBES HOW MEDICAL INFORMATION ABOUT YOU MAY BE USED AND DISCLOSED AND HOW YOU CAN GET ACCESS TO THIS INFORMATION. PLEASE REVIEW IT CAREFULLY.</p>
+    </div>
+
+    <div class="section">
         <h2>1. Purpose and Scope</h2>
-        <p>This Privacy Policy establishes how [Organization Name] collects, uses, maintains, and discloses protected health information (PHI) in compliance with the Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule.</p>
-        <p>This policy applies to all workforce members, including employees, volunteers, trainees, and other persons whose conduct is under the direct control of [Organization Name].</p>
+        <p>This Privacy Policy establishes how <span class="placeholder">{{company}}</span> collects, uses, maintains, and discloses protected health information (PHI) in compliance with the Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule.</p>
+        <p><strong>Covered Entity Type:</strong> <span class="placeholder">{{covered_entity_type}}</span></p>
+        <p>This policy applies to all workforce members, including employees, volunteers, trainees, and other persons whose conduct is under the direct control of <span class="placeholder">{{company}}</span>.</p>
     </div>
     
     <div class="section">
@@ -63,19 +93,28 @@
     </div>
     
     <div class="section">
-        <h2>3. Permitted Uses and Disclosures</h2>
-        <p>[Organization Name] may use or disclose PHI without individual authorization for:</p>
+        <h2>3. Types of PHI We Handle</h2>
+        <p><span class="placeholder">{{company}}</span> handles the following types of Protected Health Information:</p>
+        <p><span class="placeholder">{{phi_types}}</span></p>
+        <p><strong>Approximate Patient Volume:</strong> <span class="placeholder">{{patient_volume}}</span></p>
+    </div>
+
+    <div class="section">
+        <h2>4. Permitted Uses and Disclosures</h2>
+        <p><span class="placeholder">{{company}}</span> may use or disclose PHI without individual authorization for:</p>
         <ul>
-            <li>Treatment, payment, and health care operations</li>
+            <li><strong>Treatment:</strong> Providing, coordinating, or managing health care and related services</li>
+            <li><strong>Payment:</strong> Activities to obtain reimbursement for health care services</li>
+            <li><strong>Health Care Operations:</strong> Quality assessment, training, accreditation, and legal services</li>
             <li>When required by law</li>
             <li>Public health activities</li>
             <li>Victims of abuse, neglect, or domestic violence</li>
             <li>Health oversight activities</li>
             <li>Judicial and administrative proceedings</li>
             <li>Law enforcement purposes</li>
-            <li>Decedents</li>
-            <li>Cadaveric organ, eye, or tissue donation</li>
-            <li>Research</li>
+            <li>Decedents (funeral directors, coroners)</li>
+            <li>Organ, eye, or tissue donation</li>
+            <li>Research (with appropriate approvals)</li>
             <li>Serious threat to health or safety</li>
             <li>Essential government functions</li>
             <li>Workers' compensation</li>
@@ -83,8 +122,8 @@
     </div>
     
     <div class="section">
-        <h2>4. Minimum Necessary Standard</h2>
-        <p>[Organization Name] will make reasonable efforts to use, disclose, and request only the minimum necessary PHI to accomplish the intended purpose, except for:</p>
+        <h2>5. Minimum Necessary Standard</h2>
+        <p><span class="placeholder">{{company}}</span> will make reasonable efforts to use, disclose, and request only the minimum necessary PHI to accomplish the intended purpose, except for:</p>
         <ul>
             <li>Disclosures to or requests by a health care provider for treatment</li>
             <li>Uses or disclosures made pursuant to an authorization</li>
@@ -95,22 +134,32 @@
     </div>
     
     <div class="section">
-        <h2>5. Individual Rights</h2>
+        <h2>6. Your Rights</h2>
         <p>Individuals have the right to:</p>
         <ul>
-            <li>Receive a notice of privacy practices</li>
-            <li>Access and obtain a copy of their PHI</li>
-            <li>Request amendments to their PHI</li>
-            <li>Receive an accounting of disclosures</li>
-            <li>Request restrictions on certain uses and disclosures</li>
-            <li>Request confidential communications</li>
-            <li>File a complaint about privacy practices</li>
+            <li><strong>Receive a notice of privacy practices</strong></li>
+            <li><strong>Access and obtain a copy of their PHI</strong> - You may request copies of your medical records</li>
+            <li><strong>Request amendments to their PHI</strong> - You may ask us to correct information you believe is incorrect</li>
+            <li><strong>Receive an accounting of disclosures</strong> - You may request a list of certain disclosures we have made</li>
+            <li><strong>Request restrictions on certain uses and disclosures</strong> - You may ask us to limit how we use or share your information</li>
+            <li><strong>Request confidential communications</strong> - You may ask us to contact you in a specific way</li>
+            <li><strong>File a complaint about privacy practices</strong></li>
         </ul>
+        <p>To exercise any of these rights, contact our Privacy Officer.</p>
     </div>
     
     <div class="section">
-        <h2>6. Administrative Requirements</h2>
-        <p>[Organization Name] will:</p>
+        <h2>7. Business Associates</h2>
+        <p>We may share your PHI with Business Associates who perform services on our behalf. All Business Associates are required to protect your PHI.</p>
+        <p><strong>Our Business Associates include:</strong></p>
+        <p><span class="placeholder">{{business_associates}}</span></p>
+        <p><strong>Third-Party Tools/Platforms:</strong></p>
+        <p><span class="placeholder">{{thirdparty}}</span></p>
+    </div>
+
+    <div class="section">
+        <h2>8. Administrative Requirements</h2>
+        <p><span class="placeholder">{{company}}</span> will:</p>
         <ul>
             <li>Designate a privacy official responsible for developing and implementing privacy policies</li>
             <li>Train all workforce members on privacy policies and procedures</li>
@@ -120,19 +169,30 @@
             <li>Retain required documentation for six years</li>
         </ul>
     </div>
-    
+
     <div class="section">
-        <h2>7. Complaints</h2>
-        <p>Individuals may file complaints with [Organization Name] by contacting [Privacy Official Name] at [Contact Information]. Individuals may also file a complaint with the Secretary of the U.S. Department of Health and Human Services.</p>
+        <h2>9. Contact Information</h2>
+        <p>For questions about this Privacy Policy or to exercise your rights, please contact:</p>
+        <p><strong>Privacy Officer:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+        <p><strong>Security Officer:</strong> <span class="placeholder">{{security_officer}}</span></p>
+        <p><strong>Email:</strong> <span class="placeholder">{{email}}</span></p>
+        <p><strong>Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
+        <p><strong>Address:</strong> <span class="placeholder">{{company_address}}</span></p>
     </div>
     
     <div class="section">
-        <h2>8. Policy Review and Updates</h2>
-        <p>This policy will be reviewed annually and updated as necessary to ensure ongoing compliance with HIPAA regulations.</p>
+        <h2>10. Complaints</h2>
+        <p>If you believe your privacy rights have been violated, you may file a complaint with <span class="placeholder">{{company}}</span> by contacting <span class="placeholder">{{privacy_officer}}</span>.</p>
+        <p>You may also file a complaint with the Secretary of the U.S. Department of Health and Human Services. You will not be penalized for filing a complaint.</p>
+    </div>
+    
+    <div class="section">
+        <h2>11. Policy Review and Updates</h2>
+        <p>This policy will be reviewed annually and updated as necessary to ensure ongoing compliance with HIPAA regulations. We reserve the right to change this notice at any time. Any changes will apply to PHI we already have.</p>
     </div>
     
     <div class="note">
-        <p>This template should be customized to reflect your organization's specific practices and procedures. Consult with legal counsel to ensure full compliance with applicable laws.</p>
+        <p>This Privacy Policy was prepared for <span class="placeholder">{{company}}</span>. Please review and customize according to your organization's specific practices and procedures. Consult with legal counsel to ensure full compliance with applicable laws.</p>
     </div>
 </body>
 </html>
