@@ -3,32 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POPIA Compliance Documentation</title>
+    <title>POPIA Employee Training Script</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #000000;
             background-color: #ffffff;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
-        
-        .document-section {
-            margin-bottom: 60px;
-            padding: 30px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            background-color: #ffffff;
-        }
-        
         h1, h2, h3 {
             background: linear-gradient(135deg, #0069d9, #92cdec);
             -webkit-background-clip: text;
@@ -37,37 +27,36 @@
             margin: 20px 0 15px 0;
             text-align: center;
         }
-        
         h1 {
             font-size: 28px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid #3498db;
         }
-        
         h2 {
             font-size: 22px;
             margin-top: 25px;
         }
-        
         h3 {
             font-size: 18px;
             text-align: left;
             margin-top: 20px;
         }
-        
         p, ul, ol {
             margin-bottom: 15px;
             text-align: left;
         }
-        
         ul, ol {
             padding-left: 30px;
         }
-        
         li {
             margin-bottom: 8px;
         }
-        
+        .placeholder {
+            background-color: #f0f8ff;
+            border: 1px dashed #0069d9;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
         .note {
             background-color: #f8f9fa;
             border-left: 4px solid #0069d9;
@@ -75,49 +64,55 @@
             margin: 20px 0;
             font-style: italic;
         }
-        
-        .copy-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
         }
-        
-        .copy-button:hover {
-            opacity: 0.9;
-        }
-        
-        .separator {
-            height: 2px;
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            margin: 40px 0;
-            border-radius: 2px;
-        }
-        
         .highlight {
             background-color: #d2e2ff;
             padding: 2px 4px;
             border-radius: 3px;
         }
+        .quiz {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+        .scenario {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .signature-area {
+            margin-top: 40px;
+            border-top: 2px solid #92cdec;
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <!-- Employee Training Script Section -->
-    <section id="employee-training" class="document-section">
-        <h1>POPIA EMPLOYEE TRAINING SCRIPT</h1>
-        
-        <div class="note">
-            <p>This training script is designed to educate employees about their responsibilities under the Protection of Personal Information Act (POPIA) with South African context and examples.</p>
-        </div>
-        
+    <h1>POPIA EMPLOYEE TRAINING SCRIPT</h1>
+    
+    <div class="note">
+        <p>This training script is designed to educate employees about their responsibilities under the Protection of Personal Information Act (POPIA) with South African context and examples.</p>
+    </div>
+
+    <div class="section">
+        <p><strong>Training Date:</strong> <span class="placeholder">{{current_date}}</span></p>
+        <p><strong>Company:</strong> <span class="placeholder">{{company}}</span></p>
+        <p><strong>Trainer:</strong> <span class="placeholder">{{trainer_name}}</span></p>
+        <p><strong>Industry:</strong> <span class="placeholder">{{industry}}</span></p>
+    </div>
+
+    <div class="section">
         <h2>Training Introduction</h2>
-        <p><strong>Trainer:</strong> "Welcome to our POPIA training session. Today we'll learn about the Protection of Personal Information Act, why it matters to us as a South African company, and how it affects our daily work."</p>
-        
+        <p><strong>Trainer:</strong> "Welcome to our POPIA training session. Today we'll learn about the Protection of Personal Information Act, why it matters to us as a South African company, and how it affects our daily work at <span class="placeholder">{{company}}</span>."</p>
+    </div>
+
+    <div class="section">
         <h2>1. What is POPIA?</h2>
         <p><strong>Trainer:</strong> "POPIA is South Africa's data protection law that came into effect to protect people's personal information. It gives individuals control over how their personal information is collected, used, and shared."</p>
         
@@ -127,10 +122,13 @@
             <li>It regulates how we handle personal information in South Africa</li>
             <li>It gives rights to individuals about their information</li>
             <li>It establishes rules for organizations that process personal information</li>
+            <li>Non-compliance can result in fines up to R10 million or imprisonment</li>
         </ul>
-        
+    </div>
+
+    <div class="section">
         <h2>2. The Information Officer</h2>
-        <p><strong>Trainer:</strong> "Every South African company must appoint an Information Officer. <span class="highlight">[Name of Information Officer]</span> is our Information Officer, and they have specific responsibilities under POPIA."</p>
+        <p><strong>Trainer:</strong> "Every South African company must appoint an Information Officer. <span class="placeholder">{{information_officer}}</span> is our Information Officer, and they have specific responsibilities under POPIA."</p>
         
         <h3>Information Officer Responsibilities:</h3>
         <ul>
@@ -141,10 +139,17 @@
             <li>Managing data breach responses</li>
         </ul>
         
-        <p><strong>Trainer:</strong> "If you're ever unsure about how to handle personal information, <span class="highlight">always consult our Information Officer first</span>."</p>
+        <p><strong>Information Officer Contact:</strong></p>
+        <p>Email: <span class="placeholder">{{information_officer_email}}</span></p>
+        <p>Phone: <span class="placeholder">{{information_officer_phone}}</span></p>
         
-        <h2>3. Why POPIA Matters to Us</h2>
-        <p><strong>Trainer:</strong> "Every employee handles personal information in some way - customer details, employee records, supplier information. We all have a responsibility to protect this information."</p>
+        <p><strong>Trainer:</strong> "If you're ever unsure about how to handle personal information, <span class="highlight">always consult our Information Officer first</span>."</p>
+    </div>
+
+    <div class="section">
+        <h2>3. What Personal Information Do We Handle?</h2>
+        <p><strong>Trainer:</strong> "At <span class="placeholder">{{company}}</span>, we handle the following types of personal information:"</p>
+        <p><span class="placeholder">{{data}}</span></p>
         
         <h3>South African Context Examples:</h3>
         <ul>
@@ -161,8 +166,10 @@
             <li>Reputational damage to our organization</li>
             <li>Loss of customer trust</li>
         </ul>
-        
-        <h2>4. Key POPIA Principles</h2>
+    </div>
+
+    <div class="section">
+        <h2>4. The 8 Conditions for Lawful Processing</h2>
         <p><strong>Trainer:</strong> "POPIA is built around 8 conditions for lawful processing of personal information. Let's go through each one."</p>
         
         <h3>Accountability (Section 8)</h3>
@@ -211,9 +218,13 @@
             <li>Correct inaccurate information</li>
             <li>Delete information we shouldn't have</li>
         </ul>
-        
-        <h2>5. Special Personal Information</h2>
+    </div>
+
+    <div class="section">
+        <h2>5. Special Personal Information (POPIA Section 26)</h2>
         <p><strong>Trainer:</strong> "<span class="highlight">Special Personal Information has extra protections under POPIA Section 26</span>. We need to be especially careful with this type of information."</p>
+        
+        <p><strong>Do we process Special Personal Information?</strong> <span class="placeholder">{{special_data}}</span></p>
         
         <h3>Special Personal Information includes:</h3>
         <ul>
@@ -235,12 +246,20 @@
         </ul>
         
         <p><strong>Trainer:</strong> "In most cases, we need explicit consent to process Special Personal Information, or there must be another specific legal basis under POPIA."</p>
-        
-        <h3>Children's Information (Section 34):</h3>
+    </div>
+
+    <div class="section">
+        <h2>6. Children's Information (POPIA Section 34)</h2>
+        <p><strong>Do we process children's information?</strong> <span class="placeholder">{{children_data}}</span></p>
         <p>We need special permission to process children's information. In South Africa, a child is anyone under 18.</p>
-        
-        <h2>6. Direct Marketing Rules</h2>
+    </div>
+
+    <div class="section">
+        <h2>7. Direct Marketing Rules (POPIA Section 69)</h2>
         <p><strong>Trainer:</strong> "<span class="highlight">POPIA has strict rules about direct marketing in Section 69</span>. This is particularly important for our sales and marketing teams."</p>
+        
+        <p><strong>Do we conduct direct marketing?</strong> <span class="placeholder">{{direct_marketing}}</span></p>
+        <p><strong>Our consent method:</strong> <span class="placeholder">{{marketing_consent}}</span></p>
         
         <h3>Key Direct Marketing Rules:</h3>
         <ul>
@@ -249,16 +268,23 @@
             <li>All marketing communications must include an easy way to opt-out</li>
             <li>We must maintain a "do not contact" list</li>
         </ul>
-        
-        <h3>South African Marketing Examples:</h3>
-        <ul>
-            <li>Sending promotional emails - requires prior consent</li>
-            <li>Telemarketing calls - requires prior consent for automated calls</li>
-            <li>SMS marketing - requires prior consent</li>
-            <li>Social media advertising - different rules apply</li>
-        </ul>
-        
-        <h2>7. Practical Guidelines for Employees</h2>
+    </div>
+
+    <div class="section">
+        <h2>8. Third-Party Data Sharing</h2>
+        <p><strong>Trainer:</strong> "We share data with certain third-party tools and platforms. Be aware of how data flows."</p>
+        <p><strong>Third-Party Tools We Use:</strong> <span class="placeholder">{{thirdparty}}</span></p>
+        <p><strong>Primary Service Provider:</strong> <span class="placeholder">{{service_provider_name}}</span></p>
+    </div>
+
+    <div class="section">
+        <h2>9. Cross-Border Transfers (POPIA Section 72)</h2>
+        <p><strong>Do we transfer data outside South Africa?</strong> <span class="placeholder">{{cross_border}}</span></p>
+        <p>If we transfer data outside South Africa, we must ensure adequate protection is in place.</p>
+    </div>
+
+    <div class="section">
+        <h2>10. Practical Guidelines for Employees</h2>
         
         <h3>Do's:</h3>
         <ul>
@@ -267,7 +293,7 @@
             <li>Lock your computer when stepping away</li>
             <li>Store physical documents securely</li>
             <li>Use encrypted email for sensitive information</li>
-            <li>Report any suspected data breaches immediately to the Information Officer</li>
+            <li>Report any suspected data breaches immediately to <span class="placeholder">{{information_officer}}</span></li>
         </ul>
         
         <h3>Don'ts:</h3>
@@ -279,19 +305,25 @@
             <li>Don't keep information longer than necessary</li>
             <li>Don't send marketing emails without proper consent</li>
         </ul>
-        
-        <h2>8. Handling Data Subject Requests</h2>
+    </div>
+
+    <div class="section">
+        <h2>11. Handling Data Subject Requests</h2>
         <p><strong>Trainer:</strong> "If someone asks about their personal information, you need to know what to do."</p>
         
         <h3>Steps for Handling Requests:</h3>
         <ol>
             <li>Verify the person's identity</li>
-            <li>Direct them to our Information Officer</li>
+            <li>Direct them to our Information Officer: <span class="placeholder">{{information_officer}}</span></li>
             <li>Don't provide information directly unless authorized</li>
             <li>Document the request</li>
         </ol>
-        
-        <h2>9. Security Breach Response</h2>
+        <p><strong>Contact Email:</strong> <span class="placeholder">{{email}}</span></p>
+        <p><strong>Contact Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
+    </div>
+
+    <div class="section">
+        <h2>12. Security Breach Response</h2>
         <p><strong>Trainer:</strong> "If you suspect a data breach, you must report it immediately to the Information Officer."</p>
         
         <h3>What Constitutes a Breach:</h3>
@@ -304,28 +336,69 @@
         
         <h3>Reporting Procedure:</h3>
         <ol>
-            <li>Immediately notify your supervisor and the Information Officer</li>
+            <li>Immediately notify your supervisor and <span class="placeholder">{{information_officer}}</span></li>
+            <li>Also notify <span class="placeholder">{{privacy_officer}}</span> and <span class="placeholder">{{security_officer}}</span></li>
             <li>Do not attempt to cover up or minimize the incident</li>
             <li>Follow the organization's incident response plan</li>
         </ol>
-        
-        <h2>10. Assessment and Questions</h2>
-        <p><strong>Trainer:</strong> "Let's review what we've learned and address any questions."</p>
-        
-        <h3>Review Questions:</h3>
-        <ul>
-            <li>What does POPIA stand for?</li>
-            <li>What are the 8 conditions for lawful processing?</li>
-            <li>What should you do if you suspect a data breach?</li>
-            <li>What types of information have special protection?</li>
-            <li>What are the rules for direct marketing?</li>
-            <li>Who is our Information Officer?</li>
-        </ul>
-        
-        <p><strong>Trainer:</strong> "Remember, protecting personal information is everyone's responsibility. If you're ever unsure about how to handle personal information, ask your supervisor or contact our Information Officer."</p>
-        
+    </div>
 
-    </section>
+    <div class="section">
+        <h2>13. Scenario-Based Training</h2>
+        
+        <div class="scenario">
+            <h3>Scenario 1: Customer Request</h3>
+            <p><strong>Situation:</strong> A customer calls and asks what personal information you have about them.</p>
+            <p><strong>Question:</strong> What should you do?</p>
+            <p><strong>Correct Response:</strong> Verify their identity, explain they can submit a formal request, and direct them to <span class="placeholder">{{information_officer}}</span>.</p>
+        </div>
+        
+        <div class="scenario">
+            <h3>Scenario 2: Marketing Email</h3>
+            <p><strong>Situation:</strong> A colleague wants to send promotional emails to a purchased contact list.</p>
+            <p><strong>Question:</strong> Is this allowed under POPIA?</p>
+            <p><strong>Correct Response:</strong> No, POPIA Section 69 requires prior opt-in consent for electronic marketing. The contacts must have consented to receive marketing from us.</p>
+        </div>
+        
+        <div class="scenario">
+            <h3>Scenario 3: Lost Laptop</h3>
+            <p><strong>Situation:</strong> You lose a laptop containing customer data.</p>
+            <p><strong>Question:</strong> What should you do?</p>
+            <p><strong>Correct Response:</strong> Immediately report to <span class="placeholder">{{information_officer}}</span>. This may be a reportable breach under POPIA Section 22.</p>
+        </div>
+    </div>
 
+    <div class="quiz">
+        <h2>14. Assessment Questions</h2>
+        <p><strong>1.</strong> What does POPIA stand for?</p>
+        <p><strong>2.</strong> What are the 8 conditions for lawful processing?</p>
+        <p><strong>3.</strong> What should you do if you suspect a data breach?</p>
+        <p><strong>4.</strong> What types of information have special protection under POPIA?</p>
+        <p><strong>5.</strong> What are the rules for direct marketing under POPIA Section 69?</p>
+        <p><strong>6.</strong> Who is our Information Officer?</p>
+    </div>
+
+    <div class="section">
+        <h2>15. Key Contacts</h2>
+        <p><strong>Information Officer:</strong> <span class="placeholder">{{information_officer}}</span></p>
+        <p><strong>Information Officer Email:</strong> <span class="placeholder">{{information_officer_email}}</span></p>
+        <p><strong>Privacy Officer:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+        <p><strong>Security Officer:</strong> <span class="placeholder">{{security_officer}}</span></p>
+        <p><strong>Company Email:</strong> <span class="placeholder">{{email}}</span></p>
+        <p><strong>Company Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
+    </div>
+
+    <div class="signature-area">
+        <h2>Training Acknowledgement</h2>
+        <p>I acknowledge that I have received and completed POPIA compliance training at <span class="placeholder">{{company}}</span> on <span class="placeholder">{{current_date}}</span>. I understand my responsibilities to protect personal information and comply with POPIA regulations.</p>
+        
+        <p><strong>Employee Name:</strong> _________________________</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <p><strong>Date:</strong> _________________________</p>
+    </div>
+
+    <div class="note">
+        <p>This training script was prepared for <span class="placeholder">{{company}}</span>. Remember, protecting personal information is everyone's responsibility. When in doubt, ask your supervisor or contact our Information Officer.</p>
+    </div>
 </body>
 </html>
