@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDPR Audit-Ready Documentation Template</title>
+    <title>GDPR Audit Ready Documentation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,64 +12,56 @@
             margin: 0 auto;
             padding: 20px;
             color: #333;
+            background-color: #ffffff;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        h1, h2, h3 {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
         }
-        h2 {
-            color: #2980b9;
-            margin-top: 25px;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-left: 4px solid #3498db;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
-        h3 {
-            color: #3498db;
-            margin-top: 20px;
+        h2 {
+            font-size: 1.8em;
+            margin-top: 50px;
         }
         .placeholder {
-            background-color: #fff3cd;
-            border: 1px dashed #856404;
-            padding: 2px 5px;
-            border-radius: 3px;
-            color: #856404;
+            background-color: #f0f8ff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px dashed #0069d9;
         }
-        .section {
-            margin-bottom: 30px;
+        .audit-section {
+            background-color: #f8fdff;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            border-left: 5px solid #92cdec;
         }
         .checklist {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 15px;
-            margin: 15px 0;
+            background-color: #f0f8ff;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
         }
         .status {
-            float: right;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
             font-weight: bold;
         }
-        .complete {
-            color: #28a745;
-        }
-        .incomplete {
-            color: #dc3545;
-        }
-        .document-item {
-            margin-bottom: 10px;
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-        }
-        .disclaimer {
-            font-style: italic;
-            color: #666;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-            margin-top: 30px;
-        }
-        ul, ol {
-            margin-left: 20px;
+        .compliant { background-color: #d4edda; color: #155724; }
+        .in-progress { background-color: #fff3cd; color: #856404; }
+        .not-started { background-color: #f8d7da; color: #721c24; }
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
         }
         li {
             margin-bottom: 8px;
@@ -77,343 +69,198 @@
     </style>
 </head>
 <body>
-    <h1>GDPR Audit-Ready Documentation Checklist</h1>
-    
-    <div class="section">
-        <p><strong>Company:</strong> <span class="placeholder">[Company Name]</span></p>
-        <p><strong>Document Version:</strong> <span class="placeholder">[Version Number]</span></p>
-        <p><strong>Last Updated:</strong> <span class="placeholder">[Date]</span></p>
-        <p><strong>Data Protection Officer:</strong> <span class="placeholder">[DPO Name and Contact]</span></p>
-    </div>
-
-    <div class="section">
-        <h2>1. Records of Processing Activities (Article 30)</h2>
-        <p>Maintain a comprehensive record of all data processing activities.</p>
+    <div class="container">
+        <h1>GDPR AUDIT READY DOCUMENTATION</h1>
+        <h2>Compliance Framework & Evidence Portfolio</h2>
         
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Document containing processing activities register
-                <span class="status incomplete">INCOMPLETE</span>
+        <p><strong>Audit Date Prepared:</strong> <span class="placeholder">{{current_date}}</span></p>
+        <p><strong>Company:</strong> <span class="placeholder">{{company}}</span></p>
+        <p><strong>Data Protection Officer:</strong> <span class="placeholder">{{dpo_name}}</span></p>
+        <p><strong>Privacy Officer:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+        <p><strong>Documentation Version:</strong> 1.0</p>
+
+        <div class="audit-section">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>This document provides comprehensive evidence of <span class="placeholder">{{company}}</span>'s compliance with the General Data Protection Regulation (GDPR). It includes policies, procedures, training records, and technical implementations that demonstrate our commitment to protecting personal data of EU residents.</p>
+            
+            <p><strong>Overall Compliance Status:</strong> <span class="status compliant">COMPLIANT</span></p>
+            <p><strong>Business Location:</strong> <span class="placeholder">{{location}}</span></p>
+            <p><strong>Industry:</strong> <span class="placeholder">{{industry}}</span></p>
+        </div>
+
+        <div class="audit-section">
+            <h2>1. DATA CONTROLLER INFORMATION</h2>
+            
+            <div class="checklist">
+                <h3>Organization Details</h3>
+                <p><strong>Company Name:</strong> <span class="placeholder">{{company}}</span></p>
+                <p><strong>Address:</strong> <span class="placeholder">{{company_address}}</span></p>
+                <p><strong>Website:</strong> <span class="placeholder">{{website_url}}</span></p>
+                <p><strong>Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
+                <p><strong>Email:</strong> <span class="placeholder">{{email}}</span></p>
             </div>
-            <div class="document-item">
-                <input type="checkbox"> Name and contact details of controller/processor
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Purposes of the processing
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Categories of data subjects and personal data
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Categories of recipients of personal data
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Transfers to third countries and safeguards
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Envisaged time limits for erasure
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> General description of security measures
-                <span class="status incomplete">INCOMPLETE</span>
+
+            <div class="checklist">
+                <h3>Data Protection Officer (Article 37)</h3>
+                <p><strong>Status:</strong> <span class="status compliant">APPOINTED</span></p>
+                <p><strong>DPO Name:</strong> <span class="placeholder">{{dpo_name}}</span></p>
+                <p><strong>Contact Email:</strong> <span class="placeholder">{{email}}</span></p>
+                <p><strong>Responsibilities Documented:</strong> Yes</p>
             </div>
         </div>
-        
-        <p><strong>Location of ROPA:</strong> <span class="placeholder">[Document location/file path]</span></p>
-    </div>
 
-    <div class="section">
-        <h2>2. Data Protection Policies and Procedures</h2>
-        <p>Documented policies demonstrating organizational commitment to data protection.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Data Protection Policy
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Data Retention Policy and Schedule
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Data Breach Response Plan
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Data Subject Rights Procedure
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Privacy by Design and Default Policy
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Employee Data Handling Guidelines
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> <span class="placeholder">[Other relevant policies]</span>
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>2. LAWFUL BASIS FOR PROCESSING (Article 6)</h2>
+            
+            <div class="checklist">
+                <h3>Processing Activities</h3>
+                <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
+                <p><strong>Types of Personal Data Collected:</strong></p>
+                <p><span class="placeholder">{{data}}</span></p>
+                <p><strong>Processing Purposes:</strong></p>
+                <p><span class="placeholder">{{processing_purposes}}</span></p>
+                <p><strong>Data Categories:</strong></p>
+                <p><span class="placeholder">{{data_categories}}</span></p>
+                <p><strong>Data Subjects:</strong></p>
+                <p><span class="placeholder">{{data_subjects}}</span></p>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>3. Lawful Basis Documentation</h2>
-        <p>Documentation demonstrating lawful basis for each processing activity.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Documented lawful basis for each processing activity
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Legitimate Interests Assessments (LIAs) where applicable
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Consent records and mechanisms
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Contract necessity documentation
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Legal obligation references
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>3. DATA SUBJECT RIGHTS (Articles 12-23)</h2>
+            
+            <div class="checklist">
+                <h3>Rights Management Procedures</h3>
+                <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
+                <p><strong>Privacy Officer:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
+                <p><strong>Contact Email:</strong> <span class="placeholder">{{email}}</span></p>
+                <p><strong>Response Timeline:</strong> Within 30 days as required</p>
+                <p><strong>Rights Supported:</strong></p>
+                <ul>
+                    <li>Right to Access (Article 15)</li>
+                    <li>Right to Rectification (Article 16)</li>
+                    <li>Right to Erasure (Article 17)</li>
+                    <li>Right to Restrict Processing (Article 18)</li>
+                    <li>Right to Data Portability (Article 20)</li>
+                    <li>Right to Object (Article 21)</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>4. Data Processing Agreements (Article 28)</h2>
-        <p>Signed DPAs with all processors that handle personal data.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> DPA with <span class="placeholder">[Processor 1 Name]</span>
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> DPA with <span class="placeholder">[Processor 2 Name]</span>
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> DPA with <span class="placeholder">[Processor 3 Name]</span>
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> <span class="placeholder">[Add additional processors as needed]</span>
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>4. DATA PROCESSING AGREEMENTS (Article 28)</h2>
+            
+            <div class="checklist">
+                <h3>Third-Party Processors</h3>
+                <p><strong>Status:</strong> <span class="status compliant">COMPLETE</span></p>
+                <p><strong>Primary Service Provider:</strong> <span class="placeholder">{{service_provider_name}}</span></p>
+                <p><strong>Third-Party Tools/Platforms:</strong></p>
+                <p><span class="placeholder">{{thirdparty}}</span></p>
+                <p><strong>DPA Requirements:</strong></p>
+                <ul>
+                    <li>Written contract in place</li>
+                    <li>Processing only on documented instructions</li>
+                    <li>Confidentiality obligations</li>
+                    <li>Security measures specified</li>
+                    <li>Sub-processor approval process</li>
+                    <li>Audit rights included</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>5. Data Protection Impact Assessments (Article 35)</h2>
-        <p>Documented DPIAs for processing that is likely to result in high risk.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> DPIA for <span class="placeholder">[High-risk Processing Activity 1]</span>
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> DPIA for <span class="placeholder">[High-risk Processing Activity 2]</span>
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> DPIA for <span class="placeholder">[High-risk Processing Activity 3]</span>
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Consultation records with supervisory authority (if applicable)
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>5. INTERNATIONAL DATA TRANSFERS (Chapter V)</h2>
+            
+            <div class="checklist">
+                <h3>Transfer Mechanisms</h3>
+                <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
+                <p><strong>International Transfers:</strong> <span class="placeholder">{{international_transfers}}</span></p>
+                <p><strong>Transfer Countries:</strong> <span class="placeholder">{{transfer_countries}}</span></p>
+                <p><strong>Safeguards in Place:</strong></p>
+                <ul>
+                    <li>Standard Contractual Clauses (SCCs)</li>
+                    <li>Adequacy decisions where applicable</li>
+                    <li>Binding Corporate Rules where applicable</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>6. Information Security Documentation</h2>
-        <p>Records demonstrating appropriate technical and organizational security measures.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Information Security Policy
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Risk assessments and treatment plans
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Access control policies and logs
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Encryption and pseudonymization measures documentation
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Security testing and audit reports
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Business continuity and disaster recovery plans
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>6. SECURITY MEASURES (Article 32)</h2>
+            
+            <div class="checklist">
+                <h3>Technical and Organizational Measures</h3>
+                <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
+                <p><strong>Security Measures:</strong></p>
+                <p><span class="placeholder">{{security_measures}}</span></p>
+                <p><strong>Standard Measures:</strong></p>
+                <ul>
+                    <li>Data encryption in transit and at rest</li>
+                    <li>Access controls and authentication</li>
+                    <li>Regular security testing</li>
+                    <li>Incident response procedures</li>
+                    <li>Business continuity planning</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>7. Data Subject Request Handling</h2>
-        <p>Records of data subject requests and how they were handled.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Data subject request log
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Response templates for different request types
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Identity verification procedures
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Records of communications with data subjects
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Documentation of any request refusals and justifications
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>7. DATA RETENTION (Article 5(1)(e))</h2>
+            
+            <div class="checklist">
+                <h3>Retention Policy</h3>
+                <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
+                <p><strong>Standard Retention Period:</strong> <span class="placeholder">{{retention_period}}</span></p>
+                <p><strong>Deletion Procedures:</strong> Documented and implemented</p>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>8. Training and Awareness</h2>
-        <p>Documentation of staff training and awareness activities.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> GDPR training materials
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Training attendance records
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Employee acknowledgement of policies
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Role-specific training documentation
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Security awareness program records
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>8. EMPLOYEE TRAINING (Article 39)</h2>
+            
+            <div class="checklist">
+                <h3>Training Program</h3>
+                <p><strong>Status:</strong> <span class="status compliant">ONGOING</span></p>
+                <p><strong>Training Coordinator:</strong> <span class="placeholder">{{trainer_name}}</span></p>
+                <p><strong>Training Frequency:</strong> Annual mandatory training</p>
+                <p><strong>Topics Covered:</strong></p>
+                <ul>
+                    <li>GDPR principles and requirements</li>
+                    <li>Data subject rights</li>
+                    <li>Security best practices</li>
+                    <li>Breach reporting procedures</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>9. Data Breach Records (Articles 33 & 34)</h2>
-        <p>Documentation of any personal data breaches and response actions.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Data breach register
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Breach assessment and decision documentation
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Notification records to supervisory authorities
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Communication records with affected individuals
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Remedial action documentation
-                <span class="status incomplete">INCOMPLETE</span>
+        <div class="audit-section">
+            <h2>9. BREACH NOTIFICATION (Articles 33-34)</h2>
+            
+            <div class="checklist">
+                <h3>Breach Response Plan</h3>
+                <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
+                <p><strong>Security Officer:</strong> <span class="placeholder">{{security_officer}}</span></p>
+                <p><strong>Notification Timeline:</strong> Within 72 hours to supervisory authority</p>
+                <p><strong>Procedures:</strong></p>
+                <ul>
+                    <li>Breach detection and assessment</li>
+                    <li>Internal escalation process</li>
+                    <li>Supervisory authority notification</li>
+                    <li>Data subject notification (when required)</li>
+                    <li>Documentation and lessons learned</li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>10. International Transfers</h2>
-        <p>Documentation for transfers of personal data outside the EEA.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Records of adequacy decisions
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Appropriate safeguards documentation (SCCs, BCRs, etc.)
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Derogations for specific situations documentation
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Transfer impact assessments
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
+        <div class="audit-section">
+            <h2>10. COMPLIANCE CERTIFICATION</h2>
+            <p>I certify that to the best of my knowledge, the information contained in this audit readiness documentation is accurate and complete. <span class="placeholder">{{company}}</span> has implemented reasonable measures to comply with the General Data Protection Regulation.</p>
+            
+            <p><strong>Certified By:</strong> ___________________________________</p>
+            <p><strong>Name:</strong> <span class="placeholder">{{authorized_signatory}}</span></p>
+            <p><strong>Title:</strong> Authorized Signatory</p>
+            <p><strong>Date:</strong> <span class="placeholder">{{current_date}}</span></p>
         </div>
-    </div>
-
-    <div class="section">
-        <h2>11. Ongoing Compliance Monitoring</h2>
-        <p>Documentation of ongoing compliance activities.</p>
-        
-        <div class="checklist">
-            <div class="document-item">
-                <input type="checkbox"> Internal audit schedules and reports
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Compliance monitoring metrics
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Management review records
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-            <div class="document-item">
-                <input type="checkbox"> Policy review and update schedules
-                <span class="status incomplete">INCOMPLETE</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Document Storage and Access</h2>
-        <p><strong>Primary Document Repository:</strong> <span class="placeholder">[Location/System]</span></p>
-        <p><strong>Backup Location:</strong> <span class="placeholder">[Backup location]</span></p>
-        <p><strong>Access Controls:</strong> <span class="placeholder">[Description of access controls]</span></p>
-        <p><strong>Document Retention Period:</strong> <span class="placeholder">[Retention period]</span></p>
-    </div>
-
-    <div class="disclaimer">
-        <p>This is a template audit documentation checklist. Please customize it according to your specific business operations and compliance needs.</p>
     </div>
 </body>
 </html>
