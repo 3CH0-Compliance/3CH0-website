@@ -1,163 +1,265 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCPA Employee Training - {{1.company}}</title>
     <style>
         body {
-            background-color: #ffffff;
-            color: #000000;
             font-family: Arial, sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .container {
+            line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
-            text-align: left;
+            padding: 20px;
+            color: #333;
+            background-color: #ffffff;
         }
-        
-        h1, h2, h3 {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin: 40px 0 20px 0;
-        }
-        
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            color: #0069d9;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
         }
-        
-        h2 {
-            font-size: 1.8em;
-            margin-top: 50px;
-        }
-        
-        p {
-            margin: 20px 0;
-            text-align: justify;
-        }
-        
-        .training-section {
-            background-color: #f8fdff;
-            padding: 30px;
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; }
+        .section { margin-bottom: 30px; }
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .download-section {
+            text-align: center;
             margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
             border-radius: 10px;
-            border-left: 5px solid #92cdec;
+            border: 1px solid #92cdec;
         }
-        
-        .quiz {
-            background-color: #f0f8ff;
-            padding: 25px;
-            margin: 40px 0;
+        .download-btn {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
             border-radius: 8px;
+            cursor: pointer;
         }
-        
-        .placeholder {
-            background-color: #f0f8ff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px dashed #0069d9;
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
+        }
+        .download-instructions { margin-top: 15px; font-size: 14px; color: #666; }
+        .document-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #92cdec;
+        }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
+        .trainer-note {
+            background-color: #e8f4fc;
+            border-left: 4px solid #0069d9;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        .scenario {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .quiz {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .signature-area {
+            margin-top: 40px;
+            border-top: 2px solid #92cdec;
+            padding-top: 20px;
+        }
+        @media print {
+            .download-section { display: none !important; }
+            body { padding: 0; margin: 0; }
+            .section { page-break-inside: avoid; }
+            @page { margin: 2cm; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>CCPA EMPLOYEE TRAINING SCRIPT</h1>
-        <h2>California Consumer Privacy Act Compliance Training</h2>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <div class="document-date">Training Date: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    </div>
+
+    <h1>CCPA Employee Training Script</h1>
+
+    <div class="section">
+        <p><strong>Trainer:</strong> {{1.trainer_name}}</p>
+        <p><strong>Company:</strong> {{1.company}}</p>
+        <p><strong>Duration:</strong> Approximately 45 minutes</p>
+    </div>
+
+    <div class="section">
+        <h2>Training Introduction</h2>
+        <div class="trainer-note">
+            <strong>Trainer:</strong> "Welcome to our CCPA training session. Today we'll learn about the California Consumer Privacy Act, what rights it gives to California residents, and how it affects our work at {{1.company}}."
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>1. What is CCPA?</h2>
+        <p>CCPA is the California Consumer Privacy Act, which:</p>
+        <ul>
+            <li>Took effect January 1, 2020</li>
+            <li>Gives California residents control over their personal information</li>
+            <li>Applies to businesses meeting certain thresholds</li>
+            <li>Was enhanced by CPRA (California Privacy Rights Act) in 2023</li>
+        </ul>
+        <p><strong>Penalties:</strong> Up to $7,500 per intentional violation!</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Key Contacts at {{1.company}}</h2>
+        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
+        <p><strong>Email:</strong> {{1.email}}</p>
+        <p><strong>Phone:</strong> {{1.phone_number}}</p>
+        <div class="trainer-note">
+            <strong>Trainer:</strong> "Always direct consumer privacy requests to {{1.privacy_officer}}. Don't try to handle them yourself."
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. What Personal Information Do We Handle?</h2>
+        <p>At {{1.company}}, we handle:</p>
+        <p>{{1.data}}</p>
+        <h3>CCPA Categories:</h3>
+        <ul>
+            <li><strong>Identifiers:</strong> Name, email, SSN, driver's license</li>
+            <li><strong>Commercial Info:</strong> Purchase history, products bought</li>
+            <li><strong>Internet Activity:</strong> Browsing history, search queries</li>
+            <li><strong>Geolocation:</strong> Physical location data</li>
+            <li><strong>Biometric:</strong> Fingerprints, face recognition</li>
+            <li><strong>Professional:</strong> Employment info</li>
+            <li><strong>Inferences:</strong> Profiles created about consumers</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. Consumer Rights Under CCPA</h2>
+        <h3>Right to Know</h3>
+        <p>Consumers can request:</p>
+        <ul>
+            <li>What personal information we collected</li>
+            <li>Where we got it from</li>
+            <li>Why we collected it</li>
+            <li>Who we shared it with</li>
+        </ul>
+
+        <h3>Right to Delete</h3>
+        <p>Consumers can request we delete their personal information (with some exceptions).</p>
+
+        <h3>Right to Opt-Out</h3>
+        <p>Consumers can say "Do Not Sell My Personal Information."</p>
+        <p><strong>Do we sell data?</strong> {{1.sell_data}}</p>
+
+        <h3>Right to Non-Discrimination</h3>
+        <p>We cannot treat consumers differently for exercising their rights.</p>
+
+        <h3>Right to Correct</h3>
+        <p>Consumers can request correction of inaccurate information.</p>
+    </div>
+
+    <div class="section">
+        <h2>5. Handling Consumer Requests</h2>
+        <h3>When a Consumer Makes a Request:</h3>
+        <ol>
+            <li>DO NOT ignore or dismiss the request</li>
+            <li>Immediately forward to {{1.privacy_officer}}</li>
+            <li>Document the date and nature of the request</li>
+            <li>Do not share any data until identity is verified</li>
+        </ol>
+        <p><strong>Timeline:</strong> We have 45 days to respond (can extend by 45 more if needed).</p>
+    </div>
+
+    <div class="section">
+        <h2>6. Third Parties We Work With</h2>
+        <p><strong>Service Provider:</strong> {{1.service_provider_name}}</p>
+        <p><strong>Other Third Parties:</strong> {{1.thirdparty}}</p>
+        <div class="trainer-note">
+            <strong>Trainer:</strong> "Before sharing data with any new third party, check with {{1.privacy_officer}} to ensure proper agreements are in place."
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. Practical Scenarios</h2>
         
-        <p><strong>Training Date:</strong> <span class="placeholder">{{current_date}}</span></p>
-        <p><strong>Company:</strong> <span class="placeholder">{{company_name}}</span></p>
-        <p><strong>Trainer:</strong> <span class="placeholder">{{trainer_name}}</span></p>
-
-        <div class="training-section">
-            <h2>1. INTRODUCTION TO CCPA</h2>
-            <p><strong>Trainer Script:</strong> "Welcome to our CCPA compliance training. Today we'll learn about the California Consumer Privacy Act and how it affects our daily work. The CCPA gives California consumers more control over their personal information and requires businesses like ours to be transparent about how we collect, use, and share personal data."</p>
-            
-            <p><strong>Key Points:</strong></p>
-            <p>• CCPA applies to California residents' personal information</p>
-            <p>• Gives consumers new rights over their data</p>
-            <p>• Requires specific business practices and disclosures</p>
-            <p>• Applies to businesses meeting certain thresholds</p>
+        <div class="scenario">
+            <h3>Scenario 1: Phone Request</h3>
+            <p><strong>Situation:</strong> A caller says "I'm a California resident and I want to know what data you have on me."</p>
+            <p><strong>Action:</strong> Thank them, take their contact info, and immediately forward to {{1.privacy_officer}}. Do NOT share any data over the phone.</p>
         </div>
-
-        <div class="training-section">
-            <h2>2. KEY CCPA CONCEPTS</h2>
-            <p><strong>Trainer Script:</strong> "Let's understand some key terms under CCPA that you'll encounter in your work."</p>
-            
-            <p><strong>Personal Information:</strong> Any information that identifies, relates to, describes, or could be linked to a particular consumer or household.</p>
-            
-            <p><strong>Examples we handle:</strong></p>
-            <p>• Customer names and contact information</p>
-            <p>• Purchase history and preferences</p>
-            <p>• Online identifiers and browsing history</p>
-            <p>• Professional or employment information</p>
-            
-            <p><strong>Business Purpose:</strong> The permitted uses of personal information for operational purposes.</p>
+        
+        <div class="scenario">
+            <h3>Scenario 2: Email Request</h3>
+            <p><strong>Situation:</strong> You receive an email: "Please delete all my information immediately."</p>
+            <p><strong>Action:</strong> Forward the email to {{1.email}} and {{1.privacy_officer}} right away. Do not reply yourself.</p>
         </div>
-
-        <div class="training-section">
-            <h2>3. CONSUMER RIGHTS UNDER CCPA</h2>
-            <p><strong>Trainer Script:</strong> "California consumers have specific rights we must honor. When a consumer contacts us with these requests, here's how we handle them."</p>
-            
-            <p><strong>Right to Know:</strong> Consumers can ask what personal information we collect, use, and share.</p>
-            <p><strong>Our Response:</strong> Direct to privacy team, document the request</p>
-            
-            <p><strong>Right to Delete:</strong> Consumers can request deletion of their personal information.</p>
-            <p><strong>Our Response:</strong> Verify identity, process through proper channels</p>
-            
-            <p><strong>Right to Opt-Out:</strong> Consumers can say no to the sale or sharing of their personal information.</p>
-            <p><strong>Our Response:</strong> Honor immediately, update systems</p>
-            
-            <p><strong>Right to Correct:</strong> Consumers can request correction of inaccurate information.</p>
-            <p><strong>Our Response:</strong> Verify and update records promptly</p>
+        
+        <div class="scenario">
+            <h3>Scenario 3: Opt-Out Request</h3>
+            <p><strong>Situation:</strong> A customer clicks "Do Not Sell My Personal Information" on our website.</p>
+            <p><strong>Action:</strong> This should be handled automatically, but report any issues to {{1.privacy_officer}}.</p>
         </div>
+    </div>
 
-        <div class="training-section">
-            <h2>4. HANDLING CONSUMER REQUESTS</h2>
-            <p><strong>Trainer Script:</strong> "When you receive a consumer rights request, follow our established procedure."</p>
-            
-            <p><strong>Step 1:</strong> Document the request with date, time, and contact information</p>
-            <p><strong>Step 2:</strong> Forward immediately to <span class="placeholder">{{privacy_officer}}</span> or privacy team</p>
-            <p><strong>Step 3:</strong> Do not attempt to handle complex requests yourself</p>
-            <p><strong>Step 4:</strong> Ensure we respond within 45 days</p>
-            <p><strong>Step 5:</strong> Never discriminate against consumers for exercising their rights</p>
-        </div>
+    <div class="section">
+        <h2>8. Do's and Don'ts</h2>
+        <h3>DO:</h3>
+        <ul>
+            <li>Forward all privacy requests to {{1.privacy_officer}}</li>
+            <li>Document when requests come in</li>
+            <li>Protect personal information at all times</li>
+            <li>Ask if unsure about anything</li>
+        </ul>
+        <h3>DON'T:</h3>
+        <ul>
+            <li>Ignore consumer requests</li>
+            <li>Share data without verification</li>
+            <li>Try to handle requests on your own</li>
+            <li>Treat customers differently for exercising rights</li>
+        </ul>
+    </div>
 
-        <div class="training-section">
-            <h2>5. DATA SECURITY PRACTICES</h2>
-            <p><strong>Trainer Script:</strong> "Protecting personal information is everyone's responsibility. Here are our security practices."</p>
-            
-            <p>• Use strong passwords and enable two-factor authentication</p>
-            <p>• Lock computers when stepping away</p>
-            <p>• Only access personal information when necessary for your job</p>
-            <p>• Report any suspicious activity immediately</p>
-            <p>• Follow our data retention and disposal policies</p>
-        </div>
+    <div class="quiz">
+        <h2>9. Knowledge Check</h2>
+        <ol>
+            <li>What does CCPA stand for?</li>
+            <li>Name three consumer rights under CCPA.</li>
+            <li>How long do we have to respond to a consumer request?</li>
+            <li>Who should you contact when you receive a privacy request?</li>
+            <li>Can we charge consumers more for exercising their privacy rights?</li>
+        </ol>
+    </div>
 
-        <div class="quiz">
-            <h2>KNOWLEDGE CHECK</h2>
-            <p><strong>Question 1:</strong> A California customer asks what information we have about them. What should you do?</p>
-            <p><strong>Answer:</strong> Document the request and forward to the privacy team immediately.</p>
-            
-            <p><strong>Question 2:</strong> You notice a coworker looking at customer data they don't need for their job. What should you do?</p>
-            <p><strong>Answer:</strong> Remind them about data access policies and report if behavior continues.</p>
-            
-            <p><strong>Question 3:</strong> A customer wants to opt-out of data sharing. How quickly must we comply?</p>
-            <p><strong>Answer:</strong> Immediately - we must stop sharing their data as soon as we receive the request.</p>
-        </div>
+    <div class="signature-area">
+        <h2>Training Acknowledgement</h2>
+        <p>I acknowledge that I have received and understand the CCPA training provided by {{1.company}} on {{formatDate(now; "MMMM D, YYYY")}}.</p>
+        <p><strong>Employee Name:</strong> _________________________</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <p><strong>Date:</strong> _________________________</p>
+    </div>
 
-        <div class="training-section">
-            <h2>6. ACKNOWLEDGEMENT</h2>
-            <p>I, <span class="placeholder">{{employee_name}}</span>, acknowledge that I have received and completed CCPA compliance training on <span class="placeholder">{{current_date}}</span>. I understand my responsibilities in protecting consumer personal information and handling consumer rights requests appropriately.</p>
-            
-            <p>Signature: ___________________________________</p>
-            <p>Date: ___________________________________</p>
-        </div>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
     </div>
 </body>
 </html>
