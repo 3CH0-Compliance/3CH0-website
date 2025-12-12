@@ -1,137 +1,217 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Processing Agreement - {{1.company}}</title>
     <style>
         body {
-            background-color: #ffffff;
-            color: #000000;
             font-family: Arial, sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .container {
+            line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
-            text-align: left;
+            padding: 20px;
+            color: #333;
+            background-color: #ffffff;
         }
-        
-        h1, h2, h3 {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            margin: 40px 0 20px 0;
-        }
-        
         h1 {
-            font-size: 2.5em;
+            color: #0069d9;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 { color: #0069d9; margin-top: 25px; }
+        .section { margin-bottom: 30px; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
+            border-radius: 10px;
+            border: 1px solid #92cdec;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
+        }
+        .download-instructions { margin-top: 15px; font-size: 14px; color: #666; }
+        .document-header {
+            text-align: center;
             margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #92cdec;
         }
-        
-        h2 {
-            font-size: 1.8em;
-            margin-top: 50px;
-        }
-        
-        p {
-            margin: 20px 0;
-            text-align: justify;
-        }
-        
-        .placeholder {
-            background-color: #f0f8ff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px dashed #0069d9;
-        }
-        
-        .section {
-            margin: 50px 0;
-        }
-        
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
         .signature-area {
-            margin-top: 100px;
-            padding-top: 30px;
+            margin-top: 50px;
             border-top: 2px solid #92cdec;
+            padding-top: 30px;
+        }
+        .signature-line {
+            border-bottom: 1px solid #333;
+            width: 250px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        @media print {
+            .download-section { display: none !important; }
+            body { padding: 0; margin: 0; }
+            .section { page-break-inside: avoid; }
+            @page { margin: 2cm; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>DATA PROCESSING AGREEMENT</h1>
-        <h2>California Consumer Privacy Act (CCPA) Compliance</h2>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <div class="document-date">Generated: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    </div>
+
+    <h1>CCPA Data Processing Agreement</h1>
+
+    <div class="section">
+        <h2>1. Parties</h2>
+        <p>This Data Processing Agreement ("Agreement") is entered into between:</p>
+        <p><strong>Business:</strong> {{1.company}}</p>
+        <p><strong>Address:</strong> {{1.company_address}}</p>
+        <p>AND</p>
+        <p><strong>Service Provider:</strong> {{1.service_provider_name}}</p>
+        <p><strong>Effective Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Purpose</h2>
+        <p>This Agreement sets out the terms under which the Service Provider will process personal information on behalf of the Business in compliance with the California Consumer Privacy Act (CCPA).</p>
+    </div>
+
+    <div class="section">
+        <h2>3. Definitions</h2>
+        <ul>
+            <li><strong>"CCPA"</strong> means the California Consumer Privacy Act of 2018</li>
+            <li><strong>"Personal Information"</strong> means information that identifies, relates to, or could reasonably be linked with a California resident</li>
+            <li><strong>"Business"</strong> means the entity that determines the purposes and means of processing</li>
+            <li><strong>"Service Provider"</strong> means the entity that processes personal information on behalf of the Business</li>
+            <li><strong>"Consumer"</strong> means a California resident</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. Categories of Personal Information</h2>
+        <p>The Service Provider will process the following categories of personal information:</p>
+        <p>{{1.data}}</p>
+    </div>
+
+    <div class="section">
+        <h2>5. Service Provider Obligations</h2>
+        <p>The Service Provider certifies that it:</p>
+        <ul>
+            <li>Will not sell the personal information</li>
+            <li>Will not retain, use, or disclose personal information outside the direct business relationship</li>
+            <li>Will not combine personal information with other sources except as permitted</li>
+            <li>Will comply with CCPA requirements</li>
+            <li>Will assist with consumer rights requests</li>
+            <li>Will implement reasonable security measures</li>
+            <li>Will notify the Business of any data breaches</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>6. Sub-Contractors</h2>
+        <p>The Service Provider may engage sub-contractors subject to:</p>
+        <p><strong>Approved Third Parties:</strong> {{1.thirdparty}}</p>
+        <ul>
+            <li>Written agreement with equivalent protections</li>
+            <li>Prior notice to the Business</li>
+            <li>Compliance with CCPA requirements</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>7. Consumer Rights Assistance</h2>
+        <p>The Service Provider shall assist the Business in responding to:</p>
+        <ul>
+            <li>Right to Know requests</li>
+            <li>Right to Delete requests</li>
+            <li>Right to Correct requests</li>
+            <li>Right to Opt-Out requests</li>
+        </ul>
+        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
+    </div>
+
+    <div class="section">
+        <h2>8. Security Requirements</h2>
+        <p>The Service Provider shall implement and maintain reasonable security procedures including:</p>
+        <ul>
+            <li>Administrative safeguards</li>
+            <li>Technical safeguards</li>
+            <li>Physical safeguards</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>9. Data Breach Notification</h2>
+        <p>In the event of a data breach, the Service Provider shall:</p>
+        <ul>
+            <li>Notify the Business without unreasonable delay</li>
+            <li>Provide details of the breach</li>
+            <li>Cooperate with investigation and remediation</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>10. Audit Rights</h2>
+        <p>The Business may audit the Service Provider's compliance with this Agreement upon reasonable notice.</p>
+    </div>
+
+    <div class="section">
+        <h2>11. Return or Deletion of Data</h2>
+        <p>Upon termination, the Service Provider shall delete or return all personal information as directed by the Business.</p>
+    </div>
+
+    <div class="section">
+        <h2>12. Governing Law</h2>
+        <p>This Agreement shall be governed by the laws of the State of California.</p>
+    </div>
+
+    <div class="signature-area">
+        <h2>13. Signatures</h2>
+        <p>IN WITNESS WHEREOF, this Agreement is entered into as of the date first written above.</p>
         
-        <div class="section">
-            <p><strong>Effective Date:</strong> <span class="placeholder">{{current_date}}</span></p>
-            <p><strong>Between:</strong> <span class="placeholder">{{company_name}}</span> ("Business")</p>
-            <p><strong>And:</strong> <span class="placeholder">{{service_provider_name}}</span> ("Service Provider")</p>
-        </div>
+        <p><strong>BUSINESS:</strong></p>
+        <p>Company: {{1.company}}</p>
+        <p>Name: {{1.authorized_signatory}}</p>
+        <p>Signature: <span class="signature-line"></span></p>
+        <p>Date: <span class="signature-line"></span></p>
+        
+        <br><br>
+        
+        <p><strong>SERVICE PROVIDER:</strong></p>
+        <p>Company: {{1.service_provider_name}}</p>
+        <p>Name: <span class="signature-line"></span></p>
+        <p>Signature: <span class="signature-line"></span></p>
+        <p>Date: <span class="signature-line"></span></p>
+    </div>
 
-        <div class="section">
-            <h2>1. PURPOSE AND SCOPE</h2>
-            <p>This Data Processing Agreement ("DPA") reflects the parties' commitment to comply with the California Consumer Privacy Act of 2018 (CCPA) and any subsequent amendments concerning the processing of personal information.</p>
-            
-            <p>The Business discloses personal information to the Service Provider solely for limited and specified business purposes as described in Exhibit A. The Service Provider shall comply with applicable obligations under the CCPA and provide the same level of privacy protection as is required by the CCPA.</p>
-        </div>
-
-        <div class="section">
-            <h2>2. OBLIGATIONS OF SERVICE PROVIDER</h2>
-            <p>The Service Provider agrees to:</p>
-            <p>(a) Process personal information only for the business purposes specified in this agreement and not for any other commercial purpose</p>
-            <p>(b) Not sell or share the personal information</p>
-            <p>(c) Not retain, use, or disclose the personal information for any purpose other than for the specific purpose of performing the services specified in the contract</p>
-            <p>(d) Not retain, use, or disclose the personal information outside of the direct business relationship between the Service Provider and the Business</p>
-            <p>(e) Comply with all applicable sections of the CCPA, including providing the same level of privacy protection as required for businesses</p>
-        </div>
-
-        <div class="section">
-            <h2>3. CONSUMER RIGHTS REQUESTS</h2>
-            <p>The Service Provider shall assist the Business in responding to consumer rights requests under the CCPA, including but not limited to:</p>
-            <p>• Requests to know what personal information is being collected</p>
-            <p>• Requests to access specific pieces of personal information</p>
-            <p>• Requests to delete personal information</p>
-            <p>• Requests to correct inaccurate personal information</p>
-            <p>• Requests to opt-out of sale or sharing of personal information</p>
-        </div>
-
-        <div class="section">
-            <h2>4. SECURITY MEASURES</h2>
-            <p>The Service Provider shall implement reasonable security procedures and practices appropriate to the nature of the personal information to protect the personal information from unauthorized or illegal access, destruction, use, modification, or disclosure.</p>
-        </div>
-
-        <div class="section">
-            <h2>5. NOTIFICATION REQUIREMENTS</h2>
-            <p>The Service Provider shall notify the Business if it makes a determination that it can no longer meet its obligations under the CCPA. Upon notice, the Business shall have the right to take reasonable and appropriate steps to stop and remediate unauthorized use of personal information.</p>
-        </div>
-
-        <div class="section">
-            <h2>6. AUDIT RIGHTS</h2>
-            <p>The Business reserves the right to take reasonable and appropriate steps to help ensure that the Service Provider uses the personal information transferred in a manner consistent with the Business' obligations under the CCPA. This includes the right to conduct audits and assessments of the Service Provider's compliance with this DPA.</p>
-        </div>
-
-        <div class="signature-area">
-            <p>IN WITNESS WHEREOF, the parties have executed this Data Processing Agreement as of the Effective Date.</p>
-            
-            <div style="margin-top: 60px;">
-                <p><strong>BUSINESS:</strong> <span class="placeholder">{{company_name}}</span></p>
-                <p>By: ___________________________________</p>
-                <p>Name: <span class="placeholder">{{authorized_signatory}}</span></p>
-                <p>Title: ___________________________________</p>
-                <p>Date: ___________________________________</p>
-            </div>
-            
-            <div style="margin-top: 60px;">
-                <p><strong>SERVICE PROVIDER:</strong> <span class="placeholder">{{service_provider_name}}</span></p>
-                <p>By: ___________________________________</p>
-                <p>Name: ___________________________________</p>
-                <p>Title: ___________________________________</p>
-                <p>Date: ___________________________________</p>
-            </div>
-        </div>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
     </div>
 </body>
 </html>
