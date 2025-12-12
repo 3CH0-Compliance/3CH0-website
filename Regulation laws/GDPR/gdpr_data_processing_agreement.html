@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDPR Data Processing Agreement</title>
+    <title>Data Processing Agreement - {{1.company}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,180 +14,191 @@
             color: #333;
             background-color: #ffffff;
         }
-        h1, h2 {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-        }
         h1 {
+            color: #0069d9;
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
+            text-align: center;
         }
         h2 {
+            color: #0069d9;
             margin-top: 25px;
         }
-        .placeholder {
-            background-color: #f0f8ff;
-            border: 1px dashed #0069d9;
-            padding: 2px 5px;
-            border-radius: 3px;
+        .section { margin-bottom: 30px; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
+            border-radius: 10px;
+            border: 1px solid #92cdec;
         }
-        .section {
+        .download-btn {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
+        }
+        .download-instructions {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .document-header {
+            text-align: center;
             margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #92cdec;
         }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
         .signature-area {
             margin-top: 50px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
+            border-top: 2px solid #92cdec;
+            padding-top: 30px;
         }
-        .party {
-            width: 45%;
+        .signature-line {
+            border-bottom: 1px solid #333;
+            width: 250px;
             display: inline-block;
-            vertical-align: top;
+            margin: 10px 0;
         }
-        .disclaimer {
-            font-style: italic;
-            color: #666;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-            margin-top: 30px;
-        }
-        ul {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-        li {
-            margin-bottom: 8px;
+        @media print {
+            .download-section { display: none !important; }
+            body { padding: 0; margin: 0; }
+            .section { page-break-inside: avoid; }
+            @page { margin: 2cm; }
         }
     </style>
 </head>
 <body>
-    <h1>Data Processing Agreement</h1>
-    
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <div class="document-date">Generated: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    </div>
+
+    <h1>GDPR Data Processing Agreement</h1>
+
     <div class="section">
-        <p>This Data Processing Agreement ("DPA") forms part of the Services Agreement between:</p>
-        
-        <p><strong>The Controller:</strong> <span class="placeholder">{{company}}</span>, with offices at <span class="placeholder">{{company_address}}</span> ("Controller")</p>
-        
-        <p><strong>The Processor:</strong> <span class="placeholder">{{service_provider_name}}</span> ("Processor")</p>
-        
-        <p>Collectively referred to as the "Parties".</p>
-        
-        <p><strong>Effective Date:</strong> <span class="placeholder">{{current_date}}</span></p>
+        <h2>1. Parties</h2>
+        <p>This Data Processing Agreement ("Agreement") is entered into between:</p>
+        <p><strong>Data Controller:</strong> {{1.company}}</p>
+        <p><strong>Address:</strong> {{1.company_address}}</p>
+        <p>AND</p>
+        <p><strong>Data Processor:</strong> {{1.service_provider_name}}</p>
+        <p><strong>Effective Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
     </div>
 
     <div class="section">
-        <h2>1. Definitions</h2>
-        <p><strong>"Data Protection Laws"</strong> means all laws and regulations applicable to the processing of personal data under the Agreement, including the GDPR.</p>
-        <p><strong>"Processing"</strong> means any operation performed on personal data, such as collection, recording, organization, storage, etc.</p>
-        <p><strong>"Personal Data Breach"</strong> means a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, personal data.</p>
-        <p><strong>"Subprocessor"</strong> means any third party engaged by the Processor to process personal data.</p>
+        <h2>2. Background</h2>
+        <p>This Agreement sets out the terms and conditions under which the Data Processor will process Personal Data on behalf of the Data Controller in compliance with the General Data Protection Regulation (GDPR).</p>
     </div>
 
     <div class="section">
-        <h2>2. Subject Matter and Duration</h2>
-        <p><strong>Subject Matter:</strong> This DPA applies to the processing of personal data by the Processor on behalf of the Controller in connection with the services agreement.</p>
-        <p><strong>Duration:</strong> This DPA shall remain in effect as long as the Processor processes personal data on behalf of the Controller.</p>
-        <p><strong>Nature and Purpose of Processing:</strong> <span class="placeholder">{{processing_purposes}}</span></p>
-        <p><strong>Types of Personal Data:</strong> <span class="placeholder">{{data}}</span></p>
-        <p><strong>Categories of Data Subjects:</strong> <span class="placeholder">{{data_subjects}}</span></p>
-    </div>
-
-    <div class="section">
-        <h2>3. Processing of Controller's Personal Data</h2>
-        <p>The Processor shall:</p>
+        <h2>3. Definitions</h2>
         <ul>
-            <li>Process personal data only on documented instructions from the Controller</li>
-            <li>Ensure that persons authorized to process personal data have committed themselves to confidentiality</li>
-            <li>Implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk</li>
-            <li>Not engage another processor without prior specific or general written authorization of the Controller</li>
-            <li>Taking into account the nature of the processing, assist the Controller by appropriate technical and organizational measures</li>
-            <li>At the choice of the Controller, delete or return all personal data after the end of provision of services</li>
-            <li>Make available to the Controller all information necessary to demonstrate compliance</li>
+            <li><strong>"GDPR"</strong> means the General Data Protection Regulation (EU) 2016/679</li>
+            <li><strong>"Personal Data"</strong> means any information relating to an identified or identifiable natural person</li>
+            <li><strong>"Processing"</strong> means any operation performed on Personal Data</li>
+            <li><strong>"Data Subject"</strong> means the individual whose Personal Data is processed</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>4. Processor's Personnel</h2>
-        <p>The Processor shall take reasonable steps to ensure the reliability of any employee, agent, or contractor who may have access to the personal data, ensuring they are subject to confidentiality undertakings or professional or statutory obligations of confidentiality.</p>
+        <h2>4. Processing Details</h2>
+        <p><strong>Purpose of Processing:</strong> {{1.processing_purposes}}</p>
+        <p><strong>Types of Personal Data:</strong> {{1.data}}</p>
+        <p><strong>Categories of Data Subjects:</strong> {{1.data_subjects}}</p>
+        <p><strong>Duration:</strong> For the term of the services agreement</p>
     </div>
 
     <div class="section">
-        <h2>5. Security</h2>
-        <p>The Processor shall implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk, including as appropriate:</p>
+        <h2>5. Processor Obligations</h2>
+        <p>The Data Processor agrees to:</p>
         <ul>
-            <li>The pseudonymization and encryption of personal data</li>
-            <li>The ability to ensure the ongoing confidentiality, integrity, availability, and resilience of processing systems</li>
-            <li>The ability to restore availability and access to personal data in a timely manner</li>
-            <li>A process for regularly testing, assessing, and evaluating the effectiveness of security measures</li>
+            <li>Process Personal Data only on documented instructions from the Data Controller</li>
+            <li>Ensure persons authorized to process Personal Data have committed to confidentiality</li>
+            <li>Implement appropriate technical and organizational security measures</li>
+            <li>Not engage another processor without prior written authorization</li>
+            <li>Assist the Data Controller in fulfilling Data Subject rights requests</li>
+            <li>Delete or return all Personal Data after processing ends</li>
+            <li>Make available all information necessary to demonstrate compliance</li>
         </ul>
-        <p><strong>Security Measures Implemented:</strong> <span class="placeholder">{{security_measures}}</span></p>
     </div>
 
     <div class="section">
-        <h2>6. Subprocessing</h2>
-        <p>The Processor shall not appoint a subprocessor without prior specific or general written authorization of the Controller. In the case of general written authorization, the Processor shall inform the Controller of any intended changes concerning the addition or replacement of subprocessors.</p>
-        <p><strong>Third Party Tools/Platforms:</strong> <span class="placeholder">{{thirdparty}}</span></p>
+        <h2>6. Security Measures</h2>
+        <p><strong>Implemented Security Measures:</strong> {{1.security_measures}}</p>
+        <p>The Processor shall implement measures to ensure a level of security appropriate to the risk.</p>
     </div>
 
     <div class="section">
-        <h2>7. Data Subject Rights</h2>
-        <p>The Processor shall assist the Controller by appropriate technical and organizational measures, insofar as possible, for the fulfillment of the Controller's obligation to respond to requests for exercising the data subject's rights.</p>
-        <p><strong>Privacy Officer Contact:</strong> <span class="placeholder">{{privacy_officer}}</span></p>
-        <p><strong>Data Protection Officer:</strong> <span class="placeholder">{{dpo_name}}</span></p>
+        <h2>7. Sub-Processing</h2>
+        <p><strong>Approved Sub-Processors:</strong> {{1.thirdparty}}</p>
+        <p>The Processor shall not engage another processor without prior specific or general written authorization of the Controller.</p>
     </div>
 
     <div class="section">
-        <h2>8. Personal Data Breaches</h2>
-        <p>The Processor shall notify the Controller without undue delay after becoming aware of a personal data breach, providing sufficient information to allow the Controller to meet any obligations to report or inform data subjects of the breach.</p>
+        <h2>8. International Transfers</h2>
+        <p><strong>Transfer Status:</strong> {{1.international_transfers}}</p>
+        <p><strong>Transfer Countries:</strong> {{1.transfer_countries}}</p>
+        <p>Any transfer outside the EEA shall be subject to appropriate safeguards as required by GDPR.</p>
     </div>
 
     <div class="section">
-        <h2>9. Data Protection Impact Assessment</h2>
-        <p>The Processor shall assist the Controller in ensuring compliance with obligations regarding data protection impact assessments and prior consultation.</p>
+        <h2>9. Data Subject Rights</h2>
+        <p>The Processor shall assist the Controller in responding to requests from Data Subjects exercising their rights under GDPR.</p>
+        <p><strong>Privacy Officer Contact:</strong> {{1.privacy_officer}}</p>
+        <p><strong>DPO Contact:</strong> {{1.dpo_name}}</p>
     </div>
 
     <div class="section">
-        <h2>10. Deletion or Return of Personal Data</h2>
-        <p>At the choice of the Controller, the Processor shall delete or return all personal data to the Controller after the end of the provision of services relating to processing, and delete existing copies unless Union or Member State law requires storage of the personal data.</p>
-        <p><strong>Data Retention Period:</strong> <span class="placeholder">{{retention_period}}</span></p>
+        <h2>10. Data Breach Notification</h2>
+        <p>The Processor shall notify the Controller without undue delay after becoming aware of a personal data breach.</p>
     </div>
 
     <div class="section">
-        <h2>11. Audit Rights</h2>
-        <p>The Processor shall make available to the Controller all information necessary to demonstrate compliance with the obligations laid down in this DPA and allow for and contribute to audits, including inspections, conducted by the Controller or another auditor mandated by the Controller.</p>
-    </div>
-
-    <div class="section">
-        <h2>12. International Transfers</h2>
-        <p><strong>International Transfer Status:</strong> <span class="placeholder">{{international_transfers}}</span></p>
-        <p><strong>Transfer Countries:</strong> <span class="placeholder">{{transfer_countries}}</span></p>
-        <p>The Processor shall not transfer personal data outside the European Economic Area without the prior written consent of the Controller and without implementing appropriate safeguards in accordance with GDPR Chapter V.</p>
+        <h2>11. Data Retention</h2>
+        <p><strong>Retention Period:</strong> {{1.retention_period}}</p>
+        <p>At the choice of the Controller, the Processor shall delete or return all Personal Data after the end of the provision of services.</p>
     </div>
 
     <div class="signature-area">
-        <div class="party">
-            <p><strong>FOR THE CONTROLLER:</strong></p>
-            <p><strong>Company:</strong> <span class="placeholder">{{company}}</span></p>
-            <p><strong>Name:</strong> <span class="placeholder">{{authorized_signatory}}</span></p>
-            <p>Title: _________________________</p>
-            <p>Signature: _________________________</p>
-            <p>Date: _________________________</p>
-        </div>
+        <h2>12. Signatures</h2>
+        <p>IN WITNESS WHEREOF, this Agreement is entered into as of the date first written above.</p>
         
-        <div class="party">
-            <p><strong>FOR THE PROCESSOR:</strong></p>
-            <p><strong>Company:</strong> <span class="placeholder">{{service_provider_name}}</span></p>
-            <p>Name: _________________________</p>
-            <p>Title: _________________________</p>
-            <p>Signature: _________________________</p>
-            <p>Date: _________________________</p>
-        </div>
+        <p><strong>DATA CONTROLLER:</strong></p>
+        <p>Company: {{1.company}}</p>
+        <p>Name: {{1.authorized_signatory}}</p>
+        <p>Signature: <span class="signature-line"></span></p>
+        <p>Date: <span class="signature-line"></span></p>
+        
+        <br><br>
+        
+        <p><strong>DATA PROCESSOR:</strong></p>
+        <p>Company: {{1.service_provider_name}}</p>
+        <p>Name: <span class="signature-line"></span></p>
+        <p>Signature: <span class="signature-line"></span></p>
+        <p>Date: <span class="signature-line"></span></p>
     </div>
 
-    <div class="disclaimer">
-        <p>This Data Processing Agreement was generated for <span class="placeholder">{{company}}</span>. Please review and customize it according to your specific business relationships and legal requirements.</p>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
     </div>
 </body>
 </html>
