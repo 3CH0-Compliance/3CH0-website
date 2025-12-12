@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDPR Privacy Policy</title>
+    <title>Privacy Policy - {{1.company}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,30 +15,18 @@
             background-color: #ffffff;
         }
         h1 {
-            color: #2c3e50;
+            color: #0069d9;
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
             text-align: center;
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         h2 {
-            color: #2980b9;
+            color: #0069d9;
             margin-top: 25px;
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
-        .placeholder {
-            background-color: #f0f8ff;
-            border: 1px dashed #0069d9;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
+        .section { margin-bottom: 30px; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
         .disclaimer {
             font-style: italic;
             color: #666;
@@ -46,127 +34,149 @@
             padding-top: 15px;
             margin-top: 30px;
         }
-        ul {
-            margin: 15px 0;
-            padding-left: 25px;
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
+            border-radius: 10px;
+            border: 1px solid #92cdec;
         }
-        li {
-            margin-bottom: 8px;
+        .download-btn {
+            background: linear-gradient(135deg, #0069d9, #92cdec);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
+        }
+        .download-instructions {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .document-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #92cdec;
+        }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
+        @media print {
+            .download-section { display: none !important; }
+            body { padding: 0; margin: 0; }
+            .section { page-break-inside: avoid; }
+            @page { margin: 2cm; }
         }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <div class="document-date">Generated: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    </div>
+
+    <h1>GDPR Privacy Policy</h1>
     
     <div class="section">
-        <p><strong>Last Updated:</strong> <span class="placeholder">{{current_date}}</span></p>
-        <p>This Privacy Policy describes how <span class="placeholder">{{company}}</span> ("we," "us," or "our") collects, uses, and shares your personal information in compliance with the General Data Protection Regulation (GDPR).</p>
-        <p><strong>Company Address:</strong> <span class="placeholder">{{company_address}}</span></p>
+        <p><strong>Last Updated:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p>This Privacy Policy describes how <strong>{{1.company}}</strong> ("we," "us," or "our") collects, uses, and shares your personal information in compliance with the General Data Protection Regulation (GDPR).</p>
     </div>
 
     <div class="section">
         <h2>1. Data Controller Information</h2>
-        <p><strong>Company Name:</strong> <span class="placeholder">{{company}}</span></p>
-        <p><strong>Address:</strong> <span class="placeholder">{{company_address}}</span></p>
-        <p><strong>Email:</strong> <span class="placeholder">{{email}}</span></p>
-        <p><strong>Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
-        <p><strong>Website:</strong> <span class="placeholder">{{website_url}}</span></p>
-        <p><strong>Data Protection Officer:</strong> <span class="placeholder">{{dpo_name}}</span></p>
+        <p><strong>Company Name:</strong> {{1.company}}</p>
+        <p><strong>Address:</strong> {{1.company_address}}</p>
+        <p><strong>Email:</strong> {{1.email}}</p>
+        <p><strong>Phone:</strong> {{1.phone_number}}</p>
+        <p><strong>Website:</strong> {{1.website_url}}</p>
+        <p><strong>Data Protection Officer:</strong> {{1.dpo_name}}</p>
     </div>
 
     <div class="section">
         <h2>2. Information We Collect</h2>
         <p>We may collect and process the following categories of personal data:</p>
-        <p><span class="placeholder">{{data}}</span></p>
-        <ul>
-            <li>Identity Data (name, username, title, date of birth)</li>
-            <li>Contact Data (email address, phone number, address)</li>
-            <li>Technical Data (IP address, browser type, device information)</li>
-            <li>Usage Data (how you use our website and services)</li>
-            <li>Marketing and Communications Data (preferences in receiving marketing)</li>
-        </ul>
+        <p>{{1.data}}</p>
     </div>
 
     <div class="section">
         <h2>3. How We Use Your Information</h2>
-        <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:</p>
+        <p><strong>Processing Purposes:</strong> {{1.processing_purposes}}</p>
+        <p>We will only use your personal data when the law allows us to, including:</p>
         <ul>
-            <li>Where we need to perform the contract we are about to enter into or have entered into with you</li>
-            <li>Where it is necessary for our legitimate interests and your interests and fundamental rights do not override those interests</li>
+            <li>Where we need to perform a contract with you</li>
+            <li>Where it is necessary for our legitimate interests</li>
             <li>Where we need to comply with a legal obligation</li>
             <li>With your explicit consent</li>
         </ul>
-        <p><strong>Processing Purposes:</strong> <span class="placeholder">{{processing_purposes}}</span></p>
     </div>
 
     <div class="section">
-        <h2>4. Data Sharing and Transfers</h2>
-        <p>We may share your personal data with the following categories of third parties:</p>
-        <p><span class="placeholder">{{thirdparty}}</span></p>
-        <ul>
-            <li>Service providers who provide IT and system administration services</li>
-            <li>Professional advisers including lawyers, bankers, auditors and insurers</li>
-            <li>Regulators and other authorities who require reporting of processing activities</li>
-            <li>Third parties to whom we may choose to sell, transfer, or merge parts of our business</li>
-        </ul>
+        <h2>4. Data Sharing and Third Parties</h2>
+        <p><strong>Third-Party Services:</strong> {{1.thirdparty}}</p>
         <p>We ensure all third parties respect the security of your personal data and treat it in accordance with the law.</p>
     </div>
 
     <div class="section">
         <h2>5. International Transfers</h2>
-        <p><strong>International Transfer Status:</strong> <span class="placeholder">{{international_transfers}}</span></p>
-        <p><strong>Transfer Countries:</strong> <span class="placeholder">{{transfer_countries}}</span></p>
-        <p>Where we transfer your personal data outside the European Economic Area (EEA), we ensure your personal data is protected by requiring all our group companies and third parties to follow the same rules when processing your personal data. We use Standard Contractual Clauses approved by the European Commission or other appropriate safeguards.</p>
+        <p><strong>International Transfer Status:</strong> {{1.international_transfers}}</p>
+        <p><strong>Transfer Countries:</strong> {{1.transfer_countries}}</p>
+        <p>Where we transfer your data outside the EEA, we ensure appropriate safeguards are in place.</p>
     </div>
 
     <div class="section">
         <h2>6. Data Security</h2>
-        <p>We have implemented appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed.</p>
-        <p><strong>Security Measures:</strong> <span class="placeholder">{{security_measures}}</span></p>
+        <p><strong>Security Measures:</strong> {{1.security_measures}}</p>
+        <p>We have implemented appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way.</p>
     </div>
 
     <div class="section">
         <h2>7. Data Retention</h2>
-        <p>We will only retain your personal data for as long as reasonably necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, regulatory, tax, accounting, or reporting requirements.</p>
-        <p><strong>Retention Period:</strong> <span class="placeholder">{{retention_period}}</span></p>
+        <p><strong>Retention Period:</strong> {{1.retention_period}}</p>
+        <p>We will only retain your personal data for as long as reasonably necessary to fulfill the purposes we collected it for.</p>
     </div>
 
     <div class="section">
         <h2>8. Your Legal Rights</h2>
-        <p>Under certain circumstances, you have rights under data protection laws in relation to your personal data:</p>
+        <p>Under GDPR, you have the right to:</p>
         <ul>
-            <li><strong>Request access</strong> to your personal data</li>
-            <li><strong>Request correction</strong> of your personal data</li>
-            <li><strong>Request erasure</strong> of your personal data</li>
-            <li><strong>Object to processing</strong> of your personal data</li>
-            <li><strong>Request restriction</strong> of processing your personal data</li>
-            <li><strong>Request transfer</strong> of your personal data</li>
-            <li><strong>Right to withdraw consent</strong></li>
+            <li>Request access to your personal data</li>
+            <li>Request correction of your personal data</li>
+            <li>Request erasure of your personal data</li>
+            <li>Object to processing of your personal data</li>
+            <li>Request restriction of processing</li>
+            <li>Request data portability</li>
+            <li>Withdraw consent at any time</li>
         </ul>
-        <p>To exercise any of these rights, please contact us at <span class="placeholder">{{email}}</span>.</p>
+        <p>To exercise any of these rights, please contact us at {{1.email}}.</p>
     </div>
 
     <div class="section">
-        <h2>9. Cookies</h2>
-        <p>We use cookies and similar tracking technologies to track activity on our service. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
-    </div>
-
-    <div class="section">
-        <h2>10. Contact Details</h2>
-        <p>If you have any questions about this privacy policy or our privacy practices, please contact our Data Protection Officer:</p>
-        <p><strong>DPO Name:</strong> <span class="placeholder">{{dpo_name}}</span></p>
-        <p><strong>Email:</strong> <span class="placeholder">{{email}}</span></p>
-        <p><strong>Address:</strong> <span class="placeholder">{{company_address}}</span></p>
-        <p><strong>Phone:</strong> <span class="placeholder">{{phone_number}}</span></p>
-    </div>
-
-    <div class="section">
-        <h2>11. Changes to This Privacy Policy</h2>
-        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+        <h2>9. Contact Details</h2>
+        <p><strong>DPO Name:</strong> {{1.dpo_name}}</p>
+        <p><strong>Email:</strong> {{1.email}}</p>
+        <p><strong>Address:</strong> {{1.company_address}}</p>
+        <p><strong>Phone:</strong> {{1.phone_number}}</p>
     </div>
 
     <div class="disclaimer">
-        <p>This privacy policy was generated for <span class="placeholder">{{company}}</span> to comply with GDPR requirements. Please review and customize it according to your specific business practices and legal requirements.</p>
+        <p>This privacy policy was generated for {{1.company}} to comply with GDPR requirements. Please review and customize it according to your specific business practices and legal requirements.</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
     </div>
 </body>
 </html>
