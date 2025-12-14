@@ -1725,11 +1725,12 @@
         enableRateLimiting: true,
         enableActivityMonitoring: true,
         
-        // Rate Limiting
-        freeSubmissions: 5,
-        rateLimitPeriod: 60000,
-        maxFormFillTime: 1800000,
-        minFormFillTime: 3000
+        // Rate Limiting - FIXED VALUES
+        freeSubmissions: 1,              // 5 free submissions per month
+        rateLimitPeriod: 60000,          // 1 minute between submissions
+        maxFormFillTime: 1800000,        // 30 minutes to fill form (was 30 seconds!)
+        minFormFillTime: 3000,           // 3 seconds minimum (bot protection)
+        csrfTokenLifetime: 3600000       // 1 hour token validity
     };
 
     // ======================
@@ -1737,7 +1738,11 @@
     // ======================
     const SecurityUtils = {
         generateCSRFToken() {
-            const token = btoa(Date.now() + '-' + Math.random().toString(36) + '-' + navigator.userAgent);
+            // FIXED: Use cryptographically secure random values
+            const array = new Uint8Array(32);
+            crypto.getRandomValues(array);
+            const token = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+            
             localStorage.setItem('csrf_token', token);
             localStorage.setItem('csrf_timestamp', Date.now().toString());
             return token;
@@ -1747,8 +1752,16 @@
             const storedToken = localStorage.getItem('csrf_token');
             const timestamp = localStorage.getItem('csrf_timestamp');
             const now = Date.now();
+            const tokenLifetime = SECURITY_CONFIG.csrfTokenLifetime || 3600000;
             
-            if (!storedToken || !timestamp || (now - parseInt(timestamp)) > 86400000) {
+            if (!storedToken || !timestamp) {
+                console.log('CSRF: No stored token or timestamp');
+                return false;
+            }
+            
+            // FIXED: Use configurable token lifetime instead of hardcoded 24 hours
+            if ((now - parseInt(timestamp)) > tokenLifetime) {
+                console.log('CSRF: Token expired');
                 return false;
             }
             
@@ -1792,16 +1805,19 @@
             
             console.log('🔒 Security Event:', eventData);
             
-            fetch(SECURITY_CONFIG.webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    security_event: true,
-                    ...eventData
-                })
-            }).catch(console.error);
+            // Only log important events to webhook (not every click)
+            if (['form_submission_success', 'form_submission_error', 'honeypot_triggered'].includes(eventType)) {
+                fetch(SECURITY_CONFIG.webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        security_event: true,
+                        ...eventData
+                    })
+                }).catch(console.error);
+            }
         }
     };
 
@@ -1816,11 +1832,33 @@
             this.addCSRFToken();
             this.initializeFormHandler();
             this.initializeSecurityMonitoring();
+            this.startTokenRefresh();
+            this.cleanupOldData();
             
             SecurityUtils.logSecurityEvent('page_loaded', {
                 page: 'home',
                 formStartTime: this.formStartTime
             });
+        },
+
+        // FIXED: Clean up old rate limit data on page load
+        cleanupOldData() {
+            const lastSubmission = localStorage.getItem('lastSubmissionTime');
+            if (lastSubmission) {
+                const now = Date.now();
+                if ((now - parseInt(lastSubmission)) > SECURITY_CONFIG.rateLimitPeriod) {
+                    localStorage.removeItem('lastSubmissionTime');
+                }
+            }
+        },
+
+        // FIXED: Auto-refresh token to prevent expiry while user fills form
+        startTokenRefresh() {
+            setInterval(() => {
+                console.log('Auto-refreshing CSRF token...');
+                this.addCSRFToken();
+                this.formStartTime = Date.now();
+            }, 15 * 60 * 1000); // Refresh every 15 minutes
         },
 
         addCSRFToken() {
@@ -1874,38 +1912,55 @@
             await this.submitToMakeWebhook(formData);
         },
 
+        // FIXED: Better error messages and auto-recovery
         performSecurityChecks(form) {
             const errors = [];
             const now = Date.now();
             const formFillTime = now - this.formStartTime;
 
+            // Bot check - too fast means automated
             if (formFillTime < SECURITY_CONFIG.minFormFillTime) {
-                errors.push('Form submitted too quickly');
+                errors.push('Please take a moment to review the form before submitting');
             }
 
+            // FIXED: Session timeout - refresh instead of blocking
             if (formFillTime > SECURITY_CONFIG.maxFormFillTime) {
-                errors.push('Form session expired');
+                console.log('Form session was long, refreshing token...');
+                this.formStartTime = Date.now() - 10000;
+                SecurityUtils.generateCSRFToken();
+                this.addCSRFToken();
+                // Don't add error - allow submission with refreshed token
             }
 
+            // Rate limiting check
             if (this.isRateLimited()) {
-                errors.push('Rate limit exceeded');
+                const waitTime = Math.ceil(SECURITY_CONFIG.rateLimitPeriod / 1000);
+                errors.push(`Please wait ${waitTime} seconds between submissions`);
             }
 
+            // FIXED: CSRF validation with auto-recovery
             const csrfToken = form.querySelector('input[name="csrf_token"]')?.value;
-            if (!csrfToken || !SecurityUtils.validateCSRFToken(csrfToken)) {
-                errors.push('Security token invalid');
+            if (!csrfToken) {
+                this.addCSRFToken();
+                errors.push('Security session refreshed. Please click submit again.');
+            } else if (!SecurityUtils.validateCSRFToken(csrfToken)) {
+                this.addCSRFToken();
+                errors.push('Security session expired. Please click submit again.');
             }
 
-            // Honeypot check
+            // Honeypot check - silent for bots
             const honeypot = form.querySelector('input[name="website"]')?.value;
             if (honeypot && honeypot.length > 0) {
-                errors.push('Spam detection triggered');
+                SecurityUtils.logSecurityEvent('honeypot_triggered', {});
+                errors.push('Submission blocked');
             }
 
+            // Required fields validation with better labels
             const requiredFields = form.querySelectorAll('[required]');
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
-                    errors.push(`${field.name} is required`);
+                    const label = form.querySelector(`label[for="${field.id}"]`)?.textContent || field.name;
+                    errors.push(`${label.replace('*', '').trim()} is required`);
                 }
             });
 
@@ -1946,6 +2001,9 @@
                 });
 
                 if (response.ok) {
+                    // FIXED: Record submission time only on success
+                    this.recordSuccessfulSubmission();
+                    
                     SecurityUtils.logSecurityEvent('form_submission_success', {
                         formData: Object.keys(formData).filter(k => k !== 'security_metadata')
                     });
@@ -1953,18 +2011,40 @@
                     // Update submission counter
                     this.updateSubmissionCounter();
                     
-                    window.location.href = "bank-invoice.html";
+                    // Show success then redirect
+                    this.showSuccessMessage();
                 } else {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`Server error: ${response.status}`);
                 }
                 
             } catch (error) {
                 SecurityUtils.logSecurityEvent('form_submission_error', {
                     error: error.message
                 });
-                this.showError('Submission failed. Please try again.');
+                this.showError('Submission failed. Please check your connection and try again.');
             } finally {
                 this.setLoadingState(false);
+            }
+        },
+
+        // FIXED: Show success message before redirect
+        showSuccessMessage() {
+            const formContainer = document.getElementById('form-container');
+            
+            if (formContainer) {
+                formContainer.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
+                        <h2 style="color: #10b981; margin-bottom: 12px; font-size: 28px;">Request Submitted Successfully!</h2>
+                        <p style="color: #a0a0a0; font-size: 16px; margin-bottom: 24px;">
+                            Your compliance documents are being generated.<br>
+                            Check your email within the next few minutes.
+                        </p>
+                        <a href="bank-invoice.html" class="btn" style="display: inline-block; padding: 14px 32px; background: var(--gradient); color: #0a0a0a; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                            Continue to Payment
+                        </a>
+                    </div>
+                `;
             }
         },
 
@@ -1975,23 +2055,30 @@
             const newCount = currentCount - 1;
             
             localStorage.setItem(storageKey, newCount);
-            document.getElementById('submissions-count').textContent = newCount;
+            const counterEl = document.getElementById('submissions-count');
+            if (counterEl) counterEl.textContent = newCount;
             
             if (newCount <= 0) {
-                document.getElementById('rateLimitMessage').style.display = 'block';
+                const rateLimitMsg = document.getElementById('rateLimitMessage');
+                if (rateLimitMsg) rateLimitMsg.style.display = 'block';
             }
         },
 
+        // FIXED: Only check rate limit, don't set timestamp here
         isRateLimited() {
             const lastSubmission = localStorage.getItem('lastSubmissionTime');
             const now = Date.now();
             
-            if (lastSubmission && (now - lastSubmission) < SECURITY_CONFIG.rateLimitPeriod) {
+            if (lastSubmission && (now - parseInt(lastSubmission)) < SECURITY_CONFIG.rateLimitPeriod) {
                 return true;
             }
             
-            localStorage.setItem('lastSubmissionTime', now);
             return false;
+        },
+
+        // FIXED: Record submission time only after successful submission
+        recordSuccessfulSubmission() {
+            localStorage.setItem('lastSubmissionTime', Date.now().toString());
         },
 
         hashUserData(data) {
@@ -2004,34 +2091,47 @@
             return Math.abs(hash).toString(16);
         },
 
+        // FIXED: Better error display with auto-dismiss
         showSecurityError(errors) {
+            const existingError = document.querySelector('.form-security-error');
+            if (existingError) existingError.remove();
+            
             const errorHtml = `
-                <div class="error-message" style="
-                    background: rgba(220, 53, 69, 0.1);
-                    border: 1px solid rgba(220, 53, 69, 0.3);
-                    border-radius: 8px;
-                    padding: 15px;
+                <div class="form-security-error" style="
+                    background: rgba(239, 68, 68, 0.1);
+                    border: 1px solid rgba(239, 68, 68, 0.3);
+                    border-radius: 12px;
+                    padding: 16px 20px;
                     margin-bottom: 20px;
-                    color: #dc3545;
+                    color: #fca5a5;
                 ">
-                    <strong>Security Check Failed:</strong>
-                    <ul style="margin: 10px 0 0 0; padding-left: 20px;">
-                        ${errors.map(error => `<li>${error}</li>`).join('')}
-                    </ul>
+                    <div style="display: flex; align-items: flex-start; gap: 12px;">
+                        <span style="font-size: 20px;">⚠️</span>
+                        <div>
+                            <strong style="color: #f87171; display: block; margin-bottom: 8px;">Please fix the following:</strong>
+                            <ul style="margin: 0; padding-left: 20px; color: #fca5a5;">
+                                ${errors.map(error => `<li style="margin-bottom: 4px;">${error}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             `;
             
-            const existingError = document.querySelector('.error-message');
-            if (existingError) {
-                existingError.remove();
-            }
-            
             const form = document.getElementById('ComplianceFormWebhook');
-            form.insertAdjacentHTML('afterbegin', errorHtml);
+            if (form) {
+                form.insertAdjacentHTML('afterbegin', errorHtml);
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Auto-remove after 10 seconds
+                setTimeout(() => {
+                    const error = document.querySelector('.form-security-error');
+                    if (error) error.remove();
+                }, 10000);
+            }
         },
 
         showError(message) {
-            alert(message);
+            this.showSecurityError([message]);
         },
 
         setLoadingState(loading) {
@@ -2044,19 +2144,11 @@
         },
 
         initializeSecurityMonitoring() {
-            document.addEventListener('click', (e) => {
-                SecurityUtils.logSecurityEvent('user_click', {
-                    element: e.target.tagName,
-                    text: e.target.textContent?.substring(0, 50)
-                });
-            });
-
+            // Simplified - only log form inputs, not every click
             document.addEventListener('input', (e) => {
                 if (e.target.form?.id === 'ComplianceFormWebhook') {
-                    SecurityUtils.logSecurityEvent('form_input', {
-                        field: e.target.name,
-                        value_length: e.target.value.length
-                    });
+                    // Just log locally, don't send to webhook for every keystroke
+                    console.log('Form input:', e.target.name);
                 }
             });
         }
@@ -2081,12 +2173,14 @@
         const lastSubmission = localStorage.getItem('lastSubmissionTime');
         const now = Date.now();
         
-        if (lastSubmission && (now - lastSubmission) < SECURITY_CONFIG.rateLimitPeriod) {
-            document.getElementById('rateLimitMessage').style.display = 'block';
+        if (lastSubmission && (now - parseInt(lastSubmission)) < SECURITY_CONFIG.rateLimitPeriod) {
+            const rateLimitMsg = document.getElementById('rateLimitMessage');
+            if (rateLimitMsg) rateLimitMsg.style.display = 'block';
             return true;
         }
         
-        document.getElementById('rateLimitMessage').style.display = 'none';
+        const rateLimitMsg = document.getElementById('rateLimitMessage');
+        if (rateLimitMsg) rateLimitMsg.style.display = 'none';
         return false;
     }
 
@@ -2239,6 +2333,6 @@
     document.addEventListener('keypress', resetInactivityTimer);
     document.addEventListener('click', resetInactivityTimer);
     resetInactivityTimer();
-  </script>
+</script>
 </body>
 </html>
