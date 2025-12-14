@@ -360,7 +360,7 @@
       margin-bottom: 20px;
     }
 
-    /* Form Grid Layout for Better Organization */
+    /* Enhanced Form Styles */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -372,7 +372,6 @@
       grid-column: 1 / -1;
     }
 
-    /* Field Group Styling */
     .field-group {
       margin-bottom: 25px;
       padding: 20px;
@@ -461,6 +460,55 @@
       background-repeat: no-repeat;
       background-position: right 12px center;
       background-size: 10px;
+    }
+
+    /* Checkbox grid for compliance fields */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .checkbox-grid input[type="checkbox"] {
+      width: auto;
+      margin-bottom: 0;
+    }
+
+    /* Regulation-specific sections */
+    .ccpa-specific,
+    .gdpr-specific,
+    .hipaa-specific,
+    .popia-specific {
+      display: none;
+    }
+
+    /* Multi-select styling */
+    select[multiple] {
+      height: auto;
+      min-height: 120px;
+      padding: 12px;
+    }
+
+    select[multiple] option {
+      padding: 8px 12px;
+      margin: 2px 0;
+      background: rgba(21, 18, 16, 0.7);
+      border-radius: 4px;
+    }
+
+    select[multiple] option:checked {
+      background: var(--accent);
+      color: var(--button-text);
     }
 
     /* Testimonials */
@@ -907,6 +955,11 @@
         max-width: 300px;
         min-height: 240px;
       }
+
+      .form-grid,
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Loading States */
@@ -1069,6 +1122,7 @@
           <small title="For free users only. Paid users get unlimited submissions.">[∞]</small>
         </div>
 
+        <!-- ENHANCED DYNAMIC FORM WITH BOTH ORIGINAL AND NEW FIELDS -->
         <form action="https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu" method="POST" id="ComplianceFormWebhook">
           <input type="hidden" name="form-name" value="ComplianceFormWebhook" />
           <input type="hidden" name="csrf_token" id="csrf_token" value="">
@@ -1149,7 +1203,7 @@
             </div>
           </div>
 
-          <!-- COMPLIANCE FOCUS -->
+          <!-- COMPLIANCE FOCUS - ORIGINAL FIELDS PRESERVED -->
           <div class="field-group">
             <div class="field-group-title">Compliance Focus</div>
             
@@ -1163,6 +1217,7 @@
               <option>Multiple / Global</option>
             </select>
 
+            <!-- ORIGINAL UNIVERSAL FIELDS - PRESERVED -->
             <label for="data">What type of user or business data do you collect?</label>
             <textarea name="data" id="data" rows="3" required placeholder="E.g., names, emails, health info, purchase history"></textarea>
 
@@ -1171,6 +1226,274 @@
 
             <label for="service_provider_name">Primary Service Provider/Vendor (For DPAs)</label>
             <input type="text" id="service_provider_name" name="service_provider_name" required placeholder="Main vendor for Data Processing Agreements">
+          </div>
+
+          <!-- CCPA SPECIFIC FIELDS -->
+          <div class="field-group ccpa-specific" style="display: none;">
+            <div class="field-group-title">CCPA/CPRA Data Practices</div>
+            
+            <!-- Data Collection Categories -->
+            <label><strong>Categories of Personal Information Collected</strong></label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="ccpa_categories[]" value="identifiers"> Identifiers (name, email, IP, account info)</label>
+              <label><input type="checkbox" name="ccpa_categories[]" value="commercial"> Commercial Information (purchases, history)</label>
+              <label><input type="checkbox" name="ccpa_categories[]" value="internet"> Internet/Network Activity</label>
+              <label><input type="checkbox" name="ccpa_categories[]" value="geolocation"> Geolocation Data</label>
+              <label><input type="checkbox" name="ccpa_categories[]" value="professional"> Professional/Employment Information</label>
+              <label><input type="checkbox" name="ccpa_categories[]" value="inferences"> Inferences (profiling, preferences)</label>
+            </div>
+
+            <!-- Sensitive Personal Information -->
+            <label><strong>Sensitive Personal Information Collected</strong></label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="government_id"> Government IDs (SSN, license, passport)</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="financial"> Financial Account & Login Credentials</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="precise_geo"> Precise Geolocation</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="racial"> Racial/Ethnic Origin</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="health"> Health Information</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="sexual_orientation"> Sexual Orientation/Health Data</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="union"> Union Membership</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="biometric"> Biometric Information</label>
+              <label><input type="checkbox" name="ccpa_sensitive[]" value="communications"> Email/Text Message Contents</label>
+            </div>
+
+            <!-- Data Practices -->
+            <div class="form-grid">
+              <div>
+                <label for="ccpa_sell">Do you SELL personal information?</label>
+                <select name="ccpa_sell" id="ccpa_sell">
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="ccpa_share">Do you SHARE for cross-context advertising?</label>
+                <select name="ccpa_share" id="ccpa_share">
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="ccpa_retention">Data Retention Period</label>
+                <input type="text" id="ccpa_retention" name="ccpa_retention" placeholder="e.g., 2 years, until deletion">
+              </div>
+              <div>
+                <label for="ccpa_minors">Collect data from minors under 16?</label>
+                <select name="ccpa_minors" id="ccpa_minors">
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Purposes of Collection -->
+            <label for="ccpa_purposes"><strong>Purposes for Data Collection</strong></label>
+            <select name="ccpa_purposes[]" id="ccpa_purposes" multiple>
+              <option value="service_delivery">Service Delivery</option>
+              <option value="payment">Payment Processing</option>
+              <option value="marketing">Marketing & Advertising</option>
+              <option value="personalization">Personalization</option>
+              <option value="security">Security & Fraud Prevention</option>
+              <option value="analytics">Analytics & Improvement</option>
+              <option value="legal">Legal Compliance</option>
+            </select>
+
+            <!-- Methods for Consumer Requests -->
+            <label><strong>Methods for Consumer Rights Requests</strong></label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="ccpa_methods[]" value="webform"> Online Web Form</label>
+              <label><input type="checkbox" name="ccpa_methods[]" value="tollfree"> Toll-Free Phone Number</label>
+              <label><input type="checkbox" name="ccpa_methods[]" value="email"> Dedicated Email Address</label>
+              <label><input type="checkbox" name="ccpa_methods[]" value="postal"> Postal Address</label>
+            </div>
+          </div>
+
+          <!-- GDPR SPECIFIC FIELDS -->
+          <div class="field-group gdpr-specific" style="display: none;">
+            <div class="field-group-title">GDPR Data Processing Details</div>
+            
+            <label>What are your main purposes for processing personal data?</label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="processing_purposes[]" value="service_delivery"> Service Delivery</label>
+              <label><input type="checkbox" name="processing_purposes[]" value="marketing"> Marketing</label>
+              <label><input type="checkbox" name="processing_purposes[]" value="analytics"> Analytics</label>
+              <label><input type="checkbox" name="processing_purposes[]" value="legal_compliance"> Legal Compliance</label>
+              <label><input type="checkbox" name="processing_purposes[]" value="other"> Other</label>
+            </div>
+
+            <label>What categories of personal data do you process?</label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="data_categories[]" value="contact_info"> Contact Information</label>
+              <label><input type="checkbox" name="data_categories[]" value="financial"> Financial Data</label>
+              <label><input type="checkbox" name="data_categories[]" value="health"> Health Data</label>
+              <label><input type="checkbox" name="data_categories[]" value="location"> Location Data</label>
+              <label><input type="checkbox" name="data_categories[]" value="online_identifiers"> Online Identifiers</label>
+            </div>
+
+            <label>Who are your data subjects?</label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="data_subjects[]" value="customers"> Customers</label>
+              <label><input type="checkbox" name="data_subjects[]" value="employees"> Employees</label>
+              <label><input type="checkbox" name="data_subjects[]" value="website_visitors"> Website Visitors</label>
+              <label><input type="checkbox" name="data_subjects[]" value="prospects"> Prospects/Leads</label>
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="retention_period">Standard Data Retention Period</label>
+                <select name="retention_period" id="retention_period">
+                  <option value="">Select</option>
+                  <option>1-3 years</option>
+                  <option>3-5 years</option>
+                  <option>5-7 years</option>
+                  <option>7+ years</option>
+                  <option>Until deletion requested</option>
+                </select>
+              </div>
+              <div>
+                <label for="international_transfers">International Data Transfers</label>
+                <select name="international_transfers" id="international_transfers">
+                  <option value="">Select</option>
+                  <option value="no">No</option>
+                  <option value="within_eea">Within EEA only</option>
+                  <option value="outside_eea">Outside EEA</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="transfer_countries">If outside EEA, which countries?</label>
+            <input type="text" id="transfer_countries" name="transfer_countries" placeholder="e.g., USA, India, etc.">
+
+            <label>What security measures do you have in place?</label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="security_measures[]" value="encryption"> Data Encryption</label>
+              <label><input type="checkbox" name="security_measures[]" value="access_controls"> Access Controls</label>
+              <label><input type="checkbox" name="security_measures[]" value="training"> Employee Training</label>
+              <label><input type="checkbox" name="security_measures[]" value="backups"> Regular Backups</label>
+            </div>
+          </div>
+
+          <!-- HIPAA SPECIFIC FIELDS -->
+          <div class="field-group hipaa-specific" style="display: none;">
+            <div class="field-group-title">HIPAA Compliance Details</div>
+            
+            <label for="covered_entity_type">HIPAA Covered Entity Type</label>
+            <select name="covered_entity_type" id="covered_entity_type">
+              <option value="">Select</option>
+              <option>Healthcare Provider</option>
+              <option>Health Plan</option>
+              <option>Healthcare Clearinghouse</option>
+              <option>Business Associate</option>
+            </select>
+
+            <label for="phi_types">What types of Protected Health Information (PHI) do you handle?</label>
+            <textarea name="phi_types" id="phi_types" rows="3" placeholder="E.g., medical records, billing information, insurance data, treatment plans"></textarea>
+
+            <label for="patient_volume">Approximate number of patients/individuals whose data you handle</label>
+            <input type="number" id="patient_volume" name="patient_volume" placeholder="e.g., 1000">
+
+            <label for="business_associates">List Business Associates handling PHI</label>
+            <textarea name="business_associates" id="business_associates" rows="3" placeholder="E.g., cloud providers, billing companies, IT vendors"></textarea>
+          </div>
+
+          <!-- POPIA SPECIFIC FIELDS -->
+          <div class="field-group popia-specific" style="display: none;">
+            <div class="field-group-title">POPIA Compliance Details</div>
+            
+            <div class="form-grid">
+              <div>
+                <label for="information_officer">Information Officer Name (POPIA Required)</label>
+                <input type="text" id="information_officer" name="information_officer" placeholder="POPIA Section 55 requires this appointment">
+              </div>
+              <div>
+                <label for="information_officer_email">Information Officer Email</label>
+                <input type="email" id="information_officer_email" name="information_officer_email">
+              </div>
+            </div>
+
+            <label for="information_officer_phone">Information Officer Phone</label>
+            <input type="tel" id="information_officer_phone" name="information_officer_phone" placeholder="+27 ">
+
+            <div class="form-grid">
+              <div>
+                <label for="special_data">Do you process Special Personal Information? (POPIA Section 26)</label>
+                <select name="special_data" id="special_data">
+                  <option value="">Select</option>
+                  <option value="Yes">Yes - race, health, biometrics, etc.</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="children_data">Do you process children's information? (POPIA Section 34)</label>
+                <select name="children_data" id="children_data">
+                  <option value="">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="cross_border">Do you transfer data outside South Africa? (POPIA Section 72)</label>
+                <select name="cross_border" id="cross_border">
+                  <option value="">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="direct_marketing">Do you conduct direct marketing? (POPIA Section 69)</label>
+                <select name="direct_marketing" id="direct_marketing">
+                  <option value="">Select</option>
+                  <option value="Yes">Yes - email/SMS marketing</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="marketing_consent">How do you obtain marketing consent?</label>
+            <select name="marketing_consent" id="marketing_consent">
+              <option value="">Select</option>
+              <option value="Opt-in">Explicit opt-in (POPIA required)</option>
+              <option value="Opt-out">Opt-out</option>
+              <option value="Both">Both methods</option>
+            </select>
+
+            <label for="paia_manual">Do you have a PAIA Manual? (Mandatory in South Africa)</label>
+            <select name="paia_manual" id="paia_manual">
+              <option value="">Select</option>
+              <option value="Yes">Yes, we have one</option>
+              <option value="No">No, we need one</option>
+              <option value="Unsure">Unsure</option>
+            </select>
+
+            <label for="data_subjects_popia">Estimated number of data subjects in South Africa</label>
+            <input type="number" id="data_subjects_popia" name="data_subjects_popia" placeholder="Approximate number">
+
+            <label for="prior_authorization">Do you require Prior Authorization? (POPIA Section 57)</label>
+            <select name="prior_authorization" id="prior_authorization">
+              <option value="">Select</option>
+              <option value="Yes">Yes - processing unique identifiers or credit reporting</option>
+              <option value="No">No</option>
+              <option value="Unsure">Unsure</option>
+            </select>
+
+            <label><strong>POPIA-Specific Documents Needed</strong></label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="popia_docs[]" value="PAIA Manual"> PAIA Manual (Mandatory)</label>
+              <label><input type="checkbox" name="popia_docs[]" value="POPIA Privacy Policy"> POPIA-Specific Privacy Policy</label>
+              <label><input type="checkbox" name="popia_docs[]" value="Information Officer Appointment"> Information Officer Appointment Letter</label>
+              <label><input type="checkbox" name="popia_docs[]" value="POPIA Training"> POPIA Employee Training</label>
+              <label><input type="checkbox" name="popia_docs[]" value="Data Processing Agreement"> Data Processing Agreement</label>
+              <label><input type="checkbox" name="popia_docs[]" value="Audit Documentation"> Audit-Ready Documentation</label>
+            </div>
           </div>
 
           <!-- DOCUMENTS NEEDED -->
@@ -1343,6 +1666,53 @@
 
   <script>
     // ======================
+    // ENHANCED FORM DYNAMICS
+    // ======================
+    function initializeDynamicForm() {
+      const regulationsSelect = document.getElementById('regulations');
+      
+      if (regulationsSelect) {
+        regulationsSelect.addEventListener('change', function() {
+          const selectedRegulation = this.value;
+          
+          // Hide all regulation-specific fields
+          document.querySelectorAll('.ccpa-specific, .gdpr-specific, .hipaa-specific, .popia-specific').forEach(field => {
+            field.style.display = 'none';
+          });
+          
+          // Show fields for selected regulation
+          switch(selectedRegulation) {
+            case 'CCPA':
+              document.querySelector('.ccpa-specific').style.display = 'block';
+              break;
+            case 'GDPR':
+              document.querySelector('.gdpr-specific').style.display = 'block';
+              break;
+            case 'HIPAA':
+              document.querySelector('.hipaa-specific').style.display = 'block';
+              break;
+            case 'POPIA':
+              document.querySelector('.popia-specific').style.display = 'block';
+              break;
+            case 'Multiple / Global':
+              // Show all regulation-specific fields for multiple compliance
+              document.querySelectorAll('.ccpa-specific, .gdpr-specific, .hipaa-specific, .popia-specific').forEach(field => {
+                field.style.display = 'block';
+              });
+              break;
+          }
+        });
+      }
+
+      // Initialize multi-select for CCPA purposes
+      const ccpaPurposes = document.getElementById('ccpa_purposes');
+      if (ccpaPurposes) {
+        ccpaPurposes.size = 7; // Show all options
+        ccpaPurposes.multiple = true;
+      }
+    }
+
+    // ======================
     // SECURITY CONFIGURATION
     // ======================
     const SECURITY_CONFIG = {
@@ -1356,9 +1726,9 @@
         enableActivityMonitoring: true,
         
         // Rate Limiting
-        freeSubmissions: 1,
-        rateLimitPeriod: 3600000,
-        maxFormFillTime: 30000,
+        freeSubmissions: 5,
+        rateLimitPeriod: 60000,
+        maxFormFillTime: 1800000,
         minFormFillTime: 3000
     };
 
@@ -1393,8 +1763,6 @@
                 .replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#x27;')
-                .replace(/\//g, '&#x2F;')
-                .replace(/\\/g, '&#x5C;')
                 .replace(/`/g, '&#x60;')
                 .trim();
         },
@@ -1793,6 +2161,9 @@
     // INITIALIZE EVERYTHING
     // ======================
     document.addEventListener("DOMContentLoaded", function() {
+        // Initialize dynamic form functionality
+        initializeDynamicForm();
+        
         // Initialize submission counter
         const now = new Date();
         const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
