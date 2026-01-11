@@ -1664,7 +1664,13 @@
   <!-- Security Badge -->
   <div class="security-badge-indicator">🔒 Secure</div>
 
-  <script>
+ <script>
+    // ======================
+    // TESTING MODE TOGGLE
+    // ======================
+    // Set to true for unlimited testing, false for production
+    const TESTING_MODE = true;  // ← CHANGE TO false BEFORE GOING LIVE!
+
     // ======================
     // ENHANCED FORM DYNAMICS
     // ======================
@@ -1726,9 +1732,9 @@
         enableActivityMonitoring: true,
         
         // Rate Limiting - FIXED VALUES
-        freeSubmissions: 1,              // 5 free submissions per month
+        freeSubmissions: 1,              // 1 free submission per month
         rateLimitPeriod: 60000,          // 1 minute between submissions
-        maxFormFillTime: 1800000,        // 30 minutes to fill form (was 30 seconds!)
+        maxFormFillTime: 1800000,        // 30 minutes to fill form
         minFormFillTime: 3000,           // 3 seconds minimum (bot protection)
         csrfTokenLifetime: 3600000       // 1 hour token validity
     };
@@ -1738,7 +1744,7 @@
     // ======================
     const SecurityUtils = {
         generateCSRFToken() {
-            // FIXED: Use cryptographically secure random values
+            // Use cryptographically secure random values
             const array = new Uint8Array(32);
             crypto.getRandomValues(array);
             const token = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
@@ -1749,6 +1755,12 @@
         },
 
         validateCSRFToken(token) {
+            // TESTING MODE: Skip validation
+            if (TESTING_MODE) {
+                console.log('🧪 TESTING MODE: Skipping CSRF validation');
+                return true;
+            }
+            
             const storedToken = localStorage.getItem('csrf_token');
             const timestamp = localStorage.getItem('csrf_timestamp');
             const now = Date.now();
@@ -1759,7 +1771,6 @@
                 return false;
             }
             
-            // FIXED: Use configurable token lifetime instead of hardcoded 24 hours
             if ((now - parseInt(timestamp)) > tokenLifetime) {
                 console.log('CSRF: Token expired');
                 return false;
@@ -1800,7 +1811,8 @@
                 timestamp: new Date().toISOString(),
                 url: window.location.href,
                 userAgent: navigator.userAgent,
-                details: details
+                details: details,
+                testingMode: TESTING_MODE
             };
             
             console.log('🔒 Security Event:', eventData);
@@ -1834,6 +1846,7 @@
             this.initializeSecurityMonitoring();
             this.startTokenRefresh();
             this.cleanupOldData();
+            this.showTestingModeIndicator();
             
             SecurityUtils.logSecurityEvent('page_loaded', {
                 page: 'home',
@@ -1841,8 +1854,49 @@
             });
         },
 
-        // FIXED: Clean up old rate limit data on page load
+        // Show testing mode indicator on page
+        showTestingModeIndicator() {
+            if (TESTING_MODE) {
+                const indicator = document.createElement('div');
+                indicator.id = 'testing-mode-indicator';
+                indicator.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 90px;
+                        right: 20px;
+                        background: rgba(245, 158, 11, 0.9);
+                        color: #000;
+                        padding: 10px 16px;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        z-index: 9999;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🧪</span>
+                        <div>
+                            <div>TESTING MODE</div>
+                            <div style="font-weight: 400; font-size: 10px; opacity: 0.8;">Unlimited submissions enabled</div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(indicator);
+                console.log('🧪 TESTING MODE ACTIVE - All security checks bypassed, unlimited submissions allowed');
+            }
+        },
+
+        // Clean up old rate limit data on page load
         cleanupOldData() {
+            if (TESTING_MODE) {
+                // In testing mode, clear all rate limit data
+                localStorage.removeItem('lastSubmissionTime');
+                console.log('🧪 TESTING MODE: Cleared rate limit data');
+                return;
+            }
+            
             const lastSubmission = localStorage.getItem('lastSubmissionTime');
             if (lastSubmission) {
                 const now = Date.now();
@@ -1852,7 +1906,7 @@
             }
         },
 
-        // FIXED: Auto-refresh token to prevent expiry while user fills form
+        // Auto-refresh token to prevent expiry while user fills form
         startTokenRefresh() {
             setInterval(() => {
                 console.log('Auto-refreshing CSRF token...');
@@ -1912,24 +1966,44 @@
             await this.submitToMakeWebhook(formData);
         },
 
-        // FIXED: Better error messages and auto-recovery
+        // Security checks with testing mode bypass
         performSecurityChecks(form) {
             const errors = [];
             const now = Date.now();
             const formFillTime = now - this.formStartTime;
 
+            // TESTING MODE: Skip all security checks except required fields
+            if (TESTING_MODE) {
+                console.log('🧪 TESTING MODE: Skipping security checks');
+                
+                // Still validate required fields even in testing mode
+                const requiredFields = form.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        const label = form.querySelector(`label[for="${field.id}"]`)?.textContent || field.name;
+                        errors.push(`${label.replace('*', '').trim()} is required`);
+                    }
+                });
+                
+                return {
+                    isValid: errors.length === 0,
+                    errors: errors
+                };
+            }
+
+            // PRODUCTION MODE: Full security checks
+            
             // Bot check - too fast means automated
             if (formFillTime < SECURITY_CONFIG.minFormFillTime) {
                 errors.push('Please take a moment to review the form before submitting');
             }
 
-            // FIXED: Session timeout - refresh instead of blocking
+            // Session timeout - refresh instead of blocking
             if (formFillTime > SECURITY_CONFIG.maxFormFillTime) {
                 console.log('Form session was long, refreshing token...');
                 this.formStartTime = Date.now() - 10000;
                 SecurityUtils.generateCSRFToken();
                 this.addCSRFToken();
-                // Don't add error - allow submission with refreshed token
             }
 
             // Rate limiting check
@@ -1938,7 +2012,7 @@
                 errors.push(`Please wait ${waitTime} seconds between submissions`);
             }
 
-            // FIXED: CSRF validation with auto-recovery
+            // CSRF validation with auto-recovery
             const csrfToken = form.querySelector('input[name="csrf_token"]')?.value;
             if (!csrfToken) {
                 this.addCSRFToken();
@@ -1982,7 +2056,8 @@
                 submission_time: new Date().toISOString(),
                 user_agent: navigator.userAgent,
                 form_fill_time: Date.now() - this.formStartTime,
-                ip_hash: this.hashUserData(navigator.userAgent + window.location.href)
+                ip_hash: this.hashUserData(navigator.userAgent + window.location.href),
+                testing_mode: TESTING_MODE
             };
             
             return secureData;
@@ -2001,17 +2076,19 @@
                 });
 
                 if (response.ok) {
-                    // FIXED: Record submission time only on success
-                    this.recordSuccessfulSubmission();
+                    // Record submission time only on success (skip in testing mode)
+                    if (!TESTING_MODE) {
+                        this.recordSuccessfulSubmission();
+                        this.updateSubmissionCounter();
+                    } else {
+                        console.log('🧪 TESTING MODE: Skipping submission tracking');
+                    }
                     
                     SecurityUtils.logSecurityEvent('form_submission_success', {
                         formData: Object.keys(formData).filter(k => k !== 'security_metadata')
                     });
                     
-                    // Update submission counter
-                    this.updateSubmissionCounter();
-                    
-                    // Show success then redirect
+                    // Show success message
                     this.showSuccessMessage();
                 } else {
                     throw new Error(`Server error: ${response.status}`);
@@ -2027,24 +2104,50 @@
             }
         },
 
-        // FIXED: Show success message before redirect
+        // Show success message with option to submit again in testing mode
         showSuccessMessage() {
             const formContainer = document.getElementById('form-container');
             
             if (formContainer) {
-                formContainer.innerHTML = `
-                    <div style="text-align: center; padding: 60px 20px;">
-                        <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
-                        <h2 style="color: #10b981; margin-bottom: 12px; font-size: 28px;">Request Submitted Successfully!</h2>
-                        <p style="color: #a0a0a0; font-size: 16px; margin-bottom: 24px;">
-                            Your compliance documents are being generated.<br>
-                            Check your email within the next few minutes.
-                        </p>
-                        <a href="bank-invoice.html" class="btn" style="display: inline-block; padding: 14px 32px; background: var(--gradient); color: #0a0a0a; text-decoration: none; border-radius: 8px; font-weight: 600;">
-                            Continue to Payment
-                        </a>
-                    </div>
-                `;
+                if (TESTING_MODE) {
+                    // Testing mode: Show success with "Test Again" button
+                    formContainer.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
+                            <h2 style="color: #10b981; margin-bottom: 12px; font-size: 28px;">Test Submission Successful!</h2>
+                            <p style="color: #a0a0a0; font-size: 16px; margin-bottom: 24px;">
+                                Your form was submitted to Make.com webhook.<br>
+                                Check your Make.com scenario to verify the data.
+                            </p>
+                            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                                <button onclick="location.reload()" class="btn" style="padding: 14px 32px; background: var(--gradient); color: #0a0a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                    🔄 Test Again
+                                </button>
+                                <a href="checkout-agency.html" class="btn" style="display: inline-block; padding: 14px 32px; background: transparent; color: var(--accent); text-decoration: none; border-radius: 8px; font-weight: 600; border: 1px solid var(--accent);">
+                                    Continue to Payment →
+                                </a>
+                            </div>
+                            <p style="color: #f59e0b; font-size: 12px; margin-top: 24px;">
+                                🧪 Testing Mode Active - Remember to set TESTING_MODE = false before launch!
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    // Production mode: Show success with payment link
+                    formContainer.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
+                            <h2 style="color: #10b981; margin-bottom: 12px; font-size: 28px;">Request Submitted Successfully!</h2>
+                            <p style="color: #a0a0a0; font-size: 16px; margin-bottom: 24px;">
+                                Your compliance documents are being generated.<br>
+                                Check your email within the next few minutes.
+                            </p>
+                            <a href="checkout-agency.html" class="btn" style="display: inline-block; padding: 14px 32px; background: var(--gradient); color: #0a0a0a; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                                Continue to Payment
+                            </a>
+                        </div>
+                    `;
+                }
             }
         },
 
@@ -2064,8 +2167,14 @@
             }
         },
 
-        // FIXED: Only check rate limit, don't set timestamp here
+        // Only check rate limit, don't set timestamp here
         isRateLimited() {
+            // TESTING MODE: Never rate limited
+            if (TESTING_MODE) {
+                console.log('🧪 TESTING MODE: Skipping rate limit check');
+                return false;
+            }
+            
             const lastSubmission = localStorage.getItem('lastSubmissionTime');
             const now = Date.now();
             
@@ -2076,7 +2185,7 @@
             return false;
         },
 
-        // FIXED: Record submission time only after successful submission
+        // Record submission time only after successful submission
         recordSuccessfulSubmission() {
             localStorage.setItem('lastSubmissionTime', Date.now().toString());
         },
@@ -2091,7 +2200,7 @@
             return Math.abs(hash).toString(16);
         },
 
-        // FIXED: Better error display with auto-dismiss
+        // Better error display with auto-dismiss
         showSecurityError(errors) {
             const existingError = document.querySelector('.form-security-error');
             if (existingError) existingError.remove();
@@ -2170,6 +2279,13 @@
     }
     
     function checkRateLimit() {
+        // TESTING MODE: Never show rate limit message
+        if (TESTING_MODE) {
+            const rateLimitMsg = document.getElementById('rateLimitMessage');
+            if (rateLimitMsg) rateLimitMsg.style.display = 'none';
+            return false;
+        }
+        
         const lastSubmission = localStorage.getItem('lastSubmissionTime');
         const now = Date.now();
         
@@ -2258,11 +2374,14 @@
         // Initialize dynamic form functionality
         initializeDynamicForm();
         
-        // Initialize submission counter
+        // Initialize submission counter (show unlimited in testing mode)
         const now = new Date();
         const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
         const currentCount = localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions;
-        document.getElementById('submissions-count').textContent = currentCount;
+        const counterEl = document.getElementById('submissions-count');
+        if (counterEl) {
+            counterEl.textContent = TESTING_MODE ? '∞' : currentCount;
+        }
 
         // Initialize secure form handler
         SecureFormHandler.init();
