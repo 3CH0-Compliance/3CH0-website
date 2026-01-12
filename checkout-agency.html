@@ -6,8 +6,8 @@
   <title>Checkout – Agency Pro</title>
   <meta name="description" content="Complete your subscription to 3CH0's Agency Pro plan.">
   
-  <!-- SECURITY HEADERS -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.paypalobjects.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.paypal.com https://hook.us2.make.com; frame-src https://www.paypal.com">
+  <!-- SECURITY HEADERS - Updated to allow sandbox PayPal -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.sandbox.paypal.com https://www.paypalobjects.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.paypal.com https://www.sandbox.paypal.com https://hook.us2.make.com; frame-src https://www.paypal.com https://www.sandbox.paypal.com">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -15,7 +15,9 @@
   
   <link rel="icon" href="3CH0 logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://www.paypal.com/sdk/js?client-id=AVTshKcvivgfNuXQ5m8wQDY2mpa1yOyslAIETs2qOK5jSnQKOQP0ZQE9mh8eBI_klGTKdri4tgLVNWnB&vault=true&intent=subscription&components=buttons,marks" data-sdk-integration-source="button-factory"></script>
+  
+  <!-- PayPal SDK loaded dynamically - NO static script tag -->
+  
   <style>
     :root {
       --main-bg: #0a0a0a;
@@ -31,15 +33,8 @@
       --warning: #f59e0b;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -47,20 +42,17 @@
       color: var(--text-color);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-top: 80px; /* For fixed nav */
+      padding-top: 80px;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* Animated background */
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: 
         radial-gradient(circle at 20% 50%, rgba(146, 205, 236, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(0, 105, 217, 0.15) 0%, transparent 50%),
@@ -74,10 +66,7 @@
       50% { opacity: 0.8; transform: scale(1.1); }
     }
 
-    .main-content {
-      flex: 1 0 auto;
-      width: 100%;
-    }
+    .main-content { flex: 1 0 auto; width: 100%; }
 
     .glass-panel {
       background: var(--glass-panel);
@@ -88,7 +77,6 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
 
-    /* Navigation - Fixed */
     nav {
       background: rgba(10, 10, 10, 0.98);
       padding: 18px 40px;
@@ -97,12 +85,9 @@
       align-items: center;
       border-bottom: 1px solid var(--border-color);
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
     }
 
     nav a {
@@ -111,33 +96,10 @@
       color: var(--accent);
       text-decoration: none;
       transition: all 0.3s ease;
-      position: relative;
     }
 
-    nav a:hover {
-      transform: translateY(-2px);
-      color: #fdfdfe;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gradient);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    .logo-img {
-      height: 60px;
-      filter: brightness(120%);
-    }
+    nav a:hover { color: #fdfdfe; }
+    .logo-img { height: 60px; filter: brightness(120%); }
 
     .container {
       max-width: 1100px;
@@ -154,13 +116,76 @@
       margin-bottom: 16px;
     }
 
-    p {
-      font-size: 16px;
+    p { font-size: 16px; color: var(--secondary-text); margin-bottom: 60px; }
+
+    /* Test Mode Banner */
+    .test-mode-banner {
+      display: none;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      padding: 14px 24px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .test-mode-banner.active { display: block; }
+
+    /* Test Mode Toggle */
+    .test-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(20, 20, 20, 0.98);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px;
+      z-index: 1000;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+    .test-toggle label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
       color: var(--secondary-text);
-      margin-bottom: 60px;
+    }
+    .test-toggle input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--warning);
+    }
+    .test-toggle .hint {
+      display: block;
+      margin-top: 6px;
+      font-size: 10px;
+      color: #666;
+      line-height: 1.4;
     }
 
-    /* Enhanced Pricing Toggle */
+    /* ZAR Notice */
+    .zar-notice {
+      display: none;
+      background: rgba(146, 205, 236, 0.1);
+      border: 1px solid rgba(146, 205, 236, 0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin-bottom: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 14px;
+      color: var(--secondary-text);
+    }
+    .zar-notice.visible { display: block; }
+    .zar-notice strong { color: var(--accent); }
+
+    /* Pricing Toggle */
     .pricing-toggle {
       display: flex;
       justify-content: center;
@@ -169,9 +194,7 @@
       background: rgba(255,255,255,0.05);
       border-radius: 50px;
       padding: 6px;
-      position: relative;
       border: 1px solid var(--border-color);
-      backdrop-filter: blur(10px);
     }
 
     .toggle-option {
@@ -179,10 +202,8 @@
       padding: 12px 20px;
       text-align: center;
       cursor: pointer;
-      z-index: 2;
       transition: all 0.3s ease;
       border-radius: 50px;
-      position: relative;
     }
 
     .toggle-option.active {
@@ -191,14 +212,9 @@
       font-weight: 600;
     }
 
-    .toggle-option.active .price {
-      color: white;
-    }
-
     .toggle-option .price {
       font-size: 18px;
       margin-top: 5px;
-      transition: all 0.3s ease;
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -212,11 +228,6 @@
       border-radius: 10px;
       display: inline-block;
       margin-top: 5px;
-      transition: all 0.3s ease;
-    }
-
-    .toggle-option.active .discount {
-      background: #0047a3;
     }
 
     /* Payment Cards */
@@ -224,10 +235,13 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
-      justify-content: center;
-      align-items: stretch;
       max-width: 700px;
       margin: 0 auto;
+    }
+
+    .payment-options.single-option {
+      grid-template-columns: 1fr;
+      max-width: 380px;
     }
 
     .payment-card {
@@ -239,7 +253,6 @@
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
-      height: auto;
       backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
@@ -248,9 +261,7 @@
     .payment-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: var(--gradient);
       transform: scaleX(0);
@@ -260,28 +271,16 @@
     .payment-card:hover {
       transform: translateY(-5px);
       border-color: rgba(146, 205, 236, 0.5);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
-    .payment-card:hover::before {
-      transform: scaleX(1);
-    }
+    .payment-card:hover::before { transform: scaleX(1); }
 
     .payment-card.highlighted {
       border: 1px solid #92cdec;
       box-shadow: 0 0 0 3px rgba(146, 205, 236, 0.2);
     }
 
-    .payment-card img {
-      height: 27px;
-      margin: 0 10px 20px;
-      vertical-align: middle;
-    }
-
-    .payment-card .emoji {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
+    .payment-card img { height: 27px; margin: 0 10px 20px; }
 
     .dynamic-price {
       font-size: 28px;
@@ -298,11 +297,24 @@
       margin-bottom: 20px;
     }
 
-    /* PayPal Container */
-    .paypal-container {
-      margin: 20px 0;
-      min-height: 50px;
-      position: relative;
+    .paypal-container { 
+      margin-top: auto;
+      padding-top: 60px;
+      width: 100%;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+      text-align: center;
+      overflow: hidden;
+      max-height: 230px;
+    }
+    
+    .paypal-container.ready {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     .paypal-loading {
@@ -310,13 +322,11 @@
       text-align: center;
       color: var(--secondary-text);
       font-size: 14px;
+      padding: 20px 0;
+      margin-top: auto;
     }
+    .paypal-loading.active { display: block; }
 
-    .paypal-loading.active {
-      display: block;
-    }
-
-    /* Buttons */
     .btn {
       display: inline-block;
       background: var(--gradient);
@@ -325,15 +335,12 @@
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
       border: none;
       cursor: pointer;
       font-size: 17px;
       width: 100%;
-      box-sizing: border-box;
       text-align: center;
       margin-top: auto;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
 
     .btn:hover {
@@ -341,7 +348,6 @@
       box-shadow: 0 8px 20px rgba(146, 205, 236, 0.4);
     }
 
-    /* Trust Badges */
     .trust-badges {
       display: flex;
       justify-content: center;
@@ -360,7 +366,6 @@
       border: 1px solid var(--border-color);
       border-radius: 50px;
       padding: 8px 16px;
-      backdrop-filter: blur(5px);
     }
 
     .guarantee-banner {
@@ -370,47 +375,18 @@
       padding: 20px;
       margin: 40px auto;
       max-width: 600px;
-      backdrop-filter: blur(5px);
     }
 
-    /* Security Features */
-    .security-features {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px 0;
-    }
-
-    .security-features h3 {
-      color: #10b981;
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-
-    .security-list {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
-
-    .security-list li {
-      display: flex;
-      align-items: center;
+    .error-message {
+      background: rgba(220, 53, 69, 0.1);
+      border: 1px solid rgba(220, 53, 69, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 10px 0;
+      color: #dc3545;
       font-size: 14px;
-      color: var(--secondary-text);
     }
 
-    .security-list li:before {
-      content: '✓';
-      color: #10b981;
-      font-weight: bold;
-      margin-right: 10px;
-    }
-
-    /* Footer */
     footer {
       padding: 40px 20px;
       background-color: rgba(9, 6, 3, 0.9);
@@ -418,18 +394,9 @@
       font-size: 14px;
       color: #777;
       border-top: 1px solid var(--border-color);
-      backdrop-filter: blur(10px);
-      flex-shrink: 0;
-      width: 100%;
     }
+    footer a { color: #ccc; text-decoration: underline; margin: 0 8px; }
 
-    footer a {
-      color: #ccc;
-      text-decoration: underline;
-      margin: 0 8px;
-    }
-
-    /* Security Badge */
     .security-badge {
       position: fixed;
       bottom: 10px;
@@ -441,67 +408,18 @@
       font-size: 10px;
       color: #10b981;
       z-index: 1000;
-      backdrop-filter: blur(10px);
-    }
-
-    /* Loading States */
-    .loading {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .loading::after {
-      content: 'Processing...';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      z-index: 10;
-    }
-
-    /* Error States */
-    .error-message {
-      background: rgba(220, 53, 69, 0.1);
-      border: 1px solid rgba(220, 53, 69, 0.3);
-      border-radius: 8px;
-      padding: 12px;
-      margin: 10px 0;
-      color: #dc3545;
-      font-size: 14px;
     }
 
     @media (max-width: 768px) {
-      .pricing-toggle {
-        flex-direction: column;
-        border-radius: 12px;
-      }
-      
-      .payment-options {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-      }
-      
-      body {
-        padding-top: 70px;
-      }
-      
-      footer {
-        padding: 30px 15px;
-      }
-
-      .security-list {
-        grid-template-columns: 1fr;
-      }
+      .pricing-toggle { flex-direction: column; border-radius: 12px; }
+      .payment-options { grid-template-columns: 1fr; max-width: 400px; }
+      body { padding-top: 70px; }
+      .test-toggle { bottom: 10px; left: 10px; padding: 10px 14px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
   <div class="main-content">
-    <!-- Nav - Fixed -->
     <nav class="glass-panel">
       <div><img src="3CH0_logo_transparent_fixed.png" alt="3CH0 Logo" class="logo-img"></div>
       <div>
@@ -511,12 +429,18 @@
       </div>
     </nav>
 
-    <!-- Main -->
     <div class="container">
       <h1>Complete Your Purchase</h1>
       <p>Choose your preferred billing cycle for the Agency Pro Plan</p>
 
-      <!-- Enhanced Pricing Toggle -->
+      <div class="test-mode-banner" id="test-mode-banner">
+        ⚠️ SANDBOX MODE - No real charges. Use PayPal test credentials.
+      </div>
+
+      <div class="zar-notice" id="zar-notice">
+        <strong>🇿🇦 South African Customers:</strong> Bank invoice is currently the only payment option. More local methods coming soon!
+      </div>
+
       <div class="pricing-toggle">
         <div class="toggle-option active" id="annual-option" onclick="AgencyCheckoutManager.switchPlan('annual')">
           <div>Annual</div>
@@ -530,133 +454,164 @@
         </div>
       </div>
       
-      <br>
-      <br>
+      <br><br>
 
-      <div class="payment-options">
-        <!-- PayPal Payment Card -->
-        <div class="payment-card highlighted">
+      <div class="payment-options" id="payment-options">
+        <div class="payment-card highlighted" id="paypal-card">
           <div style="text-align: center; margin-bottom: 24px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="height: 34px;">
             <div class="dynamic-price" id="paypal-price">$948</div>
             <div class="price-note" id="paypal-note">$79/month billed annually</div>
           </div>
-          
-          <!-- PayPal Loading State -->
-          <div class="paypal-loading" id="paypal-loading">
-            Loading secure payment...
-          </div>
-          
-          <!-- PayPal Buttons Container -->
+          <div class="paypal-loading" id="paypal-loading">Loading secure payment...</div>
           <div id="paypal-button-container" class="paypal-container"></div>
-          
-          <!-- PayPal Error Message -->
           <div class="error-message" id="paypal-error" style="display: none;"></div>
         </div>
 
-        <!-- Bank Invoice Option -->
-        <div class="payment-card highlighted">
-          <div style="font-size: 48px; margin-bottom: 24px;">🏦</div>
-          <div class="dynamic-price" id="bank-price">$948</div>
-          <div class="price-note" id="bank-note">$79/month billed annually</div>
+        <div class="payment-card highlighted" id="bank-card">
+          <div style="font-size: 48px; margin-bottom: 24px; text-align: center;">🏦</div>
+          <div class="dynamic-price" id="bank-price" style="text-align: center;">$948</div>
+          <div class="price-note" id="bank-note" style="text-align: center;">$79/month billed annually</div>
           <button class="btn" id="bank-invoice-btn">Request Bank Invoice</button>
-          <p style="font-size: 14px; color: var(--secondary-text); margin-top: 16px;">Traditional bank transfer</p>
+          <p style="font-size: 14px; color: var(--secondary-text); margin-top: 16px; text-align: center;">Traditional bank transfer</p>
         </div>
       </div>
 
-      <br>
-      <br>
+      <br><br>
 
-      <!-- Trust Badges -->
       <div class="trust-badges">
-        <div class="trust-badge">
-          <span>🔒</span> <span>256-bit Encryption</span>
-        </div>
-        <div class="trust-badge">
-          <span>🔄</span> <span>Cancel Anytime</span>
-        </div>
-        <div class="trust-badge">
-          <span>👍</span> <span>500+ Agencies Trust Us</span>
-        </div>
+        <div class="trust-badge"><span>🔒</span> <span>256-bit Encryption</span></div>
+        <div class="trust-badge"><span>🔄</span> <span>Cancel Anytime</span></div>
+        <div class="trust-badge"><span>👍</span> <span>500+ Agencies Trust Us</span></div>
       </div>
 
-      <!-- Guarantee Banner -->
       <div class="guarantee-banner">
         <h3 style="margin-top: 0; color: #92cdec;">7-Day Money Back Guarantee</h3>
         <p style="margin-bottom: 0;">If you're not satisfied within your first week, we'll refund 100% of your payment. No questions asked.</p>
       </div>
 
-      <!-- Live Support CTA -->
       <div style="margin-top: 40px;">
         <p>Need help deciding? <a href="https://discord.gg/W5SrbqK7j3" style="color: #92cdec; text-decoration: underline;">Chat with our team</a> in real-time.</p>
       </div>
     </div>
   </div>
 
-  <!-- Footer - At Bottom -->
   <footer>
     &copy; 2025 3CH0 Compliance. All rights reserved.<br>
     <a href="settings.html">Privacy & Terms</a> |
-    <a href="mailto:3CH0.The.Only@gmail.com">Support</a> |
+    <a href="mailto:support@3ch0.com">Support</a> |
     <a href="https://discord.gg/W5SrbqK7j3" target="_blank">Join the Community</a>
   </footer>
 
-  <!-- Security Badge -->
+  <div class="test-toggle" id="test-toggle">
+    <label>
+      <input type="checkbox" id="sandbox-toggle" onchange="AgencyCheckoutManager.toggleTestMode()">
+      <span>🧪 Test Mode</span>
+    </label>
+    <span class="hint">Test payments without<br>real charges</span>
+  </div>
+
   <div class="security-badge">🔒 Secure</div>
 
-  <!-- Agency Checkout Manager Script -->
   <script>
     const AgencyCheckoutManager = {
-        // Fixed prices by currency (no plan IDs here)
+        // PayPal Client IDs
+        LIVE_CLIENT_ID: 'AVTshKcvivgfNuXQ5m8wQDY2mpa1yOyslAIETs2qOK5jSnQKOQP0ZQE9mh8eBI_klGTKdri4tgLVNWnB',
+        SANDBOX_CLIENT_ID: 'sb', // Replace with your sandbox client ID from developer.paypal.com
+        
         FIXED_PRICES: {
-            USD: {
-                annual: 948.00,
-                monthly: 99.00,
-                symbol: '$',
-                note: {
-                    annual: '/month billed annually',
-                    monthly: 'billed monthly'
-                }
-            },
-            EUR: {
-                annual: 828.00,
-                monthly: 89.00,
-                symbol: '€',
-                note: {
-                    annual: '/month billed annually',
-                    monthly: 'billed monthly'
-                }
-            },
-            GBP: {
-                annual: 708.00,
-                monthly: 79.00,
-                symbol: '£',
-                note: {
-                    annual: '/month billed annually',
-                    monthly: 'billed monthly'
-                }
-            },
-            ZAR: {
-                annual: 13200.00,
-                monthly: 1899.00,
-                symbol: 'R',
-                note: {
-                    annual: '/month billed annually',
-                    monthly: 'billed monthly'
-                }
-            }
+            USD: { annual: 948.00, monthly: 99.00, symbol: '$', note: { annual: '/month billed annually', monthly: 'billed monthly' }},
+            EUR: { annual: 828.00, monthly: 89.00, symbol: '€', note: { annual: '/month billed annually', monthly: 'billed monthly' }},
+            GBP: { annual: 708.00, monthly: 79.00, symbol: '£', note: { annual: '/month billed annually', monthly: 'billed monthly' }},
+            ZAR: { annual: 13200.00, monthly: 1899.00, symbol: 'R', note: { annual: '/month billed annually', monthly: 'billed monthly' }}
         },
 
         currentPlan: 'annual',
         currentCurrency: 'USD',
         makeWebhookUrl: 'https://hook.us2.make.com/1uatntmkvmo8rsn9nj0mq7l7q5ozkcl6',
         paypalButtons: null,
+        isTestMode: false,
+        sdkLoaded: false,
 
         init() {
             this.loadUserPreferences();
             this.setupEventListeners();
             this.updatePrices();
-            this.initializePayPal();
+            
+            this.isTestMode = localStorage.getItem('paypalTestMode') === 'true';
+            document.getElementById('sandbox-toggle').checked = this.isTestMode;
+            this.updateTestModeBanner();
+            
+            this.handleCurrencyVisibility();
+        },
+
+        toggleTestMode() {
+            this.isTestMode = document.getElementById('sandbox-toggle').checked;
+            localStorage.setItem('paypalTestMode', this.isTestMode);
+            this.updateTestModeBanner();
+            
+            if (this.currentCurrency !== 'ZAR') {
+                this.loadPayPalSDK();
+            }
+        },
+
+        updateTestModeBanner() {
+            document.getElementById('test-mode-banner').classList.toggle('active', this.isTestMode);
+        },
+
+        handleCurrencyVisibility() {
+            const paypalCard = document.getElementById('paypal-card');
+            const paymentOptions = document.getElementById('payment-options');
+            const zarNotice = document.getElementById('zar-notice');
+            const testToggle = document.getElementById('test-toggle');
+            
+            if (this.currentCurrency === 'ZAR') {
+                paypalCard.style.display = 'none';
+                paymentOptions.classList.add('single-option');
+                zarNotice.classList.add('visible');
+                testToggle.style.display = 'none';
+            } else {
+                paypalCard.style.display = '';
+                paymentOptions.classList.remove('single-option');
+                zarNotice.classList.remove('visible');
+                testToggle.style.display = '';
+                this.loadPayPalSDK();
+            }
+        },
+
+        loadPayPalSDK() {
+            const existingScript = document.querySelector('script[src*="paypal.com/sdk"]');
+            if (existingScript) existingScript.remove();
+
+            const container = document.getElementById('paypal-button-container');
+            if (container) container.innerHTML = '';
+            
+            this.sdkLoaded = false;
+            if (this.paypalButtons) {
+                try { this.paypalButtons.close(); } catch(e) {}
+                this.paypalButtons = null;
+            }
+
+            this.showPayPalLoading(true);
+
+            const clientId = this.isTestMode ? this.SANDBOX_CLIENT_ID : this.LIVE_CLIENT_ID;
+            // Only disable paylater and other regional methods - keep PayPal and Card
+            const sdkUrl = `https://www.paypal.com/sdk/js?client-id=${clientId}&vault=true&intent=subscription&components=buttons&disable-funding=paylater,venmo,sepa,bancontact,eps,giropay,ideal,mybank,p24,sofort`;
+            
+            const script = document.createElement('script');
+            script.src = sdkUrl;
+            script.async = true;
+            
+            script.onload = () => {
+                this.sdkLoaded = true;
+                this.initializePayPal();
+            };
+            
+            script.onerror = () => {
+                this.showPayPalError('Failed to load payment system. Please refresh.');
+            };
+            
+            document.head.appendChild(script);
         },
 
         loadUserPreferences() {
@@ -664,7 +619,6 @@
                 const savedCountry = localStorage.getItem('userCountry') || 'US';
                 const savedCurrency = localStorage.getItem('userCurrency') || 'USD';
                 
-                // Map country to currency
                 const euroCountries = ['DE','FR','IT','ES','NL','BE','IE','PT','AT'];
                 if (euroCountries.includes(savedCountry)) {
                     this.currentCurrency = 'EUR';
@@ -675,277 +629,199 @@
                 } else {
                     this.currentCurrency = savedCurrency;
                 }
-
             } catch (error) {
-                console.error('Error loading user preferences:', error);
                 this.currentCurrency = 'USD';
             }
         },
 
         setupEventListeners() {
-            // Bank invoice button tracking - UPDATED TO PASS PLAN PARAMETER
-            const bankInvoiceBtn = document.getElementById('bank-invoice-btn');
-            if (bankInvoiceBtn) {
-                bankInvoiceBtn.addEventListener('click', (e) => {
-                    // Navigate to bank invoice with current plan as parameter
-                    const params = new URLSearchParams({
-                        plan: this.currentPlan
-                    });
-                    window.location.href = `bank-invoice.html?${params.toString()}`;
-                });
-            }
+            document.getElementById('bank-invoice-btn').addEventListener('click', () => {
+                const params = new URLSearchParams({ plan: this.currentPlan });
+                window.location.href = `bank-invoice.html?${params.toString()}`;
+            });
         },
 
         switchPlan(plan) {
             this.currentPlan = plan;
-            
-            // Update UI
             document.getElementById('annual-option').classList.toggle('active', plan === 'annual');
             document.getElementById('monthly-option').classList.toggle('active', plan === 'monthly');
-            
-            // Update prices and PayPal buttons
             this.updatePrices();
-            this.renderPayPalButtons();
-
-            // Save plan to localStorage for consistency
+            if (this.sdkLoaded && this.currentCurrency !== 'ZAR') {
+                this.renderPayPalButtons();
+            }
             localStorage.setItem('selectedPlan', plan);
-
-            console.log('Plan switched to:', plan, 'Currency:', this.currentCurrency);
         },
 
         updatePrices() {
             const prices = this.FIXED_PRICES[this.currentCurrency];
-            
-            if (!prices) {
-                console.error('No prices found for currency:', this.currentCurrency);
-                return;
-            }
+            if (!prices) return;
 
-            // Update toggle prices
-            document.getElementById('annual-price').textContent = 
-                this.formatPrice(prices.annual, this.currentCurrency);
-            document.getElementById('monthly-price').textContent = 
-                this.formatPrice(prices.monthly, this.currentCurrency);
+            document.getElementById('annual-price').textContent = this.formatPrice(prices.annual, this.currentCurrency);
+            document.getElementById('monthly-price').textContent = this.formatPrice(prices.monthly, this.currentCurrency);
             
-            // Update payment card prices
-            if(this.currentPlan === 'annual') {
-                document.getElementById('paypal-price').textContent = 
-                    this.formatPrice(prices.annual, this.currentCurrency);
-                document.getElementById('paypal-note').textContent = 
-                    `${this.formatPrice(prices.annual/12, this.currentCurrency)}${prices.note.annual}`;
-                
-                document.getElementById('bank-price').textContent = 
-                    this.formatPrice(prices.annual, this.currentCurrency);
-                document.getElementById('bank-note').textContent = 
-                    `${this.formatPrice(prices.annual/12, this.currentCurrency)}${prices.note.annual}`;
-            } else {
-                document.getElementById('paypal-price').textContent = 
-                    this.formatPrice(prices.monthly, this.currentCurrency);
-                document.getElementById('paypal-note').textContent = 
-                    prices.note.monthly;
-                
-                document.getElementById('bank-price').textContent = 
-                    this.formatPrice(prices.monthly, this.currentCurrency);
-                document.getElementById('bank-note').textContent = 
-                    prices.note.monthly;
-            }
+            const isAnnual = this.currentPlan === 'annual';
+            const amount = isAnnual ? prices.annual : prices.monthly;
+            const note = isAnnual ? `${this.formatPrice(prices.annual/12, this.currentCurrency)}${prices.note.annual}` : prices.note.monthly;
+
+            document.getElementById('paypal-price').textContent = this.formatPrice(amount, this.currentCurrency);
+            document.getElementById('paypal-note').textContent = note;
+            document.getElementById('bank-price').textContent = this.formatPrice(amount, this.currentCurrency);
+            document.getElementById('bank-note').textContent = note;
         },
 
         formatPrice(amount, currency) {
-            const sanitizedAmount = Math.abs(parseFloat(amount) || 0);
-            const symbol = this.FIXED_PRICES[currency].symbol;
-            
-            if (currency === 'ZAR') {
-                return `${symbol}${sanitizedAmount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`;
-            }
-            return `${symbol}${sanitizedAmount.toFixed(2)}`;
+            const val = Math.abs(parseFloat(amount) || 0);
+            const sym = this.FIXED_PRICES[currency].symbol;
+            return currency === 'ZAR' ? `${sym}${val.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}` : `${sym}${val.toFixed(2)}`;
         },
 
         initializePayPal() {
             if (typeof paypal === 'undefined') {
-                this.showPayPalError('Payment system loading...');
-                setTimeout(() => this.initializePayPal(), 1000);
+                setTimeout(() => this.initializePayPal(), 500);
                 return;
             }
-
-            this.showPayPalLoading(true);
-            
             try {
                 this.renderPayPalButtons();
                 this.showPayPalLoading(false);
-                
-                console.log('PayPal initialized for:', this.currentCurrency, this.currentPlan);
             } catch (error) {
                 this.showPayPalError('Failed to initialize payment system');
-                console.error('PayPal initialization error:', error);
             }
         },
 
         renderPayPalButtons() {
-            // Destroy previous buttons if they exist
             if (this.paypalButtons) {
-                try {
-                    this.paypalButtons.close();
-                } catch (error) {
-                    console.warn('Error closing previous PayPal buttons:', error);
-                }
+                try { this.paypalButtons.close(); } catch (e) {}
             }
+
+            document.getElementById('paypal-button-container').innerHTML = '';
 
             try {
                 this.paypalButtons = paypal.Buttons({
                     style: { 
-                        shape: 'pill',
+                        shape: 'pill', 
                         color: 'blue',
                         label: 'subscribe',
-                        layout: 'vertical'
+                        layout: 'vertical',
+                        tagline: false
                     },
-                    createSubscription: (data, actions) => {
-                        // Instead of hardcoded plan IDs, we'll send the request to Make
-                        // Make will handle the actual PayPal Plan ID mapping
-                        return this.handleSubscriptionCreation(data, actions);
-                    },
-                    onApprove: (data) => {
-                        // Send approval data to Make for processing
-                        this.handleSubscriptionApproval(data);
+                    createSubscription: (data, actions) => this.handleSubscriptionCreation(data, actions),
+                    onApprove: async (data, actions) => {
+                        try {
+                            const subscription = await actions.subscription.get();
+                            this.handleSubscriptionApproval(data, subscription);
+                        } catch (e) {
+                            this.handleSubscriptionApproval(data, null);
+                        }
                     },
                     onError: (err) => {
-                        console.error('PayPal subscription error:', err);
                         this.showPayPalError('Payment failed. Please try again or use bank transfer.');
                     },
-                    onCancel: (data) => {
-                        console.log('PayPal subscription cancelled by user');
-                    }
+                    onCancel: () => {}
                 });
-
                 this.paypalButtons.render('#paypal-button-container');
-                
             } catch (error) {
                 this.showPayPalError('Failed to load payment options');
-                console.error('PayPal render error:', error);
             }
         },
 
         async handleSubscriptionCreation(data, actions) {
-            // Send subscription request to Make webhook
             const subscriptionData = {
                 action: 'create_subscription',
                 plan_type: this.currentPlan,
                 currency: this.currentCurrency,
-                amount: this.currentPlan === 'annual' ? 
-                    this.FIXED_PRICES[this.currentCurrency].annual : 
-                    this.FIXED_PRICES[this.currentCurrency].monthly,
+                amount: this.currentPlan === 'annual' ? this.FIXED_PRICES[this.currentCurrency].annual : this.FIXED_PRICES[this.currentCurrency].monthly,
                 user_country: localStorage.getItem('userCountry') || 'unknown',
+                is_test_mode: this.isTestMode,
                 timestamp: new Date().toISOString()
             };
 
             try {
                 const response = await fetch(this.makeWebhookUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(subscriptionData)
                 });
 
                 if (response.ok) {
                     const result = await response.json();
-                    
-                    // Make should return the actual PayPal Plan ID
                     if (result.paypal_plan_id) {
-                        return actions.subscription.create({
-                            plan_id: result.paypal_plan_id
-                        });
-                    } else {
-                        throw new Error('No PayPal Plan ID returned from server');
+                        return actions.subscription.create({ plan_id: result.paypal_plan_id });
                     }
-                } else {
-                    throw new Error('Server responded with error status');
+                    throw new Error('No PayPal Plan ID returned');
                 }
+                throw new Error('Server error');
             } catch (error) {
-                console.error('Error creating subscription:', error);
                 this.showPayPalError('Unable to process payment. Please try bank transfer.');
                 throw error;
             }
         },
 
-        async handleSubscriptionApproval(data) {
-            // Send approval data to Make for processing
+        async handleSubscriptionApproval(data, subscriptionDetails) {
+            let customerEmail = '', customerName = '', payerID = data.payerID || '';
+            
+            if (subscriptionDetails && subscriptionDetails.subscriber) {
+                customerEmail = subscriptionDetails.subscriber.email_address || '';
+                if (subscriptionDetails.subscriber.name) {
+                    customerName = `${subscriptionDetails.subscriber.name.given_name || ''} ${subscriptionDetails.subscriber.name.surname || ''}`.trim();
+                }
+                payerID = subscriptionDetails.subscriber.payer_id || payerID;
+            }
+
             const approvalData = {
                 action: 'subscription_approved',
                 subscription_id: data.subscriptionID,
+                payer_id: payerID,
+                customer_email: customerEmail,
+                customer_name: customerName,
                 plan_type: this.currentPlan,
+                plan_name: 'Agency Pro',
                 currency: this.currentCurrency,
-                amount: this.currentPlan === 'annual' ? 
-                    this.FIXED_PRICES[this.currentCurrency].annual : 
-                    this.FIXED_PRICES[this.currentCurrency].monthly,
+                amount: this.currentPlan === 'annual' ? this.FIXED_PRICES[this.currentCurrency].annual : this.FIXED_PRICES[this.currentCurrency].monthly,
                 user_country: localStorage.getItem('userCountry') || 'unknown',
+                status: 'active',
+                is_test_mode: this.isTestMode,
                 timestamp: new Date().toISOString()
             };
 
             try {
-                const response = await fetch(this.makeWebhookUrl, {
+                await fetch(this.makeWebhookUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(approvalData)
                 });
+            } catch (e) {}
 
-                if (response.ok) {
-                    // Update user plan in localStorage
-                    localStorage.setItem('userPlan', 'agency-pro');
-                    
-                    // Reset counters to infinite
-                    const now = new Date();
-                    const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
-                    localStorage.setItem(storageKey, '∞');
-                    
-                    // Redirect to success page
-                    window.location.href = "/thank-you-paid.html";
-                } else {
-                    throw new Error('Failed to process subscription approval');
-                }
-            } catch (error) {
-                console.error('Error processing subscription approval:', error);
-                // Still redirect but log the error
-                localStorage.setItem('userPlan', 'agency-pro');
-                window.location.href = "/thank-you-paid.html";
-            }
+            localStorage.setItem('userPlan', 'agency-pro');
+            const now = new Date();
+            localStorage.setItem(`submissions-${now.getMonth()}-${now.getFullYear()}`, '∞');
+            window.location.href = "/thank-you-paid.html";
         },
 
         showPayPalLoading(show) {
-            const loadingElement = document.getElementById('paypal-loading');
-            const containerElement = document.getElementById('paypal-button-container');
-            
-            if (loadingElement) {
-                loadingElement.classList.toggle('active', show);
-            }
-            if (containerElement) {
-                containerElement.style.display = show ? 'none' : 'block';
+            document.getElementById('paypal-loading').classList.toggle('active', show);
+            const container = document.getElementById('paypal-button-container');
+            if (show) {
+                container.classList.remove('ready');
+            } else {
+                container.classList.add('ready');
             }
         },
 
         showPayPalError(message) {
-            const errorElement = document.getElementById('paypal-error');
-            if (errorElement) {
-                errorElement.textContent = message;
-                errorElement.style.display = 'block';
-            }
+            const el = document.getElementById('paypal-error');
+            el.textContent = message;
+            el.style.display = 'block';
             this.showPayPalLoading(false);
         }
     };
 
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        AgencyCheckoutManager.init();
-    });
+    document.addEventListener('DOMContentLoaded', () => AgencyCheckoutManager.init());
 
-    // Handle storage changes (currency updates from settings)
-    window.addEventListener('storage', function(e) {
+    window.addEventListener('storage', (e) => {
         if (e.key === 'userCurrency' || e.key === 'userCountry') {
             AgencyCheckoutManager.loadUserPreferences();
             AgencyCheckoutManager.updatePrices();
-            AgencyCheckoutManager.renderPayPalButtons();
+            AgencyCheckoutManager.handleCurrencyVisibility();
         }
     });
   </script>
