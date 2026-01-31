@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIPAA Audit Documentation - {{1.company}}</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
         h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
-        h2 { color: #0069d9; margin-top: 25px; }
-        .section { margin-bottom: 30px; }
-        ul { margin: 15px 0; padding-left: 25px; }
-        li { margin-bottom: 8px; }
+        h2 { color: #0069d9; margin-top: 25px; page-break-after: avoid; }
+        h3 { color: #2980b9; }
         .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
         .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
         .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
         .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
-        .audit-section { background-color: #f8fdff; padding: 25px; margin: 25px 0; border-radius: 10px; border-left: 5px solid #92cdec; }
-        .checklist { background-color: #f0f8ff; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .audit-section { background-color: #f8fdff; padding: 25px; margin: 25px 0; border-radius: 10px; border-left: 5px solid #92cdec; page-break-inside: avoid; }
         .status { display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 12px; }
         .compliant { background-color: #d4edda; color: #155724; }
+        .compliance-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .compliance-table th, .compliance-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .compliance-table th { background-color: #0069d9; color: white; }
+        .compliance-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .evidence-box { background-color: #e8f4fc; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px dashed #0069d9; }
+        .signature-area { margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px; }
         @media print { .download-section { display: none !important; } }
     </style>
 </head>
@@ -31,99 +34,198 @@
     <div class="document-header">
         <div class="company-name">{{1.company}}</div>
         <p>Audit Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p>Document Retention: 6 years from date of creation (per 45 CFR §164.530(j))</p>
     </div>
 
-    <h1>HIPAA Audit Ready Documentation</h1>
+    <h1>HIPAA Compliance Audit Documentation</h1>
 
     <div class="audit-section">
         <h2>Executive Summary</h2>
-        <p><strong>Overall Status:</strong> <span class="status compliant">COMPLIANT</span></p>
-        <p><strong>Entity Type:</strong> {{1.covered_entity_type}}</p>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-        <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
+        <table class="compliance-table">
+            <tr><td><strong>Organization:</strong></td><td>{{1.company}}</td></tr>
+            <tr><td><strong>Entity Type:</strong></td><td>{{1.covered_entity_type}}</td></tr>
+            <tr><td><strong>Privacy Officer:</strong></td><td>{{1.privacy_officer}}</td></tr>
+            <tr><td><strong>Security Officer:</strong></td><td>{{1.security_officer}}</td></tr>
+            <tr><td><strong>Overall Status:</strong></td><td><span class="status compliant">COMPLIANT</span></td></tr>
+        </table>
     </div>
 
     <div class="audit-section">
         <h2>1. Organization Information</h2>
-        <div class="checklist">
-            <p><strong>Organization:</strong> {{1.company}}</p>
-            <p><strong>Address:</strong> {{1.company_address}}</p>
-            <p><strong>Phone:</strong> {{1.phone_number}}</p>
-            <p><strong>Website:</strong> {{1.website_url}}</p>
-            <p><strong>Email:</strong> {{1.email}}</p>
-            <p><strong>Industry:</strong> {{1.industry}}</p>
-        </div>
+        <p><strong>Legal Name:</strong> {{1.company}}</p>
+        <p><strong>Address:</strong> {{1.company_address}}</p>
+        <p><strong>Phone:</strong> {{1.phone_number}}</p>
+        <p><strong>Website:</strong> {{1.website_url}}</p>
+        <p><strong>Email:</strong> {{1.email}}</p>
+        <p><strong>Patient Volume:</strong> {{1.patient_volume}}</p>
+        <p><strong>PHI Types:</strong> {{1.phi_types}}</p>
     </div>
 
     <div class="audit-section">
-        <h2>2. Privacy Rule Compliance</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">COMPLIANT</span></p>
-            <p><strong>Notice of Privacy Practices:</strong> Published</p>
-            <p><strong>PHI Types:</strong> {{1.phi_types}}</p>
-            <p><strong>Patient Volume:</strong> {{1.patient_volume}}</p>
-        </div>
+        <h2>2. Privacy Rule Compliance (45 CFR Part 164, Subpart E)</h2>
+        <h3>2.1 Notice of Privacy Practices (§164.520)</h3>
+        <table class="compliance-table">
+            <tr><th>Requirement</th><th>Status</th><th>Evidence</th></tr>
+            <tr><td>Notice contains all required elements</td><td><span class="status compliant">✓</span></td><td></td></tr>
+            <tr><td>Notice posted at service delivery site</td><td><span class="status compliant">✓</span></td><td></td></tr>
+            <tr><td>Notice available on website</td><td><span class="status compliant">✓</span></td><td></td></tr>
+            <tr><td>Notice provided to patients</td><td><span class="status compliant">✓</span></td><td></td></tr>
+            <tr><td>Acknowledgement of receipt obtained</td><td><span class="status compliant">✓</span></td><td></td></tr>
+        </table>
+        <h3>2.2 Individual Rights</h3>
+        <table class="compliance-table">
+            <tr><th>Right</th><th>Policy</th><th>Procedure</th></tr>
+            <tr><td>Right to Access (§164.524)</td><td><span class="status compliant">✓</span></td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Right to Amendment (§164.526)</td><td><span class="status compliant">✓</span></td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Right to Accounting (§164.528)</td><td><span class="status compliant">✓</span></td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Right to Restriction (§164.522(a))</td><td><span class="status compliant">✓</span></td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Right to Confidential Communications (§164.522(b))</td><td><span class="status compliant">✓</span></td><td><span class="status compliant">✓</span></td></tr>
+        </table>
     </div>
 
     <div class="audit-section">
-        <h2>3. Security Rule Compliance</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
-            <h3>Administrative Safeguards</h3>
-            <ul>
-                <li>Security Officer Assigned: {{1.security_officer}}</li>
-                <li>Risk Analysis Conducted</li>
-                <li>Workforce Training Program</li>
-            </ul>
-            <h3>Physical Safeguards</h3>
-            <ul>
-                <li>Facility Access Controls</li>
-                <li>Workstation Security</li>
-                <li>Device Controls</li>
-            </ul>
-            <h3>Technical Safeguards</h3>
-            <ul>
-                <li>Access Controls</li>
-                <li>Audit Controls</li>
-                <li>Encryption</li>
-            </ul>
-        </div>
+        <h2>3. Security Rule Compliance (45 CFR Part 164, Subpart C)</h2>
+        <h3>3.1 Administrative Safeguards (§164.308)</h3>
+        <table class="compliance-table">
+            <tr><th>Standard</th><th>Implementation</th><th>Status</th></tr>
+            <tr><td>Security Management Process</td><td>Risk Analysis, Risk Management</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Assigned Security Responsibility</td><td>{{1.security_officer}}</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Workforce Security</td><td>Authorization, clearance procedures</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Information Access Management</td><td>Access authorization</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Security Awareness Training</td><td>{{1.trainer_name}}</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Security Incident Procedures</td><td>Response and reporting</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Contingency Plan</td><td>Backup, disaster recovery</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Evaluation</td><td>Periodic assessment</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Business Associate Contracts</td><td>BAAs in place</td><td><span class="status compliant">✓</span></td></tr>
+        </table>
+        <h3>3.2 Physical Safeguards (§164.310)</h3>
+        <table class="compliance-table">
+            <tr><th>Standard</th><th>Status</th></tr>
+            <tr><td>Facility Access Controls</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Workstation Use</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Workstation Security</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Device and Media Controls</td><td><span class="status compliant">✓</span></td></tr>
+        </table>
+        <h3>3.3 Technical Safeguards (§164.312)</h3>
+        <table class="compliance-table">
+            <tr><th>Standard</th><th>Status</th></tr>
+            <tr><td>Access Control (unique IDs, encryption)</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Audit Controls</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Integrity Controls</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Person/Entity Authentication</td><td><span class="status compliant">✓</span></td></tr>
+            <tr><td>Transmission Security</td><td><span class="status compliant">✓</span></td></tr>
+        </table>
     </div>
 
     <div class="audit-section">
-        <h2>4. Business Associates</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p><strong>Primary Provider:</strong> {{1.service_provider_name}}</p>
-            <p><strong>Business Associates:</strong> {{1.business_associates}}</p>
-            <p><strong>Third Parties:</strong> {{1.thirdparty}}</p>
-            <p>BAAs in place for all business associates.</p>
-        </div>
+        <h2>4. Risk Analysis Documentation (§164.308(a)(1)(ii)(A))</h2>
+        <table class="compliance-table">
+            <tr><th>Assessment Area</th><th>Last Assessed</th><th>Risk Level</th><th>Mitigation Status</th></tr>
+            <tr><td>Physical Security</td><td></td><td></td><td></td></tr>
+            <tr><td>Network Security</td><td></td><td></td><td></td></tr>
+            <tr><td>Access Controls</td><td></td><td></td><td></td></tr>
+            <tr><td>Data Encryption</td><td></td><td></td><td></td></tr>
+            <tr><td>Workforce Training</td><td></td><td></td><td></td></tr>
+            <tr><td>Business Associates</td><td></td><td></td><td></td></tr>
+            <tr><td>Disaster Recovery</td><td></td><td></td><td></td></tr>
+        </table>
+        <div class="evidence-box"><p><strong>Evidence:</strong> [Attach full Risk Analysis Report]</p></div>
     </div>
 
     <div class="audit-section">
-        <h2>5. Training Program</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">ONGOING</span></p>
-            <p><strong>Trainer:</strong> {{1.trainer_name}}</p>
-            <p>Annual HIPAA training for all workforce members.</p>
-        </div>
+        <h2>5. Business Associate Management</h2>
+        <p><strong>Primary Provider:</strong> {{1.service_provider_name}}</p>
+        <p><strong>Business Associates:</strong> {{1.business_associates}}</p>
+        <p><strong>Third Parties:</strong> {{1.thirdparty}}</p>
+        <table class="compliance-table">
+            <tr><th>Business Associate</th><th>BAA Signed</th><th>Effective Date</th><th>Review Date</th></tr>
+            <tr><td>{{1.service_provider_name}}</td><td><span class="status compliant">✓</span></td><td></td><td></td></tr>
+        </table>
     </div>
 
     <div class="audit-section">
-        <h2>6. Breach Notification</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p>Procedures in place for breach identification, notification, and documentation.</p>
-        </div>
+        <h2>6. Workforce Training Records (§164.530(b))</h2>
+        <p><strong>Trainer:</strong> {{1.trainer_name}}</p>
+        <p><strong>Frequency:</strong> Annual + new hire orientation</p>
+        <table class="compliance-table">
+            <tr><th>Employee Name</th><th>Department</th><th>Training Date</th><th>Score</th><th>Acknowledgement</th></tr>
+            <tr><td colspan="5"><em>[Add employee training records]</em></td></tr>
+        </table>
     </div>
 
     <div class="audit-section">
-        <h2>7. Certification</h2>
-        <p>I certify that {{1.company}} has implemented measures to comply with HIPAA.</p>
-        <p><strong>Certified By:</strong> {{1.authorized_signatory}}</p>
-        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
-        <p><strong>Signature:</strong> _________________________</p>
+        <h2>7. Complaint Log (§164.530(d))</h2>
+        <table class="compliance-table">
+            <tr><th>Date</th><th>Complainant</th><th>Nature</th><th>Status</th><th>Resolution</th><th>Closed</th></tr>
+            <tr><td colspan="6"><em>[No complaints / Add records]</em></td></tr>
+        </table>
+    </div>
+
+    <div class="audit-section">
+        <h2>8. Disclosure Accounting Log (§164.528)</h2>
+        <p>Tracks disclosures outside of treatment, payment, and healthcare operations (6-year retention).</p>
+        <table class="compliance-table">
+            <tr><th>Date</th><th>Patient</th><th>Recipient</th><th>Purpose</th><th>PHI Disclosed</th></tr>
+            <tr><td colspan="5"><em>[Add disclosure records]</em></td></tr>
+        </table>
+    </div>
+
+    <div class="audit-section">
+        <h2>9. Sanction Log (§164.530(e))</h2>
+        <table class="compliance-table">
+            <tr><th>Date</th><th>Employee</th><th>Violation</th><th>Sanction Applied</th></tr>
+            <tr><td colspan="4"><em>[No sanctions / Add records]</em></td></tr>
+        </table>
+    </div>
+
+    <div class="audit-section">
+        <h2>10. Breach Notification Log (§164.400-414)</h2>
+        <table class="compliance-table">
+            <tr><th>Discovered</th><th>Reported</th><th>Description</th><th>Individuals</th><th>Notifications</th><th>HHS</th></tr>
+            <tr><td colspan="6"><em>[No breaches / Add records]</em></td></tr>
+        </table>
+    </div>
+
+    <div class="audit-section">
+        <h2>11. Mitigation Documentation (§164.530(f))</h2>
+        <table class="compliance-table">
+            <tr><th>Date</th><th>Incident</th><th>Harmful Effect</th><th>Mitigation Steps</th><th>Outcome</th></tr>
+            <tr><td colspan="5"><em>[Add mitigation records]</em></td></tr>
+        </table>
+    </div>
+
+    <div class="audit-section">
+        <h2>12. Policies and Procedures Inventory (§164.530(i))</h2>
+        <table class="compliance-table">
+            <tr><th>Document</th><th>Version</th><th>Last Updated</th><th>Next Review</th></tr>
+            <tr><td>Notice of Privacy Practices</td><td></td><td></td><td></td></tr>
+            <tr><td>Privacy Policies</td><td></td><td></td><td></td></tr>
+            <tr><td>Security Policies</td><td></td><td></td><td></td></tr>
+            <tr><td>Breach Notification Procedure</td><td></td><td></td><td></td></tr>
+            <tr><td>Business Associate Agreement Template</td><td></td><td></td><td></td></tr>
+            <tr><td>Authorization Forms</td><td></td><td></td><td></td></tr>
+            <tr><td>Training Materials</td><td></td><td></td><td></td></tr>
+            <tr><td>Sanction Policy</td><td></td><td></td><td></td></tr>
+            <tr><td>Risk Analysis</td><td></td><td></td><td></td></tr>
+            <tr><td>Contingency/Disaster Recovery Plan</td><td></td><td></td><td></td></tr>
+        </table>
+        <p><strong>Retention:</strong> 6 years from creation or last effective date</p>
+    </div>
+
+    <div class="signature-area">
+        <h2>13. Audit Certification</h2>
+        <p>I certify that {{1.company}} has implemented policies, procedures, and safeguards designed to comply with HIPAA.</p>
+        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}<br>Signature: _________________________ Date: _____________</p>
+        <p><strong>Security Officer:</strong> {{1.security_officer}}<br>Signature: _________________________ Date: _____________</p>
+        <p><strong>Authorized Representative:</strong> {{1.authorized_signatory}}<br>Signature: _________________________ Date: _____________</p>
+    </div>
+
+    <div class="audit-section">
+        <h2>14. Remediation Plan</h2>
+        <table class="compliance-table">
+            <tr><th>Finding</th><th>Priority</th><th>Action</th><th>Responsible</th><th>Target Date</th><th>Status</th></tr>
+            <tr><td colspan="6"><em>[Add findings]</em></td></tr>
+        </table>
     </div>
 
     <div class="download-section">
