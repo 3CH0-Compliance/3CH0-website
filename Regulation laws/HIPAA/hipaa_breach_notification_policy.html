@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Notification Policy - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .section { margin-bottom: 25px; }
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .important { background-color: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; }
+        .timeline { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .key-point { background-color: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; }
+        .info-box { background-color: #e8f4fc; border-left: 4px solid #0069d9; padding: 15px; margin: 15px 0; }
+        .flowchart { background-color: #f8f9fa; padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid #ddd; }
+        .step { background-color: #fff; border: 2px solid #0069d9; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .step-number { background-color: #0069d9; color: white; padding: 5px 12px; border-radius: 50%; font-weight: bold; margin-right: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #0069d9; color: white; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top:15px;font-size:14px;color:#666;">Select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p>Effective Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
+    </div>
+
+    <h1>Breach Notification Policy and Procedures</h1>
+    <p style="text-align: center; color: #666;">Pursuant to 45 CFR Part 164, Subpart D (§§164.400-414)</p>
+
+    <div class="section">
+        <h2>1. Purpose</h2>
+        <p>This policy establishes procedures for identifying, investigating, and responding to breaches of unsecured Protected Health Information (PHI) in compliance with the HIPAA Breach Notification Rule. {{1.company}} is committed to protecting the privacy and security of all PHI and to promptly notifying affected individuals, the U.S. Department of Health and Human Services (HHS), and when required, the media, in the event of a breach.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Scope</h2>
+        <p>This policy applies to all workforce members of {{1.company}}, including employees, volunteers, trainees, contractors, and any other persons whose conduct is under the direct control of {{1.company}}. This policy also applies to all Business Associates through their Business Associate Agreements.</p>
+    </div>
+
+    <div class="section">
+        <h2>3. Definitions</h2>
+        
+        <h3>3.1 Breach</h3>
+        <p>The acquisition, access, use, or disclosure of PHI in a manner not permitted under the HIPAA Privacy Rule which compromises the security or privacy of the PHI.</p>
+        
+        <div class="info-box">
+            <p><strong>Presumption of Breach:</strong> An impermissible use or disclosure of PHI is presumed to be a breach unless {{1.company}} demonstrates that there is a low probability that the PHI has been compromised based on a risk assessment.</p>
+        </div>
+
+        <h3>3.2 Unsecured PHI</h3>
+        <p>PHI that is not rendered unusable, unreadable, or indecipherable to unauthorized persons through:</p>
+        <ul>
+            <li><strong>Encryption:</strong> Using an algorithmic process that meets NIST standards</li>
+            <li><strong>Destruction:</strong> Paper records shredded or destroyed; electronic media cleared, purged, or destroyed per NIST guidelines</li>
+        </ul>
+
+        <h3>3.3 Compromise</h3>
+        <p>The PHI is compromised when its security or privacy has been placed at risk.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. Breach Risk Assessment</h2>
+        <p>Upon discovery of an impermissible use or disclosure, {{1.company}} shall conduct a risk assessment considering at least the following factors:</p>
+        
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Assessment Questions</th>
+            </tr>
+            <tr>
+                <td><strong>1. Nature and Extent of PHI</strong></td>
+                <td>What types of identifiers were involved? What is the likelihood of re-identification? Does it include sensitive information (SSN, financial, clinical)?</td>
+            </tr>
+            <tr>
+                <td><strong>2. Unauthorized Person</strong></td>
+                <td>Who received or accessed the PHI? Are they obligated to protect it (e.g., another covered entity)?</td>
+            </tr>
+            <tr>
+                <td><strong>3. Actual Acquisition/Viewing</strong></td>
+                <td>Was the PHI actually acquired or viewed? Or was there only an opportunity for access?</td>
+            </tr>
+            <tr>
+                <td><strong>4. Extent of Mitigation</strong></td>
+                <td>What steps were taken to mitigate risk? Was the PHI returned or destroyed? Were assurances obtained?</td>
+            </tr>
+        </table>
+
+        <div class="key-point">
+            <p><strong>Documentation Required:</strong> All risk assessments must be documented, including the factors considered, the determination reached, and the rationale. This documentation must be retained for six (6) years.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. Exceptions to Breach Definition</h2>
+        <p>The following do NOT constitute a breach:</p>
+        <ol>
+            <li><strong>Unintentional Acquisition:</strong> Made in good faith, within the scope of authority, and not further impermissibly used or disclosed</li>
+            <li><strong>Inadvertent Disclosure:</strong> Between authorized persons at the same covered entity or business associate, and not further impermissibly used or disclosed</li>
+            <li><strong>Good Faith Belief:</strong> The unauthorized person to whom the disclosure was made would not reasonably have been able to retain the information</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>6. Breach Response Procedures</h2>
+        
+        <div class="flowchart">
+            <h3>Breach Response Workflow</h3>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>DISCOVERY</strong>
+                <p>Workforce member discovers potential breach → Immediately report to Privacy Officer or Security Officer</p>
+                <p><strong>Contact:</strong> {{1.privacy_officer}} | {{1.security_officer}} | {{1.email}}</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>CONTAINMENT (Within 24 hours)</strong>
+                <ul>
+                    <li>Stop the breach if ongoing</li>
+                    <li>Secure systems/records involved</li>
+                    <li>Preserve evidence</li>
+                    <li>Document initial findings</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>INVESTIGATION (Within 15 days)</strong>
+                <ul>
+                    <li>Conduct risk assessment (4-factor analysis)</li>
+                    <li>Identify all individuals affected</li>
+                    <li>Determine scope and nature of PHI involved</li>
+                    <li>Interview witnesses</li>
+                    <li>Review audit logs and access records</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>DETERMINATION</strong>
+                <p>Based on risk assessment, determine if breach notification is required.</p>
+                <p>If LOW probability of compromise → Document and close</p>
+                <p>If breach confirmed → Proceed to notification</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>NOTIFICATION (See timelines below)</strong>
+                <ul>
+                    <li>Prepare notification letters</li>
+                    <li>Notify affected individuals</li>
+                    <li>Notify HHS</li>
+                    <li>Notify media if required</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">6</span>
+                <strong>REMEDIATION</strong>
+                <ul>
+                    <li>Implement corrective actions</li>
+                    <li>Update policies/procedures as needed</li>
+                    <li>Provide additional training if necessary</li>
+                    <li>Apply sanctions if appropriate</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. Notification Requirements and Timelines</h2>
+        
+        <div class="timeline">
+            <h3>Critical Timelines</h3>
+            <table>
+                <tr>
+                    <th>Notification Type</th>
+                    <th>Deadline</th>
+                    <th>Method</th>
+                </tr>
+                <tr>
+                    <td><strong>Individual Notification</strong></td>
+                    <td>Without unreasonable delay, no later than <strong>60 days</strong> from discovery</td>
+                    <td>First-class mail (or email if agreed)</td>
+                </tr>
+                <tr>
+                    <td><strong>HHS Notification (500+ individuals)</strong></td>
+                    <td>No later than <strong>60 days</strong> from discovery</td>
+                    <td>HHS Breach Portal</td>
+                </tr>
+                <tr>
+                    <td><strong>HHS Notification (<500 individuals)</strong></td>
+                    <td>Within <strong>60 days of end of calendar year</strong> in which breach discovered</td>
+                    <td>Annual log via HHS Breach Portal</td>
+                </tr>
+                <tr>
+                    <td><strong>Media Notification</strong></td>
+                    <td>No later than <strong>60 days</strong> (when 500+ residents of a state/jurisdiction affected)</td>
+                    <td>Prominent media outlets in the state</td>
+                </tr>
+                <tr>
+                    <td><strong>Business Associate to Covered Entity</strong></td>
+                    <td>Without unreasonable delay, no later than <strong>30 days</strong> from discovery</td>
+                    <td>As specified in BAA</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="important">
+            <p><strong>Discovery Date:</strong> A breach is considered "discovered" on the first day it is known or should reasonably have been known by any workforce member (not just management). This starts the notification clock.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. Content of Individual Notification</h2>
+        <p>The notification to individuals must include:</p>
+        <ol>
+            <li><strong>Brief description</strong> of what happened, including date of breach and date of discovery</li>
+            <li><strong>Types of PHI involved</strong> (e.g., name, SSN, diagnosis, treatment information)</li>
+            <li><strong>Steps individuals should take</strong> to protect themselves from potential harm</li>
+            <li><strong>Brief description of what {{1.company}} is doing</strong> to investigate, mitigate harm, and prevent future breaches</li>
+            <li><strong>Contact information</strong> including a toll-free number, email address, website, or postal address for questions</li>
+        </ol>
+        
+        <div class="info-box">
+            <p><strong>Substitute Notice:</strong> If contact information is insufficient or outdated for 10 or more individuals, substitute notice must be provided via website posting (at least 90 days) and major media outlets.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>9. HHS Notification</h2>
+        
+        <h3>9.1 Breaches Affecting 500 or More Individuals</h3>
+        <p>Notify HHS at the same time individuals are notified via the HHS Breach Portal at: <a href="https://ocrportal.hhs.gov/ocr/breach/wizard_breach.jsf">https://ocrportal.hhs.gov/ocr/breach/wizard_breach.jsf</a></p>
+        
+        <h3>9.2 Breaches Affecting Fewer Than 500 Individuals</h3>
+        <p>Maintain a log of all breaches and submit annually to HHS within 60 days of the end of the calendar year.</p>
+    </div>
+
+    <div class="section">
+        <h2>10. Law Enforcement Delay</h2>
+        <p>Notification may be delayed if a law enforcement official provides a written statement that notification would impede a criminal investigation or cause damage to national security. Oral requests can delay notification for up to 30 days (must be documented).</p>
+    </div>
+
+    <div class="section">
+        <h2>11. Documentation and Retention</h2>
+        <p>{{1.company}} shall document and retain for six (6) years:</p>
+        <ul>
+            <li>All breach risk assessments</li>
+            <li>Investigation reports</li>
+            <li>Determinations and rationale</li>
+            <li>Copies of all notifications sent</li>
+            <li>Business associate breach reports</li>
+            <li>Corrective action plans</li>
+            <li>Evidence of staff training related to the breach</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>12. Responsibilities</h2>
+        
+        <table>
+            <tr>
+                <th>Role</th>
+                <th>Responsibilities</th>
+            </tr>
+            <tr>
+                <td><strong>Privacy Officer</strong><br>{{1.privacy_officer}}</td>
+                <td>Overall responsibility for breach response; leads investigation; prepares notifications; reports to HHS; ensures documentation</td>
+            </tr>
+            <tr>
+                <td><strong>Security Officer</strong><br>{{1.security_officer}}</td>
+                <td>Technical investigation; evidence preservation; system remediation; security safeguard improvements</td>
+            </tr>
+            <tr>
+                <td><strong>All Workforce Members</strong></td>
+                <td>Immediately report suspected breaches; cooperate with investigations; attend required training</td>
+            </tr>
+            <tr>
+                <td><strong>Business Associates</strong></td>
+                <td>Report breaches within 30 days as required by BAA; cooperate with investigation; provide affected individual information</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>13. Training</h2>
+        <p>All workforce members shall receive training on this policy upon hire and annually thereafter. Training shall include:</p>
+        <ul>
+            <li>Definition of a breach</li>
+            <li>Examples of potential breaches</li>
+            <li>How to recognize a breach</li>
+            <li>Reporting procedures and contacts</li>
+            <li>Consequences of failing to report</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>14. Sanctions</h2>
+        <p>Workforce members who fail to report a suspected breach, delay reporting, or obstruct an investigation may be subject to disciplinary action up to and including termination, in accordance with {{1.company}}'s Sanction Policy.</p>
+    </div>
+
+    <div class="section">
+        <h2>15. Policy Review</h2>
+        <p>This policy shall be reviewed annually and updated as necessary to reflect changes in law, regulations, or organizational practices.</p>
+        <p><strong>Last Reviewed:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Next Review Due:</strong> [One year from above date]</p>
+    </div>
+
+    <div class="section" style="margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px;">
+        <h2>Approval</h2>
+        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
+        <p>Signature: _________________________ Date: _____________</p>
+        <br>
+        <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
+        <p>Signature: _________________________ Date: _____________</p>
+        <br>
+        <p><strong>Authorized by:</strong> {{1.authorized_signatory}}</p>
+        <p>Signature: _________________________ Date: _____________</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

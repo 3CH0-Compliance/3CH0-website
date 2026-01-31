@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPAA Security Risk Assessment - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .assessment-section { background-color: #f8fdff; padding: 20px; margin: 20px 0; border-radius: 10px; border-left: 5px solid #92cdec; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+        th { background-color: #0069d9; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        .risk-high { background-color: #f8d7da; }
+        .risk-medium { background-color: #fff3cd; }
+        .risk-low { background-color: #d4edda; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p>Assessment Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
+    </div>
+
+    <h1>HIPAA Security Risk Assessment</h1>
+    <p style="text-align: center;">Required under 45 CFR §164.308(a)(1)(ii)(A)</p>
+
+    <div class="assessment-section">
+        <h2>1. Assessment Overview</h2>
+        <table>
+            <tr><td><strong>Organization:</strong></td><td>{{1.company}}</td></tr>
+            <tr><td><strong>Entity Type:</strong></td><td>{{1.covered_entity_type}}</td></tr>
+            <tr><td><strong>Security Officer:</strong></td><td>{{1.security_officer}}</td></tr>
+            <tr><td><strong>Privacy Officer:</strong></td><td>{{1.privacy_officer}}</td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>2. Risk Scoring Legend</h2>
+        <table>
+            <tr><th>Level</th><th>Description</th><th>Action Required</th></tr>
+            <tr class="risk-high"><td>High (3)</td><td>Significant vulnerability</td><td>Immediate action</td></tr>
+            <tr class="risk-medium"><td>Medium (2)</td><td>Moderate vulnerability</td><td>Within 90 days</td></tr>
+            <tr class="risk-low"><td>Low (1)</td><td>Minor vulnerability</td><td>Monitor</td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>3. ePHI Inventory</h2>
+        <table>
+            <tr><th>System/Application</th><th>ePHI Type</th><th>Location</th><th>Encrypted</th></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>4. Administrative Safeguards (§164.308)</h2>
+        <table>
+            <tr><th>Requirement</th><th>Status</th><th>Risk</th><th>Remediation</th></tr>
+            <tr><td>Security Management Process</td><td></td><td></td><td></td></tr>
+            <tr><td>Assigned Security Responsibility</td><td>{{1.security_officer}}</td><td class="risk-low">Low</td><td>Maintain</td></tr>
+            <tr><td>Workforce Security</td><td></td><td></td><td></td></tr>
+            <tr><td>Information Access Management</td><td></td><td></td><td></td></tr>
+            <tr><td>Security Awareness Training</td><td></td><td></td><td></td></tr>
+            <tr><td>Security Incident Procedures</td><td></td><td></td><td></td></tr>
+            <tr><td>Contingency Plan</td><td></td><td></td><td></td></tr>
+            <tr><td>Evaluation</td><td></td><td></td><td></td></tr>
+            <tr><td>Business Associate Agreements</td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>5. Physical Safeguards (§164.310)</h2>
+        <table>
+            <tr><th>Requirement</th><th>Status</th><th>Risk</th><th>Remediation</th></tr>
+            <tr><td>Facility Access Controls</td><td></td><td></td><td></td></tr>
+            <tr><td>Workstation Use</td><td></td><td></td><td></td></tr>
+            <tr><td>Workstation Security</td><td></td><td></td><td></td></tr>
+            <tr><td>Device and Media Controls</td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>6. Technical Safeguards (§164.312)</h2>
+        <table>
+            <tr><th>Requirement</th><th>Status</th><th>Risk</th><th>Remediation</th></tr>
+            <tr><td>Unique User Identification</td><td></td><td></td><td></td></tr>
+            <tr><td>Emergency Access Procedure</td><td></td><td></td><td></td></tr>
+            <tr><td>Automatic Logoff</td><td></td><td></td><td></td></tr>
+            <tr><td>Encryption (at rest)</td><td></td><td></td><td></td></tr>
+            <tr><td>Audit Controls</td><td></td><td></td><td></td></tr>
+            <tr><td>Integrity Controls</td><td></td><td></td><td></td></tr>
+            <tr><td>Authentication</td><td></td><td></td><td></td></tr>
+            <tr><td>Transmission Security</td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>7. Remediation Plan</h2>
+        <table>
+            <tr><th>Risk Item</th><th>Level</th><th>Action</th><th>Owner</th><th>Due Date</th><th>Status</th></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="assessment-section">
+        <h2>8. Certification</h2>
+        <p>This Risk Assessment was conducted per 45 CFR §164.308(a)(1)(ii)(A).</p>
+        <p><strong>Security Officer:</strong> {{1.security_officer}}<br>Signature: _____________ Date: _______</p>
+        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}<br>Signature: _____________ Date: _______</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

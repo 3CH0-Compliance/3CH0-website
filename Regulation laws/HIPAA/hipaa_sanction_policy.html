@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPAA Sanction Policy - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        ul, ol { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .important { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .key-point { background-color: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; }
+        .warning { background-color: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #0069d9; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        .level-1 { background-color: #fff3cd; }
+        .level-2 { background-color: #ffe4b5; }
+        .level-3 { background-color: #ffcccb; }
+        .level-4 { background-color: #f8d7da; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top:15px;font-size:14px;color:#666;">Select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p>Effective Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
+    </div>
+
+    <h1>HIPAA Sanction Policy</h1>
+    <p style="text-align: center; color: #666;">Pursuant to 45 CFR §164.530(e)</p>
+
+    <div class="section">
+        <h2>1. Purpose</h2>
+        <p>This policy establishes the framework for applying appropriate sanctions against workforce members who violate {{1.company}}'s HIPAA policies and procedures or the HIPAA Privacy, Security, or Breach Notification Rules. The purpose of this policy is to:</p>
+        <ul>
+            <li>Ensure compliance with HIPAA regulations</li>
+            <li>Protect the privacy and security of Protected Health Information (PHI)</li>
+            <li>Deter violations through consistent and fair enforcement</li>
+            <li>Provide a clear framework for addressing violations</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Scope</h2>
+        <p>This policy applies to all workforce members of {{1.company}}, including but not limited to:</p>
+        <ul>
+            <li>Full-time and part-time employees</li>
+            <li>Temporary employees</li>
+            <li>Volunteers</li>
+            <li>Trainees and students</li>
+            <li>Contractors working on-site</li>
+            <li>Any other persons whose conduct is under the direct control of {{1.company}}</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Policy Statement</h2>
+        <p>{{1.company}} is committed to maintaining the highest standards of privacy and security for PHI. All workforce members are expected to comply with HIPAA regulations and {{1.company}}'s privacy and security policies. Violations will result in sanctions appropriate to the nature and severity of the violation.</p>
+        
+        <div class="key-point">
+            <p><strong>No Retaliation:</strong> {{1.company}} prohibits retaliation against any workforce member who in good faith reports a HIPAA violation or suspected violation, files a complaint with HHS, or participates in an investigation. Retaliation itself is a violation subject to sanctions.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. Violation Categories and Examples</h2>
+        
+        <h3>Level 1: Minor Violations (Unintentional/First-Time)</h3>
+        <table>
+            <tr class="level-1">
+                <td colspan="2"><strong>Characteristics:</strong> Unintentional, no harm occurred, first offense, minimal risk to PHI</td>
+            </tr>
+            <tr>
+                <th>Examples</th>
+                <th>Typical Sanction</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Forgetting to log off a workstation (no PHI accessed by unauthorized person)</li>
+                        <li>Discussing PHI in semi-public area (not overheard)</li>
+                        <li>Minor documentation errors</li>
+                        <li>Unintentional failure to secure paper records</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Verbal warning</li>
+                        <li>Re-training</li>
+                        <li>Documented counseling</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Level 2: Moderate Violations (Negligent/Repeated Minor)</h3>
+        <table>
+            <tr class="level-2">
+                <td colspan="2"><strong>Characteristics:</strong> Negligent behavior, pattern of minor violations, moderate risk to PHI, potential for harm</td>
+            </tr>
+            <tr>
+                <th>Examples</th>
+                <th>Typical Sanction</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Repeated failure to log off workstations</li>
+                        <li>Sharing passwords with coworkers</li>
+                        <li>Improper disposal of PHI (without actual breach)</li>
+                        <li>Failure to use encryption when required</li>
+                        <li>Discussing PHI inappropriately where overheard</li>
+                        <li>Failure to complete required HIPAA training</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Written warning</li>
+                        <li>Mandatory re-training</li>
+                        <li>Performance improvement plan</li>
+                        <li>Temporary loss of system access</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Level 3: Serious Violations (Reckless/Harmful)</h3>
+        <table>
+            <tr class="level-3">
+                <td colspan="2"><strong>Characteristics:</strong> Reckless disregard for policies, actual or significant risk of harm, substantial breach of trust</td>
+            </tr>
+            <tr>
+                <th>Examples</th>
+                <th>Typical Sanction</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Accessing PHI without authorization (curiosity/no disclosure)</li>
+                        <li>Sharing PHI with unauthorized persons (unintentional)</li>
+                        <li>Failure to report a known breach</li>
+                        <li>Circumventing security controls</li>
+                        <li>Installing unauthorized software that compromises security</li>
+                        <li>Loss of unencrypted device containing PHI</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Final written warning</li>
+                        <li>Suspension without pay</li>
+                        <li>Demotion</li>
+                        <li>Transfer to non-PHI role</li>
+                        <li>Revocation of access privileges</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Level 4: Severe/Willful Violations</h3>
+        <table>
+            <tr class="level-4">
+                <td colspan="2"><strong>Characteristics:</strong> Intentional, malicious, or for personal gain; significant harm to individuals or organization; criminal conduct</td>
+            </tr>
+            <tr>
+                <th>Examples</th>
+                <th>Typical Sanction</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Intentionally accessing/disclosing PHI without authorization</li>
+                        <li>Selling or using PHI for personal gain</li>
+                        <li>Identity theft or fraud using PHI</li>
+                        <li>Deliberately destroying or altering PHI</li>
+                        <li>Intentionally circumventing security to access PHI</li>
+                        <li>Accessing PHI of celebrities, family, or acquaintances without authorization</li>
+                        <li>Retaliation against someone who reported a violation</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Immediate termination</li>
+                        <li>Referral to law enforcement</li>
+                        <li>Civil litigation as appropriate</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>5. Factors in Determining Sanctions</h2>
+        <p>The following factors will be considered when determining the appropriate sanction:</p>
+        <ol>
+            <li><strong>Severity of the violation</strong> – How serious was the violation?</li>
+            <li><strong>Intent</strong> – Was the violation intentional, reckless, negligent, or unintentional?</li>
+            <li><strong>Harm</strong> – Did actual harm result to patients, the organization, or others?</li>
+            <li><strong>Number of individuals affected</strong> – How many patients/records were involved?</li>
+            <li><strong>Prior violations</strong> – Has the workforce member committed previous violations?</li>
+            <li><strong>Training</strong> – Had the workforce member received appropriate training?</li>
+            <li><strong>Cooperation</strong> – Did the workforce member self-report and cooperate with the investigation?</li>
+            <li><strong>Mitigation</strong> – What steps did the workforce member take to mitigate harm?</li>
+            <li><strong>Position/role</strong> – Does the workforce member's position involve special trust?</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>6. Sanction Procedures</h2>
+        
+        <h3>6.1 Reporting Violations</h3>
+        <p>All suspected violations should be reported immediately to:</p>
+        <ul>
+            <li><strong>Privacy Officer:</strong> {{1.privacy_officer}}</li>
+            <li><strong>Security Officer:</strong> {{1.security_officer}}</li>
+            <li><strong>Email:</strong> {{1.email}}</li>
+        </ul>
+
+        <h3>6.2 Investigation</h3>
+        <p>Upon receiving a report of a violation:</p>
+        <ol>
+            <li>The Privacy Officer and/or Security Officer will conduct an investigation</li>
+            <li>The workforce member will be notified and given an opportunity to respond</li>
+            <li>Evidence will be gathered and documented</li>
+            <li>Findings will be documented in writing</li>
+        </ol>
+
+        <h3>6.3 Determination</h3>
+        <p>The Privacy Officer, Security Officer, and appropriate management will:</p>
+        <ol>
+            <li>Review the investigation findings</li>
+            <li>Consider the factors listed in Section 5</li>
+            <li>Determine the appropriate sanction</li>
+            <li>Document the decision and rationale</li>
+        </ol>
+
+        <h3>6.4 Implementation</h3>
+        <ol>
+            <li>The workforce member will be notified of the sanction in writing</li>
+            <li>The sanction will be implemented by Human Resources and/or management</li>
+            <li>Documentation will be placed in the workforce member's personnel file</li>
+            <li>The sanction will be logged in the HIPAA Sanction Log</li>
+        </ol>
+
+        <h3>6.5 Appeal</h3>
+        <p>Workforce members may appeal sanctions through {{1.company}}'s standard grievance or appeal process as outlined in the Employee Handbook.</p>
+    </div>
+
+    <div class="section">
+        <h2>7. Documentation Requirements</h2>
+        <p>All sanctions must be documented and retained for a minimum of six (6) years. Documentation shall include:</p>
+        <ul>
+            <li>Date of violation</li>
+            <li>Description of the violation</li>
+            <li>Investigation findings</li>
+            <li>Factors considered</li>
+            <li>Sanction imposed</li>
+            <li>Date of sanction</li>
+            <li>Notification to workforce member</li>
+            <li>Any corrective action or training required</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>8. Progressive Discipline</h2>
+        <p>In general, {{1.company}} follows a progressive discipline approach:</p>
+        <ol>
+            <li><strong>Verbal Warning</strong> – Documented discussion</li>
+            <li><strong>Written Warning</strong> – Formal written notice</li>
+            <li><strong>Final Written Warning</strong> – Notice that further violations will result in termination</li>
+            <li><strong>Suspension</strong> – Temporary removal from duties</li>
+            <li><strong>Termination</strong> – End of employment</li>
+        </ol>
+        
+        <div class="warning">
+            <p><strong>Exception:</strong> Severe or willful violations may result in immediate termination without progressive discipline. {{1.company}} reserves the right to skip steps based on the severity of the violation.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>9. Criminal Referral</h2>
+        <p>{{1.company}} will refer matters to law enforcement when violations involve:</p>
+        <ul>
+            <li>Theft or sale of PHI</li>
+            <li>Identity theft or fraud</li>
+            <li>Other criminal conduct</li>
+        </ul>
+        <p>Workforce members should be aware that HIPAA violations can result in criminal penalties of up to $250,000 in fines and 10 years imprisonment.</p>
+    </div>
+
+    <div class="section">
+        <h2>10. Training and Awareness</h2>
+        <p>All workforce members will be trained on this Sanction Policy during initial HIPAA training and annual refresher training. Training will include:</p>
+        <ul>
+            <li>Overview of the Sanction Policy</li>
+            <li>Examples of violations and consequences</li>
+            <li>Reporting procedures</li>
+            <li>Anti-retaliation protections</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>11. Policy Review</h2>
+        <p>This policy will be reviewed annually and updated as necessary.</p>
+        <p><strong>Last Reviewed:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Next Review:</strong> [One year from above date]</p>
+    </div>
+
+    <div class="section" style="margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px;">
+        <h2>Approval</h2>
+        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
+        <p>Signature: _________________________ Date: _____________</p>
+        <br>
+        <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
+        <p>Signature: _________________________ Date: _____________</p>
+        <br>
+        <p><strong>Authorized by:</strong> {{1.authorized_signatory}}</p>
+        <p>Signature: _________________________ Date: _____________</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>
