@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Associate Agreement - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; margin-top: 20px; }
+        .section { margin-bottom: 30px; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
+        .signature-area { margin-top: 50px; border-top: 2px solid #92cdec; padding-top: 30px; }
+        .signature-line { border-bottom: 1px solid #333; width: 250px; display: inline-block; margin: 10px 0; }
+        .legal-note { background-color: #f8f9fa; border-left: 4px solid #6c757d; padding: 15px; margin: 15px 0; font-size: 14px; }
+        .important { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .definitions { background-color: #e8f4fc; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top:15px;font-size:14px;color:#666;">Select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">BUSINESS ASSOCIATE AGREEMENT</div>
+        <div class="document-date">Effective Date: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    </div>
+
+    <h1>Business Associate Agreement</h1>
+    <p style="text-align: center; color: #666;">Pursuant to 45 CFR §164.502(e) and §164.504(e)</p>
+
+    <div class="section">
+        <h2>Preamble</h2>
+        <p>This Business Associate Agreement ("Agreement") is entered into as of {{formatDate(now; "MMMM D, YYYY")}} ("Effective Date") by and between:</p>
+        <p><strong>COVERED ENTITY:</strong><br>
+        {{1.company}}<br>
+        {{1.company_address}}<br>
+        Entity Type: {{1.covered_entity_type}}</p>
+        <p>(hereinafter "Covered Entity")</p>
+        <p>AND</p>
+        <p><strong>BUSINESS ASSOCIATE:</strong><br>
+        {{1.service_provider_name}}</p>
+        <p>(hereinafter "Business Associate")</p>
+        <p>WHEREAS, Covered Entity and Business Associate desire to enter into or have entered into an arrangement whereby Business Associate will provide certain services to Covered Entity that involve the use and/or disclosure of Protected Health Information; and</p>
+        <p>WHEREAS, Covered Entity and Business Associate intend to protect the privacy and security of Protected Health Information in compliance with the Health Insurance Portability and Accountability Act of 1996 ("HIPAA"), the Health Information Technology for Economic and Clinical Health Act ("HITECH"), and their implementing regulations.</p>
+        <p>NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein, the parties agree as follows:</p>
+    </div>
+
+    <div class="section">
+        <h2>Article 1: Definitions</h2>
+        <div class="definitions">
+            <p><strong>"Breach"</strong> means the acquisition, access, use, or disclosure of PHI in a manner not permitted under the Privacy Rule which compromises the security or privacy of the PHI, as defined in 45 CFR §164.402.</p>
+            <p><strong>"Designated Record Set"</strong> has the meaning set forth in 45 CFR §164.501.</p>
+            <p><strong>"Electronic Protected Health Information" or "ePHI"</strong> means Protected Health Information that is transmitted or maintained in electronic media.</p>
+            <p><strong>"Individual"</strong> means the person who is the subject of the PHI and includes a person who qualifies as a personal representative.</p>
+            <p><strong>"Privacy Rule"</strong> means the Standards for Privacy of Individually Identifiable Health Information at 45 CFR Part 160 and Part 164, Subparts A and E.</p>
+            <p><strong>"Protected Health Information" or "PHI"</strong> has the meaning set forth in 45 CFR §160.103, limited to the information created, received, maintained, or transmitted by Business Associate on behalf of Covered Entity.</p>
+            <p><strong>"Required by Law"</strong> has the meaning set forth in 45 CFR §164.103.</p>
+            <p><strong>"Secretary"</strong> means the Secretary of the U.S. Department of Health and Human Services or designee.</p>
+            <p><strong>"Security Incident"</strong> means the attempted or successful unauthorized access, use, disclosure, modification, or destruction of information or interference with system operations in an information system, as defined in 45 CFR §164.304.</p>
+            <p><strong>"Security Rule"</strong> means the Security Standards for the Protection of Electronic Protected Health Information at 45 CFR Part 160 and Part 164, Subparts A and C.</p>
+            <p><strong>"Subcontractor"</strong> means a person to whom Business Associate delegates a function, activity, or service, other than in the capacity of a member of the workforce of Business Associate.</p>
+            <p><strong>"Unsecured PHI"</strong> means PHI that is not rendered unusable, unreadable, or indecipherable to unauthorized persons through the use of technology or methodology specified by the Secretary.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Article 2: Scope of PHI</h2>
+        <p>This Agreement applies to the following types of PHI that Business Associate may create, receive, maintain, or transmit on behalf of Covered Entity:</p>
+        <p>{{1.phi_types}}</p>
+    </div>
+
+    <div class="section">
+        <h2>Article 3: Permitted Uses and Disclosures</h2>
+        <h3>3.1 General Provisions</h3>
+        <p>Business Associate may use or disclose PHI only as permitted or required by this Agreement or as Required by Law.</p>
+        
+        <h3>3.2 Permitted Uses</h3>
+        <p>Business Associate is permitted to use and disclose PHI for the following purposes:</p>
+        <ul>
+            <li>To perform functions, activities, or services for, or on behalf of, Covered Entity as specified in the underlying service agreement</li>
+            <li>For the proper management and administration of Business Associate</li>
+            <li>To carry out the legal responsibilities of Business Associate</li>
+            <li>To provide data aggregation services relating to the health care operations of Covered Entity</li>
+            <li>To de-identify PHI in accordance with 45 CFR §164.514(a)-(c)</li>
+        </ul>
+
+        <h3>3.3 Minimum Necessary Standard</h3>
+        <p>Business Associate shall request, use, and disclose only the minimum amount of PHI necessary to accomplish the intended purpose of the use, disclosure, or request.</p>
+    </div>
+
+    <div class="section">
+        <h2>Article 4: Obligations of Business Associate</h2>
+        
+        <h3>4.1 Safeguards</h3>
+        <p>Business Associate shall implement appropriate administrative, physical, and technical safeguards to prevent use or disclosure of PHI other than as provided for by this Agreement. Business Associate shall comply with the applicable requirements of the Security Rule.</p>
+        
+        <h3>4.2 Reporting</h3>
+        <p>Business Associate shall report to Covered Entity:</p>
+        <ul>
+            <li>Any use or disclosure of PHI not provided for by this Agreement of which Business Associate becomes aware, including Breaches of Unsecured PHI as required by 45 CFR §164.410</li>
+            <li>Any Security Incident of which Business Associate becomes aware</li>
+        </ul>
+        <div class="important">
+            <p><strong>Breach Notification Timeline:</strong> Business Associate shall report any Breach of Unsecured PHI to Covered Entity without unreasonable delay and in no case later than <strong>30 calendar days</strong> after discovery of the Breach.</p>
+        </div>
+        <p>Reports shall include:</p>
+        <ul>
+            <li>Identification of each Individual whose PHI was involved</li>
+            <li>A brief description of what happened, including date of Breach and date of discovery</li>
+            <li>Description of the types of Unsecured PHI involved</li>
+            <li>Steps taken to investigate the Breach and mitigate harm</li>
+            <li>Contact information for questions</li>
+        </ul>
+
+        <h3>4.3 Subcontractors</h3>
+        <p>Business Associate shall ensure that any Subcontractor that creates, receives, maintains, or transmits PHI on behalf of Business Associate agrees to the same restrictions, conditions, and requirements that apply to Business Associate under this Agreement.</p>
+        <p><strong>Current Subcontractors:</strong> {{1.business_associates}}</p>
+        <p><strong>Third Parties:</strong> {{1.thirdparty}}</p>
+
+        <h3>4.4 Access to PHI</h3>
+        <p>Business Associate shall make PHI maintained in a Designated Record Set available to Covered Entity or, at Covered Entity's direction, to an Individual, in order to meet the requirements of 45 CFR §164.524. Business Associate shall respond to such requests within <strong>15 calendar days</strong>.</p>
+
+        <h3>4.5 Amendment of PHI</h3>
+        <p>Business Associate shall make PHI available for amendment and incorporate any amendments to PHI in a Designated Record Set at the direction of Covered Entity or an Individual pursuant to 45 CFR §164.526.</p>
+
+        <h3>4.6 Accounting of Disclosures</h3>
+        <p>Business Associate shall document and make available information required to provide an accounting of disclosures pursuant to 45 CFR §164.528. Business Associate shall maintain such information for a period of <strong>six (6) years</strong> from the date of disclosure.</p>
+
+        <h3>4.7 Access to Books and Records</h3>
+        <p>Business Associate shall make its internal practices, books, and records relating to the use and disclosure of PHI available to the Secretary for purposes of determining compliance with HIPAA.</p>
+
+        <h3>4.8 Audit Rights</h3>
+        <p>Covered Entity shall have the right to audit Business Associate's compliance with this Agreement. Business Associate shall provide reasonable access to its facilities, systems, books, and records for such audits upon reasonable notice.</p>
+    </div>
+
+    <div class="section">
+        <h2>Article 5: Obligations of Covered Entity</h2>
+        <p>Covered Entity shall:</p>
+        <ul>
+            <li>Notify Business Associate of any limitations in its Notice of Privacy Practices that may affect Business Associate's use or disclosure of PHI</li>
+            <li>Notify Business Associate of any changes in, or revocation of, Individual authorizations that may affect Business Associate's use or disclosure of PHI</li>
+            <li>Notify Business Associate of any restrictions on the use or disclosure of PHI that Covered Entity has agreed to pursuant to 45 CFR §164.522</li>
+            <li>Not request Business Associate to use or disclose PHI in any manner that would violate the Privacy Rule if done by Covered Entity</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Article 6: Term and Termination</h2>
+        
+        <h3>6.1 Term</h3>
+        <p>This Agreement shall be effective as of the Effective Date and shall continue in effect until all PHI provided by Covered Entity to Business Associate, or created or received by Business Associate on behalf of Covered Entity, is destroyed or returned to Covered Entity.</p>
+
+        <h3>6.2 Termination for Cause</h3>
+        <p>Covered Entity may immediately terminate this Agreement and any related agreements if Covered Entity determines that Business Associate has violated a material term of this Agreement. Alternatively, Covered Entity may provide Business Associate with written notice of the violation and an opportunity to cure. If Business Associate does not cure the violation within <strong>30 calendar days</strong>, Covered Entity may terminate this Agreement.</p>
+
+        <h3>6.3 Automatic Termination</h3>
+        <p>This Agreement will automatically terminate without any further action of the parties upon the termination or expiration of the underlying service agreement between the parties.</p>
+
+        <h3>6.4 Effect of Termination</h3>
+        <p>Upon termination of this Agreement for any reason, Business Associate shall:</p>
+        <ul>
+            <li>Return to Covered Entity or destroy all PHI received from Covered Entity, or created or received by Business Associate on behalf of Covered Entity, that Business Associate still maintains in any form</li>
+            <li>Retain no copies of such PHI</li>
+            <li>If return or destruction is infeasible, extend the protections of this Agreement to the PHI and limit further uses and disclosures to those purposes that make return or destruction infeasible</li>
+        </ul>
+        <p>The obligations of Business Associate under this Section shall survive the termination of this Agreement.</p>
+    </div>
+
+    <div class="section">
+        <h2>Article 7: Miscellaneous</h2>
+        
+        <h3>7.1 Regulatory References</h3>
+        <p>Any reference in this Agreement to a section of HIPAA or the HITECH Act will mean the section as in effect or as amended.</p>
+
+        <h3>7.2 Amendment</h3>
+        <p>This Agreement may not be modified except by written agreement signed by both parties. The parties agree to take such action as is necessary to amend this Agreement to comply with the requirements of HIPAA and HITECH.</p>
+
+        <h3>7.3 No Third-Party Beneficiaries</h3>
+        <p>Nothing express or implied in this Agreement is intended to confer any rights upon any person other than the parties hereto.</p>
+
+        <h3>7.4 Interpretation</h3>
+        <p>Any ambiguity in this Agreement shall be resolved in favor of a meaning that permits the parties to comply with HIPAA and HITECH.</p>
+
+        <h3>7.5 Governing Law</h3>
+        <p>This Agreement shall be governed by and construed in accordance with the laws of the state in which Covered Entity is located, except to the extent preempted by federal law.</p>
+
+        <h3>7.6 Indemnification</h3>
+        <p>Business Associate shall indemnify, defend, and hold harmless Covered Entity and its officers, directors, employees, and agents from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to any Breach or violation of this Agreement by Business Associate or its Subcontractors.</p>
+
+        <h3>7.7 Notices</h3>
+        <p>All notices under this Agreement shall be in writing and delivered to:</p>
+        <p><strong>Covered Entity:</strong><br>
+        Privacy Officer: {{1.privacy_officer}}<br>
+        Security Officer: {{1.security_officer}}<br>
+        Email: {{1.email}}<br>
+        Address: {{1.company_address}}</p>
+    </div>
+
+    <div class="signature-area">
+        <h2>Signatures</h2>
+        <p>IN WITNESS WHEREOF, the parties have executed this Agreement as of the Effective Date.</p>
+        <br>
+        <p><strong>COVERED ENTITY:</strong> {{1.company}}</p>
+        <p>Printed Name: {{1.authorized_signatory}}</p>
+        <p>Title: <span class="signature-line"></span></p>
+        <p>Signature: <span class="signature-line"></span></p>
+        <p>Date: <span class="signature-line"></span></p>
+        <br><br>
+        <p><strong>BUSINESS ASSOCIATE:</strong> {{1.service_provider_name}}</p>
+        <p>Printed Name: <span class="signature-line"></span></p>
+        <p>Title: <span class="signature-line"></span></p>
+        <p>Signature: <span class="signature-line"></span></p>
+        <p>Date: <span class="signature-line"></span></p>
+    </div>
+
+    <div class="legal-note">
+        <p><strong>Note:</strong> This Business Associate Agreement is provided as a template and should be reviewed by legal counsel before execution. It is designed to comply with the requirements of 45 CFR §164.504(e) but may need to be customized based on specific circumstances and state law requirements.</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>
