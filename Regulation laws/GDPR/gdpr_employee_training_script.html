@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Training Script - {{1.company}}</title>
+    <title>GDPR Employee Training - {{1.company}}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,10 +20,15 @@
             padding-bottom: 10px;
             text-align: center;
         }
-        h2 { color: #0069d9; margin-top: 25px; }
+        h2 { 
+            color: #0069d9; 
+            margin-top: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
         h3 { color: #2980b9; margin-top: 20px; }
         .section { margin-bottom: 30px; }
-        ul { margin: 15px 0; padding-left: 25px; }
+        ul, ol { margin: 15px 0; padding-left: 25px; }
         li { margin-bottom: 8px; }
         .download-section {
             text-align: center;
@@ -63,23 +68,97 @@
             margin: 15px 0;
             font-style: italic;
         }
+        .trainer-note::before {
+            content: "🎤 TRAINER: ";
+            font-weight: bold;
+            font-style: normal;
+        }
+        .key-point {
+            background-color: #fff8e6;
+            border-left: 4px solid #f0ad4e;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .key-point::before {
+            content: "⚠️ KEY POINT: ";
+            font-weight: bold;
+        }
         .quiz {
-            background-color: #f9f9f9;
+            background-color: #f0f8ff;
             padding: 20px;
             border-radius: 8px;
             margin: 20px 0;
-            border: 1px solid #ddd;
+            border: 1px solid #0069d9;
+        }
+        .quiz-title {
+            font-weight: bold;
+            color: #0069d9;
+            margin-bottom: 15px;
+            font-size: 1.1em;
         }
         .scenario {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
+            background-color: #f5f5f5;
+            border-left: 4px solid #28a745;
             padding: 15px;
             margin: 15px 0;
+        }
+        .scenario-title {
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        .contact-box {
+            background-color: #d4edda;
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .warning-box {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning-box::before {
+            content: "🚫 WARNING: ";
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0069d9;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
         }
         .signature-area {
             margin-top: 40px;
             border-top: 2px solid #92cdec;
             padding-top: 20px;
+        }
+        .slide-marker {
+            background-color: #0069d9;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .duration {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
         }
         @media print {
             .download-section { display: none !important; }
@@ -97,166 +176,528 @@
 
     <div class="document-header">
         <div class="company-name">{{1.company}}</div>
-        <div class="document-date">Training Date: {{formatDate(now; "MMMM D, YYYY")}}</div>
+        <div class="document-date">Training Date: {{1.generated_date}}</div>
     </div>
 
-    <h1>GDPR Employee Training Script</h1>
+    <h1>GDPR Employee Training Program</h1>
 
     <div class="section">
-        <p><strong>Trainer:</strong> {{1.trainer_name}}</p>
-        <p><strong>Company:</strong> {{1.company}}</p>
-        <p><strong>Duration:</strong> Approximately 45-60 minutes</p>
+        <table>
+            <tr>
+                <td><strong>Trainer:</strong></td>
+                <td>{{1.trainer_name}}</td>
+            </tr>
+            <tr>
+                <td><strong>Company:</strong></td>
+                <td>{{1.company}}</td>
+            </tr>
+            <tr>
+                <td><strong>Industry:</strong></td>
+                <td>{{1.industry}}</td>
+            </tr>
+            <tr>
+                <td><strong>Duration:</strong></td>
+                <td>Approximately 60-90 minutes</td>
+            </tr>
+            <tr>
+                <td><strong>Training Contact:</strong></td>
+                <td>{{1.email}}</td>
+            </tr>
+        </table>
     </div>
 
+    <!-- INTRODUCTION -->
     <div class="section">
-        <h2>Training Introduction</h2>
+        <span class="slide-marker">SLIDE 1</span>
+        <h2>Welcome & Introduction</h2>
+        <p class="duration">⏱️ 5 minutes</p>
+        
         <div class="trainer-note">
-            <strong>Trainer:</strong> "Welcome to our GDPR training session. Today we'll learn about the General Data Protection Regulation, why it matters to us at {{1.company}}, and how it affects our daily work."
+            "Welcome everyone to our GDPR training session. Today we'll learn about the General Data Protection Regulation, why it matters to us at {{1.company}}, and how it affects your daily work. By the end of this session, you'll understand your responsibilities and know exactly what to do to keep our customers' data safe."
         </div>
+        
+        <h3>Training Objectives</h3>
+        <p>By the end of this training, you will be able to:</p>
+        <ul>
+            <li>Understand what GDPR is and why it matters</li>
+            <li>Identify personal data in your daily work</li>
+            <li>Apply the 7 GDPR principles to your activities</li>
+            <li>Recognize and respond to data subject requests</li>
+            <li>Know when and how to report a data breach</li>
+            <li>Follow best practices for data security</li>
+        </ul>
     </div>
 
+    <!-- WHAT IS GDPR -->
     <div class="section">
+        <span class="slide-marker">SLIDE 2</span>
         <h2>1. What is GDPR?</h2>
-        <p>GDPR is the General Data Protection Regulation - a comprehensive data protection law that:</p>
+        <p class="duration">⏱️ 10 minutes</p>
+        
+        <p>The <strong>General Data Protection Regulation (GDPR)</strong> is a comprehensive data protection law that:</p>
         <ul>
-            <li>Came into effect on May 25, 2018</li>
-            <li>Applies to all organizations processing EU residents' data</li>
+            <li>Came into effect on <strong>May 25, 2018</strong></li>
+            <li>Applies to ALL organizations processing EU residents' personal data</li>
             <li>Gives individuals control over their personal data</li>
-            <li>Imposes significant penalties for non-compliance (up to €20 million or 4% of global turnover)</li>
+            <li>Harmonizes data protection laws across the EU</li>
         </ul>
+        
+        <div class="key-point">
+            GDPR applies to {{1.company}} because we process personal data of individuals in the EU, regardless of where our company is located.
+        </div>
+        
+        <h3>Why Does GDPR Matter?</h3>
+        <table>
+            <tr>
+                <th>For Individuals</th>
+                <th>For {{1.company}}</th>
+            </tr>
+            <tr>
+                <td>Control over personal data</td>
+                <td>Legal compliance requirement</td>
+            </tr>
+            <tr>
+                <td>Right to know how data is used</td>
+                <td>Customer trust and reputation</td>
+            </tr>
+            <tr>
+                <td>Protection from misuse</td>
+                <td>Avoid significant penalties</td>
+            </tr>
+        </table>
+        
+        <div class="warning-box">
+            Non-compliance can result in fines of up to <strong>€20 million</strong> or <strong>4% of global annual turnover</strong> – whichever is higher!
+        </div>
     </div>
 
+    <!-- KEY CONTACTS -->
     <div class="section">
+        <span class="slide-marker">SLIDE 3</span>
         <h2>2. Key Contacts at {{1.company}}</h2>
-        <p><strong>Data Protection Officer:</strong> {{1.dpo_name}}</p>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-        <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
-        <p><strong>Contact Email:</strong> {{1.email}}</p>
-        <p><strong>Contact Phone:</strong> {{1.phone_number}}</p>
+        <p class="duration">⏱️ 5 minutes</p>
+        
+        <div class="contact-box">
+            <h3 style="margin-top: 0; color: #28a745;">📋 Your Data Protection Team</h3>
+            <table>
+                <tr>
+                    <td><strong>Data Protection Officer (DPO):</strong></td>
+                    <td>{{1.dpo_name}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Privacy Officer:</strong></td>
+                    <td>{{1.privacy_officer}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Security Officer:</strong></td>
+                    <td>{{1.security_officer}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Contact Email:</strong></td>
+                    <td>{{1.email}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Contact Phone:</strong></td>
+                    <td>{{1.phone_number}}</td>
+                </tr>
+            </table>
+        </div>
+        
         <div class="trainer-note">
-            <strong>Trainer:</strong> "If you're ever unsure about how to handle personal data, always consult our DPO first."
+            "If you're ever unsure about how to handle personal data, ALWAYS consult our DPO, {{1.dpo_name}}, BEFORE taking action. It's better to ask first than to create a compliance issue."
         </div>
     </div>
 
+    <!-- PERSONAL DATA -->
     <div class="section">
-        <h2>3. What Personal Data Do We Handle?</h2>
-        <p>At {{1.company}}, we handle the following types of personal data:</p>
-        <p>{{1.data}}</p>
-        <h3>Types of Personal Data:</h3>
-        <ul>
-            <li><strong>Basic Identity:</strong> Names, addresses, phone numbers, email</li>
-            <li><strong>Financial:</strong> Bank details, payment information</li>
-            <li><strong>Technical:</strong> IP addresses, cookies, device information</li>
-            <li><strong>Special Category:</strong> Health data, biometric data (requires extra protection)</li>
-        </ul>
+        <span class="slide-marker">SLIDE 4</span>
+        <h2>3. Understanding Personal Data</h2>
+        <p class="duration">⏱️ 10 minutes</p>
+        
+        <p><strong>Personal Data</strong> is any information that can identify a living individual, directly or indirectly.</p>
+        
+        <h3>At {{1.company}}, We Handle:</h3>
+        <p><strong>{{1.data}}</strong></p>
+        
+        <h3>Categories of Personal Data</h3>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Examples</th>
+                <th>Risk Level</th>
+            </tr>
+            <tr>
+                <td><strong>Basic Identity</strong></td>
+                <td>Names, addresses, phone numbers, email</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td><strong>Financial</strong></td>
+                <td>Bank details, payment information, salary</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td><strong>Technical</strong></td>
+                <td>IP addresses, cookies, device IDs</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td><strong>Special Category</strong></td>
+                <td>Health data, biometrics, racial/ethnic origin, political opinions, religious beliefs</td>
+                <td>Very High ⚠️</td>
+            </tr>
+        </table>
+        
+        <div class="key-point">
+            Special category data requires EXTRA protection and can only be processed under specific conditions. Always consult {{1.dpo_name}} before processing this type of data.
+        </div>
     </div>
 
+    <!-- 7 PRINCIPLES -->
     <div class="section">
+        <span class="slide-marker">SLIDE 5</span>
         <h2>4. The 7 GDPR Principles</h2>
-        <ol>
-            <li><strong>Lawfulness, Fairness, Transparency</strong> - Process data legally and openly</li>
-            <li><strong>Purpose Limitation</strong> - Only use data for specified purposes</li>
-            <li><strong>Data Minimization</strong> - Only collect what you need</li>
-            <li><strong>Accuracy</strong> - Keep data accurate and up-to-date</li>
-            <li><strong>Storage Limitation</strong> - Don't keep data longer than necessary</li>
-            <li><strong>Integrity & Confidentiality</strong> - Keep data secure</li>
-            <li><strong>Accountability</strong> - Be able to demonstrate compliance</li>
-        </ol>
+        <p class="duration">⏱️ 15 minutes</p>
+        
+        <div class="trainer-note">
+            "These seven principles are the foundation of GDPR. If you remember nothing else from this training, remember these principles and apply them to everything you do with personal data."
+        </div>
+        
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Principle</th>
+                <th>What It Means For You</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><strong>Lawfulness, Fairness & Transparency</strong></td>
+                <td>Only process data when we have a legal right to do so. Be honest with people about how we use their data.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Purpose Limitation</strong></td>
+                <td>Only use data for the specific purpose it was collected for. Don't repurpose data without permission.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>Data Minimization</strong></td>
+                <td>Only collect what you actually need. Don't gather "nice to have" information.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>Accuracy</strong></td>
+                <td>Keep data accurate and up-to-date. Correct errors promptly when discovered.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>Storage Limitation</strong></td>
+                <td>Don't keep data longer than necessary. Our retention period is: {{1.retention_period}}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>Integrity & Confidentiality</strong></td>
+                <td>Keep data secure. Protect against unauthorized access, loss, or damage.</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><strong>Accountability</strong></td>
+                <td>Be able to demonstrate compliance. Document what you do and why.</td>
+            </tr>
+        </table>
     </div>
 
+    <!-- DATA SUBJECT RIGHTS -->
     <div class="section">
+        <span class="slide-marker">SLIDE 6</span>
         <h2>5. Data Subject Rights</h2>
-        <p>Individuals have the right to:</p>
-        <ul>
-            <li><strong>Access</strong> - Request a copy of their data</li>
-            <li><strong>Rectification</strong> - Correct inaccurate data</li>
-            <li><strong>Erasure</strong> - Request deletion ("right to be forgotten")</li>
-            <li><strong>Restrict Processing</strong> - Limit how we use their data</li>
-            <li><strong>Data Portability</strong> - Receive data in a portable format</li>
-            <li><strong>Object</strong> - Object to certain processing activities</li>
-        </ul>
-        <div class="trainer-note">
-            <strong>Trainer:</strong> "If someone requests to exercise any of these rights, immediately contact {{1.dpo_name}} at {{1.email}}."
+        <p class="duration">⏱️ 10 minutes</p>
+        
+        <p>Individuals have the following rights under GDPR. You MUST know how to recognize these requests:</p>
+        
+        <table>
+            <tr>
+                <th>Right</th>
+                <th>What They Can Request</th>
+                <th>Response Time</th>
+            </tr>
+            <tr>
+                <td><strong>Access</strong></td>
+                <td>"I want a copy of all data you hold about me"</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><strong>Rectification</strong></td>
+                <td>"My information is wrong, please correct it"</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><strong>Erasure</strong></td>
+                <td>"Delete all my data" (Right to be Forgotten)</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><strong>Restrict Processing</strong></td>
+                <td>"Stop using my data but keep it on file"</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><strong>Data Portability</strong></td>
+                <td>"Give me my data in a format I can take elsewhere"</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><strong>Object</strong></td>
+                <td>"Stop processing my data for this purpose"</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><strong>Automated Decisions</strong></td>
+                <td>"I want a human to review this decision"</td>
+                <td>30 days</td>
+            </tr>
+        </table>
+        
+        <div class="key-point">
+            If someone asks for ANY of these, immediately forward to {{1.dpo_name}} at {{1.email}}. Do NOT attempt to handle it yourself!
         </div>
     </div>
 
+    <!-- SECURITY -->
     <div class="section">
-        <h2>6. Security Measures</h2>
-        <p>Our security measures include:</p>
-        <p>{{1.security_measures}}</p>
-        <h3>Your Responsibilities:</h3>
-        <ul>
-            <li>Use strong, unique passwords</li>
-            <li>Lock your computer when away from your desk</li>
-            <li>Never share login credentials</li>
-            <li>Be cautious with email attachments</li>
-            <li>Report suspicious activity immediately</li>
-        </ul>
+        <span class="slide-marker">SLIDE 7</span>
+        <h2>6. Security - Your Responsibilities</h2>
+        <p class="duration">⏱️ 10 minutes</p>
+        
+        <h3>Our Security Measures Include:</h3>
+        <p><strong>{{1.security_measures}}</strong></p>
+        
+        <h3>YOUR Daily Security Responsibilities:</h3>
+        <table>
+            <tr>
+                <th>✅ DO</th>
+                <th>❌ DON'T</th>
+            </tr>
+            <tr>
+                <td>Use strong, unique passwords</td>
+                <td>Share passwords with anyone</td>
+            </tr>
+            <tr>
+                <td>Lock your computer when away (Win+L)</td>
+                <td>Leave your screen visible to others</td>
+            </tr>
+            <tr>
+                <td>Verify identity before sharing data</td>
+                <td>Send personal data via unencrypted email</td>
+            </tr>
+            <tr>
+                <td>Report suspicious activity immediately</td>
+                <td>Ignore phishing attempts</td>
+            </tr>
+            <tr>
+                <td>Store files in approved locations only</td>
+                <td>Use personal USB drives or cloud storage</td>
+            </tr>
+            <tr>
+                <td>Dispose of documents securely (shred)</td>
+                <td>Leave documents in printer trays</td>
+            </tr>
+        </table>
+        
+        <div class="warning-box">
+            Human error causes 90% of data breaches. Your actions directly impact our compliance!
+        </div>
     </div>
 
+    <!-- THIRD PARTIES -->
     <div class="section">
+        <span class="slide-marker">SLIDE 8</span>
         <h2>7. Third-Party Data Sharing</h2>
-        <p>We share data with the following third parties:</p>
-        <p>{{1.thirdparty}}</p>
-        <p><strong>Retention Period:</strong> {{1.retention_period}}</p>
-        <div class="trainer-note">
-            <strong>Trainer:</strong> "Before sharing any data with a new third party, always check with {{1.dpo_name}} to ensure proper agreements are in place."
+        <p class="duration">⏱️ 5 minutes</p>
+        
+        <p>We share data with the following approved third parties:</p>
+        <p><strong>{{1.thirdparty}}</strong></p>
+        
+        <h3>International Transfers:</h3>
+        <p><strong>Status:</strong> {{1.international_transfers}}</p>
+        <p><strong>Countries:</strong> {{1.transfer_countries}}</p>
+        
+        <div class="key-point">
+            Before sharing ANY data with a new third party (vendor, partner, consultant), you MUST get approval from {{1.dpo_name}} to ensure proper agreements are in place.
         </div>
     </div>
 
+    <!-- DATA BREACHES -->
     <div class="section">
+        <span class="slide-marker">SLIDE 9</span>
         <h2>8. Data Breach Response</h2>
-        <p>A data breach is any security incident that affects the confidentiality, integrity, or availability of personal data.</p>
+        <p class="duration">⏱️ 10 minutes</p>
+        
+        <h3>What is a Data Breach?</h3>
+        <p>A data breach is ANY security incident affecting the confidentiality, integrity, or availability of personal data:</p>
+        <ul>
+            <li>Unauthorized access to personal data</li>
+            <li>Loss or theft of devices containing personal data</li>
+            <li>Accidental disclosure (wrong email recipient)</li>
+            <li>Ransomware or malware attacks</li>
+            <li>Unauthorized changes to personal data</li>
+        </ul>
+        
+        <div class="warning-box">
+            We have only <strong>72 HOURS</strong> to report serious breaches to the supervisory authority. Every minute counts!
+        </div>
+        
         <h3>If You Suspect a Breach:</h3>
         <ol>
-            <li>Don't panic, but act quickly</li>
-            <li>Immediately notify {{1.security_officer}}</li>
-            <li>Document what happened and when</li>
-            <li>Don't try to hide or cover up the incident</li>
-            <li>Preserve any evidence</li>
+            <li><strong>DON'T PANIC</strong> - but act IMMEDIATELY</li>
+            <li><strong>STOP</strong> - Don't try to fix it yourself</li>
+            <li><strong>REPORT</strong> - Contact {{1.security_officer}} immediately</li>
+            <li><strong>DOCUMENT</strong> - Write down exactly what happened and when</li>
+            <li><strong>PRESERVE</strong> - Don't delete or modify any evidence</li>
+            <li><strong>WAIT</strong> - Follow instructions from the security team</li>
         </ol>
-        <p><strong>Remember:</strong> We have 72 hours to report serious breaches to the supervisory authority!</p>
+        
+        <div class="contact-box">
+            <h3 style="margin-top: 0; color: #dc3545;">🚨 BREACH REPORTING CONTACTS</h3>
+            <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
+            <p><strong>DPO:</strong> {{1.dpo_name}}</p>
+            <p><strong>Email:</strong> {{1.email}}</p>
+            <p><strong>Phone:</strong> {{1.phone_number}}</p>
+        </div>
     </div>
 
+    <!-- PRACTICAL SCENARIOS -->
     <div class="section">
+        <span class="slide-marker">SLIDE 10</span>
         <h2>9. Practical Scenarios</h2>
+        <p class="duration">⏱️ 10 minutes</p>
         
-        <div class="scenario">
-            <h3>Scenario 1: Customer Request</h3>
-            <p><strong>Situation:</strong> A customer emails asking for a copy of all data you hold about them.</p>
-            <p><strong>Action:</strong> Forward to {{1.dpo_name}} immediately. This is a Subject Access Request and must be handled within 30 days.</p>
+        <div class="trainer-note">
+            "Let's walk through some real-world scenarios you might encounter. For each one, think about what you would do."
         </div>
         
         <div class="scenario">
-            <h3>Scenario 2: Suspicious Email</h3>
-            <p><strong>Situation:</strong> You receive an email asking you to send customer data to an external address.</p>
-            <p><strong>Action:</strong> Do NOT send the data. Verify the request through official channels and report to {{1.security_officer}}.</p>
+            <div class="scenario-title">📧 Scenario 1: Email Request</div>
+            <p><strong>Situation:</strong> A customer emails saying "Please send me all the data you have about me."</p>
+            <p><strong>This is:</strong> A Subject Access Request (SAR)</p>
+            <p><strong>Action:</strong> Forward immediately to {{1.dpo_name}} at {{1.email}}. Do NOT attempt to gather or send data yourself. Respond to the customer confirming receipt and that we'll respond within 30 days.</p>
         </div>
         
         <div class="scenario">
-            <h3>Scenario 3: Lost Device</h3>
-            <p><strong>Situation:</strong> A colleague loses their laptop containing customer data.</p>
-            <p><strong>Action:</strong> Report immediately to {{1.security_officer}}. This is a potential data breach.</p>
+            <div class="scenario-title">📱 Scenario 2: Lost Device</div>
+            <p><strong>Situation:</strong> A colleague tells you they left their work laptop on the train.</p>
+            <p><strong>This is:</strong> A potential data breach</p>
+            <p><strong>Action:</strong> Report to {{1.security_officer}} IMMEDIATELY. Note the time, what data might be on the device, and whether it was encrypted/password protected.</p>
+        </div>
+        
+        <div class="scenario">
+            <div class="scenario-title">📞 Scenario 3: Phone Request</div>
+            <p><strong>Situation:</strong> Someone calls claiming to be a customer and asks for account details to "verify they're correct."</p>
+            <p><strong>This is:</strong> Potentially social engineering</p>
+            <p><strong>Action:</strong> NEVER give out personal data over the phone to unverified callers. Offer to call them back on a number you have on file. Verify identity through established procedures.</p>
+        </div>
+        
+        <div class="scenario">
+            <div class="scenario-title">✉️ Scenario 4: Wrong Recipient</div>
+            <p><strong>Situation:</strong> You accidentally sent a spreadsheet containing customer data to the wrong email address.</p>
+            <p><strong>This is:</strong> A data breach</p>
+            <p><strong>Action:</strong> Report to {{1.security_officer}} immediately. Do NOT try to "recall" the email and hope for the best. Document exactly what was sent, to whom, and when.</p>
+        </div>
+        
+        <div class="scenario">
+            <div class="scenario-title">🗑️ Scenario 5: Data Deletion</div>
+            <p><strong>Situation:</strong> A customer emails: "I want you to delete all my data immediately."</p>
+            <p><strong>This is:</strong> An Erasure Request (Right to be Forgotten)</p>
+            <p><strong>Action:</strong> Forward to {{1.dpo_name}}. We may have legal obligations to retain some data, so the DPO needs to assess the request properly.</p>
         </div>
     </div>
 
-    <div class="quiz">
+    <!-- QUIZ -->
+    <div class="section">
+        <span class="slide-marker">SLIDE 11</span>
         <h2>10. Knowledge Check</h2>
-        <ol>
-            <li>What does GDPR stand for?</li>
-            <li>Name three rights that data subjects have under GDPR.</li>
-            <li>How long do we have to respond to a Subject Access Request?</li>
-            <li>Who should you contact if you suspect a data breach?</li>
-            <li>What is our data retention period?</li>
-        </ol>
+        <p class="duration">⏱️ 10 minutes</p>
+        
+        <div class="quiz">
+            <div class="quiz-title">📝 Test Your Knowledge</div>
+            <ol>
+                <li>What does GDPR stand for?</li>
+                <li>Name three of the seven GDPR principles.</li>
+                <li>How long do we have to respond to a Subject Access Request?</li>
+                <li>Who is our Data Protection Officer?</li>
+                <li>What should you do FIRST if you suspect a data breach?</li>
+                <li>What is our data retention period?</li>
+                <li>Name two types of "special category" data that require extra protection.</li>
+                <li>What's the maximum GDPR fine for serious violations?</li>
+            </ol>
+        </div>
+        
+        <div class="quiz" style="background-color: #d4edda; border-color: #28a745;">
+            <div class="quiz-title" style="color: #28a745;">✅ Answers</div>
+            <ol>
+                <li>General Data Protection Regulation</li>
+                <li>Any three of: Lawfulness/Fairness/Transparency, Purpose Limitation, Data Minimization, Accuracy, Storage Limitation, Integrity & Confidentiality, Accountability</li>
+                <li>30 days (can be extended by 2 months for complex requests)</li>
+                <li>{{1.dpo_name}}</li>
+                <li>Report to {{1.security_officer}} immediately</li>
+                <li>{{1.retention_period}}</li>
+                <li>Any two of: Health data, biometric data, racial/ethnic origin, political opinions, religious beliefs, trade union membership, genetic data, sexual orientation</li>
+                <li>€20 million or 4% of global annual turnover, whichever is higher</li>
+            </ol>
+        </div>
     </div>
 
+    <!-- SUMMARY -->
+    <div class="section">
+        <span class="slide-marker">SLIDE 12</span>
+        <h2>11. Key Takeaways</h2>
+        
+        <div class="key-point" style="background-color: #d4edda; border-color: #28a745;">
+            <strong style="font-size: 1.1em;">Remember These Five Things:</strong>
+            <ol>
+                <li><strong>When in doubt, ask {{1.dpo_name}}</strong> - Never guess when it comes to personal data</li>
+                <li><strong>Collect only what you need</strong> - Data minimization protects everyone</li>
+                <li><strong>Report breaches IMMEDIATELY</strong> - Speed is critical for compliance</li>
+                <li><strong>Verify before sharing</strong> - Always confirm identity and authorization</li>
+                <li><strong>Security is everyone's job</strong> - Your actions matter every day</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- ACKNOWLEDGMENT -->
     <div class="signature-area">
-        <h2>Training Acknowledgement</h2>
-        <p>I acknowledge that I have received and understand the GDPR training provided by {{1.company}} on {{formatDate(now; "MMMM D, YYYY")}}.</p>
-        <p><strong>Employee Name:</strong> _________________________</p>
-        <p><strong>Signature:</strong> _________________________</p>
-        <p><strong>Date:</strong> _________________________</p>
+        <h2>Training Acknowledgment</h2>
+        
+        <p>I acknowledge that I have completed the GDPR training provided by {{1.company}} on {{1.generated_date}}.</p>
+        
+        <p>I understand:</p>
+        <ul>
+            <li>My responsibilities regarding personal data protection</li>
+            <li>The importance of reporting data breaches immediately</li>
+            <li>How to recognize and forward data subject requests</li>
+            <li>Who to contact with questions: {{1.dpo_name}} at {{1.email}}</li>
+        </ul>
+        
+        <p>I commit to following the GDPR principles and {{1.company}}'s data protection policies in my daily work.</p>
+        
+        <table style="margin-top: 30px; border: none;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%;"><strong>Employee Name:</strong> _______________________________</td>
+                <td style="border: none;"><strong>Department:</strong> _______________________________</td>
+            </tr>
+            <tr style="border: none;">
+                <td style="border: none;"><strong>Signature:</strong> _______________________________</td>
+                <td style="border: none;"><strong>Date:</strong> _______________________________</td>
+            </tr>
+        </table>
+        
+        <p style="margin-top: 30px;"><strong>Training Conducted By:</strong> {{1.trainer_name}}</p>
+    </div>
+
+    <div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; font-size: 14px; color: #666;">
+        <p><strong>Document Information</strong></p>
+        <p>This training script was generated by 3CH0 Compliance for {{1.company}}. Training should be conducted annually and whenever significant changes occur to data processing activities or applicable regulations.</p>
+        <p><strong>Generated:</strong> {{1.generated_date}}</p>
     </div>
 
     <div class="download-section">
