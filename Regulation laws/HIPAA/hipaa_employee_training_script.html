@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIPAA Training - {{1.company}}</title>
+    <title>HIPAA Employee Training - {{1.company}}</title>
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
         h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
-        h2 { color: #0069d9; margin-top: 25px; }
+        h2 { color: #0069d9; margin-top: 25px; page-break-after: avoid; }
         h3 { color: #2980b9; }
         .section { margin-bottom: 30px; }
         ul, ol { margin: 15px 0; padding-left: 25px; }
@@ -20,6 +20,14 @@
         .scenario { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
         .quiz { background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #ddd; }
         .signature-area { margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px; }
+        .warning { background-color: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; }
+        .key-point { background-color: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; }
+        .penalty-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .penalty-table th, .penalty-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .penalty-table th { background-color: #0069d9; color: white; }
+        .penalty-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .breach-steps { background-color: #fff; border: 2px solid #dc3545; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .identifiers-list { column-count: 2; column-gap: 30px; }
         @media print { .download-section { display: none !important; } }
     </style>
 </head>
@@ -34,96 +42,439 @@
         <p>Training Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
     </div>
 
-    <h1>HIPAA Employee Training</h1>
+    <h1>HIPAA Employee Training Program</h1>
+    <p style="text-align: center; color: #666;">Required Annual Training – 45 CFR §164.530(b)</p>
 
     <div class="section">
         <p><strong>Trainer:</strong> {{1.trainer_name}}</p>
         <p><strong>Entity Type:</strong> {{1.covered_entity_type}}</p>
+        <p><strong>Training Duration:</strong> Approximately 60-90 minutes</p>
     </div>
 
     <div class="section">
-        <h2>1. What is HIPAA?</h2>
-        <p>HIPAA is the Health Insurance Portability and Accountability Act that protects patient health information.</p>
+        <h2>Module 1: Introduction to HIPAA</h2>
+        
+        <h3>What is HIPAA?</h3>
+        <p>The <strong>Health Insurance Portability and Accountability Act of 1996 (HIPAA)</strong> is a federal law that protects sensitive patient health information from being disclosed without the patient's consent or knowledge.</p>
+        
+        <h3>HIPAA's Three Main Rules</h3>
         <ul>
-            <li><strong>Privacy Rule:</strong> Protects PHI from unauthorized disclosure</li>
-            <li><strong>Security Rule:</strong> Protects electronic PHI (ePHI)</li>
-            <li><strong>Breach Notification Rule:</strong> Requires notification of breaches</li>
+            <li><strong>Privacy Rule (45 CFR Part 164, Subpart E):</strong> Establishes national standards for the protection of PHI and gives patients rights over their health information</li>
+            <li><strong>Security Rule (45 CFR Part 164, Subpart C):</strong> Sets standards for protecting electronic PHI (ePHI) through administrative, physical, and technical safeguards</li>
+            <li><strong>Breach Notification Rule (45 CFR Part 164, Subpart D):</strong> Requires notification to individuals, HHS, and sometimes media when unsecured PHI is breached</li>
         </ul>
-        <p><strong>Penalties:</strong> Up to $1.5 million per violation category per year!</p>
-    </div>
 
-    <div class="section">
-        <h2>2. Key Contacts</h2>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-        <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
-        <p><strong>Email:</strong> {{1.email}}</p>
         <div class="trainer-note">
-            <strong>Trainer:</strong> "Any HIPAA questions or concerns should go directly to these contacts."
+            <strong>Trainer Note:</strong> "HIPAA applies to every single one of us. Whether you're a doctor, a receptionist, or work in IT – if you have access to patient information, HIPAA applies to you."
         </div>
     </div>
 
     <div class="section">
-        <h2>3. What is PHI?</h2>
-        <p>Protected Health Information (PHI) we handle:</p>
+        <h2>Module 2: Key Contacts at {{1.company}}</h2>
+        
+        <div class="key-point">
+            <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
+            <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
+            <p><strong>Email:</strong> {{1.email}}</p>
+            <p><strong>Report concerns to these contacts IMMEDIATELY.</strong></p>
+        </div>
+        
+        <div class="trainer-note">
+            <strong>Trainer Note:</strong> "If you have ANY questions about HIPAA, if you witness a potential violation, or if you're unsure whether something is appropriate – contact our Privacy Officer or Security Officer right away. There are no stupid questions when it comes to protecting patient privacy."
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 3: Understanding Protected Health Information (PHI)</h2>
+        
+        <h3>What is PHI?</h3>
+        <p>Protected Health Information (PHI) is any information about health status, provision of health care, or payment for health care that can be linked to a specific individual.</p>
+        
+        <h3>PHI We Handle at {{1.company}}</h3>
         <p>{{1.phi_types}}</p>
-        <p>PHI includes any health information that can identify a patient.</p>
-    </div>
 
-    <div class="section">
-        <h2>4. The Minimum Necessary Rule</h2>
-        <p>Only access, use, or disclose the minimum PHI necessary to do your job.</p>
+        <h3>The 18 HIPAA Identifiers</h3>
+        <p>PHI includes health information combined with any of these 18 identifiers:</p>
+        <div class="identifiers-list">
+            <ol>
+                <li>Names</li>
+                <li>Geographic data (smaller than state)</li>
+                <li>Dates (except year) related to individual</li>
+                <li>Phone numbers</li>
+                <li>Fax numbers</li>
+                <li>Email addresses</li>
+                <li>Social Security numbers</li>
+                <li>Medical record numbers</li>
+                <li>Health plan beneficiary numbers</li>
+                <li>Account numbers</li>
+                <li>Certificate/license numbers</li>
+                <li>Vehicle identifiers</li>
+                <li>Device identifiers</li>
+                <li>Web URLs</li>
+                <li>IP addresses</li>
+                <li>Biometric identifiers</li>
+                <li>Full-face photos</li>
+                <li>Any other unique identifier</li>
+            </ol>
+        </div>
+
         <div class="trainer-note">
-            <strong>Trainer:</strong> "If you don't need it for your job, don't access it!"
+            <strong>Trainer Note:</strong> "If in doubt whether something is PHI, treat it as PHI and protect it accordingly. It's better to over-protect than under-protect."
         </div>
     </div>
 
     <div class="section">
-        <h2>5. Business Associates</h2>
-        <p>We work with these business associates who may access PHI:</p>
-        <p>{{1.business_associates}}</p>
-        <p><strong>Third Parties:</strong> {{1.thirdparty}}</p>
+        <h2>Module 4: The Minimum Necessary Standard</h2>
+        
+        <div class="key-point">
+            <p><strong>Rule:</strong> Only access, use, or disclose the <strong>minimum amount</strong> of PHI necessary to accomplish the task.</p>
+        </div>
+        
+        <h3>What This Means for You</h3>
+        <ul>
+            <li><strong>Don't be curious</strong> – Never access records you don't need for your job</li>
+            <li><strong>Limit what you share</strong> – Only disclose the information specifically required</li>
+            <li><strong>Need-to-know basis</strong> – Even with coworkers, only discuss patient information relevant to care</li>
+        </ul>
+
+        <div class="scenario">
+            <h3>Scenario: Neighbor's Medical Records</h3>
+            <p><strong>Situation:</strong> You notice your neighbor was admitted to your facility. You're curious about why.</p>
+            <p><strong>Correct Action:</strong> Do NOT access their records. Accessing records without a legitimate work purpose is a HIPAA violation, even if you don't share the information.</p>
+        </div>
+
+        <div class="trainer-note">
+            <strong>Trainer Note:</strong> "Curiosity is not a legitimate reason to access records. Every access is logged and auditable. If you access a record without authorization, it will be discovered."
+        </div>
     </div>
 
     <div class="section">
-        <h2>6. Patient Rights</h2>
+        <h2>Module 5: Permitted Uses and Disclosures</h2>
+        
+        <h3>PHI May Be Used/Disclosed WITHOUT Authorization For:</h3>
         <ul>
-            <li>Right to access their records</li>
-            <li>Right to request amendments</li>
-            <li>Right to accounting of disclosures</li>
-            <li>Right to request restrictions</li>
-            <li>Right to confidential communications</li>
+            <li><strong>Treatment:</strong> Providing, coordinating, or managing health care</li>
+            <li><strong>Payment:</strong> Billing, claims processing, collection activities</li>
+            <li><strong>Health Care Operations:</strong> Quality improvement, training, audits</li>
+            <li><strong>To the Individual:</strong> Patients can access their own records</li>
+            <li><strong>As Required by Law:</strong> Court orders, public health reporting</li>
+        </ul>
+
+        <h3>PHI REQUIRES Written Authorization For:</h3>
+        <ul>
+            <li>Marketing purposes</li>
+            <li>Sale of PHI</li>
+            <li>Most uses of psychotherapy notes</li>
+            <li>Disclosures to employers for employment decisions</li>
+            <li>Any purpose not otherwise permitted</li>
+        </ul>
+
+        <div class="warning">
+            <p><strong>Remember:</strong> When in doubt, get authorization in writing!</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 6: Patient Rights Under HIPAA</h2>
+        
+        <p>Patients have the following rights that you must respect:</p>
+        <ul>
+            <li><strong>Right to Access:</strong> View and obtain copies of their records (respond within 30 days)</li>
+            <li><strong>Right to Amend:</strong> Request corrections to their records</li>
+            <li><strong>Right to Accounting:</strong> Receive a list of certain disclosures</li>
+            <li><strong>Right to Restrictions:</strong> Request limits on how their PHI is used</li>
+            <li><strong>Right to Confidential Communications:</strong> Request alternative contact methods</li>
+            <li><strong>Right to Notice:</strong> Receive our Notice of Privacy Practices</li>
+            <li><strong>Right to Complain:</strong> File complaints without retaliation</li>
+        </ul>
+
+        <div class="scenario">
+            <h3>Scenario: Phone Inquiry</h3>
+            <p><strong>Situation:</strong> Someone calls claiming to be a patient's spouse and asks about their condition.</p>
+            <p><strong>Correct Action:</strong> Verify their identity. Check if the patient has authorized this person to receive information. If unsure, take a message and have the patient's care team call back after verification.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 7: Security Safeguards</h2>
+        
+        <h3>Physical Safeguards</h3>
+        <ul>
+            <li>Lock your computer when leaving your desk (Windows: Win+L, Mac: Ctrl+Cmd+Q)</li>
+            <li>Position monitors away from public view</li>
+            <li>Secure paper records in locked cabinets</li>
+            <li>Use cover sheets on faxes containing PHI</li>
+            <li>Dispose of PHI properly (shredding, secure bins)</li>
+            <li>Challenge strangers in restricted areas</li>
+        </ul>
+
+        <h3>Technical Safeguards</h3>
+        <ul>
+            <li>Use strong, unique passwords (12+ characters)</li>
+            <li>Never share your login credentials</li>
+            <li>Encrypt emails containing PHI</li>
+            <li>Don't store PHI on personal devices or cloud accounts</li>
+            <li>Report suspicious emails (phishing) immediately</li>
+            <li>Only use approved software and applications</li>
+        </ul>
+
+        <h3>Administrative Safeguards</h3>
+        <ul>
+            <li>Complete all required training</li>
+            <li>Follow all policies and procedures</li>
+            <li>Report incidents immediately</li>
+            <li>Verify identity before disclosing PHI</li>
+        </ul>
+
+        <div class="scenario">
+            <h3>Scenario: Computer Left Unlocked</h3>
+            <p><strong>Situation:</strong> You see a coworker's computer unlocked with patient records visible while they're away.</p>
+            <p><strong>Correct Action:</strong> Lock the computer immediately (Win+L) and remind your coworker about HIPAA security requirements when they return.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 8: Business Associates</h2>
+        
+        <p>We work with the following business associates who may access PHI on our behalf:</p>
+        <p><strong>Business Associates:</strong> {{1.business_associates}}</p>
+        <p><strong>Third Parties:</strong> {{1.thirdparty}}</p>
+        
+        <div class="key-point">
+            <p>All business associates must sign a Business Associate Agreement (BAA) before accessing any PHI. Never share PHI with a vendor until confirmed they have a signed BAA.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 9: Incidental Disclosures</h2>
+        
+        <p>Some incidental disclosures are permitted if reasonable safeguards are in place. However, you must still minimize them.</p>
+        
+        <h3>Examples of Permitted Incidental Disclosures:</h3>
+        <ul>
+            <li>A conversation overheard despite using lowered voices</li>
+            <li>A patient's name visible on a sign-in sheet (if minimized)</li>
+        </ul>
+
+        <h3>Examples of NOT Permitted (Avoidable) Disclosures:</h3>
+        <ul>
+            <li>Discussing patient information loudly in hallways</li>
+            <li>Leaving patient records visible on a desk</li>
+            <li>Talking about patients in elevators or cafeterias</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>7. Practical Scenarios</h2>
-        <div class="scenario">
-            <h3>Scenario 1: Phone Inquiry</h3>
-            <p><strong>Situation:</strong> Someone calls asking about a patient's condition.</p>
-            <p><strong>Action:</strong> Verify their identity and authorization before sharing ANY information.</p>
+        <h2>Module 10: Breach Identification and Reporting</h2>
+        
+        <h3>What is a Breach?</h3>
+        <p>A breach is the unauthorized acquisition, access, use, or disclosure of PHI that compromises its security or privacy.</p>
+        
+        <h3>Examples of Breaches:</h3>
+        <ul>
+            <li>Laptop containing PHI is stolen</li>
+            <li>Mailing PHI to the wrong patient</li>
+            <li>Employee accesses records without authorization</li>
+            <li>Ransomware attack on systems containing PHI</li>
+            <li>Improperly disposed records found in trash</li>
+            <li>PHI shared with wrong recipient via email/fax</li>
+        </ul>
+
+        <div class="breach-steps">
+            <h3>🚨 IF YOU DISCOVER A POTENTIAL BREACH:</h3>
+            <ol>
+                <li><strong>STOP</strong> the activity if it's ongoing</li>
+                <li><strong>DO NOT</strong> try to investigate or fix it yourself</li>
+                <li><strong>REPORT IMMEDIATELY</strong> to:
+                    <ul>
+                        <li>Privacy Officer: {{1.privacy_officer}}</li>
+                        <li>Security Officer: {{1.security_officer}}</li>
+                        <li>Email: {{1.email}}</li>
+                    </ul>
+                </li>
+                <li><strong>DOCUMENT</strong> what you observed (who, what, when, where)</li>
+                <li><strong>PRESERVE</strong> any evidence</li>
+            </ol>
+            <p><strong>Time is critical!</strong> Report within 24 hours of discovery.</p>
         </div>
+
+        <div class="warning">
+            <p><strong>Important:</strong> You will NOT be punished for reporting a breach in good faith. You WILL face sanctions for failing to report a breach you're aware of.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 11: Penalties for HIPAA Violations</h2>
+        
+        <h3>Civil Penalties (per violation)</h3>
+        <table class="penalty-table">
+            <tr>
+                <th>Violation Category</th>
+                <th>Minimum Penalty</th>
+                <th>Maximum Penalty</th>
+            </tr>
+            <tr>
+                <td>Unknowing</td>
+                <td>$100</td>
+                <td>$50,000</td>
+            </tr>
+            <tr>
+                <td>Reasonable Cause</td>
+                <td>$1,000</td>
+                <td>$50,000</td>
+            </tr>
+            <tr>
+                <td>Willful Neglect (Corrected)</td>
+                <td>$10,000</td>
+                <td>$50,000</td>
+            </tr>
+            <tr>
+                <td>Willful Neglect (Not Corrected)</td>
+                <td>$50,000</td>
+                <td>$1.5 million</td>
+            </tr>
+        </table>
+        <p><em>Annual maximum: $1.5 million per violation category</em></p>
+
+        <h3>Criminal Penalties</h3>
+        <table class="penalty-table">
+            <tr>
+                <th>Offense</th>
+                <th>Fine</th>
+                <th>Imprisonment</th>
+            </tr>
+            <tr>
+                <td>Knowingly obtaining/disclosing PHI</td>
+                <td>Up to $50,000</td>
+                <td>Up to 1 year</td>
+            </tr>
+            <tr>
+                <td>Offense under false pretenses</td>
+                <td>Up to $100,000</td>
+                <td>Up to 5 years</td>
+            </tr>
+            <tr>
+                <td>Offense with intent to sell or use for personal gain/malicious harm</td>
+                <td>Up to $250,000</td>
+                <td>Up to 10 years</td>
+            </tr>
+        </table>
+
+        <div class="warning">
+            <p><strong>Individual Liability:</strong> Employees can be held personally liable for HIPAA violations. Criminal penalties apply to individuals, not just organizations.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 12: Sanctions Policy</h2>
+        
+        <p>{{1.company}} takes HIPAA compliance seriously. Violations will result in disciplinary action up to and including termination.</p>
+        
+        <h3>Sanctions May Include:</h3>
+        <ul>
+            <li>Verbal warning and re-training</li>
+            <li>Written warning</li>
+            <li>Suspension without pay</li>
+            <li>Termination of employment</li>
+            <li>Referral to law enforcement for criminal violations</li>
+        </ul>
+
+        <h3>Factors Considered in Determining Sanctions:</h3>
+        <ul>
+            <li>Severity of the violation</li>
+            <li>Whether it was intentional or unintentional</li>
+            <li>Whether patient harm resulted</li>
+            <li>Prior violations</li>
+            <li>Whether the violation was promptly reported</li>
+        </ul>
+
+        <div class="key-point">
+            <p><strong>No Retaliation:</strong> {{1.company}} prohibits retaliation against any employee who in good faith reports a HIPAA concern, files a complaint, or participates in an investigation.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Module 13: Personal Representatives and Special Situations</h2>
+        
+        <h3>Personal Representatives</h3>
+        <p>A personal representative has the same rights as the patient regarding PHI. Examples include:</p>
+        <ul>
+            <li>Parent of a minor child (with exceptions)</li>
+            <li>Legal guardian</li>
+            <li>Healthcare power of attorney</li>
+            <li>Executor of deceased patient's estate</li>
+        </ul>
+
+        <h3>Minors</h3>
+        <p>Generally, parents are personal representatives for minors. Exceptions may apply for:</p>
+        <ul>
+            <li>Emancipated minors</li>
+            <li>Minors who consent to their own treatment under state law</li>
+            <li>Situations where parental access could endanger the minor</li>
+        </ul>
+
+        <h3>Deceased Patients</h3>
+        <p>PHI of deceased individuals remains protected. Disclosures may be made to personal representatives of the estate or family members involved in care, consistent with the deceased's prior expressed preferences.</p>
+    </div>
+
+    <div class="section">
+        <h2>Module 14: Social Media and Communications</h2>
+        
+        <div class="warning">
+            <h3>Social Media Rules</h3>
+            <ul>
+                <li><strong>NEVER</strong> post any patient information on social media</li>
+                <li><strong>NEVER</strong> take photos in patient care areas</li>
+                <li><strong>NEVER</strong> discuss patients, even without using names</li>
+                <li><strong>NEVER</strong> "friend" or follow patients on social media</li>
+                <li>Even de-identified information can sometimes identify a patient</li>
+            </ul>
+        </div>
+
         <div class="scenario">
-            <h3>Scenario 2: Computer Left Unlocked</h3>
-            <p><strong>Situation:</strong> You see a coworker's computer unlocked with patient records visible.</p>
-            <p><strong>Action:</strong> Lock the computer and remind them about HIPAA security requirements.</p>
+            <h3>Scenario: Social Media Post</h3>
+            <p><strong>Situation:</strong> A celebrity is admitted. A coworker posts on social media: "You'll never believe who's on my floor today! Can't say who but OMG! 🤩"</p>
+            <p><strong>Result:</strong> This is a HIPAA violation. Even without naming the patient, the post confirms a celebrity is hospitalized, and the location/department could help identify them. This could result in termination and personal liability.</p>
         </div>
     </div>
 
     <div class="quiz">
-        <h2>8. Knowledge Check</h2>
+        <h2>Module 15: Knowledge Assessment</h2>
+        <p><strong>Instructions:</strong> Answer the following questions to confirm your understanding of HIPAA requirements.</p>
         <ol>
             <li>What does HIPAA stand for?</li>
-            <li>What is PHI?</li>
-            <li>What is the Minimum Necessary Rule?</li>
-            <li>Who should you report a suspected breach to?</li>
+            <li>What are the three main HIPAA rules?</li>
+            <li>Name five of the 18 HIPAA identifiers.</li>
+            <li>What is the Minimum Necessary standard?</li>
+            <li>Who should you report a suspected breach to at {{1.company}}?</li>
+            <li>What is the maximum criminal penalty for HIPAA violations committed with intent for personal gain?</li>
+            <li>Can you access a patient's records if you're just curious but don't share the information?</li>
+            <li>What should you do if you accidentally send PHI to the wrong email address?</li>
+            <li>True or False: Employees can be held personally liable for HIPAA violations.</li>
+            <li>What rights do patients have under HIPAA? Name at least four.</li>
         </ol>
     </div>
 
     <div class="signature-area">
         <h2>Training Acknowledgement</h2>
-        <p>I acknowledge receiving HIPAA training from {{1.company}}.</p>
+        <p>By signing below, I acknowledge that I have:</p>
+        <ul>
+            <li>Completed HIPAA training provided by {{1.company}}</li>
+            <li>Read and understand our Privacy Policies and Procedures</li>
+            <li>Understand my responsibilities for protecting PHI</li>
+            <li>Understand the sanctions that may apply for HIPAA violations</li>
+            <li>Know how to report suspected violations or breaches</li>
+            <li>Understand that I may be held personally liable for HIPAA violations</li>
+        </ul>
+        <br>
         <p><strong>Employee Name:</strong> _________________________</p>
+        <p><strong>Employee ID:</strong> _________________________</p>
+        <p><strong>Department:</strong> _________________________</p>
         <p><strong>Signature:</strong> _________________________</p>
+        <p><strong>Date:</strong> _________________________</p>
+        <br>
+        <p><strong>Trainer Name:</strong> {{1.trainer_name}}</p>
+        <p><strong>Trainer Signature:</strong> _________________________</p>
         <p><strong>Date:</strong> _________________________</p>
     </div>
 
