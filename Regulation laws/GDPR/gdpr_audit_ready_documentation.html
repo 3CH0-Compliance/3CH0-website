@@ -3,252 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audit Ready Documentation - {{1.company}}</title>
+    <title>GDPR Audit Documentation - {{1.company}}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background-color: #ffffff;
-        }
-        h1 {
-            color: #0069d9;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-        h2 { color: #0069d9; margin-top: 25px; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 30px; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px; }
         h3 { color: #2980b9; margin-top: 20px; }
-        .section { margin-bottom: 30px; }
-        ul { margin: 15px 0; padding-left: 25px; }
-        li { margin-bottom: 8px; }
-        .download-section {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
-            border-radius: 10px;
-            border: 1px solid #92cdec;
-        }
-        .download-btn {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
-        }
-        .download-instructions { margin-top: 15px; font-size: 14px; color: #666; }
-        .document-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #92cdec;
-        }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
         .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
         .document-date { color: #666; font-size: 14px; margin-top: 10px; }
-        .audit-section {
-            background-color: #f8fdff;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 10px;
-            border-left: 5px solid #92cdec;
-        }
-        .checklist {
-            background-color: #f0f8ff;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-        .status {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 12px;
-        }
+        .audit-section { background-color: #f8fdff; padding: 25px; margin: 25px 0; border-radius: 10px; border-left: 5px solid #92cdec; }
+        .status { display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 12px; margin-left: 10px; }
         .compliant { background-color: #d4edda; color: #155724; }
         .in-progress { background-color: #fff3cd; color: #856404; }
-        @media print {
-            .download-section { display: none !important; }
-            body { padding: 0; margin: 0; }
-            .section, .audit-section { page-break-inside: avoid; }
-            @page { margin: 2cm; }
-        }
+        .checklist-item { display: flex; align-items: flex-start; margin: 10px 0; padding: 10px; background-color: #fff; border-radius: 5px; border: 1px solid #e0e0e0; }
+        .checklist-box { width: 20px; height: 20px; border: 2px solid #0069d9; border-radius: 4px; margin-right: 15px; flex-shrink: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #0069d9; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        .evidence-box { background-color: #e8f4fc; border: 1px solid #0069d9; border-radius: 8px; padding: 15px; margin: 15px 0; }
+        .evidence-box h4 { margin-top: 0; color: #0069d9; }
+        .signature-area { margin-top: 50px; border-top: 2px solid #92cdec; padding-top: 30px; }
+        .gdpr-reference { font-size: 12px; color: #666; font-style: italic; }
+        .summary-box { background: linear-gradient(135deg, #d4edda, #c3e6cb); border: 2px solid #28a745; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        @media print { .download-section { display: none !important; } body { padding: 0; margin: 0; } .audit-section { page-break-inside: avoid; } @page { margin: 2cm; } }
     </style>
 </head>
 <body>
     <div class="download-section">
         <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
-        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
     </div>
 
     <div class="document-header">
         <div class="company-name">{{1.company}}</div>
-        <div class="document-date">Audit Date: {{formatDate(now; "MMMM D, YYYY")}}</div>
+        <div class="document-date">Audit Documentation Date: {{1.generated_date}}</div>
     </div>
 
-    <h1>GDPR Audit Ready Documentation</h1>
+    <h1>GDPR Audit-Ready Documentation</h1>
+    <p style="text-align: center; color: #666;">Comprehensive Compliance Evidence Package</p>
 
-    <div class="audit-section">
-        <h2>Executive Summary</h2>
-        <p>This document provides comprehensive evidence of {{1.company}}'s compliance with the General Data Protection Regulation (GDPR).</p>
-        <p><strong>Overall Status:</strong> <span class="status compliant">COMPLIANT</span></p>
-        <p><strong>DPO:</strong> {{1.dpo_name}}</p>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-        <p><strong>Location:</strong> {{1.location}}</p>
-        <p><strong>Industry:</strong> {{1.industry}}</p>
+    <div class="summary-box">
+        <h2 style="margin-top: 0; color: #155724; border: none;">Executive Summary</h2>
+        <table style="background: transparent;">
+            <tr><td width="30%"><strong>Organization:</strong></td><td>{{1.company}}</td></tr>
+            <tr><td><strong>Industry:</strong></td><td>{{1.industry}}</td></tr>
+            <tr><td><strong>Location:</strong></td><td>{{1.location}}</td></tr>
+            <tr><td><strong>Data Protection Officer:</strong></td><td>{{1.dpo_name}}</td></tr>
+            <tr><td><strong>Audit Date:</strong></td><td>{{1.generated_date}}</td></tr>
+        </table>
     </div>
 
     <div class="audit-section">
-        <h2>1. Organization Information</h2>
-        <div class="checklist">
-            <p><strong>Company Name:</strong> {{1.company}}</p>
-            <p><strong>Address:</strong> {{1.company_address}}</p>
-            <p><strong>Website:</strong> {{1.website_url}}</p>
-            <p><strong>Phone:</strong> {{1.phone_number}}</p>
-            <p><strong>Email:</strong> {{1.email}}</p>
+        <h2>1. Organization Information <span class="status compliant">DOCUMENTED</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Article 4, Article 30</p>
+        <table>
+            <tr><td width="35%">Legal Entity Name</td><td>{{1.company}}</td></tr>
+            <tr><td>Registered Address</td><td>{{1.company_address}}</td></tr>
+            <tr><td>Website</td><td>{{1.website_url}}</td></tr>
+            <tr><td>Primary Contact Email</td><td>{{1.email}}</td></tr>
+            <tr><td>Contact Phone</td><td>{{1.phone_number}}</td></tr>
+            <tr><td>Industry Sector</td><td>{{1.industry}}</td></tr>
+            <tr><td>Primary Business Location</td><td>{{1.location}}</td></tr>
+        </table>
+    </div>
+
+    <div class="audit-section">
+        <h2>2. Data Protection Governance <span class="status compliant">ESTABLISHED</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Articles 37-39</p>
+        <table>
+            <tr><th>Role</th><th>Name</th><th>GDPR Requirement</th></tr>
+            <tr><td><strong>Data Protection Officer</strong></td><td>{{1.dpo_name}}</td><td>Article 37</td></tr>
+            <tr><td><strong>Privacy Officer</strong></td><td>{{1.privacy_officer}}</td><td>Supporting role</td></tr>
+            <tr><td><strong>Security Officer</strong></td><td>{{1.security_officer}}</td><td>Article 32</td></tr>
+            <tr><td><strong>Authorized Signatory</strong></td><td>{{1.authorized_signatory}}</td><td>Authority to bind</td></tr>
+            <tr><td><strong>Training Coordinator</strong></td><td>{{1.trainer_name}}</td><td>Article 39(1)(b)</td></tr>
+        </table>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ DPO appointment letter</li><li>☐ Organizational chart</li><li>☐ Role descriptions</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>2. Data Protection Officer</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">APPOINTED</span></p>
-            <p><strong>DPO Name:</strong> {{1.dpo_name}}</p>
-            <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-            <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
-            <p><strong>Authorized Signatory:</strong> {{1.authorized_signatory}}</p>
+        <h2>3. Records of Processing Activities <span class="status compliant">DOCUMENTED</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Article 30 - MANDATORY</p>
+        <h3>Personal Data Processed</h3>
+        <p>{{1.data}}</p>
+        <h3>Categories of Personal Data</h3>
+        <p>{{1.data_categories}}</p>
+        <h3>Categories of Data Subjects</h3>
+        <p>{{1.data_subjects}}</p>
+        <h3>Purposes of Processing</h3>
+        <p>{{1.processing_purposes}}</p>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Complete Article 30 ROPA</li><li>☐ Data flow diagrams</li><li>☐ Data inventory</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>3. Data Processing Activities</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <h3>Types of Personal Data Processed:</h3>
-            <p>{{1.data}}</p>
-            <h3>Data Categories:</h3>
-            <p>{{1.data_categories}}</p>
-            <h3>Data Subjects:</h3>
-            <p>{{1.data_subjects}}</p>
-            <h3>Processing Purposes:</h3>
-            <p>{{1.processing_purposes}}</p>
+        <h2>4. Third-Party Processors <span class="status compliant">MANAGED</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Article 28</p>
+        <h3>Primary Service Provider</h3>
+        <p><strong>{{1.service_provider_name}}</strong></p>
+        <h3>Third-Party Tools and Platforms</h3>
+        <p>{{1.thirdparty}}</p>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Signed DPAs for all processors</li><li>☐ Due diligence records</li><li>☐ Sub-processor list</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>4. Lawful Basis for Processing</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p>Processing is conducted under the following lawful bases:</p>
-            <ul>
-                <li>Consent (where applicable)</li>
-                <li>Contract performance</li>
-                <li>Legal obligation</li>
-                <li>Legitimate interests</li>
-            </ul>
+        <h2>5. International Transfers <span class="status compliant">COMPLIANT</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Articles 44-49</p>
+        <table>
+            <tr><td width="35%">International Transfers</td><td>{{1.international_transfers}}</td></tr>
+            <tr><td>Transfer Countries</td><td>{{1.transfer_countries}}</td></tr>
+            <tr><td>Transfer Mechanism</td><td>SCCs / Adequacy Decision</td></tr>
+        </table>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Transfer Impact Assessment</li><li>☐ Signed SCCs</li><li>☐ Supplementary measures</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>5. Third-Party Processors</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p><strong>Primary Service Provider:</strong> {{1.service_provider_name}}</p>
-            <h3>Third-Party Tools/Platforms:</h3>
-            <p>{{1.thirdparty}}</p>
-            <p>Data Processing Agreements are in place with all processors.</p>
+        <h2>6. Security Measures <span class="status compliant">IMPLEMENTED</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Article 32</p>
+        <h3>Implemented Security Measures</h3>
+        <p>{{1.security_measures}}</p>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Information Security Policy</li><li>☐ Access control logs</li><li>☐ Penetration test reports</li><li>☐ Business continuity plans</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>6. International Data Transfers</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">COMPLIANT</span></p>
-            <p><strong>International Transfers:</strong> {{1.international_transfers}}</p>
-            <p><strong>Transfer Countries:</strong> {{1.transfer_countries}}</p>
-            <p>Appropriate safeguards (Standard Contractual Clauses) are in place for all international transfers.</p>
+        <h2>7. Data Retention <span class="status compliant">DOCUMENTED</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Article 5(1)(e)</p>
+        <p><strong>Standard Retention Period:</strong> {{1.retention_period}}</p>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Data Retention Policy</li><li>☐ Retention schedule</li><li>☐ Deletion procedures</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>7. Security Measures</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
-            <h3>Technical and Organizational Measures:</h3>
-            <p>{{1.security_measures}}</p>
-            <ul>
-                <li>Access controls and authentication</li>
-                <li>Encryption at rest and in transit</li>
-                <li>Regular security assessments</li>
-                <li>Employee training programs</li>
-                <li>Incident response procedures</li>
-            </ul>
+        <h2>8. Data Subject Rights <span class="status compliant">PROCEDURES IN PLACE</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Articles 15-22</p>
+        <table>
+            <tr><th>Right</th><th>Article</th><th>Response Time</th></tr>
+            <tr><td>Access</td><td>Art. 15</td><td>30 days</td></tr>
+            <tr><td>Rectification</td><td>Art. 16</td><td>30 days</td></tr>
+            <tr><td>Erasure</td><td>Art. 17</td><td>30 days</td></tr>
+            <tr><td>Restriction</td><td>Art. 18</td><td>30 days</td></tr>
+            <tr><td>Portability</td><td>Art. 20</td><td>30 days</td></tr>
+            <tr><td>Object</td><td>Art. 21</td><td>30 days</td></tr>
+        </table>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ DSAR procedure</li><li>☐ Request tracking log</li><li>☐ Response templates</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>8. Data Retention</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p><strong>Retention Period:</strong> {{1.retention_period}}</p>
-            <p>Data retention schedules are documented and followed for all data categories.</p>
+        <h2>9. Data Breach Management <span class="status compliant">PROCEDURES IN PLACE</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Articles 33-34</p>
+        <table>
+            <tr><th>Requirement</th><th>Timeframe</th><th>Responsible</th></tr>
+            <tr><td>Notify Supervisory Authority</td><td>72 hours</td><td>{{1.dpo_name}}</td></tr>
+            <tr><td>Notify Affected Individuals</td><td>Without undue delay</td><td>{{1.privacy_officer}}</td></tr>
+            <tr><td>Internal Escalation</td><td>Immediately</td><td>{{1.security_officer}}</td></tr>
+        </table>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Breach Response Plan</li><li>☐ Breach register</li><li>☐ Notification templates</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>9. Data Subject Rights Procedures</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
-            <p>Procedures are in place to handle:</p>
-            <ul>
-                <li>Access requests (within 30 days)</li>
-                <li>Rectification requests</li>
-                <li>Erasure requests</li>
-                <li>Portability requests</li>
-                <li>Objection handling</li>
-            </ul>
+        <h2>10. Training & Awareness <span class="status compliant">PROGRAM IN PLACE</span></h2>
+        <p class="gdpr-reference">Reference: GDPR Article 39(1)(b)</p>
+        <table>
+            <tr><td width="35%">Training Coordinator</td><td>{{1.trainer_name}}</td></tr>
+            <tr><td>Frequency</td><td>Annual + onboarding</td></tr>
+        </table>
+        <div class="evidence-box">
+            <h4>📋 Evidence Required:</h4>
+            <ul><li>☐ Training materials</li><li>☐ Attendance records</li><li>☐ Acknowledgment forms</li></ul>
         </div>
     </div>
 
     <div class="audit-section">
-        <h2>10. Breach Notification Procedures</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p>Breach notification procedures include:</p>
-            <ul>
-                <li>72-hour notification to supervisory authority</li>
-                <li>Communication to affected data subjects</li>
-                <li>Documentation and lessons learned</li>
-            </ul>
-        </div>
+        <h2>11. Complete Documentation Checklist</h2>
+        <h3>Core Documentation (Mandatory)</h3>
+        <div class="checklist-item"><div class="checklist-box"></div>Records of Processing Activities (ROPA)</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Privacy Policy / Privacy Notice</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Cookie Policy</div>
+        <h3>Governance Documentation</h3>
+        <div class="checklist-item"><div class="checklist-box"></div>DPO Appointment Documentation</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Data Protection Policy</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Information Security Policy</div>
+        <h3>Third-Party Documentation</h3>
+        <div class="checklist-item"><div class="checklist-box"></div>Data Processing Agreements</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Standard Contractual Clauses</div>
+        <h3>Operational Documentation</h3>
+        <div class="checklist-item"><div class="checklist-box"></div>DSAR Procedure</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Data Breach Response Plan</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Data Retention Policy</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Employee Training Materials</div>
+        <h3>Risk Assessment Documentation</h3>
+        <div class="checklist-item"><div class="checklist-box"></div>Data Protection Impact Assessments</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Legitimate Interest Assessments</div>
     </div>
 
-    <div class="audit-section">
-        <h2>11. Training Program</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">ONGOING</span></p>
-            <p><strong>Training Coordinator:</strong> {{1.trainer_name}}</p>
-            <p>Annual GDPR training is provided to all employees who handle personal data.</p>
-        </div>
+    <div class="signature-area">
+        <h2>Audit Documentation Certification</h2>
+        <p>I certify that this documentation is accurate and complete to the best of my knowledge.</p>
+        <table style="margin-top: 30px; border: none;">
+            <tr style="border: none;"><td style="border: none; width: 50%;"><strong>DPO:</strong> {{1.dpo_name}}</td><td style="border: none;"><strong>Date:</strong> {{1.generated_date}}</td></tr>
+            <tr style="border: none;"><td style="border: none;"><strong>Signature:</strong> _______________________________</td><td style="border: none;"></td></tr>
+        </table>
+        <table style="margin-top: 30px; border: none;">
+            <tr style="border: none;"><td style="border: none; width: 50%;"><strong>Authorized Signatory:</strong> {{1.authorized_signatory}}</td><td style="border: none;"><strong>Date:</strong> _______________________________</td></tr>
+            <tr style="border: none;"><td style="border: none;"><strong>Signature:</strong> _______________________________</td><td style="border: none;"></td></tr>
+        </table>
     </div>
 
-    <div class="audit-section">
-        <h2>12. Certification</h2>
-        <p>I certify that the information in this audit documentation is accurate and complete to the best of my knowledge.</p>
-        <p><strong>Certified By:</strong> {{1.authorized_signatory}}</p>
-        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
-        <p><strong>Signature:</strong> _________________________</p>
+    <div style="margin-top: 30px; padding: 15px; background-color: #fff8e6; border-left: 4px solid #f0ad4e; font-size: 14px;">
+        <p><strong>⚠️ Important Notice:</strong> This audit documentation template has been generated by 3CH0 Compliance. It should be reviewed by qualified legal counsel before use.</p>
+        <p><strong>Generated:</strong> {{1.generated_date}}</p>
     </div>
 
     <div class="download-section">
