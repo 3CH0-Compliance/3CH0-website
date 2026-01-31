@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records of Processing Activities - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 1000px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 30px; }
+        h3 { color: #2980b9; margin-top: 20px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
+        .mandatory-badge { background-color: #dc3545; color: white; padding: 5px 15px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+        .info-box { background-color: #e8f4fc; border-left: 4px solid #0069d9; padding: 15px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+        th { background-color: #0069d9; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        .activity-section { background-color: #f8fdff; padding: 20px; margin: 25px 0; border-radius: 10px; border: 1px solid #92cdec; }
+        .signature-area { margin-top: 50px; border-top: 2px solid #92cdec; padding-top: 30px; }
+        @media print { .download-section { display: none !important; } @page { margin: 1.5cm; size: landscape; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">Click the button above, then select <strong>"Save as PDF"</strong></p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p><span class="mandatory-badge">ARTICLE 30 - MANDATORY</span></p>
+        <div class="document-date">Last Updated: {{1.generated_date}}</div>
+    </div>
+
+    <h1>Records of Processing Activities (ROPA)</h1>
+    <p style="text-align: center; color: #666;">Pursuant to Article 30 of the General Data Protection Regulation (EU) 2016/679</p>
+
+    <div class="info-box">
+        <strong>Legal Requirement:</strong> Article 30 of the GDPR requires controllers and processors to maintain records of processing activities. This document must be made available to the supervisory authority upon request.
+    </div>
+
+    <!-- CONTROLLER INFORMATION -->
+    <div class="activity-section">
+        <h2>Section A: Controller Information</h2>
+        <table>
+            <tr><th width="35%">Field</th><th>Information</th></tr>
+            <tr><td><strong>Controller Name</strong></td><td>{{1.company}}</td></tr>
+            <tr><td><strong>Controller Address</strong></td><td>{{1.company_address}}</td></tr>
+            <tr><td><strong>Controller Contact Details</strong></td><td>Email: {{1.email}}<br>Phone: {{1.phone_number}}<br>Website: {{1.website_url}}</td></tr>
+            <tr><td><strong>Data Protection Officer (DPO)</strong></td><td>{{1.dpo_name}}</td></tr>
+            <tr><td><strong>DPO Contact Details</strong></td><td>{{1.email}}</td></tr>
+            <tr><td><strong>Joint Controller (if applicable)</strong></td><td>N/A or specify</td></tr>
+            <tr><td><strong>EU Representative (if applicable)</strong></td><td>N/A or specify</td></tr>
+        </table>
+    </div>
+
+    <!-- PROCESSING ACTIVITY 1: CUSTOMER DATA -->
+    <div class="activity-section">
+        <h2>Processing Activity 1: Customer/Client Data Management</h2>
+        <table>
+            <tr><th width="35%">Article 30(1) Requirement</th><th>Details</th></tr>
+            <tr>
+                <td><strong>(a) Purpose of Processing</strong></td>
+                <td>{{1.processing_purposes}}</td>
+            </tr>
+            <tr>
+                <td><strong>(b) Categories of Data Subjects</strong></td>
+                <td>{{1.data_subjects}}</td>
+            </tr>
+            <tr>
+                <td><strong>(c) Categories of Personal Data</strong></td>
+                <td>{{1.data_categories}}<br><br><strong>Specific data types:</strong><br>{{1.data}}</td>
+            </tr>
+            <tr>
+                <td><strong>(d) Categories of Recipients</strong></td>
+                <td><strong>Internal:</strong> Staff with business need<br><br><strong>External Processors:</strong><br>{{1.thirdparty}}<br><br><strong>Primary Processor:</strong><br>{{1.service_provider_name}}</td>
+            </tr>
+            <tr>
+                <td><strong>(e) Transfers to Third Countries</strong></td>
+                <td><strong>Transfer Status:</strong> {{1.international_transfers}}<br><br><strong>Countries:</strong> {{1.transfer_countries}}<br><br><strong>Safeguards:</strong> Standard Contractual Clauses / Adequacy Decision</td>
+            </tr>
+            <tr>
+                <td><strong>(f) Time Limits for Erasure</strong></td>
+                <td>{{1.retention_period}}</td>
+            </tr>
+            <tr>
+                <td><strong>(g) Technical & Organizational Measures</strong></td>
+                <td>{{1.security_measures}}</td>
+            </tr>
+        </table>
+        <p><strong>Lawful Basis:</strong> Contract (Article 6(1)(b)) / Consent (Article 6(1)(a)) / Legitimate Interests (Article 6(1)(f))</p>
+    </div>
+
+    <!-- PROCESSING ACTIVITY 2: EMPLOYEE DATA -->
+    <div class="activity-section">
+        <h2>Processing Activity 2: Employee/HR Data Management</h2>
+        <table>
+            <tr><th width="35%">Article 30(1) Requirement</th><th>Details</th></tr>
+            <tr>
+                <td><strong>(a) Purpose of Processing</strong></td>
+                <td>Employment administration, payroll processing, benefits management, performance management, legal compliance</td>
+            </tr>
+            <tr>
+                <td><strong>(b) Categories of Data Subjects</strong></td>
+                <td>Current employees, former employees, job applicants, contractors</td>
+            </tr>
+            <tr>
+                <td><strong>(c) Categories of Personal Data</strong></td>
+                <td>Identity data, contact data, employment history, payroll data, performance data, emergency contacts</td>
+            </tr>
+            <tr>
+                <td><strong>(d) Categories of Recipients</strong></td>
+                <td>HR department, management, payroll processors, tax authorities, pension providers</td>
+            </tr>
+            <tr>
+                <td><strong>(e) Transfers to Third Countries</strong></td>
+                <td>{{1.international_transfers}}</td>
+            </tr>
+            <tr>
+                <td><strong>(f) Time Limits for Erasure</strong></td>
+                <td>6 years after end of employment (legal requirement)</td>
+            </tr>
+            <tr>
+                <td><strong>(g) Technical & Organizational Measures</strong></td>
+                <td>{{1.security_measures}}</td>
+            </tr>
+        </table>
+        <p><strong>Lawful Basis:</strong> Contract (Article 6(1)(b)) / Legal Obligation (Article 6(1)(c))</p>
+    </div>
+
+    <!-- PROCESSING ACTIVITY 3: MARKETING -->
+    <div class="activity-section">
+        <h2>Processing Activity 3: Marketing Communications</h2>
+        <table>
+            <tr><th width="35%">Article 30(1) Requirement</th><th>Details</th></tr>
+            <tr>
+                <td><strong>(a) Purpose of Processing</strong></td>
+                <td>Direct marketing, newsletters, promotional communications, customer relationship management</td>
+            </tr>
+            <tr>
+                <td><strong>(b) Categories of Data Subjects</strong></td>
+                <td>Newsletter subscribers, marketing contacts, prospects, existing customers</td>
+            </tr>
+            <tr>
+                <td><strong>(c) Categories of Personal Data</strong></td>
+                <td>Name, email address, marketing preferences, engagement data, purchase history</td>
+            </tr>
+            <tr>
+                <td><strong>(d) Categories of Recipients</strong></td>
+                <td>Marketing team, email service providers, CRM platforms, advertising platforms</td>
+            </tr>
+            <tr>
+                <td><strong>(e) Transfers to Third Countries</strong></td>
+                <td>{{1.international_transfers}}</td>
+            </tr>
+            <tr>
+                <td><strong>(f) Time Limits for Erasure</strong></td>
+                <td>Until consent withdrawn + 1 year for evidence</td>
+            </tr>
+            <tr>
+                <td><strong>(g) Technical & Organizational Measures</strong></td>
+                <td>{{1.security_measures}}</td>
+            </tr>
+        </table>
+        <p><strong>Lawful Basis:</strong> Consent (Article 6(1)(a)) / Legitimate Interests (Article 6(1)(f))</p>
+    </div>
+
+    <!-- PROCESSING ACTIVITY 4: WEBSITE -->
+    <div class="activity-section">
+        <h2>Processing Activity 4: Website Analytics & Cookies</h2>
+        <table>
+            <tr><th width="35%">Article 30(1) Requirement</th><th>Details</th></tr>
+            <tr>
+                <td><strong>(a) Purpose of Processing</strong></td>
+                <td>Website performance analysis, user experience improvement, security monitoring</td>
+            </tr>
+            <tr>
+                <td><strong>(b) Categories of Data Subjects</strong></td>
+                <td>Website visitors</td>
+            </tr>
+            <tr>
+                <td><strong>(c) Categories of Personal Data</strong></td>
+                <td>IP addresses, device information, browsing behavior, cookies, session data</td>
+            </tr>
+            <tr>
+                <td><strong>(d) Categories of Recipients</strong></td>
+                <td>Analytics providers (part of: {{1.thirdparty}})</td>
+            </tr>
+            <tr>
+                <td><strong>(e) Transfers to Third Countries</strong></td>
+                <td>{{1.international_transfers}}</td>
+            </tr>
+            <tr>
+                <td><strong>(f) Time Limits for Erasure</strong></td>
+                <td>Session cookies: end of session<br>Analytics: 26 months</td>
+            </tr>
+            <tr>
+                <td><strong>(g) Technical & Organizational Measures</strong></td>
+                <td>IP anonymization, cookie consent management, secure transmission</td>
+            </tr>
+        </table>
+        <p><strong>Lawful Basis:</strong> Consent (Article 6(1)(a)) for non-essential cookies / Legitimate Interests (Article 6(1)(f)) for essential cookies</p>
+    </div>
+
+    <!-- REVIEW LOG -->
+    <div class="activity-section">
+        <h2>ROPA Review Log</h2>
+        <table>
+            <tr><th>Review Date</th><th>Reviewed By</th><th>Changes Made</th><th>Next Review</th></tr>
+            <tr><td>{{1.generated_date}}</td><td>{{1.dpo_name}}</td><td>Initial creation</td><td>[Date + 12 months]</td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="signature-area">
+        <h2>Certification</h2>
+        <p>I certify that this Record of Processing Activities is accurate and complete as of the date indicated.</p>
+        <table style="margin-top: 30px; border: none;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%;"><strong>Data Protection Officer:</strong> {{1.dpo_name}}</td>
+                <td style="border: none;"><strong>Date:</strong> {{1.generated_date}}</td>
+            </tr>
+            <tr style="border: none;">
+                <td style="border: none;"><strong>Signature:</strong> _______________________________</td>
+                <td style="border: none;"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 30px; padding: 15px; background-color: #fff8e6; border-left: 4px solid #f0ad4e; font-size: 14px;">
+        <p><strong>⚠️ Important:</strong> This ROPA must be kept up-to-date and made available to the supervisory authority upon request. Review at least annually or when processing activities change.</p>
+        <p><strong>Generated:</strong> {{1.generated_date}} by 3CH0 Compliance</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Protection Impact Assessment - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 30px; border-bottom: 1px solid #e0e0e0; padding-bottom: 5px; }
+        h3 { color: #2980b9; margin-top: 20px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
+        .dpia-section { background-color: #f8fdff; padding: 20px; margin: 25px 0; border-radius: 10px; border-left: 5px solid #92cdec; }
+        .info-box { background-color: #e8f4fc; border-left: 4px solid #0069d9; padding: 15px; margin: 20px 0; }
+        .warning-box { background-color: #fff8e6; border-left: 4px solid #f0ad4e; padding: 15px; margin: 20px 0; }
+        .risk-high { background-color: #f8d7da; color: #721c24; padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+        .risk-medium { background-color: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+        .risk-low { background-color: #d4edda; color: #155724; padding: 5px 10px; border-radius: 5px; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top; }
+        th { background-color: #0069d9; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        .input-field { background-color: #fffef0; min-height: 60px; }
+        .signature-area { margin-top: 50px; border-top: 2px solid #92cdec; padding-top: 30px; }
+        @media print { .download-section { display: none !important; } @page { margin: 2cm; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">Click the button above, then select <strong>"Save as PDF"</strong></p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <div class="document-date">Assessment Date: {{1.generated_date}}</div>
+    </div>
+
+    <h1>Data Protection Impact Assessment (DPIA)</h1>
+    <p style="text-align: center; color: #666;">Pursuant to Article 35 of the General Data Protection Regulation (EU) 2016/679</p>
+
+    <div class="info-box">
+        <strong>When is a DPIA Required?</strong> Article 35(1) requires a DPIA when processing is "likely to result in a high risk to the rights and freedoms of natural persons." This includes:
+        <ul>
+            <li>Systematic and extensive profiling with significant effects</li>
+            <li>Large-scale processing of special category data (Article 9) or criminal data (Article 10)</li>
+            <li>Systematic monitoring of publicly accessible areas on a large scale</li>
+            <li>Processing that uses new technologies</li>
+            <li>Processing that prevents data subjects from exercising rights</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 1: PROJECT DETAILS -->
+    <div class="dpia-section">
+        <h2>Section 1: Project/Processing Activity Details</h2>
+        <table>
+            <tr><th width="35%">Field</th><th>Information</th></tr>
+            <tr><td>DPIA Reference Number</td><td class="input-field">DPIA-{{1.company}}-001</td></tr>
+            <tr><td>Project/Activity Name</td><td class="input-field">[Enter project or processing activity name]</td></tr>
+            <tr><td>Project Owner</td><td>{{1.privacy_officer}}</td></tr>
+            <tr><td>Data Protection Officer</td><td>{{1.dpo_name}}</td></tr>
+            <tr><td>Department</td><td class="input-field">[Enter department]</td></tr>
+            <tr><td>Assessment Date</td><td>{{1.generated_date}}</td></tr>
+            <tr><td>Review Date</td><td class="input-field">[Date + 12 months]</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 2: DESCRIPTION OF PROCESSING -->
+    <div class="dpia-section">
+        <h2>Section 2: Description of Processing Operations</h2>
+        <p class="gdpr-reference">Article 35(7)(a): A systematic description of the envisaged processing operations</p>
+        
+        <table>
+            <tr><th width="35%">Question</th><th>Response</th></tr>
+            <tr>
+                <td>What is the nature of the processing?</td>
+                <td class="input-field">[Describe what you will do with the data: collect, store, use, share, delete]</td>
+            </tr>
+            <tr>
+                <td>What is the scope of the processing?</td>
+                <td class="input-field">[Number of data subjects, volume of data, geographic scope, duration]</td>
+            </tr>
+            <tr>
+                <td>What is the context of the processing?</td>
+                <td class="input-field">[Relationship with data subjects, how data is collected, reasonable expectations]</td>
+            </tr>
+            <tr>
+                <td>What are the purposes of processing?</td>
+                <td>{{1.processing_purposes}}</td>
+            </tr>
+            <tr>
+                <td>Categories of personal data processed</td>
+                <td>{{1.data_categories}}<br><br>Specific types: {{1.data}}</td>
+            </tr>
+            <tr>
+                <td>Categories of data subjects</td>
+                <td>{{1.data_subjects}}</td>
+            </tr>
+            <tr>
+                <td>Data recipients</td>
+                <td>{{1.thirdparty}}<br><br>Primary processor: {{1.service_provider_name}}</td>
+            </tr>
+            <tr>
+                <td>Data retention period</td>
+                <td>{{1.retention_period}}</td>
+            </tr>
+            <tr>
+                <td>International transfers</td>
+                <td>{{1.international_transfers}}<br>Countries: {{1.transfer_countries}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 3: NECESSITY AND PROPORTIONALITY -->
+    <div class="dpia-section">
+        <h2>Section 3: Necessity and Proportionality Assessment</h2>
+        <p class="gdpr-reference">Article 35(7)(b): Assessment of necessity and proportionality of processing in relation to purposes</p>
+        
+        <table>
+            <tr><th width="35%">Question</th><th>Response</th></tr>
+            <tr>
+                <td><strong>What is the lawful basis for processing?</strong></td>
+                <td class="input-field">
+                    ☐ Consent (Art. 6(1)(a))<br>
+                    ☐ Contract (Art. 6(1)(b))<br>
+                    ☐ Legal obligation (Art. 6(1)(c))<br>
+                    ☐ Vital interests (Art. 6(1)(d))<br>
+                    ☐ Public task (Art. 6(1)(e))<br>
+                    ☐ Legitimate interests (Art. 6(1)(f))<br><br>
+                    Justification:
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Is the processing necessary for the purpose?</strong></td>
+                <td class="input-field">[Explain why this processing is required to achieve the stated purpose]</td>
+            </tr>
+            <tr>
+                <td><strong>Could the purpose be achieved with less data?</strong></td>
+                <td class="input-field">[Consider data minimization - can you achieve the same goal with less personal data?]</td>
+            </tr>
+            <tr>
+                <td><strong>Could the purpose be achieved without this processing?</strong></td>
+                <td class="input-field">[Are there alternative approaches that would be less privacy-intrusive?]</td>
+            </tr>
+            <tr>
+                <td><strong>How will data quality be ensured?</strong></td>
+                <td class="input-field">[Processes for keeping data accurate and up to date]</td>
+            </tr>
+            <tr>
+                <td><strong>How will data subjects be informed?</strong></td>
+                <td>Via privacy notice at {{1.website_url}} and direct communication at point of collection</td>
+            </tr>
+            <tr>
+                <td><strong>How will data subject rights be supported?</strong></td>
+                <td>Contact: {{1.email}}<br>DPO: {{1.dpo_name}}<br>Response time: 30 days</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SECTION 4: RISK IDENTIFICATION -->
+    <div class="dpia-section">
+        <h2>Section 4: Risk Identification and Assessment</h2>
+        <p class="gdpr-reference">Article 35(7)(c): Assessment of risks to rights and freedoms of data subjects</p>
+        
+        <h3>4.1 Risk Assessment Matrix</h3>
+        <table>
+            <tr>
+                <th>Risk Category</th>
+                <th>Potential Harm</th>
+                <th>Likelihood (L/M/H)</th>
+                <th>Severity (L/M/H)</th>
+                <th>Overall Risk</th>
+            </tr>
+            <tr>
+                <td><strong>Unauthorized Access</strong></td>
+                <td>Data breach, identity theft, financial loss</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td><strong>Data Loss</strong></td>
+                <td>Loss of service, inability to fulfill contract</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td><strong>Inaccurate Data</strong></td>
+                <td>Wrong decisions, discrimination, reputational harm</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td><strong>Excessive Data Collection</strong></td>
+                <td>Privacy intrusion, function creep</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td><strong>Unwanted Communications</strong></td>
+                <td>Intrusion, loss of control</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td><strong>Re-identification of Anonymized Data</strong></td>
+                <td>Privacy violation, breach of trust</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td><strong>Cross-border Transfer Risks</strong></td>
+                <td>Reduced legal protection</td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+                <td class="input-field"></td>
+            </tr>
+        </table>
+        
+        <div class="info-box">
+            <strong>Risk Rating Guide:</strong><br>
+            <span class="risk-low">LOW</span> = Unlikely to occur OR minimal impact<br>
+            <span class="risk-medium">MEDIUM</span> = Possible occurrence AND moderate impact<br>
+            <span class="risk-high">HIGH</span> = Likely to occur AND significant impact
+        </div>
+    </div>
+
+    <!-- SECTION 5: RISK MITIGATION -->
+    <div class="dpia-section">
+        <h2>Section 5: Risk Mitigation Measures</h2>
+        <p class="gdpr-reference">Article 35(7)(d): Measures envisaged to address risks</p>
+        
+        <h3>5.1 Technical Measures</h3>
+        <table>
+            <tr><th>Measure</th><th>Implementation Status</th><th>Residual Risk</th></tr>
+            <tr>
+                <td>Data encryption (at rest and in transit)</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Access controls and authentication</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Pseudonymization</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Data backup and recovery</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Logging and monitoring</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+        </table>
+        
+        <h3>5.2 Organizational Measures</h3>
+        <table>
+            <tr><th>Measure</th><th>Implementation Status</th><th>Residual Risk</th></tr>
+            <tr>
+                <td>Staff training (Coordinator: {{1.trainer_name}})</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Data Processing Agreements with processors</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Data subject rights procedures</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Incident response plan</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+            <tr>
+                <td>Regular audits and reviews</td>
+                <td class="input-field">☐ Implemented ☐ Planned ☐ N/A</td>
+                <td class="input-field"></td>
+            </tr>
+        </table>
+        
+        <h3>5.3 Current Security Measures</h3>
+        <p><strong>{{1.security_measures}}</strong></p>
+    </div>
+
+    <!-- SECTION 6: DPO CONSULTATION -->
+    <div class="dpia-section">
+        <h2>Section 6: DPO Consultation</h2>
+        <p class="gdpr-reference">Article 35(2): The controller shall seek the advice of the DPO when carrying out a DPIA</p>
+        
+        <table>
+            <tr><th width="35%">Field</th><th>Information</th></tr>
+            <tr><td>DPO Name</td><td>{{1.dpo_name}}</td></tr>
+            <tr><td>DPO Contact</td><td>{{1.email}}</td></tr>
+            <tr><td>Date Consulted</td><td class="input-field"></td></tr>
+            <tr><td>DPO Advice/Recommendations</td><td class="input-field" style="min-height: 100px;"></td></tr>
+            <tr><td>Were recommendations followed?</td><td class="input-field">☐ Yes ☐ No ☐ Partially<br><br>If no/partially, explain:</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION 7: CONCLUSION -->
+    <div class="dpia-section">
+        <h2>Section 7: DPIA Conclusion</h2>
+        
+        <table>
+            <tr><th width="35%">Assessment</th><th>Outcome</th></tr>
+            <tr>
+                <td><strong>Overall Risk Level (after mitigation)</strong></td>
+                <td class="input-field">
+                    ☐ <span class="risk-low">LOW</span> - Processing may proceed<br>
+                    ☐ <span class="risk-medium">MEDIUM</span> - Processing may proceed with monitoring<br>
+                    ☐ <span class="risk-high">HIGH</span> - Prior consultation with supervisory authority required (Article 36)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Is prior consultation required?</strong></td>
+                <td class="input-field">☐ Yes (Article 36 applies) ☐ No</td>
+            </tr>
+            <tr>
+                <td><strong>Approval to Proceed</strong></td>
+                <td class="input-field">☐ Approved ☐ Approved with conditions ☐ Not approved</td>
+            </tr>
+            <tr>
+                <td><strong>Conditions/Requirements</strong></td>
+                <td class="input-field" style="min-height: 80px;"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="signature-area">
+        <h2>DPIA Approval</h2>
+        
+        <table style="border: none; margin-top: 30px;">
+            <tr style="border: none;">
+                <td style="border: none; width: 50%;">
+                    <strong>Project Owner:</strong><br>
+                    Name: {{1.privacy_officer}}<br>
+                    Signature: _______________________________<br>
+                    Date: _______________________________
+                </td>
+                <td style="border: none;">
+                    <strong>Data Protection Officer:</strong><br>
+                    Name: {{1.dpo_name}}<br>
+                    Signature: _______________________________<br>
+                    Date: _______________________________
+                </td>
+            </tr>
+            <tr style="border: none;">
+                <td colspan="2" style="border: none; padding-top: 30px;">
+                    <strong>Senior Management Approval:</strong><br>
+                    Name: {{1.authorized_signatory}}<br>
+                    Signature: _______________________________<br>
+                    Date: _______________________________
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="warning-box" style="margin-top: 30px;">
+        <p><strong>⚠️ Important:</strong> This DPIA must be reviewed and updated if there are changes to the processing that affect the risks identified. If residual risk remains HIGH after mitigation, you must consult the supervisory authority before processing begins (Article 36).</p>
+        <p><strong>Generated:</strong> {{1.generated_date}} by 3CH0 Compliance</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

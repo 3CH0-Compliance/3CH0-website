@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSAR Procedure - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 30px; }
+        h3 { color: #2980b9; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .section { background-color: #f8fdff; padding: 20px; margin: 25px 0; border-radius: 10px; border-left: 5px solid #92cdec; }
+        .deadline-box { background-color: #f8d7da; border: 2px solid #dc3545; border-radius: 10px; padding: 20px; margin: 20px 0; text-align: center; }
+        .deadline-box h3 { color: #dc3545; margin-top: 0; }
+        .step { background-color: #fff; border: 2px solid #0069d9; border-radius: 10px; padding: 15px; margin: 10px 0; }
+        .step-num { background-color: #0069d9; color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #0069d9; color: white; }
+        .template { background-color: #f5f5f5; border: 1px dashed #999; padding: 15px; margin: 15px 0; font-family: monospace; font-size: 13px; white-space: pre-wrap; }
+        .warning { background-color: #fff8e6; border-left: 4px solid #f0ad4e; padding: 15px; margin: 15px 0; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p style="color: #666;">Effective: {{1.generated_date}}</p>
+    </div>
+
+    <h1>Data Subject Access Request (DSAR) Procedure</h1>
+
+    <div class="deadline-box">
+        <h3>⏰ CRITICAL DEADLINE</h3>
+        <p style="font-size: 24px; font-weight: bold; margin: 0;">30 CALENDAR DAYS</p>
+        <p>to respond to all data subject requests</p>
+    </div>
+
+    <div class="section">
+        <h2>1. Key Contacts</h2>
+        <table>
+            <tr><th>Role</th><th>Name</th><th>Contact</th></tr>
+            <tr><td>Data Protection Officer</td><td>{{1.dpo_name}}</td><td>{{1.email}}</td></tr>
+            <tr><td>Privacy Officer</td><td>{{1.privacy_officer}}</td><td>{{1.email}}</td></tr>
+            <tr><td>Security Officer</td><td>{{1.security_officer}}</td><td>{{1.phone_number}}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Data Subject Rights (Articles 15-22)</h2>
+        <table>
+            <tr><th>Right</th><th>Article</th><th>Description</th></tr>
+            <tr><td><strong>Access</strong></td><td>Art. 15</td><td>Right to obtain copy of personal data</td></tr>
+            <tr><td><strong>Rectification</strong></td><td>Art. 16</td><td>Right to correct inaccurate data</td></tr>
+            <tr><td><strong>Erasure</strong></td><td>Art. 17</td><td>Right to be forgotten</td></tr>
+            <tr><td><strong>Restriction</strong></td><td>Art. 18</td><td>Right to limit processing</td></tr>
+            <tr><td><strong>Portability</strong></td><td>Art. 20</td><td>Right to receive data in machine-readable format</td></tr>
+            <tr><td><strong>Object</strong></td><td>Art. 21</td><td>Right to object to processing</td></tr>
+            <tr><td><strong>Automated Decisions</strong></td><td>Art. 22</td><td>Right to human review of automated decisions</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. DSAR Process Steps</h2>
+        
+        <div class="step"><span class="step-num">1</span><strong>RECEIVE</strong> - Log request immediately. Clock starts Day 0.</div>
+        <div class="step"><span class="step-num">2</span><strong>ACKNOWLEDGE</strong> - Send acknowledgment within 48 hours.</div>
+        <div class="step"><span class="step-num">3</span><strong>VERIFY IDENTITY</strong> - Request ID verification within 5 days.</div>
+        <div class="step"><span class="step-num">4</span><strong>ASSESS</strong> - Determine scope and exemptions by Day 7.</div>
+        <div class="step"><span class="step-num">5</span><strong>GATHER DATA</strong> - Collect all relevant data by Day 14.</div>
+        <div class="step"><span class="step-num">6</span><strong>REVIEW & REDACT</strong> - Remove third-party data by Day 21.</div>
+        <div class="step"><span class="step-num">7</span><strong>RESPOND</strong> - Send response by Day 30.</div>
+        <div class="step"><span class="step-num">8</span><strong>CLOSE</strong> - Update register and retain records.</div>
+    </div>
+
+    <div class="section">
+        <h2>4. Identity Verification</h2>
+        <p>Before processing, verify identity using:</p>
+        <ul>
+            <li>Government-issued photo ID</li>
+            <li>Utility bill or bank statement</li>
+            <li>Security questions from account</li>
+            <li>Email from registered address</li>
+        </ul>
+        <div class="warning"><strong>Third-Party Requests:</strong> Require written authorization or legal documentation (power of attorney).</div>
+    </div>
+
+    <div class="section">
+        <h2>5. DSAR Register</h2>
+        <table style="font-size: 12px;">
+            <tr><th>Ref</th><th>Received</th><th>Requester</th><th>Type</th><th>ID Verified</th><th>Due</th><th>Responded</th><th>Status</th></tr>
+            <tr><td>DSAR-001</td><td>[Date]</td><td>[Name]</td><td>Access</td><td>☐Y ☐N</td><td>[+30d]</td><td>[Date]</td><td>Open</td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>6. Response Templates</h2>
+        
+        <h3>6.1 Acknowledgment</h3>
+        <div class="template">Subject: Your Data Request - Reference [DSAR-XXX]
+
+Dear [Name],
+
+Thank you for your request dated [DATE].
+
+Reference: [DSAR-XXX]
+Due date: [DATE + 30 days]
+
+We need to verify your identity. Please provide:
+- Copy of photo ID
+
+Contact: {{1.dpo_name}} at {{1.email}}
+
+Kind regards,
+{{1.privacy_officer}}
+{{1.company}}</div>
+
+        <h3>6.2 Access Response</h3>
+        <div class="template">Subject: Response to Access Request - [DSAR-XXX]
+
+Dear [Name],
+
+Please find attached your personal data.
+
+Information provided:
+- Categories of data: [List]
+- Processing purposes: [List]
+- Recipients: [List]
+- Retention period: {{1.retention_period}}
+- Your rights: Access, rectification, erasure, restriction, portability, objection
+- Right to complain to supervisory authority
+
+Kind regards,
+{{1.dpo_name}}
+{{1.company}}</div>
+
+        <h3>6.3 Erasure Response</h3>
+        <div class="template">Subject: Response to Erasure Request - [DSAR-XXX]
+
+Dear [Name],
+
+☐ COMPLETED: Your data has been erased.
+☐ PARTIAL: Some data retained for [legal reason].
+☐ DECLINED: Unable to erase because [reason].
+
+Contact {{1.dpo_name}} at {{1.email}} with questions.
+
+Kind regards,
+{{1.privacy_officer}}
+{{1.company}}</div>
+    </div>
+
+    <div class="section">
+        <h2>7. Escalation</h2>
+        <table>
+            <tr><th>Situation</th><th>Escalate To</th><th>When</th></tr>
+            <tr><td>Complex exemptions</td><td>{{1.dpo_name}}</td><td>Within 5 days</td></tr>
+            <tr><td>Extension needed</td><td>{{1.dpo_name}}</td><td>By Day 14</td></tr>
+            <tr><td>Potential refusal</td><td>{{1.dpo_name}} + Legal</td><td>Within 7 days</td></tr>
+            <tr><td>Complaint received</td><td>{{1.dpo_name}}</td><td>Immediately</td></tr>
+            <tr><td>Authority inquiry</td><td>{{1.dpo_name}} + {{1.authorized_signatory}}</td><td>Immediately</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>8. Record Retention</h2>
+        <table>
+            <tr><th>Record</th><th>Retain For</th></tr>
+            <tr><td>DSAR Register</td><td>6 years</td></tr>
+            <tr><td>Response copies</td><td>6 years</td></tr>
+            <tr><td>ID verification docs</td><td>Delete after completion</td></tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px;">
+        <h2>Approval</h2>
+        <p><strong>DPO:</strong> {{1.dpo_name}} | <strong>Date:</strong> {{1.generated_date}}</p>
+        <p><strong>Signature:</strong> _______________________________</p>
+        <p style="margin-top: 20px;"><strong>Management:</strong> {{1.authorized_signatory}} | <strong>Date:</strong> _______</p>
+        <p><strong>Signature:</strong> _______________________________</p>
+    </div>
+
+    <div class="warning" style="margin-top: 30px;">
+        <strong>⚠️ Review:</strong> This procedure should be reviewed annually. Generated {{1.generated_date}} by 3CH0 Compliance.
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>
