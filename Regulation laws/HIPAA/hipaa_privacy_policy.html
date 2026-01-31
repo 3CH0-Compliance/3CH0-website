@@ -21,6 +21,8 @@
         .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
         .document-date { color: #666; font-size: 14px; margin-top: 10px; }
         .important { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; font-weight: bold; }
+        .info-box { background-color: #e8f4fc; border-left: 4px solid #0069d9; padding: 15px; margin: 15px 0; }
+        .complaint-box { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; margin: 20px 0; border-radius: 8px; }
         @media print { .download-section { display: none !important; } body { padding: 0; margin: 0; } .section { page-break-inside: avoid; } @page { margin: 2cm; } }
     </style>
 </head>
@@ -36,7 +38,7 @@
     </div>
 
     <h1>Notice of Privacy Practices</h1>
-    <p style="text-align: center; color: #666;">HIPAA Compliant</p>
+    <p style="text-align: center; color: #666;">HIPAA Compliant – 45 CFR §164.520</p>
 
     <div class="important">THIS NOTICE DESCRIBES HOW MEDICAL INFORMATION ABOUT YOU MAY BE USED AND DISCLOSED AND HOW YOU CAN GET ACCESS TO THIS INFORMATION. PLEASE REVIEW IT CAREFULLY.</div>
 
@@ -46,53 +48,170 @@
         <p><strong>Address:</strong> {{1.company_address}}</p>
         <p><strong>Phone:</strong> {{1.phone_number}}</p>
         <p><strong>Website:</strong> {{1.website_url}}</p>
+        <p><strong>Email:</strong> {{1.email}}</p>
         <p><strong>Covered Entity Type:</strong> {{1.covered_entity_type}}</p>
     </div>
 
     <div class="section">
         <h2>1. Our Pledge Regarding Your Health Information</h2>
-        <p>We understand that your health information is personal and we are committed to protecting it. This notice tells you about the ways we may use and disclose your health information and describes your rights regarding your health information.</p>
+        <p>We understand that your health information is personal and we are committed to protecting it. We are required by law to maintain the privacy of your protected health information (PHI), provide you with this notice of our legal duties and privacy practices, and follow the terms of the notice currently in effect.</p>
+        <p>We reserve the right to change this notice and make the new provisions effective for all PHI we maintain. If we make a material change, we will provide you with a revised notice.</p>
     </div>
 
     <div class="section">
-        <h2>2. Types of Protected Health Information (PHI)</h2>
+        <h2>2. Types of Protected Health Information (PHI) We Collect</h2>
+        <p>We may collect and maintain the following types of PHI:</p>
         <p>{{1.phi_types}}</p>
+        <div class="info-box">
+            <p><strong>PHI includes any information that:</strong></p>
+            <ul>
+                <li>Relates to your past, present, or future physical or mental health condition</li>
+                <li>Relates to the provision of health care to you</li>
+                <li>Relates to past, present, or future payment for health care</li>
+                <li>Identifies you or could reasonably be used to identify you</li>
+            </ul>
+        </div>
     </div>
 
     <div class="section">
-        <h2>3. How We May Use and Disclose Your Health Information</h2>
-        <h3>For Treatment</h3>
-        <p>We may use your health information to provide you with medical treatment or services.</p>
-        <h3>For Payment</h3>
-        <p>We may use and disclose your health information to bill and collect payment.</p>
-        <h3>For Healthcare Operations</h3>
-        <p>We may use and disclose health information for our healthcare operations.</p>
-        <h3>Business Associates</h3>
-        <p>{{1.business_associates}}</p>
+        <h2>3. How We May Use and Disclose Your Health Information Without Authorization</h2>
+        
+        <h3>A. For Treatment</h3>
+        <p>We may use and disclose your PHI to provide, coordinate, or manage your health care and related services. This includes consultation between health care providers regarding your treatment and referrals for treatment.</p>
+        
+        <h3>B. For Payment</h3>
+        <p>We may use and disclose your PHI to bill and collect payment for your health care services. This may include disclosures to your health plan, insurance company, or third-party payer.</p>
+        
+        <h3>C. For Health Care Operations</h3>
+        <p>We may use and disclose your PHI for our health care operations, including quality assessment, employee training, licensing, accreditation activities, business planning, and conducting or arranging for medical reviews, legal services, and audits.</p>
+        
+        <h3>D. Business Associates</h3>
+        <p>We may disclose your PHI to our business associates who perform functions on our behalf or provide services to us if the information is necessary for such functions or services. Our business associates are required to protect your PHI.</p>
+        <p><strong>Current Business Associates:</strong> {{1.business_associates}}</p>
         <p><strong>Third-Party Services:</strong> {{1.thirdparty}}</p>
     </div>
 
     <div class="section">
-        <h2>4. Your Rights</h2>
-        <ul>
-            <li><strong>Right to Access</strong> your health information</li>
-            <li><strong>Right to Amend</strong> your health information</li>
-            <li><strong>Right to an Accounting</strong> of disclosures</li>
-            <li><strong>Right to Request Restrictions</strong></li>
-            <li><strong>Right to Confidential Communications</strong></li>
-            <li><strong>Right to a Paper Copy</strong> of this notice</li>
-        </ul>
+        <h2>4. Other Permitted Uses and Disclosures Without Authorization</h2>
+        
+        <h3>A. As Required by Law</h3>
+        <p>We may use or disclose your PHI when required by federal, state, or local law.</p>
+        
+        <h3>B. Public Health Activities</h3>
+        <p>We may disclose PHI for public health activities including: preventing or controlling disease, injury, or disability; reporting births and deaths; reporting child abuse or neglect; reporting reactions to medications or problems with products; notifying persons of recalls; and notifying a person who may have been exposed to a disease or may be at risk for contracting or spreading a disease.</p>
+        
+        <h3>C. Victims of Abuse, Neglect, or Domestic Violence</h3>
+        <p>We may disclose PHI to appropriate authorities if we reasonably believe you are a victim of abuse, neglect, or domestic violence.</p>
+        
+        <h3>D. Health Oversight Activities</h3>
+        <p>We may disclose PHI to a health oversight agency for activities authorized by law, such as audits, investigations, inspections, and licensure.</p>
+        
+        <h3>E. Judicial and Administrative Proceedings</h3>
+        <p>We may disclose PHI in response to a court or administrative order, subpoena, discovery request, or other lawful process.</p>
+        
+        <h3>F. Law Enforcement Purposes</h3>
+        <p>We may disclose PHI for law enforcement purposes including: to comply with court orders or laws; to assist in identifying or locating suspects, fugitives, or missing persons; about crime victims; about deaths that may be the result of criminal conduct; about criminal conduct on our premises; and in emergencies to report a crime.</p>
+        
+        <h3>G. Coroners, Medical Examiners, and Funeral Directors</h3>
+        <p>We may disclose PHI to coroners, medical examiners, and funeral directors to allow them to carry out their duties.</p>
+        
+        <h3>H. Organ and Tissue Donation</h3>
+        <p>We may disclose PHI to organizations involved in procuring, banking, or transplanting organs, eyes, or tissue.</p>
+        
+        <h3>I. Research</h3>
+        <p>Under certain circumstances, we may use or disclose PHI for research purposes when an institutional review board or privacy board has reviewed the research proposal and established protocols to ensure the privacy of your PHI.</p>
+        
+        <h3>J. Serious Threat to Health or Safety</h3>
+        <p>We may use and disclose PHI when necessary to prevent a serious threat to your health and safety or the health and safety of the public or another person.</p>
+        
+        <h3>K. Specialized Government Functions</h3>
+        <p>We may disclose PHI for military and veterans' activities, national security and intelligence activities, protective services for the President, medical suitability determinations, and correctional institution purposes.</p>
+        
+        <h3>L. Workers' Compensation</h3>
+        <p>We may disclose PHI as authorized by and necessary to comply with workers' compensation laws.</p>
+        
+        <h3>M. Inmates</h3>
+        <p>If you are an inmate or under custody of law enforcement, we may disclose PHI to the correctional institution or law enforcement official for their purposes.</p>
+        
+        <h3>N. Appointment Reminders and Health-Related Benefits</h3>
+        <p>We may use and disclose PHI to contact you with appointment reminders or information about treatment alternatives or other health-related benefits and services that may be of interest to you.</p>
     </div>
 
     <div class="section">
-        <h2>5. Contact Information</h2>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-        <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
-        <p><strong>Email:</strong> {{1.email}}</p>
+        <h2>5. Uses and Disclosures Requiring Your Written Authorization</h2>
+        <p>We will obtain your written authorization before using or disclosing your PHI for purposes other than those described above, including:</p>
+        <ul>
+            <li>Most uses and disclosures of psychotherapy notes (where applicable)</li>
+            <li>Uses and disclosures for marketing purposes</li>
+            <li>Disclosures that constitute a sale of PHI</li>
+            <li>Other uses and disclosures not described in this notice</li>
+        </ul>
+        <p>You may revoke an authorization in writing at any time. Revocation will not affect any use or disclosure permitted by your authorization while it was in effect.</p>
+    </div>
+
+    <div class="section">
+        <h2>6. Your Rights Regarding Your Health Information</h2>
+        
+        <h3>A. Right to Access</h3>
+        <p>You have the right to inspect and obtain a copy of your PHI contained in a designated record set. You must submit your request in writing. We may charge a reasonable fee for copies. We may deny your request in limited circumstances; if we do, you may request a review of the denial.</p>
+        
+        <h3>B. Right to Amend</h3>
+        <p>You have the right to request an amendment of your PHI if you believe it is incorrect or incomplete. Your request must be in writing and provide a reason for the amendment. We may deny your request in certain circumstances and will provide you with a written explanation.</p>
+        
+        <h3>C. Right to an Accounting of Disclosures</h3>
+        <p>You have the right to receive an accounting of certain disclosures of your PHI made by us during the six years prior to your request. This accounting will not include disclosures for treatment, payment, health care operations, or certain other purposes.</p>
+        
+        <h3>D. Right to Request Restrictions</h3>
+        <p>You have the right to request restrictions on certain uses and disclosures of your PHI for treatment, payment, or health care operations. We are not required to agree to your request unless you request that we not disclose PHI to your health plan for services you paid for in full out-of-pocket.</p>
+        
+        <h3>E. Right to Confidential Communications</h3>
+        <p>You have the right to request that we communicate with you about health matters through alternative means or at alternative locations. Your request must be in writing and specify the alternative means or location.</p>
+        
+        <h3>F. Right to a Paper Copy of This Notice</h3>
+        <p>You have the right to obtain a paper copy of this notice upon request, even if you have agreed to receive this notice electronically.</p>
+        
+        <h3>G. Right to Be Notified of a Breach</h3>
+        <p>You have the right to be notified if there is a breach of your unsecured PHI.</p>
+    </div>
+
+    <div class="section">
+        <h2>7. Contact Information</h2>
+        <p>If you have questions about this notice or wish to exercise any of your rights, please contact:</p>
+        <div class="info-box">
+            <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
+            <p><strong>Security Officer:</strong> {{1.security_officer}}</p>
+            <p><strong>Email:</strong> {{1.email}}</p>
+            <p><strong>Phone:</strong> {{1.phone_number}}</p>
+            <p><strong>Address:</strong> {{1.company_address}}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. Complaints</h2>
+        <div class="complaint-box">
+            <p>If you believe your privacy rights have been violated, you may file a complaint with us or with the Secretary of the U.S. Department of Health and Human Services. <strong>You will not be penalized or retaliated against for filing a complaint.</strong></p>
+            
+            <h3>To File a Complaint with Us:</h3>
+            <p>Contact our Privacy Officer at the information provided above.</p>
+            
+            <h3>To File a Complaint with HHS:</h3>
+            <p><strong>Office for Civil Rights</strong><br>
+            U.S. Department of Health and Human Services<br>
+            200 Independence Avenue, S.W.<br>
+            Washington, D.C. 20201</p>
+            <p><strong>Website:</strong> <a href="https://www.hhs.gov/hipaa/filing-a-complaint/index.html">www.hhs.gov/hipaa/filing-a-complaint</a></p>
+            <p><strong>Phone:</strong> 1-877-696-6775</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>9. Changes to This Notice</h2>
+        <p>We reserve the right to change this notice at any time. Any changes will apply to PHI we already have about you as well as any information we receive in the future. The revised notice will be posted at our facility and on our website, and we will provide a copy to you upon request.</p>
     </div>
 
     <div class="disclaimer">
-        <p>This Notice of Privacy Practices was prepared for {{1.company}}. Please review and customize according to your specific practices.</p>
+        <p><strong>Effective Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p>This Notice of Privacy Practices was prepared for {{1.company}} in compliance with the HIPAA Privacy Rule (45 CFR Parts 160 and 164).</p>
     </div>
 
     <div class="download-section">
