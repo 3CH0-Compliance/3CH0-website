@@ -3,263 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCPA Employee Training - {{1.company}}</title>
+    <title>CCPA Employee Training Script</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background-color: #ffffff;
-        }
-        h1 {
-            color: #0069d9;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-        h2 { color: #0069d9; margin-top: 25px; }
-        h3 { color: #2980b9; }
-        .section { margin-bottom: 30px; }
-        ul, ol { margin: 15px 0; padding-left: 25px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #1a5276; font-size: 28px; margin: 30px 0 15px 0; border-bottom: 2px solid #1a5276; padding-bottom: 10px; }
+        h2 { color: #2874a6; font-size: 20px; margin: 20px 0 10px 0; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 10px 0 15px 25px; }
         li { margin-bottom: 8px; }
-        .download-section {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
-            border-radius: 10px;
-            border: 1px solid #92cdec;
-        }
-        .download-btn {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
-        }
-        .download-instructions { margin-top: 15px; font-size: 14px; color: #666; }
-        .document-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #92cdec;
-        }
-        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
-        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
-        .trainer-note {
-            background-color: #e8f4fc;
-            border-left: 4px solid #0069d9;
-            padding: 15px;
-            margin: 15px 0;
-            font-style: italic;
-        }
-        .scenario {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 15px 0;
-        }
-        .quiz {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border: 1px solid #ddd;
-        }
-        .signature-area {
-            margin-top: 40px;
-            border-top: 2px solid #92cdec;
-            padding-top: 20px;
-        }
-        @media print {
-            .download-section { display: none !important; }
-            body { padding: 0; margin: 0; }
-            .section { page-break-inside: avoid; }
-            @page { margin: 2cm; }
-        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 12px; text-align: left; vertical-align: top; }
+        .title { text-align: center; color: #1a5276; font-size: 36px; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #2874a6; font-size: 22px; margin-bottom: 30px; }
+        .info-box { background-color: #eaf2f8; border: 1px solid #ccc; padding: 20px; margin: 20px 0; }
+        .warning-box { background-color: #fdf2f2; border: 2px solid #c0392b; padding: 15px; margin: 15px 0; }
+        .success-box { background-color: #d4edda; border: 2px solid #155724; padding: 15px; margin: 15px 0; }
+        .trainer-script { background-color: #fff8e1; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; font-style: italic; }
+        .penalty { color: #c0392b; font-weight: bold; }
+        .do-list { background-color: #d4edda; }
+        .dont-list { background-color: #fdf2f2; }
+        .do-header { background-color: #155724; color: white; }
+        .dont-header { background-color: #c0392b; color: white; }
+        .quiz-box { background-color: #e8f4fc; border: 1px solid #2874a6; padding: 20px; margin: 15px 0; }
+        .acknowledgment { border: 2px solid #333; padding: 30px; margin: 30px 0; }
+        strong { color: #1a5276; }
+        .key-contact { font-size: 18px; }
+        .scenario { background-color: #fff8e1; border: 1px solid #f39c12; padding: 15px; margin: 10px 0; }
+        .correct-action { color: #155724; font-weight: bold; }
+        .page-break { page-break-before: always; }
     </style>
 </head>
 <body>
-    <div class="download-section">
-        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
-        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    <div class="title">CCPA EMPLOYEE TRAINING</div>
+    <div class="subtitle">California Consumer Privacy Act Compliance Training Script</div>
+
+    <div class="info-box">
+        <h2 style="margin-top: 0;">TRAINING DETAILS</h2>
+        <p><strong>Company:</strong> [COMPANY NAME]</p>
+        <p><strong>Trainer:</strong> [TRAINER NAME]</p>
+        <p><strong>Privacy Officer:</strong> [PRIVACY OFFICER NAME]</p>
+        <p><strong>Duration:</strong> Approximately 60 minutes</p>
+        <p><strong>Date:</strong> [TRAINING DATE]</p>
     </div>
 
-    <div class="document-header">
-        <div class="company-name">{{1.company}}</div>
-        <div class="document-date">Training Date: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    <h1>MODULE 1: INTRODUCTION TO CCPA</h1>
+    
+    <div class="trainer-script">
+        <strong>TRAINER SCRIPT:</strong><br>
+        "Welcome to our CCPA training session. Today we'll learn about the California Consumer Privacy Act, what rights it gives to California residents, and most importantly, how it affects YOUR work at [COMPANY NAME]. This training is required by law for anyone who handles consumer inquiries or personal information."
     </div>
 
-    <h1>CCPA Employee Training Script</h1>
+    <h2>What is CCPA?</h2>
+    <ul>
+        <li>California Consumer Privacy Act of 2018</li>
+        <li>Enhanced by California Privacy Rights Act (CPRA) in 2023</li>
+        <li>Gives California residents control over their personal information</li>
+        <li>Applies to businesses meeting certain thresholds</li>
+    </ul>
 
-    <div class="section">
-        <p><strong>Trainer:</strong> {{1.trainer_name}}</p>
-        <p><strong>Company:</strong> {{1.company}}</p>
-        <p><strong>Duration:</strong> Approximately 45 minutes</p>
-    </div>
-
-    <div class="section">
-        <h2>Training Introduction</h2>
-        <div class="trainer-note">
-            <strong>Trainer:</strong> "Welcome to our CCPA training session. Today we'll learn about the California Consumer Privacy Act, what rights it gives to California residents, and how it affects our work at {{1.company}}."
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>1. What is CCPA?</h2>
-        <p>CCPA is the California Consumer Privacy Act, which:</p>
+    <h2>Why Does This Matter?</h2>
+    <div class="warning-box">
+        <strong class="penalty">PENALTIES FOR NON-COMPLIANCE:</strong>
         <ul>
-            <li>Took effect January 1, 2020</li>
-            <li>Gives California residents control over their personal information</li>
-            <li>Applies to businesses meeting certain thresholds</li>
-            <li>Was enhanced by CPRA (California Privacy Rights Act) in 2023</li>
+            <li><strong>$2,500</strong> per unintentional violation</li>
+            <li><strong>$7,500</strong> per intentional violation</li>
+            <li><strong>$7,500</strong> per violation involving a minor's data</li>
         </ul>
-        <p><strong>Penalties:</strong> Up to $7,500 per intentional violation!</p>
+        <p><em>These penalties apply PER VIOLATION - they add up quickly!</em></p>
     </div>
 
-    <div class="section">
-        <h2>2. Key Contacts at {{1.company}}</h2>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-        <p><strong>Email:</strong> {{1.email}}</p>
-        <p><strong>Phone:</strong> {{1.phone_number}}</p>
-        <div class="trainer-note">
-            <strong>Trainer:</strong> "Always direct consumer privacy requests to {{1.privacy_officer}}. Don't try to handle them yourself."
-        </div>
+    <h1>MODULE 2: KEY CONTACTS AT [COMPANY NAME]</h1>
+    
+    <div class="success-box">
+        <h2 style="margin-top: 0;">YOUR PRIVACY TEAM</h2>
+        <p class="key-contact"><strong>Privacy Officer:</strong> [NAME]</p>
+        <p class="key-contact"><strong>Email:</strong> [EMAIL]</p>
+        <p class="key-contact"><strong>Phone:</strong> [PHONE]</p>
+        <p style="margin-top: 15px;"><strong style="color: #155724; font-size: 18px;">WHEN IN DOUBT, REACH OUT!</strong></p>
     </div>
 
-    <div class="section">
-        <h2>3. What Personal Information Do We Handle?</h2>
-        <p>At {{1.company}}, we handle:</p>
-        <p>{{1.data}}</p>
-        <h3>CCPA Categories:</h3>
+    <div class="trainer-script">
+        <strong>TRAINER SCRIPT:</strong><br>
+        "This is the most important slide. [PRIVACY OFFICER NAME] is your go-to person for ALL privacy-related questions. NEVER try to handle consumer privacy requests on your own. Always forward them immediately."
+    </div>
+
+    <h1>MODULE 3: WHAT IS PERSONAL INFORMATION?</h1>
+    
+    <h2>Categories of Personal Information We Handle</h2>
+    <p>[LIST YOUR COMPANY'S DATA TYPES HERE]</p>
+
+    <h2>CCPA Categories (Cal. Civ. Code § 1798.140(v))</h2>
+    <ul>
+        <li><strong>Identifiers:</strong> Name, email, SSN, driver's license, IP address</li>
+        <li><strong>Commercial Info:</strong> Purchase history, products considered</li>
+        <li><strong>Internet Activity:</strong> Browsing history, search queries, clicks</li>
+        <li><strong>Geolocation:</strong> Physical location data</li>
+        <li><strong>Biometric:</strong> Fingerprints, face recognition, voice prints</li>
+        <li><strong>Professional:</strong> Employment information</li>
+        <li><strong>Inferences:</strong> Profiles about consumer preferences and behavior</li>
+    </ul>
+
+    <h2>NEW: Sensitive Personal Information (CPRA Addition)</h2>
+    <div class="warning-box">
+        <strong>SENSITIVE PERSONAL INFORMATION REQUIRES EXTRA CARE:</strong>
         <ul>
-            <li><strong>Identifiers:</strong> Name, email, SSN, driver's license</li>
-            <li><strong>Commercial Info:</strong> Purchase history, products bought</li>
-            <li><strong>Internet Activity:</strong> Browsing history, search queries</li>
-            <li><strong>Geolocation:</strong> Physical location data</li>
-            <li><strong>Biometric:</strong> Fingerprints, face recognition</li>
-            <li><strong>Professional:</strong> Employment info</li>
-            <li><strong>Inferences:</strong> Profiles created about consumers</li>
+            <li>Social Security, driver's license, passport numbers</li>
+            <li>Financial account numbers with passwords/credentials</li>
+            <li>Precise geolocation (within 1,850 feet)</li>
+            <li>Racial or ethnic origin</li>
+            <li>Religious or philosophical beliefs</li>
+            <li>Union membership</li>
+            <li>Contents of mail, email, text messages</li>
+            <li>Genetic data</li>
+            <li><strong>Neural data (NEW - brain/nervous system activity)</strong></li>
+            <li>Biometric information for identification</li>
+            <li>Health information</li>
+            <li>Sex life or sexual orientation</li>
+            <li>Citizenship or immigration status</li>
         </ul>
     </div>
 
-    <div class="section">
-        <h2>4. Consumer Rights Under CCPA</h2>
-        <h3>Right to Know</h3>
-        <p>Consumers can request:</p>
-        <ul>
-            <li>What personal information we collected</li>
-            <li>Where we got it from</li>
-            <li>Why we collected it</li>
-            <li>Who we shared it with</li>
-        </ul>
+    <h1>MODULE 4: CONSUMER RIGHTS UNDER CCPA</h1>
 
-        <h3>Right to Delete</h3>
-        <p>Consumers can request we delete their personal information (with some exceptions).</p>
+    <h2>1. Right to Know</h2>
+    <p>Consumers can request:</p>
+    <ul>
+        <li>What personal information we collected</li>
+        <li>Where we got it from</li>
+        <li>Why we collected it</li>
+        <li>Who we shared it with</li>
+        <li>The specific pieces of information we have</li>
+    </ul>
 
-        <h3>Right to Opt-Out</h3>
-        <p>Consumers can say "Do Not Sell My Personal Information."</p>
-        <p><strong>Do we sell data?</strong> {{1.sell_data}}</p>
+    <h2>2. Right to Delete</h2>
+    <p>Consumers can request we delete their personal information (with some exceptions for legal compliance, ongoing transactions, security, etc.)</p>
 
-        <h3>Right to Non-Discrimination</h3>
-        <p>We cannot treat consumers differently for exercising their rights.</p>
+    <h2>3. Right to Correct</h2>
+    <p>Consumers can request correction of inaccurate personal information.</p>
 
-        <h3>Right to Correct</h3>
-        <p>Consumers can request correction of inaccurate information.</p>
-    </div>
+    <h2>4. Right to Opt-Out of Sale/Sharing</h2>
+    <p>Consumers can say "Do Not Sell or Share My Personal Information."</p>
+    <p><strong>Does [COMPANY NAME] sell data?</strong> [YES/NO]</p>
 
-    <div class="section">
-        <h2>5. Handling Consumer Requests</h2>
-        <h3>When a Consumer Makes a Request:</h3>
+    <h2>5. Right to Limit Sensitive Personal Information (NEW)</h2>
+    <p>Consumers can limit how we use their sensitive personal information to only what's necessary for the services they requested.</p>
+
+    <h2>6. Right to Non-Discrimination</h2>
+    <p>We CANNOT treat consumers differently for exercising their rights - no higher prices, worse service, or denial of service.</p>
+
+    <h1>MODULE 5: HANDLING CONSUMER REQUESTS</h1>
+
+    <div class="success-box">
+        <h2 style="margin-top: 0; color: #155724;">THE GOLDEN RULE: FORWARD IMMEDIATELY</h2>
+        <p>When you receive ANY privacy request:</p>
         <ol>
-            <li>DO NOT ignore or dismiss the request</li>
-            <li>Immediately forward to {{1.privacy_officer}}</li>
+            <li><strong>DO NOT</strong> ignore or dismiss the request</li>
+            <li><strong>DO NOT</strong> try to handle it yourself</li>
+            <li><strong>DO NOT</strong> share any data without verification</li>
+            <li><strong>IMMEDIATELY</strong> forward to [PRIVACY OFFICER]</li>
             <li>Document the date and nature of the request</li>
-            <li>Do not share any data until identity is verified</li>
         </ol>
-        <p><strong>Timeline:</strong> We have 45 days to respond (can extend by 45 more if needed).</p>
     </div>
 
-    <div class="section">
-        <h2>6. Third Parties We Work With</h2>
-        <p><strong>Service Provider:</strong> {{1.service_provider_name}}</p>
-        <p><strong>Other Third Parties:</strong> {{1.thirdparty}}</p>
-        <div class="trainer-note">
-            <strong>Trainer:</strong> "Before sharing data with any new third party, check with {{1.privacy_officer}} to ensure proper agreements are in place."
-        </div>
-    </div>
+    <h2>Response Timeline</h2>
+    <ul>
+        <li><strong>45 days</strong> to respond to requests</li>
+        <li>Can extend by another 45 days if needed (must notify consumer)</li>
+        <li>This is why you must forward requests IMMEDIATELY</li>
+    </ul>
 
-    <div class="section">
-        <h2>7. Practical Scenarios</h2>
-        
-        <div class="scenario">
-            <h3>Scenario 1: Phone Request</h3>
-            <p><strong>Situation:</strong> A caller says "I'm a California resident and I want to know what data you have on me."</p>
-            <p><strong>Action:</strong> Thank them, take their contact info, and immediately forward to {{1.privacy_officer}}. Do NOT share any data over the phone.</p>
-        </div>
-        
-        <div class="scenario">
-            <h3>Scenario 2: Email Request</h3>
-            <p><strong>Situation:</strong> You receive an email: "Please delete all my information immediately."</p>
-            <p><strong>Action:</strong> Forward the email to {{1.email}} and {{1.privacy_officer}} right away. Do not reply yourself.</p>
-        </div>
-        
-        <div class="scenario">
-            <h3>Scenario 3: Opt-Out Request</h3>
-            <p><strong>Situation:</strong> A customer clicks "Do Not Sell My Personal Information" on our website.</p>
-            <p><strong>Action:</strong> This should be handled automatically, but report any issues to {{1.privacy_officer}}.</p>
-        </div>
-    </div>
+    <h2>Opt-Out Preference Signals (Global Privacy Control)</h2>
+    <p>Some browsers send automatic "do not sell" signals. We are required to honor these signals.</p>
 
-    <div class="section">
-        <h2>8. Do's and Don'ts</h2>
-        <h3>DO:</h3>
+    <h1>MODULE 6: PROTECTING MINORS</h1>
+
+    <div class="warning-box">
+        <strong>SPECIAL RULES FOR MINORS:</strong>
         <ul>
-            <li>Forward all privacy requests to {{1.privacy_officer}}</li>
-            <li>Document when requests come in</li>
-            <li>Protect personal information at all times</li>
-            <li>Ask if unsure about anything</li>
+            <li><strong>Under 13:</strong> Need PARENT/GUARDIAN consent to sell/share data</li>
+            <li><strong>Ages 13-15:</strong> Need the MINOR'S OWN opt-in consent</li>
+            <li><strong class="penalty">Penalty: $7,500 per violation</strong> involving a minor's data</li>
         </ul>
-        <h3>DON'T:</h3>
-        <ul>
-            <li>Ignore consumer requests</li>
-            <li>Share data without verification</li>
-            <li>Try to handle requests on your own</li>
-            <li>Treat customers differently for exercising rights</li>
-        </ul>
+        <p><em>If you suspect a user is a minor, alert [PRIVACY OFFICER] immediately!</em></p>
     </div>
 
-    <div class="quiz">
-        <h2>9. Knowledge Check</h2>
+    <h1>MODULE 7: PRACTICAL SCENARIOS</h1>
+
+    <div class="scenario">
+        <h3>SCENARIO 1: Phone Request</h3>
+        <p><strong>Situation:</strong> A caller says "I'm a California resident and I want to know what data you have on me."</p>
+        <p class="correct-action">CORRECT ACTION:</p>
+        <ol>
+            <li>Thank them for calling</li>
+            <li>Collect their contact information</li>
+            <li>Let them know our Privacy Officer will follow up</li>
+            <li><strong>Immediately</strong> forward to [PRIVACY OFFICER]</li>
+            <li><strong>DO NOT</strong> share any data over the phone</li>
+        </ol>
+    </div>
+
+    <div class="scenario">
+        <h3>SCENARIO 2: Email Delete Request</h3>
+        <p><strong>Situation:</strong> You receive an email: "Please delete all my information immediately."</p>
+        <p class="correct-action">CORRECT ACTION:</p>
+        <ol>
+            <li>Forward the email to [PRIVACY EMAIL]</li>
+            <li>CC [PRIVACY OFFICER]</li>
+            <li><strong>DO NOT</strong> reply yourself or delete anything</li>
+        </ol>
+    </div>
+
+    <div class="scenario">
+        <h3>SCENARIO 3: Request to Limit Sensitive Data</h3>
+        <p><strong>Situation:</strong> Customer says "I don't want you using my location data for anything except what I need."</p>
+        <p class="correct-action">CORRECT ACTION:</p>
+        <ol>
+            <li>Acknowledge their request</li>
+            <li>Forward to [PRIVACY OFFICER] - this is a "Right to Limit" request</li>
+            <li>Document the date and details</li>
+        </ol>
+    </div>
+
+    <div class="scenario">
+        <h3>SCENARIO 4: Suspicious Request (Possible Minor)</h3>
+        <p><strong>Situation:</strong> A user mentions they're "in high school" or otherwise indicates they might be under 16.</p>
+        <p class="correct-action">CORRECT ACTION:</p>
+        <ol>
+            <li>Flag this account/interaction immediately</li>
+            <li>Notify [PRIVACY OFFICER] with all details</li>
+            <li><strong>DO NOT</strong> sell or share this person's data</li>
+        </ol>
+    </div>
+
+    <h1>MODULE 8: DO'S AND DON'TS</h1>
+
+    <table>
+        <tr>
+            <th class="do-header" style="width: 50%;">DO:</th>
+            <th class="dont-header" style="width: 50%;">DON'T:</th>
+        </tr>
+        <tr>
+            <td class="do-list">
+                <ul>
+                    <li>Forward ALL privacy requests to Privacy Officer</li>
+                    <li>Document when requests come in</li>
+                    <li>Protect personal information at all times</li>
+                    <li>Ask if unsure about ANYTHING</li>
+                    <li>Treat all consumers equally regardless of rights exercised</li>
+                    <li>Report suspected data breaches immediately</li>
+                </ul>
+            </td>
+            <td class="dont-list">
+                <ul>
+                    <li>Ignore consumer requests</li>
+                    <li>Share data without verification</li>
+                    <li>Try to handle requests on your own</li>
+                    <li>Treat customers differently for exercising rights</li>
+                    <li>Guess or assume - always verify</li>
+                    <li>Sell/share minor's data without proper consent</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <h1>MODULE 9: KNOWLEDGE CHECK</h1>
+
+    <div class="quiz-box">
+        <strong>QUIZ - Answer these questions:</strong>
         <ol>
             <li>What does CCPA stand for?</li>
-            <li>Name three consumer rights under CCPA.</li>
+            <li>Name four consumer rights under CCPA.</li>
             <li>How long do we have to respond to a consumer request?</li>
             <li>Who should you contact when you receive a privacy request?</li>
             <li>Can we charge consumers more for exercising their privacy rights?</li>
+            <li>What is Sensitive Personal Information? Give three examples.</li>
+            <li>What age requires parental consent for selling personal information?</li>
+            <li>What is Global Privacy Control?</li>
+            <li>What is the penalty per intentional CCPA violation?</li>
+            <li>What is the "Right to Limit" and what type of data does it apply to?</li>
         </ol>
     </div>
 
-    <div class="signature-area">
-        <h2>Training Acknowledgement</h2>
-        <p>I acknowledge that I have received and understand the CCPA training provided by {{1.company}} on {{formatDate(now; "MMMM D, YYYY")}}.</p>
-        <p><strong>Employee Name:</strong> _________________________</p>
-        <p><strong>Signature:</strong> _________________________</p>
-        <p><strong>Date:</strong> _________________________</p>
+    <div class="page-break"></div>
+
+    <h1>TRAINING ACKNOWLEDGMENT</h1>
+
+    <div class="acknowledgment">
+        <p>I acknowledge that I have received and completed the CCPA training provided by [COMPANY NAME].</p>
+        <p><strong>I understand:</strong></p>
+        <ul>
+            <li>My responsibilities under the CCPA</li>
+            <li>How to handle consumer privacy requests</li>
+            <li>The importance of protecting personal information</li>
+            <li>Who to contact with questions or concerns</li>
+            <li>The consequences of non-compliance</li>
+        </ul>
+        <br>
+        <p><strong>Employee Name:</strong> _________________________________</p>
+        <br>
+        <p><strong>Employee Signature:</strong> _________________________________</p>
+        <br>
+        <p><strong>Date:</strong> _________________________________</p>
+        <br>
+        <p><strong>Department:</strong> _________________________________</p>
+        <br>
+        <p><strong>Trainer Name:</strong> _________________________________</p>
+        <br>
+        <p><strong>Training Date:</strong> _________________________________</p>
     </div>
 
-    <div class="download-section">
-        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
-    </div>
+    <p style="text-align: center; color: #666; font-style: italic; margin-top: 30px;">
+        This training record will be retained for compliance documentation purposes.
+    </p>
 </body>
 </html>
