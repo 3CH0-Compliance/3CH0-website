@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Retention Schedule - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; }
+        .section { margin-bottom: 30px; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .retention-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        .retention-table th { background-color: #0069d9; color: white; padding: 12px; text-align: left; }
+        .retention-table td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
+        .retention-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .retention-table tr:hover { background-color: #e8f4fc; }
+        .legal-ref { font-size: 12px; color: #666; font-style: italic; }
+        .action-destroy { color: #dc3545; font-weight: bold; }
+        .action-archive { color: #ffc107; font-weight: bold; }
+        .action-review { color: #28a745; font-weight: bold; }
+        .note-box { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .important-box { background-color: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; }
+        .info-box { background-color: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px; margin: 15px 0; }
+        .signature-area { margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top:15px;font-size:14px;color:#666;">Select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p>Data Retention Schedule</p>
+        <p>Document Reference: DRS-{{formatDate(now; "YYYY-MM")}}-001</p>
+        <p>Effective Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
+    </div>
+
+    <h1>POPIA Data Retention Schedule</h1>
+    <p style="text-align:center;color:#666;">In terms of Section 14 of the Protection of Personal Information Act 4 of 2013</p>
+
+    <div class="section">
+        <h2>1. Purpose</h2>
+        <p>This Data Retention Schedule establishes the retention periods for personal information processed by {{1.company}} in compliance with Section 14 of POPIA, which requires that personal information must not be retained longer than necessary for achieving the purpose for which it was collected.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Legal Framework</h2>
+        <p>Retention periods are determined based on:</p>
+        <ul>
+            <li>Protection of Personal Information Act 4 of 2013 (POPIA) - Section 14</li>
+            <li>Companies Act 71 of 2008</li>
+            <li>Basic Conditions of Employment Act 75 of 1997 (BCEA)</li>
+            <li>Labour Relations Act 66 of 1995 (LRA)</li>
+            <li>Tax Administration Act 28 of 2011</li>
+            <li>Electronic Communications and Transactions Act 25 of 2002 (ECTA)</li>
+            <li>National Archives and Records Service of South Africa Act 43 of 1996</li>
+            <li>Prescription Act 68 of 1969</li>
+            <li>Industry-specific regulations applicable to {{1.industry}}</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h3>Key Principles (Section 14)</h3>
+        <ul>
+            <li>Records must not be retained longer than necessary for the purpose collected</li>
+            <li>Retention is permitted where required or authorised by law</li>
+            <li>Retention is permitted where reasonably required for lawful purposes</li>
+            <li>Retention is permitted where required by contract</li>
+            <li>Retention is permitted where the data subject has consented</li>
+            <li>After retention period expires, records must be destroyed, deleted, or de-identified</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Retention Schedule</h2>
+
+        <h3>3.1 Customer and Client Records</h3>
+        <table class="retention-table">
+            <tr>
+                <th width="25%">Data Category</th>
+                <th width="15%">Retention Period</th>
+                <th width="20%">Trigger Event</th>
+                <th width="20%">Legal Basis</th>
+                <th width="20%">Action</th>
+            </tr>
+            <tr>
+                <td>Customer contact information</td>
+                <td>5 years</td>
+                <td>End of customer relationship</td>
+                <td class="legal-ref">Companies Act; Prescription Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Transaction records</td>
+                <td>5 years</td>
+                <td>Date of transaction</td>
+                <td class="legal-ref">Companies Act; Tax Administration Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Contracts and agreements</td>
+                <td>5 years</td>
+                <td>Expiry or termination of contract</td>
+                <td class="legal-ref">Prescription Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Customer complaints</td>
+                <td>3 years</td>
+                <td>Resolution of complaint</td>
+                <td class="legal-ref">POPIA; Prescription Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Customer correspondence</td>
+                <td>3 years</td>
+                <td>Date of correspondence</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-review">Review then destroy</td>
+            </tr>
+            <tr>
+                <td>Credit information</td>
+                <td>5 years</td>
+                <td>End of credit relationship</td>
+                <td class="legal-ref">National Credit Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+        </table>
+
+        <h3>3.2 Employment Records</h3>
+        <table class="retention-table">
+            <tr>
+                <th width="25%">Data Category</th>
+                <th width="15%">Retention Period</th>
+                <th width="20%">Trigger Event</th>
+                <th width="20%">Legal Basis</th>
+                <th width="20%">Action</th>
+            </tr>
+            <tr>
+                <td>Employment contracts</td>
+                <td>5 years</td>
+                <td>Termination of employment</td>
+                <td class="legal-ref">BCEA; LRA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Payroll records</td>
+                <td>5 years</td>
+                <td>Date of payment</td>
+                <td class="legal-ref">BCEA; Tax Administration Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Leave records</td>
+                <td>3 years</td>
+                <td>Date of leave</td>
+                <td class="legal-ref">BCEA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Disciplinary records</td>
+                <td>3 years</td>
+                <td>Date of final warning or termination</td>
+                <td class="legal-ref">LRA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Performance reviews</td>
+                <td>3 years</td>
+                <td>Date of review or termination</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Training records</td>
+                <td>3 years</td>
+                <td>Date of training</td>
+                <td class="legal-ref">Skills Development Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Recruitment records (unsuccessful)</td>
+                <td>1 year</td>
+                <td>Date of application</td>
+                <td class="legal-ref">EEA; POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Health and safety records</td>
+                <td>40 years</td>
+                <td>Date of incident/exposure</td>
+                <td class="legal-ref">OHSA; COIDA</td>
+                <td class="action-archive">Archive</td>
+            </tr>
+            <tr>
+                <td>UIF records</td>
+                <td>5 years</td>
+                <td>Termination of employment</td>
+                <td class="legal-ref">UIF Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+        </table>
+
+        <h3>3.3 Financial Records</h3>
+        <table class="retention-table">
+            <tr>
+                <th width="25%">Data Category</th>
+                <th width="15%">Retention Period</th>
+                <th width="20%">Trigger Event</th>
+                <th width="20%">Legal Basis</th>
+                <th width="20%">Action</th>
+            </tr>
+            <tr>
+                <td>Financial statements</td>
+                <td>7 years</td>
+                <td>End of financial year</td>
+                <td class="legal-ref">Companies Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Tax returns and supporting documents</td>
+                <td>5 years</td>
+                <td>Date of submission</td>
+                <td class="legal-ref">Tax Administration Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Invoices (issued and received)</td>
+                <td>5 years</td>
+                <td>Date of invoice</td>
+                <td class="legal-ref">VAT Act; Tax Administration Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Bank statements</td>
+                <td>5 years</td>
+                <td>Date of statement</td>
+                <td class="legal-ref">Companies Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Accounting records</td>
+                <td>7 years</td>
+                <td>End of financial year</td>
+                <td class="legal-ref">Companies Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+        </table>
+
+        <h3>3.4 Marketing Records</h3>
+        <table class="retention-table">
+            <tr>
+                <th width="25%">Data Category</th>
+                <th width="15%">Retention Period</th>
+                <th width="20%">Trigger Event</th>
+                <th width="20%">Legal Basis</th>
+                <th width="20%">Action</th>
+            </tr>
+            <tr>
+                <td>Marketing consent records</td>
+                <td>Duration + 1 year</td>
+                <td>Withdrawal of consent</td>
+                <td class="legal-ref">POPIA Section 69</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Opt-out records</td>
+                <td>Indefinite</td>
+                <td>N/A (maintain for compliance)</td>
+                <td class="legal-ref">POPIA Section 69</td>
+                <td class="action-archive">Maintain</td>
+            </tr>
+            <tr>
+                <td>Marketing campaign data</td>
+                <td>3 years</td>
+                <td>End of campaign</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Newsletter subscriber lists</td>
+                <td>Duration of subscription</td>
+                <td>Unsubscribe</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+        </table>
+
+        <h3>3.5 Security and Access Records</h3>
+        <table class="retention-table">
+            <tr>
+                <th width="25%">Data Category</th>
+                <th width="15%">Retention Period</th>
+                <th width="20%">Trigger Event</th>
+                <th width="20%">Legal Basis</th>
+                <th width="20%">Action</th>
+            </tr>
+            <tr>
+                <td>CCTV footage</td>
+                <td>30 days</td>
+                <td>Date of recording</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Auto-delete</td>
+            </tr>
+            <tr>
+                <td>CCTV footage (incident related)</td>
+                <td>Duration of investigation + 3 years</td>
+                <td>Resolution of incident</td>
+                <td class="legal-ref">POPIA; Prescription Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Access control logs</td>
+                <td>2 years</td>
+                <td>Date of log entry</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Visitor records</td>
+                <td>1 year</td>
+                <td>Date of visit</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>System access logs</td>
+                <td>2 years</td>
+                <td>Date of log entry</td>
+                <td class="legal-ref">POPIA; ECTA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+        </table>
+
+        <h3>3.6 Compliance and Legal Records</h3>
+        <table class="retention-table">
+            <tr>
+                <th width="25%">Data Category</th>
+                <th width="15%">Retention Period</th>
+                <th width="20%">Trigger Event</th>
+                <th width="20%">Legal Basis</th>
+                <th width="20%">Action</th>
+            </tr>
+            <tr>
+                <td>Data subject access requests</td>
+                <td>3 years</td>
+                <td>Date of response</td>
+                <td class="legal-ref">POPIA Section 23</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Consent records (non-marketing)</td>
+                <td>5 years</td>
+                <td>Withdrawal or relationship end</td>
+                <td class="legal-ref">POPIA</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+            <tr>
+                <td>Security breach records</td>
+                <td>5 years</td>
+                <td>Date of breach</td>
+                <td class="legal-ref">POPIA Section 22</td>
+                <td class="action-archive">Archive</td>
+            </tr>
+            <tr>
+                <td>Regulatory correspondence</td>
+                <td>10 years</td>
+                <td>Date of correspondence</td>
+                <td class="legal-ref">Various</td>
+                <td class="action-archive">Archive</td>
+            </tr>
+            <tr>
+                <td>Litigation records</td>
+                <td>Duration + 5 years</td>
+                <td>Final resolution</td>
+                <td class="legal-ref">Prescription Act</td>
+                <td class="action-destroy">Secure destruction</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>4. Destruction Methods</h2>
+        <p>When retention periods expire, personal information must be destroyed in accordance with Section 14(5) to prevent reconstruction:</p>
+        
+        <h3>4.1 Physical Records</h3>
+        <ul>
+            <li><strong>Shredding:</strong> Cross-cut shredding to DIN 66399 Level P-4 minimum</li>
+            <li><strong>Incineration:</strong> Complete burning of documents</li>
+            <li><strong>Pulping:</strong> For large volumes of paper records</li>
+        </ul>
+        
+        <h3>4.2 Electronic Records</h3>
+        <ul>
+            <li><strong>Secure deletion:</strong> Using certified data destruction software</li>
+            <li><strong>Degaussing:</strong> For magnetic media</li>
+            <li><strong>Physical destruction:</strong> For storage devices that cannot be securely wiped</li>
+            <li><strong>Cloud data:</strong> Verification of deletion from all locations including backups</li>
+        </ul>
+        
+        <h3>4.3 De-identification</h3>
+        <p>Where appropriate, personal information may be de-identified rather than destroyed, ensuring:</p>
+        <ul>
+            <li>The data subject cannot be identified</li>
+            <li>The information cannot be re-identified by reasonably foreseeable methods</li>
+            <li>The information cannot be linked to other data that identifies the person</li>
+        </ul>
+    </div>
+
+    <div class="important-box">
+        <h3>Legal Hold Notice</h3>
+        <p>When litigation, regulatory investigation, or audit is reasonably anticipated or pending, a legal hold must be placed on relevant records. During a legal hold:</p>
+        <ul>
+            <li>Normal retention schedules are suspended</li>
+            <li>Records must be preserved regardless of retention period</li>
+            <li>The Information Officer must be notified immediately</li>
+            <li>Records may only be destroyed after the legal hold is lifted</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5. Roles and Responsibilities</h2>
+        <table class="retention-table">
+            <tr>
+                <th>Role</th>
+                <th>Responsibilities</th>
+            </tr>
+            <tr>
+                <td><strong>Information Officer</strong><br>{{1.information_officer}}</td>
+                <td>
+                    <ul>
+                        <li>Overall accountability for retention compliance</li>
+                        <li>Approval of destruction activities</li>
+                        <li>Handling legal holds</li>
+                        <li>Annual review of retention schedule</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Department Heads</strong></td>
+                <td>
+                    <ul>
+                        <li>Ensure department compliance with retention schedule</li>
+                        <li>Identify records for destruction</li>
+                        <li>Report legal hold requirements</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>IT Department</strong></td>
+                <td>
+                    <ul>
+                        <li>Implement automated retention and deletion</li>
+                        <li>Secure electronic destruction</li>
+                        <li>Backup management and purging</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>All Employees</strong></td>
+                <td>
+                    <ul>
+                        <li>Comply with retention policies</li>
+                        <li>Properly classify and store records</li>
+                        <li>Report potential legal holds</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>6. Review and Updates</h2>
+        <p>This Data Retention Schedule shall be reviewed:</p>
+        <ul>
+            <li>Annually by the Information Officer</li>
+            <li>When legislation changes</li>
+            <li>When business processes change significantly</li>
+            <li>Following audit findings or security incidents</li>
+        </ul>
+        <p><strong>Last Review:</strong> {{1.last_retention_review}}</p>
+        <p><strong>Next Review Due:</strong> {{1.next_retention_review}}</p>
+    </div>
+
+    <div class="signature-area">
+        <h2>7. Approval</h2>
+        <p>This Data Retention Schedule is approved by:</p>
+        <p><strong>Information Officer:</strong> {{1.information_officer}}</p>
+        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <br>
+        <p><strong>Approved By:</strong> {{1.authorized_signatory}}</p>
+        <p><strong>Position:</strong> {{1.signatory_position}}</p>
+        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Signature:</strong> _________________________</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

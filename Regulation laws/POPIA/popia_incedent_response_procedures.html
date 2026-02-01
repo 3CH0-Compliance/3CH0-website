@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response Procedure - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; }
+        .section { margin-bottom: 30px; }
+        ul { margin: 15px 0; padding-left: 25px; }
+        li { margin-bottom: 8px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .emergency-box { background-color: #dc3545; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .emergency-box h2 { color: white; margin-top: 0; }
+        .warning-box { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .info-box { background-color: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px; margin: 15px 0; }
+        .success-box { background-color: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; }
+        .phase-box { background-color: #f8f9fa; border: 2px solid #0069d9; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .phase-title { background-color: #0069d9; color: white; padding: 10px 15px; margin: -20px -20px 15px -20px; border-radius: 8px 8px 0 0; }
+        .timeline { display: flex; flex-direction: column; }
+        .timeline-item { display: flex; margin-bottom: 15px; }
+        .timeline-time { background-color: #0069d9; color: white; padding: 5px 10px; border-radius: 5px; min-width: 100px; text-align: center; margin-right: 15px; }
+        .timeline-content { flex: 1; background-color: #f8f9fa; padding: 10px; border-radius: 5px; }
+        .contact-card { background-color: #e8f4fc; border: 1px solid #92cdec; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .checklist { background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #ddd; }
+        .checklist-item { margin-bottom: 10px; padding-left: 30px; position: relative; }
+        .checklist-item::before { content: "☐"; position: absolute; left: 0; font-size: 18px; }
+        .severity-critical { background-color: #dc3545; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        .severity-high { background-color: #fd7e14; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        .severity-medium { background-color: #ffc107; color: black; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        .severity-low { background-color: #28a745; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        .flowchart { background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .flow-step { background-color: white; border: 2px solid #0069d9; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: center; }
+        .flow-arrow { text-align: center; font-size: 24px; color: #0069d9; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th { background-color: #0069d9; color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 10px; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .signature-area { margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top:15px;font-size:14px;color:#666;">Select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p>Security Compromise Incident Response Procedure</p>
+        <p>Document Reference: IRP-{{formatDate(now; "YYYY-MM")}}-001</p>
+        <p>Effective Date: {{formatDate(now; "MMMM D, YYYY")}}</p>
+    </div>
+
+    <h1>POPIA Incident Response Procedure</h1>
+    <p style="text-align:center;color:#666;">In terms of Section 22 of the Protection of Personal Information Act 4 of 2013</p>
+
+    <div class="emergency-box">
+        <h2>🚨 EMERGENCY CONTACTS</h2>
+        <table style="width:100%; color:white;">
+            <tr>
+                <td><strong>Information Officer:</strong></td>
+                <td>{{1.information_officer}}</td>
+                <td>{{1.information_officer_phone}}</td>
+                <td>{{1.information_officer_email}}</td>
+            </tr>
+            <tr>
+                <td><strong>Security Officer:</strong></td>
+                <td>{{1.security_officer}}</td>
+                <td>{{1.security_officer_phone}}</td>
+                <td>{{1.security_officer_email}}</td>
+            </tr>
+            <tr>
+                <td><strong>IT Security:</strong></td>
+                <td>{{1.it_security_contact}}</td>
+                <td>{{1.it_security_phone}}</td>
+                <td>{{1.it_security_email}}</td>
+            </tr>
+            <tr>
+                <td><strong>After Hours:</strong></td>
+                <td colspan="3">{{1.after_hours_contact}}</td>
+            </tr>
+        </table>
+        <p style="margin-top:15px;"><strong>Information Regulator:</strong> complaints.IR@justice.gov.za | +27 10 023 5200</p>
+    </div>
+
+    <div class="section">
+        <h2>1. Purpose and Scope</h2>
+        <p>This procedure establishes the framework for responding to security compromises involving personal information in compliance with Section 22 of POPIA. It applies to all employees, contractors, and third parties who process personal information on behalf of {{1.company}}.</p>
+        
+        <div class="info-box">
+            <h3>What is a Security Compromise?</h3>
+            <p>A security compromise occurs when there are reasonable grounds to believe that personal information has been accessed or acquired by any unauthorised person. This includes:</p>
+            <ul>
+                <li>Unauthorized access to systems containing personal information</li>
+                <li>Lost or stolen devices (laptops, phones, USB drives) containing personal data</li>
+                <li>Accidental disclosure (emails sent to wrong recipients)</li>
+                <li>Malware, ransomware, or phishing attacks</li>
+                <li>Physical break-ins where data may have been accessed</li>
+                <li>Insider threats or unauthorized employee access</li>
+                <li>Third-party/vendor breaches affecting our data</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. Incident Severity Classification</h2>
+        <table>
+            <tr>
+                <th>Severity</th>
+                <th>Description</th>
+                <th>Examples</th>
+                <th>Response Time</th>
+            </tr>
+            <tr>
+                <td><span class="severity-critical">CRITICAL</span></td>
+                <td>Large-scale breach affecting many data subjects; special personal information; immediate harm likely</td>
+                <td>Ransomware attack; database breach; theft of biometric data</td>
+                <td>Immediate (within 1 hour)</td>
+            </tr>
+            <tr>
+                <td><span class="severity-high">HIGH</span></td>
+                <td>Significant breach; financial data; children's data; potential for harm</td>
+                <td>Lost laptop with unencrypted data; email breach; credential theft</td>
+                <td>Within 4 hours</td>
+            </tr>
+            <tr>
+                <td><span class="severity-medium">MEDIUM</span></td>
+                <td>Limited breach; basic personal data; low risk of harm</td>
+                <td>Misdirected email (limited recipients); lost encrypted device</td>
+                <td>Within 24 hours</td>
+            </tr>
+            <tr>
+                <td><span class="severity-low">LOW</span></td>
+                <td>Minor incident; no actual unauthorized access confirmed</td>
+                <td>Suspicious activity (no breach confirmed); near-miss events</td>
+                <td>Within 48 hours</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Incident Response Phases</h2>
+
+        <div class="phase-box">
+            <div class="phase-title"><h3>PHASE 1: DETECTION AND REPORTING</h3></div>
+            <p><strong>Objective:</strong> Identify and report the incident immediately</p>
+            
+            <h4>Anyone who discovers or suspects an incident must:</h4>
+            <ol>
+                <li><strong>STOP</strong> - Do not attempt to investigate or fix the issue yourself</li>
+                <li><strong>PRESERVE</strong> - Do not delete, modify, or turn off affected systems (unless necessary to prevent further damage)</li>
+                <li><strong>REPORT</strong> - Immediately notify:
+                    <ul>
+                        <li>Your direct supervisor</li>
+                        <li>Information Officer: {{1.information_officer}}</li>
+                        <li>IT Security: {{1.it_security_contact}}</li>
+                    </ul>
+                </li>
+                <li><strong>DOCUMENT</strong> - Record:
+                    <ul>
+                        <li>Date and time of discovery</li>
+                        <li>How the incident was discovered</li>
+                        <li>Type of information potentially affected</li>
+                        <li>Systems or locations involved</li>
+                        <li>Any actions already taken</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="warning-box">
+                <strong>⚠️ Critical:</strong> All incidents must be reported within 24 hours of discovery. Failure to report is a disciplinary offense.
+            </div>
+        </div>
+
+        <div class="phase-box">
+            <div class="phase-title"><h3>PHASE 2: CONTAINMENT</h3></div>
+            <p><strong>Objective:</strong> Limit the impact and prevent further unauthorized access</p>
+            
+            <h4>Immediate Containment Actions:</h4>
+            <div class="checklist">
+                <div class="checklist-item">Isolate affected systems from the network</div>
+                <div class="checklist-item">Disable compromised user accounts</div>
+                <div class="checklist-item">Change passwords for affected systems</div>
+                <div class="checklist-item">Block suspicious IP addresses</div>
+                <div class="checklist-item">Preserve evidence (logs, screenshots, affected files)</div>
+                <div class="checklist-item">Activate backup systems if necessary</div>
+                <div class="checklist-item">Notify relevant third parties/operators</div>
+            </div>
+            
+            <p><strong>Responsible:</strong> IT Security Team in coordination with Information Officer</p>
+        </div>
+
+        <div class="phase-box">
+            <div class="phase-title"><h3>PHASE 3: ASSESSMENT</h3></div>
+            <p><strong>Objective:</strong> Determine the scope and impact of the breach</p>
+            
+            <h4>Assessment Checklist:</h4>
+            <div class="checklist">
+                <div class="checklist-item">What type of personal information was affected?</div>
+                <div class="checklist-item">Was special personal information involved?</div>
+                <div class="checklist-item">Was children's information involved?</div>
+                <div class="checklist-item">How many data subjects are affected?</div>
+                <div class="checklist-item">Who had unauthorized access?</div>
+                <div class="checklist-item">How long did the breach last?</div>
+                <div class="checklist-item">What is the likelihood of harm to data subjects?</div>
+                <div class="checklist-item">What is the nature of potential harm?</div>
+                <div class="checklist-item">Is the breach ongoing?</div>
+                <div class="checklist-item">Are there regulatory implications?</div>
+            </div>
+            
+            <p><strong>Responsible:</strong> Information Officer with IT Security and Legal</p>
+        </div>
+
+        <div class="phase-box">
+            <div class="phase-title"><h3>PHASE 4: NOTIFICATION (Section 22)</h3></div>
+            <p><strong>Objective:</strong> Notify the Information Regulator and affected data subjects</p>
+            
+            <div class="warning-box">
+                <h4>⏰ Notification Timeline</h4>
+                <p>Notification must be made <strong>as soon as reasonably possible</strong> after discovery, taking into account:</p>
+                <ul>
+                    <li>Legitimate needs of law enforcement</li>
+                    <li>Measures needed to determine the scope of the compromise</li>
+                    <li>Measures needed to restore system integrity</li>
+                </ul>
+            </div>
+            
+            <h4>4.1 Information Regulator Notification</h4>
+            <p><strong>Contact:</strong> complaints.IR@justice.gov.za</p>
+            <p>The notification must include:</p>
+            <ul>
+                <li>Description of the nature of the security compromise</li>
+                <li>Categories and approximate number of data subjects affected</li>
+                <li>Categories and approximate number of personal information records affected</li>
+                <li>Name and contact details of Information Officer</li>
+                <li>Likely consequences of the security compromise</li>
+                <li>Measures taken or proposed to address the compromise</li>
+            </ul>
+            
+            <h4>4.2 Data Subject Notification</h4>
+            <p>Notification methods (Section 22(4)):</p>
+            <ul>
+                <li>Mail to last known physical or postal address</li>
+                <li>Email to last known email address</li>
+                <li>Prominent notice on company website</li>
+                <li>Publication in news media</li>
+                <li>As directed by the Information Regulator</li>
+            </ul>
+            
+            <p>The notification must provide:</p>
+            <ul>
+                <li>Description of the possible consequences</li>
+                <li>Measures the company intends to take or has taken</li>
+                <li>Recommendations for protective measures the data subject can take</li>
+                <li>Identity of the unauthorized person (if known)</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>Note:</strong> Notification to data subjects may be delayed if a public body responsible for prevention, detection, or investigation of offenses determines it would impede a criminal investigation.
+            </div>
+        </div>
+
+        <div class="phase-box">
+            <div class="phase-title"><h3>PHASE 5: ERADICATION AND RECOVERY</h3></div>
+            <p><strong>Objective:</strong> Remove the threat and restore normal operations</p>
+            
+            <h4>Eradication Actions:</h4>
+            <div class="checklist">
+                <div class="checklist-item">Remove malware/unauthorized access points</div>
+                <div class="checklist-item">Patch vulnerabilities that were exploited</div>
+                <div class="checklist-item">Reset all potentially compromised credentials</div>
+                <div class="checklist-item">Review and update access controls</div>
+                <div class="checklist-item">Implement additional security measures</div>
+            </div>
+            
+            <h4>Recovery Actions:</h4>
+            <div class="checklist">
+                <div class="checklist-item">Restore systems from clean backups</div>
+                <div class="checklist-item">Verify system integrity before returning to production</div>
+                <div class="checklist-item">Monitor systems for signs of continued compromise</div>
+                <div class="checklist-item">Gradually restore services</div>
+                <div class="checklist-item">Document all recovery actions</div>
+            </div>
+        </div>
+
+        <div class="phase-box">
+            <div class="phase-title"><h3>PHASE 6: POST-INCIDENT REVIEW</h3></div>
+            <p><strong>Objective:</strong> Learn from the incident and improve defenses</p>
+            
+            <h4>Post-Incident Review Meeting:</h4>
+            <p>To be held within 14 days of incident closure</p>
+            
+            <h4>Review Agenda:</h4>
+            <ol>
+                <li>Timeline of events</li>
+                <li>Effectiveness of response</li>
+                <li>Root cause analysis</li>
+                <li>What worked well</li>
+                <li>Areas for improvement</li>
+                <li>Required policy/procedure updates</li>
+                <li>Training needs identified</li>
+                <li>Security improvements required</li>
+            </ol>
+            
+            <h4>Documentation:</h4>
+            <ul>
+                <li>Complete incident report</li>
+                <li>Lessons learned document</li>
+                <li>Updated risk assessment</li>
+                <li>Remediation action plan</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. Incident Response Team</h2>
+        <table>
+            <tr>
+                <th>Role</th>
+                <th>Name</th>
+                <th>Responsibilities</th>
+            </tr>
+            <tr>
+                <td><strong>Incident Commander</strong></td>
+                <td>{{1.information_officer}}</td>
+                <td>Overall incident management; notification decisions; communication with Regulator</td>
+            </tr>
+            <tr>
+                <td><strong>Technical Lead</strong></td>
+                <td>{{1.it_security_contact}}</td>
+                <td>Technical investigation; containment; eradication; recovery</td>
+            </tr>
+            <tr>
+                <td><strong>Legal Advisor</strong></td>
+                <td>{{1.legal_contact}}</td>
+                <td>Legal implications; regulatory compliance; law enforcement liaison</td>
+            </tr>
+            <tr>
+                <td><strong>Communications Lead</strong></td>
+                <td>{{1.communications_contact}}</td>
+                <td>Internal communications; external communications; media relations</td>
+            </tr>
+            <tr>
+                <td><strong>HR Representative</strong></td>
+                <td>{{1.hr_contact}}</td>
+                <td>Employee-related incidents; disciplinary matters</td>
+            </tr>
+            <tr>
+                <td><strong>Business Continuity</strong></td>
+                <td>{{1.bc_contact}}</td>
+                <td>Business impact assessment; continuity planning</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>5. Notification Templates</h2>
+        
+        <h3>5.1 Information Regulator Notification Template</h3>
+        <div class="info-box">
+            <p><strong>To:</strong> Information Regulator (complaints.IR@justice.gov.za)</p>
+            <p><strong>Subject:</strong> Security Compromise Notification - {{1.company}}</p>
+            <hr>
+            <p><strong>1. Responsible Party Details:</strong></p>
+            <p>Name: {{1.company}}<br>
+            Address: {{1.company_address}}<br>
+            Information Officer: {{1.information_officer}}<br>
+            Contact: {{1.information_officer_email}} | {{1.information_officer_phone}}</p>
+            
+            <p><strong>2. Nature of Security Compromise:</strong><br>
+            [Description of what happened]</p>
+            
+            <p><strong>3. Date/Time of Discovery:</strong><br>
+            [Date and time]</p>
+            
+            <p><strong>4. Categories of Data Subjects Affected:</strong><br>
+            [e.g., customers, employees, suppliers]</p>
+            
+            <p><strong>5. Approximate Number of Data Subjects:</strong><br>
+            [Number or estimate]</p>
+            
+            <p><strong>6. Categories of Personal Information Affected:</strong><br>
+            [e.g., names, ID numbers, financial information]</p>
+            
+            <p><strong>7. Likely Consequences:</strong><br>
+            [Assessment of potential harm]</p>
+            
+            <p><strong>8. Measures Taken/Proposed:</strong><br>
+            [Containment and remediation actions]</p>
+            
+            <p><strong>9. Identity of Unauthorized Person (if known):</strong><br>
+            [Details or "Unknown"]</p>
+        </div>
+        
+        <h3>5.2 Data Subject Notification Template</h3>
+        <div class="info-box">
+            <p><strong>Subject:</strong> Important Notice Regarding Your Personal Information</p>
+            <hr>
+            <p>Dear [Name/Data Subject],</p>
+            
+            <p>We are writing to inform you of a security incident that may have affected your personal information held by {{1.company}}.</p>
+            
+            <p><strong>What Happened:</strong><br>
+            [Clear description of the incident]</p>
+            
+            <p><strong>What Information Was Involved:</strong><br>
+            [Specific types of personal information]</p>
+            
+            <p><strong>What We Are Doing:</strong><br>
+            [Actions taken to address the incident]</p>
+            
+            <p><strong>What You Can Do:</strong><br>
+            We recommend you take the following protective measures:
+            <ul>
+                <li>[Specific recommendations based on data type]</li>
+                <li>[e.g., Monitor bank statements, change passwords]</li>
+            </ul></p>
+            
+            <p><strong>For More Information:</strong><br>
+            Contact our Information Officer:<br>
+            {{1.information_officer}}<br>
+            {{1.information_officer_email}}<br>
+            {{1.information_officer_phone}}</p>
+            
+            <p>We sincerely apologize for any inconvenience this may cause.</p>
+            
+            <p>Yours sincerely,<br>
+            {{1.authorized_signatory}}<br>
+            {{1.signatory_position}}<br>
+            {{1.company}}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. Incident Register</h2>
+        <p>All incidents must be logged in the Incident Register with the following details:</p>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Description</th>
+            </tr>
+            <tr><td>Incident Reference Number</td><td>Unique identifier</td></tr>
+            <tr><td>Date/Time of Discovery</td><td>When the incident was discovered</td></tr>
+            <tr><td>Date/Time of Incident</td><td>When the incident occurred (if known)</td></tr>
+            <tr><td>Reported By</td><td>Person who reported the incident</td></tr>
+            <tr><td>Incident Type</td><td>Classification of incident</td></tr>
+            <tr><td>Severity Level</td><td>Critical/High/Medium/Low</td></tr>
+            <tr><td>Description</td><td>Detailed description of what happened</td></tr>
+            <tr><td>Data Types Affected</td><td>Categories of personal information</td></tr>
+            <tr><td>Data Subjects Affected</td><td>Number and categories</td></tr>
+            <tr><td>Root Cause</td><td>What caused the incident</td></tr>
+            <tr><td>Containment Actions</td><td>Immediate actions taken</td></tr>
+            <tr><td>Regulator Notified</td><td>Yes/No and date</td></tr>
+            <tr><td>Data Subjects Notified</td><td>Yes/No and date</td></tr>
+            <tr><td>Remediation Actions</td><td>Long-term fixes implemented</td></tr>
+            <tr><td>Lessons Learned</td><td>Key takeaways</td></tr>
+            <tr><td>Status</td><td>Open/Closed</td></tr>
+            <tr><td>Closure Date</td><td>Date incident was closed</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>7. Testing and Training</h2>
+        <p>This procedure must be tested and staff must be trained:</p>
+        <ul>
+            <li><strong>Tabletop exercises:</strong> Annually</li>
+            <li><strong>Staff awareness training:</strong> Upon joining and annually</li>
+            <li><strong>Procedure review:</strong> Annually or after significant incidents</li>
+            <li><strong>Contact list verification:</strong> Quarterly</li>
+        </ul>
+        
+        <p><strong>Last Test Date:</strong> {{1.last_incident_test}}</p>
+        <p><strong>Next Test Due:</strong> {{1.next_incident_test}}</p>
+    </div>
+
+    <div class="section">
+        <h2>8. Related Documents</h2>
+        <ul>
+            <li>POPIA Privacy Policy</li>
+            <li>Information Security Policy</li>
+            <li>Business Continuity Plan</li>
+            <li>Data Retention Schedule</li>
+            <li>Employee Code of Conduct</li>
+        </ul>
+    </div>
+
+    <div class="signature-area">
+        <h2>9. Approval</h2>
+        <p>This Incident Response Procedure is approved by:</p>
+        <p><strong>Information Officer:</strong> {{1.information_officer}}</p>
+        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <br>
+        <p><strong>Approved By:</strong> {{1.authorized_signatory}}</p>
+        <p><strong>Position:</strong> {{1.signatory_position}}</p>
+        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Signature:</strong> _________________________</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prior Authorisation Register - {{1.company}}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #0069d9; border-bottom: 2px solid #3498db; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0069d9; margin-top: 25px; }
+        h3 { color: #2980b9; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8fdff, #e8f4fc); border-radius: 10px; border: 1px solid #92cdec; }
+        .download-btn { background: linear-gradient(135deg, #0069d9, #92cdec); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #92cdec; }
+        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
+        .warning-box { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+        .info-box { background-color: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px; margin: 15px 0; }
+        .danger-box { background-color: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; margin: 15px 0; }
+        .success-box { background-color: #d4edda; border-left: 4px solid #28a745; padding: 15px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th { background-color: #0069d9; color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .status-approved { background-color: #28a745; color: white; padding: 3px 10px; border-radius: 15px; font-size: 12px; }
+        .status-pending { background-color: #ffc107; color: black; padding: 3px 10px; border-radius: 15px; font-size: 12px; }
+        .category-box { background-color: #f8f9fa; border: 2px solid #0069d9; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .category-title { background-color: #0069d9; color: white; padding: 10px 15px; margin: -20px -20px 15px -20px; border-radius: 8px 8px 0 0; }
+        .signature-area { margin-top: 40px; border-top: 2px solid #92cdec; padding-top: 20px; }
+        .flow-step { background-color: white; border: 2px solid #0069d9; border-radius: 8px; padding: 15px; margin: 10px 0; text-align: center; }
+        .flow-arrow { text-align: center; font-size: 24px; color: #0069d9; }
+        @media print { .download-section { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top:15px;font-size:14px;color:#666;">Select <strong>"Save as PDF"</strong> as your printer.</p>
+    </div>
+
+    <div class="document-header">
+        <div class="company-name">{{1.company}}</div>
+        <p>Prior Authorisation Register</p>
+        <p>Document Reference: PAR-{{formatDate(now; "YYYY-MM")}}-001</p>
+    </div>
+
+    <h1>POPIA Prior Authorisation Register</h1>
+    <p style="text-align:center;color:#666;">Sections 57-59 of POPIA</p>
+
+    <div class="danger-box">
+        <h3>⚠️ Warning - Section 59</h3>
+        <p>Processing that requires prior authorisation WITHOUT obtaining it is a <strong>criminal offence</strong> (fine or imprisonment up to 12 months). Do NOT commence processing until authorisation is obtained.</p>
+    </div>
+
+    <h2>1. Categories Requiring Prior Authorisation</h2>
+
+    <div class="category-box">
+        <div class="category-title"><h3>Category A: Unique Identifier Linking (Section 57(1)(a))</h3></div>
+        <p>Processing unique identifiers (ID numbers, etc.) for purposes OTHER than originally intended AND linking with other responsible parties' data.</p>
+    </div>
+
+    <div class="category-box">
+        <div class="category-title"><h3>Category B: Criminal/Unlawful Conduct (Section 57(1)(b))</h3></div>
+        <p>Processing criminal behaviour or unlawful conduct information on behalf of third parties.</p>
+    </div>
+
+    <div class="category-box">
+        <div class="category-title"><h3>Category C: Credit Reporting (Section 57(1)(c))</h3></div>
+        <p>Processing information for credit reporting purposes.</p>
+    </div>
+
+    <div class="category-box">
+        <div class="category-title"><h3>Category D: Cross-Border Sensitive Data (Section 57(1)(d))</h3></div>
+        <p>Transferring special personal information or children's information to countries without adequate protection.</p>
+    </div>
+
+    <h2>2. Process Flow</h2>
+    <div class="flow-step"><strong>1.</strong> Identify potential trigger</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><strong>2.</strong> Complete Assessment Form</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><strong>3.</strong> Information Officer reviews</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><strong>4.</strong> Submit to Information Regulator</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><strong>5.</strong> Await response (4 weeks initial, up to 13 weeks for investigation)</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><strong>6.</strong> Commence processing only after approval</div>
+
+    <h2>3. Prior Authorisation Register</h2>
+    <table>
+        <tr>
+            <th>Ref #</th>
+            <th>Category</th>
+            <th>Processing Activity</th>
+            <th>Department</th>
+            <th>Date Submitted</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>PA-001</td>
+            <td>{{1.pa_001_category}}</td>
+            <td>{{1.pa_001_activity}}</td>
+            <td>{{1.pa_001_department}}</td>
+            <td>{{1.pa_001_date}}</td>
+            <td><span class="status-{{1.pa_001_status_class}}">{{1.pa_001_status}}</span></td>
+        </tr>
+        <tr>
+            <td>PA-002</td>
+            <td>{{1.pa_002_category}}</td>
+            <td>{{1.pa_002_activity}}</td>
+            <td>{{1.pa_002_department}}</td>
+            <td>{{1.pa_002_date}}</td>
+            <td><span class="status-{{1.pa_002_status_class}}">{{1.pa_002_status}}</span></td>
+        </tr>
+    </table>
+
+    <h2>4. Timeline (Section 58)</h2>
+    <div class="warning-box">
+        <ul>
+            <li><strong>4 weeks:</strong> Regulator must respond if detailed investigation needed</li>
+            <li><strong>13 weeks:</strong> Maximum investigation period</li>
+            <li>No response within timeframes = presumed approval</li>
+        </ul>
+    </div>
+
+    <h2>5. Contact Information</h2>
+    <table>
+        <tr>
+            <th>Role</th>
+            <th>Name</th>
+            <th>Contact</th>
+        </tr>
+        <tr>
+            <td>Information Officer</td>
+            <td>{{1.information_officer}}</td>
+            <td>{{1.information_officer_email}}</td>
+        </tr>
+        <tr>
+            <td>Information Regulator</td>
+            <td>-</td>
+            <td>POPIACompliance.IR@justice.gov.za | +27 10 023 5200</td>
+        </tr>
+    </table>
+
+    <div class="success-box">
+        <h4>Code of Conduct Exemption (Section 57(3))</h4>
+        <p>If a sector-specific code of conduct is in force, prior authorisation requirements may not apply to that sector.</p>
+    </div>
+
+    <div class="signature-area">
+        <h2>6. Approval</h2>
+        <p><strong>Information Officer:</strong> {{1.information_officer}}</p>
+        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Signature:</strong> _________________________</p>
+        <br>
+        <p><strong>Approved By:</strong> {{1.authorized_signatory}}</p>
+        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+        <p><strong>Signature:</strong> _________________________</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>
