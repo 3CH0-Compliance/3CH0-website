@@ -3,254 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCPA Audit Documentation - {{1.company}}</title>
+    <title>CCPA Audit Documentation</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background-color: #ffffff;
-        }
-        h1 {
-            color: #0069d9;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-        h2 { color: #0069d9; margin-top: 25px; }
-        .section { margin-bottom: 30px; }
-        ul { margin: 15px 0; padding-left: 25px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #1a5276; font-size: 24px; margin: 30px 0 15px 0; border-bottom: 2px solid #1a5276; padding-bottom: 10px; }
+        h2 { color: #2874a6; font-size: 18px; margin: 20px 0 10px 0; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 10px 0 15px 25px; }
         li { margin-bottom: 8px; }
-        .download-section {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
-            border-radius: 10px;
-            border: 1px solid #92cdec;
-        }
-        .download-btn {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
-        }
-        .download-instructions { margin-top: 15px; font-size: 14px; color: #666; }
-        .document-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #92cdec;
-        }
-        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
-        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
-        .audit-section {
-            background-color: #f8fdff;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 10px;
-            border-left: 5px solid #92cdec;
-        }
-        .checklist {
-            background-color: #f0f8ff;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-        .status {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-        .compliant { background-color: #d4edda; color: #155724; }
-        @media print {
-            .download-section { display: none !important; }
-            body { padding: 0; margin: 0; }
-            .section, .audit-section { page-break-inside: avoid; }
-            @page { margin: 2cm; }
-        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; }
+        th { background-color: #1a5276; color: white; }
+        .title { text-align: center; color: #1a5276; font-size: 32px; margin-bottom: 10px; }
+        .company { text-align: center; color: #2874a6; font-size: 24px; margin-bottom: 30px; }
+        .summary-box { background-color: #d4edda; border: 2px solid #155724; padding: 20px; margin: 20px 0; }
+        .info-row { background-color: #eaf2f8; }
+        .checklist { list-style-type: none; margin-left: 0; padding-left: 0; }
+        .checklist li { padding: 8px 0 8px 35px; position: relative; border-bottom: 1px solid #eee; }
+        .checklist li:before { content: "☐"; position: absolute; left: 5px; font-size: 18px; }
+        .new-item { background-color: #fff8e1; font-weight: bold; }
+        .certification-box { border: 2px solid #333; padding: 30px; margin: 30px 0; }
+        strong { color: #1a5276; }
+        .section-note { background-color: #f8f9fa; padding: 10px; border-left: 3px solid #6c757d; margin: 10px 0; font-style: italic; }
+        .footer { text-align: center; color: #666; font-style: italic; margin-top: 40px; }
+        .page-break { page-break-before: always; }
     </style>
 </head>
 <body>
-    <div class="download-section">
-        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
-        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    <div class="title">CCPA AUDIT DOCUMENTATION</div>
+    <div class="company">[COMPANY NAME]</div>
+
+    <div class="summary-box">
+        <h2 style="margin-top: 0; color: #155724;">EXECUTIVE SUMMARY</h2>
+        <p><strong>Overall Compliance Status:</strong> <span style="color: #155724;">[COMPLIANT / PARTIALLY COMPLIANT / NON-COMPLIANT]</span></p>
+        <p><strong>Audit Date:</strong> [DATE]</p>
+        <p><strong>Audit Period:</strong> [START DATE] to [END DATE]</p>
+        <p><strong>Privacy Officer:</strong> [NAME]</p>
+        <p><strong>Prepared By:</strong> [NAME]</p>
     </div>
 
-    <div class="document-header">
-        <div class="company-name">{{1.company}}</div>
-        <div class="document-date">Audit Date: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    <h1>1. BUSINESS INFORMATION</h1>
+    <table>
+        <tr><td class="info-row" style="width: 30%;"><strong>Company:</strong></td><td>[COMPANY NAME]</td></tr>
+        <tr><td class="info-row"><strong>Address:</strong></td><td>[ADDRESS]</td></tr>
+        <tr><td class="info-row"><strong>Website:</strong></td><td>[URL]</td></tr>
+        <tr><td class="info-row"><strong>Industry:</strong></td><td>[INDUSTRY]</td></tr>
+        <tr><td class="info-row"><strong>Privacy Contact:</strong></td><td>[EMAIL] | [PHONE]</td></tr>
+    </table>
+
+    <h1>2. CCPA APPLICABILITY ASSESSMENT</h1>
+    <p>CCPA applies to businesses meeting one or more thresholds:</p>
+    <ul class="checklist">
+        <li>Annual gross revenue > $25 million (adjusted by CPPA)</li>
+        <li>Buy/sell/share personal info of 100,000+ consumers/households annually</li>
+        <li>Derive 50%+ of revenue from selling personal information</li>
+    </ul>
+    <p><strong>Applicability Status:</strong> [APPLICABLE / NOT APPLICABLE]</p>
+
+    <h1>3. PRIVACY POLICY COMPLIANCE</h1>
+    
+    <h2>3.1 Required Disclosures (Cal. Civ. Code § 1798.130)</h2>
+    <ul class="checklist">
+        <li>Categories of personal information collected</li>
+        <li>Purposes for collection and use</li>
+        <li>Categories of sources</li>
+        <li>Categories of third parties</li>
+        <li>Consumer rights description</li>
+        <li>Contact methods for requests</li>
+        <li>Sale/sharing disclosure</li>
+        <li class="new-item">Data retention periods (NEW - § 1798.100(a)(3))</li>
+        <li>Financial incentive disclosures</li>
+        <li>Updated within last 12 months</li>
+    </ul>
+
+    <h2>3.2 Sensitive Personal Information Disclosures (NEW)</h2>
+    <ul class="checklist">
+        <li class="new-item">Categories of sensitive PI collected</li>
+        <li class="new-item">Purposes for sensitive PI collection</li>
+        <li class="new-item">Right to Limit disclosure</li>
+    </ul>
+
+    <h1>4. DATA INVENTORY</h1>
+    
+    <p><strong>Categories of Personal Information Collected:</strong></p>
+    <p>[LIST ALL CATEGORIES]</p>
+    
+    <p><strong>Categories of Sensitive Personal Information Collected:</strong></p>
+    <p>[LIST ALL SENSITIVE CATEGORIES OR "None"]</p>
+    
+    <p><strong>Retention Periods:</strong></p>
+    <p>[DOCUMENT RETENTION PERIODS FOR EACH CATEGORY]</p>
+
+    <h1>5. CONSUMER RIGHTS PROCEDURES</h1>
+
+    <h2>5.1 Right to Know (§ 1798.110)</h2>
+    <ul class="checklist">
+        <li>Procedure documented</li>
+        <li>45-day response timeline tracked</li>
+        <li>12-month lookback period implemented</li>
+        <li>Extended lookback for data collected after 1/1/2022</li>
+    </ul>
+
+    <h2>5.2 Right to Delete (§ 1798.105)</h2>
+    <ul class="checklist">
+        <li>Procedure documented</li>
+        <li>Service provider notification process</li>
+        <li>Third party notification process</li>
+        <li>Exceptions properly applied</li>
+    </ul>
+
+    <h2>5.3 Right to Correct (§ 1798.106)</h2>
+    <ul class="checklist">
+        <li>Procedure documented</li>
+        <li>Commercially reasonable efforts standard</li>
+    </ul>
+
+    <h2>5.4 Right to Opt-Out (§ 1798.120)</h2>
+    <ul class="checklist">
+        <li>"Do Not Sell or Share" link on homepage</li>
+        <li>Opt-out mechanism functional</li>
+        <li class="new-item">Global Privacy Control honored (NEW)</li>
+    </ul>
+
+    <h2>5.5 Right to Limit Sensitive PI (§ 1798.121) - NEW</h2>
+    <ul class="checklist">
+        <li class="new-item">"Limit Use of Sensitive PI" link on homepage</li>
+        <li class="new-item">Limitation mechanism functional</li>
+        <li class="new-item">Service providers notified of limitations</li>
+    </ul>
+
+    <h2>5.6 Identity Verification (§ 1798.130(a)(7))</h2>
+    <ul class="checklist">
+        <li>Verification procedure documented</li>
+        <li>Reasonable authentication standard</li>
+        <li>Verification data used only for verification</li>
+    </ul>
+
+    <h2>5.7 Authorized Agents (§ 1798.140(ak))</h2>
+    <ul class="checklist">
+        <li>Agent verification procedure documented</li>
+        <li>Written permission or POA required</li>
+    </ul>
+
+    <h1>6. MINOR PROTECTIONS (§ 1798.120(c))</h1>
+    <ul class="checklist">
+        <li class="new-item">Under 13: Parental consent required for sale/share</li>
+        <li class="new-item">Ages 13-15: Minor opt-in consent required</li>
+        <li class="new-item">Age verification procedures documented</li>
+        <li class="new-item">12-month waiting period after denial respected</li>
+    </ul>
+
+    <h1>7. SERVICE PROVIDER AGREEMENTS</h1>
+    
+    <p><strong>Service Providers/Contractors:</strong></p>
+    <p>[LIST SERVICE PROVIDERS]</p>
+
+    <h2>7.1 Contract Requirements (§ 1798.140(ag), (j))</h2>
+    <ul class="checklist">
+        <li>Written contracts in place</li>
+        <li>Prohibition on selling/sharing</li>
+        <li>Use limited to specified business purposes</li>
+        <li>Combining data restrictions</li>
+        <li class="new-item">Certification of understanding included (NEW)</li>
+        <li class="new-item">Monitoring/audit provisions (at least annually)</li>
+        <li>Consumer rights assistance obligations</li>
+        <li>Notification of compliance inability</li>
+        <li>Breach notification requirements</li>
+    </ul>
+
+    <h1>8. EMPLOYEE TRAINING (§ 1798.130(a)(6))</h1>
+    <ul class="checklist">
+        <li>Training program documented</li>
+        <li>Consumer rights covered</li>
+        <li>Request handling procedures</li>
+        <li class="new-item">Sensitive PI handling covered (NEW)</li>
+        <li class="new-item">Minor protections covered (NEW)</li>
+        <li>Training completion records maintained</li>
+    </ul>
+    <p><strong>Training Coordinator:</strong> [NAME]</p>
+    <p><strong>Last Training Date:</strong> [DATE]</p>
+
+    <h1>9. REQUEST LOG (§ 1798.130)</h1>
+    <ul class="checklist">
+        <li>Request log maintained</li>
+        <li>Records retained for 24 months</li>
+    </ul>
+    <p><strong>Log tracks:</strong> Date received | Request type | Consumer ID | Response date | Outcome | Notes</p>
+
+    <table>
+        <tr>
+            <th>Date Received</th>
+            <th>Request Type</th>
+            <th>Consumer ID</th>
+            <th>Response Date</th>
+            <th>Outcome</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>[DATE]</td>
+            <td>[TYPE]</td>
+            <td>[ID]</td>
+            <td>[DATE]</td>
+            <td>[OUTCOME]</td>
+            <td>[NOTES]</td>
+        </tr>
+    </table>
+
+    <h1>10. SECURITY MEASURES (§ 1798.100(e))</h1>
+    <ul class="checklist">
+        <li>Reasonable security procedures implemented</li>
+        <li>Encryption in transit and at rest</li>
+        <li>Access controls</li>
+        <li>Incident response procedures</li>
+        <li>Security awareness training</li>
+    </ul>
+
+    <h1>11. RISK ASSESSMENT (NEW - § 1798.185(a)(14))</h1>
+    <div class="section-note">
+        For businesses whose processing presents significant risk to consumer privacy or security.
+    </div>
+    <ul class="checklist">
+        <li class="new-item">Risk assessment conducted</li>
+        <li class="new-item">Benefits vs. risks analysis documented</li>
+        <li class="new-item">Submitted to CPPA (if required by regulation)</li>
+    </ul>
+    <p><strong>Assessment Date:</strong> [DATE]</p>
+    <p><strong>Risk Categories Assessed:</strong> [LIST]</p>
+    <p><strong>Findings Summary:</strong> [SUMMARY]</p>
+    <p><strong>Mitigation Measures:</strong> [LIST]</p>
+
+    <h1>12. CYBERSECURITY AUDIT (NEW - § 1798.185(a)(14))</h1>
+    <div class="section-note">
+        For businesses whose processing presents significant risk to consumer security.
+    </div>
+    <ul class="checklist">
+        <li class="new-item">Annual cybersecurity audit conducted</li>
+        <li class="new-item">Audit is thorough and independent</li>
+    </ul>
+    <p><strong>Last Audit Date:</strong> [DATE]</p>
+    <p><strong>Auditor:</strong> [NAME/FIRM]</p>
+    <p><strong>Audit Scope:</strong> [DESCRIPTION]</p>
+    <p><strong>Findings:</strong> [SUMMARY]</p>
+    <p><strong>Remediation Status:</strong> [STATUS]</p>
+
+    <h1>13. NON-DISCRIMINATION (§ 1798.125)</h1>
+    <ul class="checklist">
+        <li>No denial of goods/services for exercising rights</li>
+        <li>No different pricing for exercising rights</li>
+        <li>No different service level for exercising rights</li>
+        <li>Financial incentives properly disclosed</li>
+    </ul>
+
+    <h1>14. METRICS SUMMARY</h1>
+    <table>
+        <tr>
+            <th>Metric</th>
+            <th>Count</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>Total consumer requests received</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Right to Know requests</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Right to Delete requests</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Right to Correct requests</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Opt-Out requests</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Right to Limit requests</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Requests completed within 45 days</td>
+            <td>[#]</td>
+            <td>[%]</td>
+        </tr>
+        <tr>
+            <td>Requests requiring extension</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Requests denied</td>
+            <td>[#]</td>
+            <td>[Reasons]</td>
+        </tr>
+        <tr>
+            <td>Employees trained</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Data breaches</td>
+            <td>[#]</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>15. FINDINGS AND RECOMMENDATIONS</h1>
+    
+    <h2>Compliant Areas</h2>
+    <p>[LIST AREAS OF COMPLIANCE]</p>
+
+    <h2>Areas Requiring Attention</h2>
+    <p>[LIST AREAS NEEDING IMPROVEMENT]</p>
+
+    <h2>Recommended Actions</h2>
+    <table>
+        <tr>
+            <th>Finding</th>
+            <th>Priority</th>
+            <th>Recommended Action</th>
+            <th>Target Date</th>
+            <th>Owner</th>
+        </tr>
+        <tr>
+            <td>[Finding]</td>
+            <td>[High/Medium/Low]</td>
+            <td>[Action]</td>
+            <td>[Date]</td>
+            <td>[Name]</td>
+        </tr>
+    </table>
+
+    <h1>16. CERTIFICATION</h1>
+
+    <div class="certification-box">
+        <p>I certify that [COMPANY NAME] has implemented reasonable measures to comply with the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA).</p>
+        <p>This audit documentation has been prepared in good faith based on a review of our policies, procedures, and practices.</p>
+        <br><br>
+        <p><strong>Certified By:</strong> _________________________________</p>
+        <br>
+        <p><strong>Title:</strong> _________________________________</p>
+        <br>
+        <p><strong>Date:</strong> _________________________________</p>
+        <br>
+        <p><strong>Signature:</strong> _________________________________</p>
     </div>
 
-    <h1>CCPA Audit Ready Documentation</h1>
-
-    <div class="audit-section">
-        <h2>Executive Summary</h2>
-        <p>This document provides evidence of {{1.company}}'s compliance with the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA).</p>
-        <p><strong>Overall Status:</strong> <span class="status compliant">COMPLIANT</span></p>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-    </div>
-
-    <div class="audit-section">
-        <h2>1. Business Information</h2>
-        <div class="checklist">
-            <p><strong>Company Name:</strong> {{1.company}}</p>
-            <p><strong>Address:</strong> {{1.company_address}}</p>
-            <p><strong>Website:</strong> {{1.website_url}}</p>
-            <p><strong>Phone:</strong> {{1.phone_number}}</p>
-            <p><strong>Email:</strong> {{1.email}}</p>
-            <p><strong>Industry:</strong> {{1.industry}}</p>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>2. CCPA Applicability Assessment</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">ASSESSED</span></p>
-            <p>CCPA applies to businesses that meet one or more thresholds:</p>
-            <ul>
-                <li>Annual gross revenue > $25 million</li>
-                <li>Buy/sell/share personal info of 100,000+ consumers/households</li>
-                <li>Derive 50%+ of revenue from selling personal information</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>3. Privacy Policy Compliance</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">PUBLISHED</span></p>
-            <p><strong>Website:</strong> {{1.website_url}}</p>
-            <p>Privacy policy includes:</p>
-            <ul>
-                <li>Categories of personal information collected</li>
-                <li>Purposes for collection and use</li>
-                <li>Consumer rights under CCPA</li>
-                <li>How to submit requests</li>
-                <li>"Do Not Sell" disclosure</li>
-                <li>Financial incentive disclosures</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>4. Data Inventory</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">DOCUMENTED</span></p>
-            <p><strong>Categories of Personal Information:</strong></p>
-            <p>{{1.data}}</p>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>5. Consumer Rights Procedures</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
-            <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-            <p>Procedures documented for:</p>
-            <ul>
-                <li>Right to Know requests (45-day response)</li>
-                <li>Right to Delete requests</li>
-                <li>Right to Correct requests</li>
-                <li>Right to Opt-Out of sale</li>
-                <li>Right to Limit use of sensitive info</li>
-                <li>Identity verification process</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>6. Sale of Personal Information</h2>
-        <div class="checklist">
-            <p><strong>Do we sell personal information?</strong> {{1.sell_data}}</p>
-            <p><strong>"Do Not Sell" Link:</strong> Available on website</p>
-            <p><strong>Opt-Out Process:</strong> Documented and functional</p>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>7. Service Provider Agreements</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">IN PLACE</span></p>
-            <p><strong>Primary Service Provider:</strong> {{1.service_provider_name}}</p>
-            <p><strong>Third-Party Tools:</strong> {{1.thirdparty}}</p>
-            <p>Agreements include:</p>
-            <ul>
-                <li>Prohibition on selling personal information</li>
-                <li>Use limitations to business purpose</li>
-                <li>CCPA compliance requirements</li>
-                <li>Assistance with consumer requests</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>8. Employee Training</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">ONGOING</span></p>
-            <p><strong>Training Coordinator:</strong> {{1.trainer_name}}</p>
-            <p>Training covers:</p>
-            <ul>
-                <li>Consumer rights under CCPA</li>
-                <li>How to handle consumer requests</li>
-                <li>Data handling procedures</li>
-                <li>Escalation procedures</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>9. Request Log</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">MAINTAINED</span></p>
-            <p>Log tracks:</p>
-            <ul>
-                <li>Date of request</li>
-                <li>Type of request</li>
-                <li>Response date</li>
-                <li>Outcome</li>
-            </ul>
-            <p>Records retained for 24 months as required.</p>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>10. Security Measures</h2>
-        <div class="checklist">
-            <p><strong>Status:</strong> <span class="status compliant">IMPLEMENTED</span></p>
-            <p>Reasonable security measures include:</p>
-            <ul>
-                <li>Encryption of personal information</li>
-                <li>Access controls</li>
-                <li>Employee training</li>
-                <li>Incident response procedures</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="audit-section">
-        <h2>11. Certification</h2>
-        <p>I certify that {{1.company}} has implemented reasonable measures to comply with the California Consumer Privacy Act (CCPA).</p>
-        <p><strong>Certified By:</strong> {{1.authorized_signatory}}</p>
-        <p><strong>Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
-        <p><strong>Signature:</strong> _________________________</p>
-    </div>
-
-    <div class="download-section">
-        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    <div class="footer">
+        <p>This documentation should be reviewed and updated at least annually.</p>
+        <p>Next scheduled review: [DATE]</p>
     </div>
 </body>
 </html>
