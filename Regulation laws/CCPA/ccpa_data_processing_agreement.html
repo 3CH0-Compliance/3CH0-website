@@ -3,215 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Processing Agreement - {{1.company}}</title>
+    <title>CCPA Data Processing Agreement</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background-color: #ffffff;
-        }
-        h1 {
-            color: #0069d9;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            text-align: center;
-        }
-        h2 { color: #0069d9; margin-top: 25px; }
-        .section { margin-bottom: 30px; }
-        ul { margin: 15px 0; padding-left: 25px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #1a5276; font-size: 24px; margin: 30px 0 15px 0; border-bottom: 2px solid #1a5276; padding-bottom: 10px; }
+        h2 { color: #2874a6; font-size: 18px; margin: 20px 0 10px 0; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 10px 0 15px 25px; }
         li { margin-bottom: 8px; }
-        .download-section {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8fdff, #e8f4fc);
-            border-radius: 10px;
-            border: 1px solid #92cdec;
-        }
-        .download-btn {
-            background: linear-gradient(135deg, #0069d9, #92cdec);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(146, 205, 236, 0.4);
-        }
-        .download-instructions { margin-top: 15px; font-size: 14px; color: #666; }
-        .document-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #92cdec;
-        }
-        .company-name { font-size: 24px; font-weight: bold; color: #0069d9; }
-        .document-date { color: #666; font-size: 14px; margin-top: 10px; }
-        .signature-area {
-            margin-top: 50px;
-            border-top: 2px solid #92cdec;
-            padding-top: 30px;
-        }
-        .signature-line {
-            border-bottom: 1px solid #333;
-            width: 250px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-        @media print {
-            .download-section { display: none !important; }
-            body { padding: 0; margin: 0; }
-            .section { page-break-inside: avoid; }
-            @page { margin: 2cm; }
-        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; }
+        th { background-color: #1a5276; color: white; }
+        .title { text-align: center; color: #1a5276; font-size: 32px; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #2874a6; font-size: 20px; margin-bottom: 30px; }
+        .parties-box { background-color: #eaf2f8; border: 1px solid #ccc; padding: 20px; margin-bottom: 30px; }
+        .certification-box { background-color: #fdf2f2; border: 2px solid #c0392b; padding: 15px; margin: 15px 0; }
+        .signature-box { background-color: #eaf2f8; border: 1px solid #ccc; padding: 20px; margin: 10px 0; }
+        .signature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .info-row { background-color: #eaf2f8; }
+        strong { color: #1a5276; }
+        .section-label { font-weight: bold; margin-bottom: 5px; }
     </style>
 </head>
 <body>
-    <div class="download-section">
-        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
-        <p class="download-instructions">Click the button above, then select <strong>"Save as PDF"</strong> as your printer.</p>
+    <div class="title">DATA PROCESSING AGREEMENT</div>
+    <div class="subtitle">California Consumer Privacy Act (CCPA) Compliance</div>
+
+    <div class="parties-box">
+        <h2 style="margin-top: 0;">PARTIES TO THIS AGREEMENT</h2>
+        <p><strong>BUSINESS:</strong> [COMPANY NAME]</p>
+        <p><strong>Address:</strong> [BUSINESS ADDRESS]</p>
+        <p><strong>Contact:</strong> [PRIVACY OFFICER NAME & EMAIL]</p>
+        <br>
+        <p><strong>SERVICE PROVIDER/CONTRACTOR:</strong> [SERVICE PROVIDER NAME]</p>
+        <p><strong>Address:</strong> [SERVICE PROVIDER ADDRESS]</p>
+        <p><strong>Contact:</strong> [SERVICE PROVIDER CONTACT]</p>
+        <br>
+        <p><strong>Effective Date:</strong> [DATE]</p>
     </div>
 
-    <div class="document-header">
-        <div class="company-name">{{1.company}}</div>
-        <div class="document-date">Generated: {{formatDate(now; "MMMM D, YYYY")}}</div>
+    <h1>RECITALS</h1>
+    <p><strong>WHEREAS,</strong> Business and Service Provider/Contractor have entered into an agreement under which Service Provider/Contractor will provide certain services to Business (the "Services Agreement");</p>
+    <p><strong>WHEREAS,</strong> in connection with the Services Agreement, Service Provider/Contractor may process Personal Information of California consumers on behalf of Business;</p>
+    <p><strong>WHEREAS,</strong> the parties wish to ensure that such processing complies with the California Consumer Privacy Act of 2018, as amended by the California Privacy Rights Act of 2020 (collectively, "CCPA");</p>
+    <p><strong>NOW, THEREFORE,</strong> in consideration of the mutual covenants contained herein, the parties agree as follows:</p>
+
+    <h1>1. DEFINITIONS</h1>
+    <p>Terms used but not defined in this Agreement shall have the meanings set forth in the CCPA (Cal. Civ. Code § 1798.140). Additionally:</p>
+    <ol type="a">
+        <li><strong>"Business"</strong> means the entity identified above that determines the purposes and means of processing Personal Information.</li>
+        <li><strong>"Business Purpose"</strong> means the use of Personal Information for the Business's operational purposes, as defined in Cal. Civ. Code § 1798.140(e).</li>
+        <li><strong>"Consumer"</strong> means a natural person who is a California resident.</li>
+        <li><strong>"Contractor"</strong> means a person to whom the Business makes available Personal Information for a Business Purpose pursuant to a written contract, as defined in Cal. Civ. Code § 1798.140(j).</li>
+        <li><strong>"Personal Information"</strong> means information that identifies, relates to, describes, is reasonably capable of being associated with, or could reasonably be linked with a particular Consumer or household, as defined in Cal. Civ. Code § 1798.140(v).</li>
+        <li><strong>"Sensitive Personal Information"</strong> means Personal Information revealing a Consumer's social security number, driver's license, financial account information, precise geolocation, racial or ethnic origin, religious beliefs, union membership, genetic data, neural data, biometric information, health information, or sex life/sexual orientation, as defined in Cal. Civ. Code § 1798.140(ae).</li>
+        <li><strong>"Service Provider"</strong> means a person that processes Personal Information on behalf of a Business pursuant to a written contract, as defined in Cal. Civ. Code § 1798.140(ag).</li>
+        <li><strong>"Sell"</strong> means selling, renting, releasing, disclosing, disseminating, making available, transferring, or otherwise communicating Personal Information to a third party for monetary or other valuable consideration, as defined in Cal. Civ. Code § 1798.140(ad).</li>
+        <li><strong>"Share"</strong> means sharing, renting, releasing, disclosing, disseminating, making available, transferring, or otherwise communicating Personal Information for cross-context behavioral advertising, as defined in Cal. Civ. Code § 1798.140(ah).</li>
+    </ol>
+
+    <h1>2. SCOPE OF PROCESSING</h1>
+    
+    <h2>2.1 Categories of Personal Information</h2>
+    <p>Service Provider/Contractor will process the following categories of Personal Information:</p>
+    <p>[LIST SPECIFIC CATEGORIES, e.g., Identifiers, Commercial Information, Internet Activity, etc.]</p>
+
+    <h2>2.2 Categories of Sensitive Personal Information</h2>
+    <p>If applicable, Service Provider/Contractor will process the following categories of Sensitive Personal Information:</p>
+    <p>[LIST SPECIFIC CATEGORIES OR STATE "None"]</p>
+
+    <h2>2.3 Business Purposes</h2>
+    <p>Personal Information shall be processed only for the following specific Business Purposes:</p>
+    <p>[LIST SPECIFIC PURPOSES]</p>
+
+    <h2>2.4 Duration of Processing</h2>
+    <p>Processing shall continue for the duration of the Services Agreement unless earlier terminated. Upon termination, Section 11 shall apply.</p>
+
+    <h1>3. SERVICE PROVIDER/CONTRACTOR OBLIGATIONS</h1>
+    <p><em>Service Provider/Contractor certifies that it understands and will comply with the following restrictions (Cal. Civ. Code § 1798.140(ag) and (j)):</em></p>
+
+    <h2>3.1 Prohibition on Selling and Sharing</h2>
+    <p>Service Provider/Contractor shall NOT:</p>
+    <ul>
+        <li><strong>Sell</strong> the Personal Information received from Business</li>
+        <li><strong>Share</strong> the Personal Information for cross-context behavioral advertising</li>
+    </ul>
+
+    <h2>3.2 Use Restrictions</h2>
+    <p>Service Provider/Contractor shall NOT retain, use, or disclose Personal Information:</p>
+    <ul>
+        <li>For any purpose other than the Business Purposes specified in Section 2.3</li>
+        <li>For any commercial purpose other than the Business Purposes specified in this Agreement</li>
+        <li>Outside of the direct business relationship between Service Provider/Contractor and Business</li>
+    </ul>
+
+    <h2>3.3 Prohibition on Combining Data</h2>
+    <p>Service Provider/Contractor shall NOT combine the Personal Information received from Business with:</p>
+    <ul>
+        <li>Personal Information received from or on behalf of another person or persons</li>
+        <li>Personal Information collected from its own interaction with consumers</li>
+    </ul>
+    <p><strong>Exception:</strong> Combination is permitted to perform Business Purposes as defined in CCPA regulations, excluding cross-context behavioral advertising for opted-out consumers.</p>
+
+    <h2>3.4 Sensitive Personal Information</h2>
+    <p>When processing Sensitive Personal Information, Service Provider/Contractor shall:</p>
+    <ul>
+        <li>Limit use to that which is necessary to perform the services reasonably expected</li>
+        <li>Comply with any consumer directions to limit use received from Business</li>
+        <li>Not use Sensitive Personal Information after receiving instructions from Business that the consumer has exercised their right to limit</li>
+    </ul>
+
+    <h2>3.5 Certification</h2>
+    <div class="certification-box">
+        <p><strong>CERTIFICATION (Required by Cal. Civ. Code § 1798.140(j)(1)(B) and (ag)(1)(D)):</strong></p>
+        <p>Service Provider/Contractor certifies that it understands and will comply with all restrictions set forth in Section 3 of this Agreement and applicable provisions of the CCPA.</p>
     </div>
 
-    <h1>CCPA Data Processing Agreement</h1>
+    <h1>4. COMPLIANCE MONITORING AND AUDITS</h1>
+    
+    <h2>4.1 Monitoring Rights (Required by Cal. Civ. Code § 1798.140(j)(1)(C))</h2>
+    <p>Business may monitor Service Provider/Contractor's compliance with this Agreement through:</p>
+    <ul>
+        <li>Ongoing manual reviews</li>
+        <li>Automated scans</li>
+        <li>Regular assessments, audits, or other technical and operational testing</li>
+    </ul>
 
-    <div class="section">
-        <h2>1. Parties</h2>
-        <p>This Data Processing Agreement ("Agreement") is entered into between:</p>
-        <p><strong>Business:</strong> {{1.company}}</p>
-        <p><strong>Address:</strong> {{1.company_address}}</p>
-        <p>AND</p>
-        <p><strong>Service Provider:</strong> {{1.service_provider_name}}</p>
-        <p><strong>Effective Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+    <h2>4.2 Audit Frequency</h2>
+    <p><strong>At minimum, compliance audits shall be conducted at least once every twelve (12) months.</strong></p>
+
+    <h2>4.3 Audit Cooperation</h2>
+    <p>Service Provider/Contractor shall:</p>
+    <ul>
+        <li>Provide reasonable access to facilities, systems, and records</li>
+        <li>Make relevant personnel available for interviews</li>
+        <li>Provide documentation of compliance measures</li>
+        <li>Remediate any identified deficiencies within [30/60/90] days</li>
+    </ul>
+
+    <h1>5. SUB-CONTRACTORS AND DOWNSTREAM RECIPIENTS</h1>
+    
+    <h2>5.1 Notification Requirement</h2>
+    <p>If Service Provider/Contractor engages any other person to assist in processing Personal Information, it shall notify Business of such engagement.</p>
+
+    <h2>5.2 Contractual Flow-Down</h2>
+    <p>Any engagement of a sub-contractor shall be pursuant to a written contract that binds the sub-contractor to:</p>
+    <ul>
+        <li>All the same restrictions and obligations set forth in Section 3</li>
+        <li>Provide the same level of privacy protection required by this Agreement</li>
+        <li>Comply with applicable CCPA requirements</li>
+    </ul>
+
+    <h2>5.3 Approved Sub-Contractors</h2>
+    <p>The following sub-contractors are pre-approved:</p>
+    <p>[LIST APPROVED SUB-CONTRACTORS OR STATE "None - prior written approval required for all sub-contractors"]</p>
+
+    <h1>6. CONSUMER RIGHTS ASSISTANCE</h1>
+    
+    <h2>6.1 Assistance Obligation</h2>
+    <p>Service Provider/Contractor shall assist Business in responding to verifiable Consumer requests, including:</p>
+    <ul>
+        <li><strong>Right to Know:</strong> Provide Consumer's Personal Information in Service Provider/Contractor's possession</li>
+        <li><strong>Right to Delete:</strong> Delete Consumer's Personal Information upon Business's direction</li>
+        <li><strong>Right to Correct:</strong> Correct inaccurate Personal Information or enable Business to do so</li>
+        <li><strong>Right to Opt-Out:</strong> Comply with opt-out directions communicated by Business</li>
+        <li><strong>Right to Limit:</strong> Limit use of Sensitive Personal Information as directed</li>
+    </ul>
+
+    <h2>6.2 Response Timeline</h2>
+    <p>Service Provider/Contractor shall respond to Business's requests for assistance within [10/15] business days to enable Business to meet the 45-day response deadline.</p>
+
+    <h2>6.3 Direct Consumer Requests</h2>
+    <p>Service Provider/Contractor is not required to comply with verifiable Consumer requests received directly from Consumers for Personal Information collected in its role as a Service Provider/Contractor. Such requests shall be forwarded to Business within [5] business days.</p>
+
+    <h1>7. SECURITY REQUIREMENTS</h1>
+    
+    <h2>7.1 Reasonable Security Measures</h2>
+    <p>Service Provider/Contractor shall implement and maintain reasonable security procedures and practices appropriate to the nature of the Personal Information, including:</p>
+    <ul>
+        <li><strong>Administrative safeguards:</strong> Security policies, employee training, access controls, incident response procedures</li>
+        <li><strong>Technical safeguards:</strong> Encryption, firewalls, intrusion detection, secure authentication</li>
+        <li><strong>Physical safeguards:</strong> Facility access controls, secure disposal, device security</li>
+    </ul>
+
+    <h2>7.2 Encryption</h2>
+    <p>Personal Information shall be encrypted:</p>
+    <ul>
+        <li>In transit using TLS 1.2 or higher</li>
+        <li>At rest using AES-256 or equivalent</li>
+    </ul>
+
+    <h1>8. DATA BREACH NOTIFICATION</h1>
+    
+    <h2>8.1 Notification Timeline</h2>
+    <p>Service Provider/Contractor shall notify Business of any actual or suspected data breach affecting Personal Information without unreasonable delay and in no event later than [24/48/72] hours after discovery.</p>
+
+    <h2>8.2 Notification Contents</h2>
+    <p>Breach notification shall include:</p>
+    <ul>
+        <li>Description of the nature of the breach</li>
+        <li>Categories and approximate number of Consumers affected</li>
+        <li>Categories of Personal Information involved</li>
+        <li>Contact information for further inquiries</li>
+        <li>Measures taken or proposed to address the breach</li>
+    </ul>
+
+    <h2>8.3 Cooperation</h2>
+    <p>Service Provider/Contractor shall cooperate with Business in investigating and remediating the breach, including providing all information necessary for Business to comply with notification requirements under Cal. Civ. Code § 1798.82.</p>
+
+    <h1>9. COMPLIANCE NOTIFICATIONS</h1>
+    
+    <h2>9.1 Inability to Comply (Required by Cal. Civ. Code § 1798.100(d)(4))</h2>
+    <p>Service Provider/Contractor shall notify Business if it makes a determination that it can no longer meet its obligations under the CCPA.</p>
+
+    <h2>9.2 Business's Remediation Rights (Required by Cal. Civ. Code § 1798.100(d)(5))</h2>
+    <p>Upon receiving notice under Section 9.1, or upon independent determination of non-compliance, Business shall have the right to take reasonable and appropriate steps to:</p>
+    <ul>
+        <li>Stop unauthorized use of Personal Information</li>
+        <li>Remediate any unauthorized use</li>
+        <li>Terminate this Agreement and the Services Agreement</li>
+    </ul>
+
+    <h1>10. TECHNICAL AND ORGANIZATIONAL MEASURES</h1>
+    <p>Service Provider/Contractor shall assist Business in complying with its obligations under Cal. Civ. Code §§ 1798.100(d)-(f), taking into account the nature of the processing, including obligations related to:</p>
+    <ul>
+        <li>Data minimization</li>
+        <li>Purpose limitation</li>
+        <li>Security measures</li>
+        <li>Consumer rights fulfillment</li>
+    </ul>
+
+    <h1>11. DATA RETURN AND DELETION</h1>
+    
+    <h2>11.1 Upon Termination</h2>
+    <p>Upon termination of this Agreement or the Services Agreement, Service Provider/Contractor shall, at Business's direction:</p>
+    <ul>
+        <li>Return all Personal Information to Business in a structured, commonly used format; and/or</li>
+        <li>Delete all Personal Information, including all copies, backups, and archives</li>
+    </ul>
+
+    <h2>11.2 Certification of Deletion</h2>
+    <p>Upon completion of deletion, Service Provider/Contractor shall provide written certification that all Personal Information has been deleted.</p>
+
+    <h2>11.3 Retention Exceptions</h2>
+    <p>Service Provider/Contractor may retain Personal Information only to the extent required by applicable law, in which case it shall:</p>
+    <ul>
+        <li>Notify Business of the legal requirement</li>
+        <li>Continue to protect such information in accordance with this Agreement</li>
+        <li>Delete the information when the legal obligation ceases</li>
+    </ul>
+
+    <h1>12. LIABILITY AND INDEMNIFICATION</h1>
+    
+    <h2>12.1 Service Provider/Contractor Liability</h2>
+    <p>Service Provider/Contractor shall be liable for its own violations of the CCPA and this Agreement.</p>
+
+    <h2>12.2 Business Liability Protection</h2>
+    <p>Business shall not be liable under the CCPA if Service Provider/Contractor uses Personal Information in violation of this Agreement, provided that Business did not have actual knowledge or reason to believe that Service Provider/Contractor intended to commit such violation at the time of disclosure.</p>
+
+    <h2>12.3 Indemnification</h2>
+    <p>Service Provider/Contractor shall indemnify, defend, and hold harmless Business from any claims, damages, fines, or penalties arising from Service Provider/Contractor's violation of this Agreement or the CCPA.</p>
+
+    <h1>13. TERM AND TERMINATION</h1>
+    
+    <h2>13.1 Term</h2>
+    <p>This Agreement shall remain in effect for the duration of the Services Agreement.</p>
+
+    <h2>13.2 Termination for Breach</h2>
+    <p>Business may terminate this Agreement immediately upon written notice if Service Provider/Contractor breaches any material provision of this Agreement.</p>
+
+    <h2>13.3 Survival</h2>
+    <p>Sections 3 (Obligations), 7 (Security), 8 (Breach Notification), 11 (Data Return/Deletion), and 12 (Liability) shall survive termination.</p>
+
+    <h1>14. GENERAL PROVISIONS</h1>
+    
+    <h2>14.1 Governing Law</h2>
+    <p>This Agreement shall be governed by the laws of the State of California.</p>
+
+    <h2>14.2 Conflicts</h2>
+    <p>In the event of conflict between this Agreement and the Services Agreement, this Agreement shall prevail with respect to data protection matters.</p>
+
+    <h2>14.3 Amendments</h2>
+    <p>This Agreement may be amended only by written instrument signed by both parties. Business may update this Agreement to reflect changes to the CCPA upon reasonable notice to Service Provider/Contractor.</p>
+
+    <h2>14.4 Entire Agreement</h2>
+    <p>This Agreement constitutes the entire agreement between the parties regarding CCPA compliance and supersedes all prior agreements on this subject.</p>
+
+    <h1>SIGNATURES</h1>
+    <p>IN WITNESS WHEREOF, the parties have executed this Data Processing Agreement as of the Effective Date.</p>
+
+    <div class="signature-grid">
+        <div class="signature-box">
+            <h2 style="margin-top: 0;">BUSINESS</h2>
+            <p>[COMPANY NAME]</p>
+            <p>Signature: _________________________</p>
+            <p>Name: _________________________</p>
+            <p>Title: _________________________</p>
+            <p>Date: _________________________</p>
+        </div>
+        <div class="signature-box">
+            <h2 style="margin-top: 0;">SERVICE PROVIDER/CONTRACTOR</h2>
+            <p>[SERVICE PROVIDER NAME]</p>
+            <p>Signature: _________________________</p>
+            <p>Name: _________________________</p>
+            <p>Title: _________________________</p>
+            <p>Date: _________________________</p>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>2. Purpose</h2>
-        <p>This Agreement sets out the terms under which the Service Provider will process personal information on behalf of the Business in compliance with the California Consumer Privacy Act (CCPA).</p>
-    </div>
+    <h1>EXHIBIT A: CATEGORIES OF PERSONAL INFORMATION</h1>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Specific Data Elements</th>
+            <th>Business Purpose</th>
+        </tr>
+        <tr>
+            <td>[Category]</td>
+            <td>[Elements]</td>
+            <td>[Purpose]</td>
+        </tr>
+        <tr>
+            <td>[Category]</td>
+            <td>[Elements]</td>
+            <td>[Purpose]</td>
+        </tr>
+    </table>
 
-    <div class="section">
-        <h2>3. Definitions</h2>
-        <ul>
-            <li><strong>"CCPA"</strong> means the California Consumer Privacy Act of 2018</li>
-            <li><strong>"Personal Information"</strong> means information that identifies, relates to, or could reasonably be linked with a California resident</li>
-            <li><strong>"Business"</strong> means the entity that determines the purposes and means of processing</li>
-            <li><strong>"Service Provider"</strong> means the entity that processes personal information on behalf of the Business</li>
-            <li><strong>"Consumer"</strong> means a California resident</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>4. Categories of Personal Information</h2>
-        <p>The Service Provider will process the following categories of personal information:</p>
-        <p>{{1.data}}</p>
-    </div>
-
-    <div class="section">
-        <h2>5. Service Provider Obligations</h2>
-        <p>The Service Provider certifies that it:</p>
-        <ul>
-            <li>Will not sell the personal information</li>
-            <li>Will not retain, use, or disclose personal information outside the direct business relationship</li>
-            <li>Will not combine personal information with other sources except as permitted</li>
-            <li>Will comply with CCPA requirements</li>
-            <li>Will assist with consumer rights requests</li>
-            <li>Will implement reasonable security measures</li>
-            <li>Will notify the Business of any data breaches</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>6. Sub-Contractors</h2>
-        <p>The Service Provider may engage sub-contractors subject to:</p>
-        <p><strong>Approved Third Parties:</strong> {{1.thirdparty}}</p>
-        <ul>
-            <li>Written agreement with equivalent protections</li>
-            <li>Prior notice to the Business</li>
-            <li>Compliance with CCPA requirements</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>7. Consumer Rights Assistance</h2>
-        <p>The Service Provider shall assist the Business in responding to:</p>
-        <ul>
-            <li>Right to Know requests</li>
-            <li>Right to Delete requests</li>
-            <li>Right to Correct requests</li>
-            <li>Right to Opt-Out requests</li>
-        </ul>
-        <p><strong>Privacy Officer:</strong> {{1.privacy_officer}}</p>
-    </div>
-
-    <div class="section">
-        <h2>8. Security Requirements</h2>
-        <p>The Service Provider shall implement and maintain reasonable security procedures including:</p>
-        <ul>
-            <li>Administrative safeguards</li>
-            <li>Technical safeguards</li>
-            <li>Physical safeguards</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>9. Data Breach Notification</h2>
-        <p>In the event of a data breach, the Service Provider shall:</p>
-        <ul>
-            <li>Notify the Business without unreasonable delay</li>
-            <li>Provide details of the breach</li>
-            <li>Cooperate with investigation and remediation</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>10. Audit Rights</h2>
-        <p>The Business may audit the Service Provider's compliance with this Agreement upon reasonable notice.</p>
-    </div>
-
-    <div class="section">
-        <h2>11. Return or Deletion of Data</h2>
-        <p>Upon termination, the Service Provider shall delete or return all personal information as directed by the Business.</p>
-    </div>
-
-    <div class="section">
-        <h2>12. Governing Law</h2>
-        <p>This Agreement shall be governed by the laws of the State of California.</p>
-    </div>
-
-    <div class="signature-area">
-        <h2>13. Signatures</h2>
-        <p>IN WITNESS WHEREOF, this Agreement is entered into as of the date first written above.</p>
-        
-        <p><strong>BUSINESS:</strong></p>
-        <p>Company: {{1.company}}</p>
-        <p>Name: {{1.authorized_signatory}}</p>
-        <p>Signature: <span class="signature-line"></span></p>
-        <p>Date: <span class="signature-line"></span></p>
-        
-        <br><br>
-        
-        <p><strong>SERVICE PROVIDER:</strong></p>
-        <p>Company: {{1.service_provider_name}}</p>
-        <p>Name: <span class="signature-line"></span></p>
-        <p>Signature: <span class="signature-line"></span></p>
-        <p>Date: <span class="signature-line"></span></p>
-    </div>
-
-    <div class="download-section">
-        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
-    </div>
+    <h1>EXHIBIT B: APPROVED SUB-CONTRACTORS</h1>
+    <table>
+        <tr>
+            <th>Sub-Contractor Name</th>
+            <th>Services Provided</th>
+            <th>Location</th>
+        </tr>
+        <tr>
+            <td>[Name]</td>
+            <td>[Services]</td>
+            <td>[Location]</td>
+        </tr>
+    </table>
 </body>
 </html>
