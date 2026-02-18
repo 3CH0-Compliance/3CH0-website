@@ -511,6 +511,439 @@
       color: var(--button-text);
     }
 
+    /* ==================== NEW: COLLAPSIBLE SECTIONS ==================== */
+    
+    /* Collapsible Header Styling */
+    .collapsible-header {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-top: 10px;
+      border-top: 1px dashed rgba(146, 205, 236, 0.3);
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .collapsible-header:hover {
+      opacity: 0.85;
+    }
+
+    .collapsible-header span:first-child {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Toggle Icon */
+    .toggle-icon {
+      font-size: 12px;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+      margin-left: 10px;
+    }
+
+    /* Collapsible Content */
+    .collapsible-content {
+      display: none;
+      padding: 20px;
+      margin-top: 15px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      border: 1px solid rgba(146, 205, 236, 0.15);
+      animation: slideDown 0.3s ease;
+    }
+
+    .collapsible-content.visible {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Field Group Title as Collapsible Header */
+    .field-group-title.collapsible-header {
+      cursor: pointer;
+      border-bottom: none;
+      padding-bottom: 12px;
+      margin-bottom: 0;
+    }
+
+    .field-group-title.collapsible-header:hover {
+      opacity: 0.9;
+    }
+
+    /* ==================== NEW: SUBSECTION TITLES ==================== */
+    
+    .subsection-title,
+    h4.subsection-title {
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 25px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(146, 205, 236, 0.2);
+    }
+
+    h4.subsection-title:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ==================== NEW: SECTION NOTES ==================== */
+    
+    .section-note,
+    p.section-note {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      background: rgba(146, 205, 236, 0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* ==================== NEW: CONDITIONAL SECTIONS ==================== */
+    
+    .conditional-section {
+      padding: 15px;
+      margin: 15px 0;
+      background: rgba(146, 205, 236, 0.05);
+      border-radius: 10px;
+      border: 1px dashed rgba(146, 205, 236, 0.2);
+    }
+
+    /* ==================== NEW: SENSITIVE DATA ROWS ==================== */
+    
+    .sensitive-data-row {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sensitive-data-row:last-child {
+      border-bottom: none;
+    }
+
+    .sensitive-data-row .form-grid {
+      margin-bottom: 0;
+    }
+
+    .sensitive-data-row select {
+      margin-bottom: 10px;
+    }
+
+    .sensitive-data-row input {
+      margin-bottom: 5px;
+    }
+
+    /* ==================== NEW: PA ENTRY STYLING ==================== */
+    
+    .pa-entry {
+      padding: 15px;
+      margin: 15px 0;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pa-entry strong {
+      display: block;
+      margin-bottom: 15px;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .pa-entry .form-grid {
+      margin-bottom: 10px;
+    }
+
+    .pa-entry .form-grid:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ==================== NEW: DISABLED FIELD STYLING ==================== */
+    
+    input:disabled,
+    select:disabled,
+    textarea:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: rgba(21, 18, 16, 0.4);
+    }
+
+    /* ==================== NEW: INPUT FOCUS STATES ==================== */
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--accent);
+      background-color: rgba(21, 18, 16, 0.9);
+    }
+
+    /* ==================== NEW: INPUT VALIDATION STATES ==================== */
+    
+    input:invalid:not(:placeholder-shown),
+    select:invalid:not([value=""]) {
+      box-shadow: inset 0 0 0 1px rgba(255, 107, 107, 0.5);
+    }
+
+    input:valid:not(:placeholder-shown),
+    select:valid:not([value=""]) {
+      box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.3);
+    }
+
+    /* ==================== NEW: OPTGROUP STYLING ==================== */
+    
+    select optgroup {
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(21, 18, 16, 0.95);
+      padding: 10px 0;
+    }
+
+    select option {
+      font-weight: 400;
+      color: var(--text-color);
+      padding: 10px 15px;
+      background: rgba(21, 18, 16, 0.9);
+    }
+
+    /* ==================== NEW: LOADING SPINNER ==================== */
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(10, 10, 10, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--button-text);
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ==================== NEW: EXPAND/COLLAPSE ALL BUTTON ==================== */
+    
+    .expand-collapse-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .expand-collapse-btn:hover {
+      background: rgba(146, 205, 236, 0.1);
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ==================== NEW: REGULATION BADGES IN FORM ==================== */
+    
+    .regulation-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 12px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .regulation-badge.ccpa {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+    }
+
+    .regulation-badge.gdpr {
+      background: rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+    }
+
+    .regulation-badge.hipaa {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+
+    .regulation-badge.popia {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+    }
+
+    /* ==================== NEW: FORM PROGRESS INDICATOR ==================== */
+    
+    .form-progress {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      padding: 0 10px;
+    }
+
+    .form-progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+
+    .form-progress-step::after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: var(--border-color);
+      z-index: 0;
+    }
+
+    .form-progress-step:last-child::after {
+      display: none;
+    }
+
+    .form-progress-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--border-color);
+      color: var(--secondary-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .form-progress-step.active .form-progress-number {
+      background: var(--gradient);
+      color: var(--button-text);
+    }
+
+    .form-progress-step.completed .form-progress-number {
+      background: var(--success);
+      color: white;
+    }
+
+    .form-progress-label {
+      font-size: 11px;
+      color: var(--secondary-text);
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* ==================== NEW: TOOLTIP STYLING ==================== */
+    
+    .field-tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 6px;
+      cursor: help;
+    }
+
+    .field-tooltip .tooltip-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(146, 205, 236, 0.2);
+      color: var(--accent);
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .field-tooltip .tooltip-text {
+      visibility: hidden;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 400;
+      white-space: nowrap;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .field-tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* ==================== NEW: RISK LEVEL INDICATORS ==================== */
+    
+    select option[value="Low"] {
+      color: #34d399;
+    }
+
+    select option[value="Medium"] {
+      color: #fbbf24;
+    }
+
+    select option[value="High"] {
+      color: #f87171;
+    }
+
+    /* ==================== NEW: DATE INPUT STYLING ==================== */
+    
+    input[type="date"] {
+      position: relative;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator:hover {
+      opacity: 1;
+    }
+
+    /* ==================== NEW: NUMBER INPUT STYLING ==================== */
+    
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
     /* Testimonials */
     .testimonials {
       padding: 80px 20px;
@@ -960,6 +1393,34 @@
       .checkbox-grid {
         grid-template-columns: 1fr;
       }
+
+      /* NEW: Mobile collapsible sections */
+      .collapsible-header {
+        padding: 15px 0;
+      }
+
+      .collapsible-content {
+        padding: 15px;
+      }
+
+      .subsection-title,
+      h4.subsection-title {
+        font-size: 0.95rem;
+      }
+
+      .pa-entry {
+        padding: 12px;
+      }
+
+      .form-progress {
+        display: none;
+      }
+
+      .section-note,
+      p.section-note {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
     }
 
     /* Loading States */
@@ -1123,422 +1584,1959 @@
         </div>
 
         <!-- ENHANCED DYNAMIC FORM WITH BOTH ORIGINAL AND NEW FIELDS -->
-        <form action="https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu" method="POST" id="ComplianceFormWebhook">
-          <input type="hidden" name="form-name" value="ComplianceFormWebhook" />
-          <input type="hidden" name="csrf_token" id="csrf_token" value="">
+<!-- ============================================================
+     COMPREHENSIVE COMPLIANCE FORM - ALL FIELDS WITH COLLAPSIBLE SECTIONS
+     Contains 220+ fields matching the complete webhook data structure
+     Version 2.0 - Includes all GDPR fields
+     ============================================================ -->
 
-          <!-- Honeypot Field -->
-          <div style="display: none;">
-            <label for="website">Website</label>
-            <input type="text" id="website" name="website" autocomplete="off">
-          </div>
+<form action="https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu" method="POST" id="ComplianceFormWebhook">
+  <input type="hidden" name="form-name" value="ComplianceFormWebhook" />
+  <input type="hidden" name="csrf_token" id="csrf_token" value="">
 
-          <!-- COMPANY INFORMATION -->
-          <div class="field-group">
-            <div class="field-group-title">Company Information</div>
-            
-            <label for="company">Company Name</label>
-            <input type="text" id="company" name="company" required>
+  <!-- Honeypot Field -->
+  <div style="display: none;">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" autocomplete="off">
+  </div>
 
-            <label for="company_address">Company Address</label>
-            <textarea id="company_address" name="company_address" rows="2" required placeholder="Full business address including street, city, state, zip code"></textarea>
+  <!-- ==================== SECTION 1: COMPANY INFORMATION ==================== -->
+  <div class="field-group">
+    <div class="field-group-title">📋 Company Information</div>
+    
+    <label for="company">Company Name *</label>
+    <input type="text" id="company" name="company" required>
 
-            <div class="form-grid">
-              <div>
-                <label for="phone_number">Business Phone Number</label>
-                <input type="tel" id="phone_number" name="phone_number" required placeholder="+1 (555) 123-4567">
-              </div>
-              <div>
-                <label for="website_url">Company Website</label>
-                <input type="url" id="website_url" name="website_url" required placeholder="https://yourcompany.com">
-              </div>
-            </div>
+    <label for="company_address">Company Address *</label>
+    <textarea id="company_address" name="company_address" rows="2" required placeholder="Full business address including street, city, state, zip code, country"></textarea>
 
-            <div class="form-grid">
-              <div>
-                <label for="industry">Industry</label>
-                <select name="industry" id="industry" required>
-                  <option value="">Select</option>
-                  <option>SaaS</option>
-                  <option>FinTech</option>
-                  <option>E-Commerce</option>
-                  <option>HealthTech</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label for="location">Business Location</label>
-                <input type="text" id="location" name="location" required placeholder="e.g., California, USA or European Union">
-              </div>
-            </div>
-          </div>
+    <div class="form-grid">
+      <div>
+        <label for="company_registration">Company Registration Number</label>
+        <input type="text" id="company_registration" name="company_registration" placeholder="e.g., 2024/123456/07 or EIN">
+      </div>
+      <div>
+        <label for="phone_number">Business Phone Number *</label>
+        <input type="tel" id="phone_number" name="phone_number" required placeholder="+1 (555) 123-4567">
+      </div>
+    </div>
 
-          <!-- CONTACT INFORMATION -->
-          <div class="field-group">
-            <div class="field-group-title">Contact Information</div>
-            
-            <label for="email">Compliance Contact Email</label>
-            <input type="email" id="email" name="email" required>
+    <div class="form-grid">
+      <div>
+        <label for="website_url">Company Website *</label>
+        <input type="url" id="website_url" name="website_url" required placeholder="https://yourcompany.com">
+      </div>
+      <div>
+        <label for="industry">Industry *</label>
+        <select name="industry" id="industry" required>
+          <option value="">Select</option>
+          <option value="SaaS / Technology">SaaS / Technology</option>
+          <option value="FinTech">FinTech / Financial Services</option>
+          <option value="E-Commerce">E-Commerce / Retail</option>
+          <option value="HealthTech">HealthTech / Healthcare</option>
+          <option value="EdTech">EdTech / Education</option>
+          <option value="Legal">Legal Services</option>
+          <option value="Insurance">Insurance</option>
+          <option value="Real Estate">Real Estate</option>
+          <option value="Non-Profit">Non-Profit</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
 
-            <div class="form-grid">
-              <div>
-                <label for="privacy_officer">Privacy Officer Name</label>
-                <input type="text" id="privacy_officer" name="privacy_officer" required placeholder="Name of privacy officer or contact person">
-              </div>
-              <div>
-                <label for="security_officer">Security Officer Name (For HIPAA)</label>
-                <input type="text" id="security_officer" name="security_officer" required placeholder="Name of security officer">
-              </div>
-            </div>
+    <label for="location">Primary Business Location *</label>
+    <input type="text" id="location" name="location" required placeholder="e.g., California, USA or Johannesburg, South Africa">
+  </div>
 
-            <div class="form-grid">
-              <div>
-                <label for="dpo_name">Data Protection Officer (For GDPR)</label>
-                <input type="text" id="dpo_name" name="dpo_name" required placeholder="Name of Data Protection Officer">
-              </div>
-              <div>
-                <label for="authorized_signatory">Authorized Signatory Name</label>
-                <input type="text" id="authorized_signatory" name="authorized_signatory" required placeholder="Name of person authorized to sign documents">
-              </div>
-            </div>
-          </div>
+  <!-- ==================== SECTION 2: CONTACT INFORMATION ==================== -->
+  <div class="field-group">
+    <div class="field-group-title">👤 Contact Information</div>
+    
+    <label for="email">Compliance Contact Email *</label>
+    <input type="email" id="email" name="email" required>
 
-          <!-- COMPLIANCE FOCUS - ORIGINAL FIELDS PRESERVED -->
-          <div class="field-group">
-            <div class="field-group-title">Compliance Focus</div>
-            
-            <label for="regulations">Compliance Focus</label>
-            <select name="regulations" id="regulations" required>
-              <option value="">Select</option>
-              <option>GDPR</option>
-              <option>CCPA</option>
-              <option>HIPAA</option>
-              <option>POPIA</option>
-              <option>Multiple / Global</option>
+    <div class="form-grid">
+      <div>
+        <label for="privacy_officer">Privacy Officer Name *</label>
+        <input type="text" id="privacy_officer" name="privacy_officer" required placeholder="Primary privacy contact">
+      </div>
+      <div>
+        <label for="security_officer">Security Officer Name *</label>
+        <input type="text" id="security_officer" name="security_officer" required placeholder="IT/Security contact">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="security_officer_email">Security Officer Email</label>
+        <input type="email" id="security_officer_email" name="security_officer_email" placeholder="security@company.com">
+      </div>
+      <div>
+        <label for="security_officer_phone">Security Officer Phone</label>
+        <input type="tel" id="security_officer_phone" name="security_officer_phone" placeholder="+1 (555) 123-4568">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="dpo_name">Data Protection Officer (GDPR)</label>
+        <input type="text" id="dpo_name" name="dpo_name" placeholder="Required for GDPR">
+      </div>
+      <div>
+        <label for="authorized_signatory">Authorized Signatory Name *</label>
+        <input type="text" id="authorized_signatory" name="authorized_signatory" required placeholder="Person authorized to sign">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="signatory_title">Signatory Title *</label>
+        <input type="text" id="signatory_title" name="signatory_title" required placeholder="e.g., CEO, Director">
+      </div>
+      <div>
+        <label for="signatory_position">Signatory Position</label>
+        <input type="text" id="signatory_position" name="signatory_position" placeholder="e.g., Chief Executive Officer">
+      </div>
+    </div>
+
+    <label for="trainer_name">Training Coordinator Name</label>
+    <input type="text" id="trainer_name" name="trainer_name" placeholder="Person conducting employee training">
+  </div>
+
+  <!-- ==================== SECTION 3: COMPLIANCE FOCUS ==================== -->
+  <div class="field-group">
+    <div class="field-group-title">⚖️ Compliance Focus</div>
+    
+    <label for="regulations">Primary Compliance Regulation *</label>
+    <select name="regulations" id="regulations" required>
+      <option value="">Select</option>
+      <option value="GDPR">🇪🇺 GDPR (European Union)</option>
+      <option value="CCPA">🇺🇸 CCPA/CPRA (California)</option>
+      <option value="HIPAA">🏥 HIPAA (US Healthcare)</option>
+      <option value="POPIA">🇿🇦 POPIA (South Africa)</option>
+      <option value="Multiple / Global">🌍 Multiple / Global</option>
+    </select>
+
+    <label for="data">What personal data do you collect? *</label>
+    <textarea name="data" id="data" rows="3" required placeholder="E.g., names, emails, phone numbers, IP addresses, health info, purchase history"></textarea>
+
+    <label for="sensitive_data">What sensitive data do you collect?</label>
+    <textarea name="sensitive_data" id="sensitive_data" rows="2" placeholder="E.g., health information, biometric data, financial accounts, SSN"></textarea>
+
+    <label for="thirdparty">Third-party tools/platforms used *</label>
+    <textarea name="thirdparty" id="thirdparty" rows="2" required placeholder="E.g., Google Analytics, Stripe, AWS, Salesforce, HubSpot"></textarea>
+
+    <label for="retention_period">Data Retention Period</label>
+    <select name="retention_period" id="retention_period">
+      <option value="">Select</option>
+      <option value="1-3 years">1-3 years</option>
+      <option value="3-5 years">3-5 years</option>
+      <option value="5-7 years">5-7 years</option>
+      <option value="7+ years">7+ years</option>
+      <option value="Until deletion requested">Until deletion requested</option>
+    </select>
+  </div>
+
+  <!-- ==================== SECTION 4: SERVICE PROVIDER / OPERATOR ==================== -->
+  <div class="field-group">
+    <div class="field-group-title">🏢 Service Provider / Operator Details</div>
+    
+    <label for="service_provider_name">Primary Service Provider *</label>
+    <input type="text" id="service_provider_name" name="service_provider_name" required placeholder="Main vendor for DPAs">
+
+    <div class="form-grid">
+      <div>
+        <label for="service_provider_address">Service Provider Address</label>
+        <input type="text" id="service_provider_address" name="service_provider_address" placeholder="Full address">
+      </div>
+      <div>
+        <label for="service_provider_contact">Service Provider Contact</label>
+        <input type="text" id="service_provider_contact" name="service_provider_contact" placeholder="Contact person name">
+      </div>
+    </div>
+
+    <!-- ADVANCED: Additional Operator Details (Collapsible) -->
+    <div class="collapsible-header" onclick="toggleSection('operator-advanced')">
+      <span>▼ Advanced Operator Details (for DPAs)</span>
+    </div>
+    <div id="operator-advanced" class="collapsible-content" style="display: none;">
+      <div class="form-grid">
+        <div>
+          <label for="operator_registration">Operator Registration Number</label>
+          <input type="text" id="operator_registration" name="operator_registration">
+        </div>
+        <div>
+          <label for="operator_address">Operator Address</label>
+          <input type="text" id="operator_address" name="operator_address">
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label for="operator_contact">Operator Contact Person</label>
+          <input type="text" id="operator_contact" name="operator_contact">
+        </div>
+        <div>
+          <label for="operator_email">Operator Email</label>
+          <input type="email" id="operator_email" name="operator_email">
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label for="operator_privacy_officer">Operator Privacy Officer</label>
+          <input type="text" id="operator_privacy_officer" name="operator_privacy_officer">
+        </div>
+        <div>
+          <label for="operator_privacy_email">Operator Privacy Email</label>
+          <input type="email" id="operator_privacy_email" name="operator_privacy_email">
+        </div>
+      </div>
+
+      <label for="operator_privacy_phone">Operator Privacy Phone</label>
+      <input type="tel" id="operator_privacy_phone" name="operator_privacy_phone">
+
+      <div class="form-grid">
+        <div>
+          <label for="operator_signatory">Operator Signatory</label>
+          <input type="text" id="operator_signatory" name="operator_signatory">
+        </div>
+        <div>
+          <label for="operator_signatory_position">Operator Signatory Position</label>
+          <input type="text" id="operator_signatory_position" name="operator_signatory_position">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ==================== CCPA/CPRA SECTION ==================== -->
+  <div class="field-group ccpa-specific" style="display: none;">
+    <div class="field-group-title">🇺🇸 CCPA/CPRA Core Details</div>
+    
+    <!-- Core Contact Methods -->
+    <div class="form-grid">
+      <div>
+        <label for="ccpa_tollfree">Toll-Free Phone Number (Required)</label>
+        <input type="tel" id="ccpa_tollfree" name="ccpa_tollfree" placeholder="1-800-XXX-XXXX">
+      </div>
+      <div>
+        <label for="ccpa_webform_url">Consumer Request Web Form URL</label>
+        <input type="url" id="ccpa_webform_url" name="ccpa_webform_url" placeholder="https://yoursite.com/privacy-request">
+      </div>
+    </div>
+
+    <!-- Data Categories Checkboxes -->
+    <label><strong>Categories of Personal Information Collected</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="ccpa_categories[]" value="identifiers"> Identifiers (name, email, IP)</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="commercial"> Commercial Information</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="internet"> Internet/Network Activity</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="geolocation"> Geolocation Data</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="professional"> Professional Info</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="inferences"> Inferences/Profiling</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="biometric"> Biometric Info</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="sensory"> Sensory Data</label>
+      <label><input type="checkbox" name="ccpa_categories[]" value="education"> Education Info</label>
+    </div>
+
+    <!-- Sensitive Data Checkboxes -->
+    <label><strong>Sensitive Personal Information (CPRA)</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="government_id"> Government IDs (SSN)</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="financial"> Financial Account/Login</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="precise_geo"> Precise Geolocation</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="racial"> Racial/Ethnic Origin</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="health"> Health Information</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="sexual_orientation"> Sexual Orientation</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="union"> Union Membership</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="biometric"> Biometric Data</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="communications"> Email/Text Contents</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="genetic"> Genetic Data</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="neural"> Neural Data</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="religious"> Religious Beliefs</label>
+      <label><input type="checkbox" name="ccpa_sensitive[]" value="immigration"> Immigration Status</label>
+    </div>
+
+    <!-- Core Data Practices -->
+    <div class="form-grid">
+      <div>
+        <label for="ccpa_sell">Do you SELL personal information?</label>
+        <select name="ccpa_sell" id="ccpa_sell">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="ccpa_share">Do you SHARE for targeted ads?</label>
+        <select name="ccpa_share" id="ccpa_share">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="ccpa_retention">Data Retention Period</label>
+        <input type="text" id="ccpa_retention" name="ccpa_retention" placeholder="e.g., 3 years after last interaction">
+      </div>
+      <div>
+        <label for="ccpa_minors">Collect data from minors under 16?</label>
+        <select name="ccpa_minors" id="ccpa_minors">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="ccpa_gpc">Honor Global Privacy Control (GPC)?</label>
+        <select name="ccpa_gpc" id="ccpa_gpc">
+          <option value="">Select</option>
+          <option value="Yes">Yes (Required)</option>
+          <option value="No">No - Need to implement</option>
+          <option value="Implementing">Currently implementing</option>
+        </select>
+      </div>
+      <div>
+        <label for="ccpa_financial_incentives">Offer financial incentives/loyalty?</label>
+        <select name="ccpa_financial_incentives" id="ccpa_financial_incentives">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Financial Incentives Details (shows when Yes) -->
+    <div id="financial-incentives-details" class="conditional-section" style="display: none;">
+      <label for="financial_incentives">Describe the incentive program</label>
+      <textarea name="financial_incentives" id="financial_incentives" rows="2" placeholder="e.g., 10% discount for loyalty members"></textarea>
+      <div class="form-grid">
+        <div>
+          <label for="incentive_optin">How do consumers opt-in?</label>
+          <input type="text" id="incentive_optin" name="incentive_optin" placeholder="e.g., Sign up at checkout">
+        </div>
+        <div>
+          <label for="incentive_withdraw">How do consumers withdraw?</label>
+          <input type="text" id="incentive_withdraw" name="incentive_withdraw" placeholder="e.g., Email privacy@company.com">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="ccpa_applicable">Why does CCPA apply?</label>
+        <select name="ccpa_applicable" id="ccpa_applicable">
+          <option value="">Select</option>
+          <option value="Revenue over $25M">Revenue over $25M</option>
+          <option value="50k+ consumers">50k+ consumers' data</option>
+          <option value="50% revenue from data">50%+ revenue from data</option>
+          <option value="Voluntary compliance">Voluntary compliance</option>
+        </select>
+      </div>
+      <div>
+        <label for="business_purposes">Primary Business Purposes</label>
+        <input type="text" id="business_purposes" name="business_purposes" placeholder="e.g., Service delivery, marketing">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="sp_response_days">Service Provider Response (days)</label>
+        <input type="number" id="sp_response_days" name="sp_response_days" placeholder="e.g., 10" min="1" max="45">
+      </div>
+      <div>
+        <label for="breach_notification_hours">Breach Notification (hours)</label>
+        <input type="number" id="breach_notification_hours" name="breach_notification_hours" placeholder="e.g., 72">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="log_start_date">Request Log Start Date</label>
+        <input type="date" id="log_start_date" name="log_start_date">
+      </div>
+      <div>
+        <label for="log_end_date">Request Log End Date</label>
+        <input type="date" id="log_end_date" name="log_end_date">
+      </div>
+    </div>
+
+    <label for="plan_version">Breach Response Plan Version</label>
+    <input type="text" id="plan_version" name="plan_version" placeholder="e.g., 1.0 or 2024.1">
+
+    <!-- Purposes Checkboxes -->
+    <label><strong>Purposes for Data Collection</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="ccpa_purposes[]" value="service_delivery"> Service Delivery</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="payment"> Payment Processing</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="marketing"> Marketing</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="personalization"> Personalization</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="security"> Security/Fraud</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="analytics"> Analytics</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="legal"> Legal Compliance</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="auditing"> Auditing</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="debugging"> Debugging</label>
+      <label><input type="checkbox" name="ccpa_purposes[]" value="research"> Research</label>
+    </div>
+
+    <!-- Request Methods -->
+    <label><strong>Consumer Request Methods</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="ccpa_methods[]" value="webform"> Web Form</label>
+      <label><input type="checkbox" name="ccpa_methods[]" value="tollfree"> Toll-Free Phone</label>
+      <label><input type="checkbox" name="ccpa_methods[]" value="email"> Email</label>
+      <label><input type="checkbox" name="ccpa_methods[]" value="postal"> Postal Mail</label>
+    </div>
+
+    <!-- Website Links -->
+    <label><strong>Required Website Links</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="ccpa_links[]" value="dnss"> "Do Not Sell/Share" Link</label>
+      <label><input type="checkbox" name="ccpa_links[]" value="limit"> "Limit Sensitive PI" Link</label>
+      <label><input type="checkbox" name="ccpa_links[]" value="privacy_footer"> Privacy Policy in Footer</label>
+    </div>
+  </div>
+
+  <!-- ==================== CCPA ADVANCED: SENSITIVE DATA DETAILS ==================== -->
+  <div class="field-group ccpa-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('ccpa-sensitive-details')">
+      🔒 Advanced: Sensitive Data Collection Details
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="ccpa-sensitive-details" class="collapsible-content" style="display: none;">
+      <p class="section-note">Specify Yes/No and purpose for each sensitive data type (used in CCPA templates)</p>
+      
+      <!-- SSN -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_ssn">Collect Social Security Numbers?</label>
+          <select name="collects_ssn" id="collects_ssn">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="ssn_purpose">SSN Purpose</label>
+          <input type="text" id="ssn_purpose" name="ssn_purpose" placeholder="e.g., Identity verification, tax reporting">
+        </div>
+      </div>
+
+      <!-- Login Credentials -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_login">Collect Login Credentials?</label>
+          <select name="collects_login" id="collects_login">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="login_purpose">Login Purpose</label>
+          <input type="text" id="login_purpose" name="login_purpose" placeholder="e.g., Account security">
+        </div>
+      </div>
+
+      <!-- Geolocation -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_geolocation">Collect Precise Geolocation?</label>
+          <select name="collects_geolocation" id="collects_geolocation">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="geolocation_purpose">Geolocation Purpose</label>
+          <input type="text" id="geolocation_purpose" name="geolocation_purpose" placeholder="e.g., Service delivery, fraud prevention">
+        </div>
+      </div>
+
+      <!-- Race -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_race">Collect Racial/Ethnic Data?</label>
+          <select name="collects_race" id="collects_race">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="race_purpose">Race/Ethnicity Purpose</label>
+          <input type="text" id="race_purpose" name="race_purpose" placeholder="e.g., Diversity reporting">
+        </div>
+      </div>
+
+      <!-- Religion -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_religion">Collect Religious Beliefs?</label>
+          <select name="collects_religion" id="collects_religion">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="religion_purpose">Religion Purpose</label>
+          <input type="text" id="religion_purpose" name="religion_purpose" placeholder="e.g., Accommodation requests">
+        </div>
+      </div>
+
+      <!-- Union -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_union">Collect Union Membership?</label>
+          <select name="collects_union" id="collects_union">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="union_purpose">Union Purpose</label>
+          <input type="text" id="union_purpose" name="union_purpose" placeholder="e.g., HR records, payroll">
+        </div>
+      </div>
+
+      <!-- Communications -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_communications">Collect Email/Text Contents?</label>
+          <select name="collects_communications" id="collects_communications">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="communications_purpose">Communications Purpose</label>
+          <input type="text" id="communications_purpose" name="communications_purpose" placeholder="e.g., Customer support">
+        </div>
+      </div>
+
+      <!-- Genetic -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_genetic">Collect Genetic Data?</label>
+          <select name="collects_genetic" id="collects_genetic">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="genetic_purpose">Genetic Purpose</label>
+          <input type="text" id="genetic_purpose" name="genetic_purpose" placeholder="e.g., Health services">
+        </div>
+      </div>
+
+      <!-- Neural -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_neural">Collect Neural Data?</label>
+          <select name="collects_neural" id="collects_neural">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="neural_purpose">Neural Purpose</label>
+          <input type="text" id="neural_purpose" name="neural_purpose" placeholder="e.g., BCI devices">
+        </div>
+      </div>
+
+      <!-- Biometric -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_biometric">Collect Biometric Data?</label>
+          <select name="collects_biometric" id="collects_biometric">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="biometric_purpose">Biometric Purpose</label>
+          <input type="text" id="biometric_purpose" name="biometric_purpose" placeholder="e.g., MFA, access control">
+        </div>
+      </div>
+
+      <!-- Health -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_health">Collect Health Information?</label>
+          <select name="collects_health" id="collects_health">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="health_purpose">Health Purpose</label>
+          <input type="text" id="health_purpose" name="health_purpose" placeholder="e.g., Healthcare services">
+        </div>
+      </div>
+
+      <!-- Sex Life -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_sex_life">Collect Sexual Orientation?</label>
+          <select name="collects_sex_life" id="collects_sex_life">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="sex_life_purpose">Sexual Orientation Purpose</label>
+          <input type="text" id="sex_life_purpose" name="sex_life_purpose" placeholder="e.g., Diversity programs">
+        </div>
+      </div>
+
+      <!-- Citizenship -->
+      <div class="form-grid">
+        <div>
+          <label for="collects_citizenship">Collect Citizenship/Immigration?</label>
+          <select name="collects_citizenship" id="collects_citizenship">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label for="citizenship_purpose">Citizenship Purpose</label>
+          <input type="text" id="citizenship_purpose" name="citizenship_purpose" placeholder="e.g., Employment eligibility">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CCPA ADVANCED: INCIDENT RESPONSE TEAM ==================== -->
+  <div class="field-group ccpa-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('ccpa-incident-team')">
+      🚨 Advanced: Incident Response Team
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="ccpa-incident-team" class="collapsible-content" style="display: none;">
+      <p class="section-note">Internal team contacts for your Data Breach Response Plan</p>
+      
+      <!-- Incident Commander -->
+      <div class="form-grid">
+        <div>
+          <label for="incident_commander">Incident Commander</label>
+          <input type="text" id="incident_commander" name="incident_commander" placeholder="Usually COO or executive">
+        </div>
+        <div>
+          <label for="incident_commander_email">IC Email</label>
+          <input type="email" id="incident_commander_email" name="incident_commander_email">
+        </div>
+      </div>
+      <label for="incident_commander_phone">Incident Commander Phone</label>
+      <input type="tel" id="incident_commander_phone" name="incident_commander_phone">
+
+      <!-- IT Security -->
+      <div class="form-grid">
+        <div>
+          <label for="it_security_lead">IT Security Lead</label>
+          <input type="text" id="it_security_lead" name="it_security_lead">
+        </div>
+        <div>
+          <label for="it_security_email">IT Security Email</label>
+          <input type="email" id="it_security_email" name="it_security_email">
+        </div>
+      </div>
+      <label for="it_security_phone">IT Security Phone</label>
+      <input type="tel" id="it_security_phone" name="it_security_phone">
+
+      <!-- Legal -->
+      <div class="form-grid">
+        <div>
+          <label for="legal_counsel">Legal Counsel</label>
+          <input type="text" id="legal_counsel" name="legal_counsel">
+        </div>
+        <div>
+          <label for="legal_email">Legal Email</label>
+          <input type="email" id="legal_email" name="legal_email">
+        </div>
+      </div>
+      <label for="legal_phone">Legal Phone</label>
+      <input type="tel" id="legal_phone" name="legal_phone">
+
+      <!-- Communications -->
+      <div class="form-grid">
+        <div>
+          <label for="comms_lead">Communications Lead</label>
+          <input type="text" id="comms_lead" name="comms_lead">
+        </div>
+        <div>
+          <label for="comms_email">Comms Email</label>
+          <input type="email" id="comms_email" name="comms_email">
+        </div>
+      </div>
+      <label for="comms_phone">Communications Phone</label>
+      <input type="tel" id="comms_phone" name="comms_phone">
+    </div>
+  </div>
+
+  <!-- ==================== CCPA ADVANCED: EXTERNAL CONTACTS ==================== -->
+  <div class="field-group ccpa-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('ccpa-external-contacts')">
+      📞 Advanced: External Contacts
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="ccpa-external-contacts" class="collapsible-content" style="display: none;">
+      <p class="section-note">External vendors for breach response</p>
+      
+      <!-- Outside Counsel -->
+      <div class="form-grid">
+        <div>
+          <label for="outside_counsel">Outside Legal Counsel</label>
+          <input type="text" id="outside_counsel" name="outside_counsel" placeholder="Law firm name">
+        </div>
+        <div>
+          <label for="outside_counsel_phone">Outside Counsel Phone</label>
+          <input type="tel" id="outside_counsel_phone" name="outside_counsel_phone">
+        </div>
+      </div>
+
+      <!-- Forensics -->
+      <div class="form-grid">
+        <div>
+          <label for="forensics_firm">Forensics Firm</label>
+          <input type="text" id="forensics_firm" name="forensics_firm" placeholder="Cybersecurity firm">
+        </div>
+        <div>
+          <label for="forensics_phone">Forensics Phone</label>
+          <input type="tel" id="forensics_phone" name="forensics_phone">
+        </div>
+      </div>
+
+      <!-- Insurance -->
+      <div class="form-grid">
+        <div>
+          <label for="cyber_insurance">Cyber Insurance Company</label>
+          <input type="text" id="cyber_insurance" name="cyber_insurance">
+        </div>
+        <div>
+          <label for="insurance_policy">Policy Number</label>
+          <input type="text" id="insurance_policy" name="insurance_policy">
+        </div>
+      </div>
+      <label for="insurance_phone">Insurance Phone</label>
+      <input type="tel" id="insurance_phone" name="insurance_phone">
+
+      <!-- Credit Monitoring -->
+      <div class="form-grid">
+        <div>
+          <label for="credit_monitoring">Credit Monitoring Service</label>
+          <input type="text" id="credit_monitoring" name="credit_monitoring" placeholder="e.g., IdentityGuard">
+        </div>
+        <div>
+          <label for="credit_monitoring_phone">Credit Monitoring Phone</label>
+          <input type="tel" id="credit_monitoring_phone" name="credit_monitoring_phone">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ==================== GDPR SECTION ==================== -->
+  <div class="field-group gdpr-specific" style="display: none;">
+    <div class="field-group-title">🇪🇺 GDPR Data Processing Details</div>
+    
+    <!-- Processing Purposes -->
+    <label><strong>Purposes for processing personal data</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="processing_purposes[]" value="service_delivery"> Service Delivery</label>
+      <label><input type="checkbox" name="processing_purposes[]" value="marketing"> Marketing</label>
+      <label><input type="checkbox" name="processing_purposes[]" value="analytics"> Analytics</label>
+      <label><input type="checkbox" name="processing_purposes[]" value="legal_compliance"> Legal Compliance</label>
+      <label><input type="checkbox" name="processing_purposes[]" value="employment"> Employment</label>
+      <label><input type="checkbox" name="processing_purposes[]" value="other"> Other</label>
+    </div>
+
+    <!-- Data Categories -->
+    <label><strong>Categories of personal data processed</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="data_categories[]" value="contact_info"> Contact Information</label>
+      <label><input type="checkbox" name="data_categories[]" value="financial"> Financial Data</label>
+      <label><input type="checkbox" name="data_categories[]" value="health"> Health Data</label>
+      <label><input type="checkbox" name="data_categories[]" value="location"> Location Data</label>
+      <label><input type="checkbox" name="data_categories[]" value="online_identifiers"> Online Identifiers</label>
+      <label><input type="checkbox" name="data_categories[]" value="biometric"> Biometric Data</label>
+    </div>
+
+    <!-- Data Subjects -->
+    <label><strong>Who are your data subjects?</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="data_subjects[]" value="customers"> Customers</label>
+      <label><input type="checkbox" name="data_subjects[]" value="employees"> Employees</label>
+      <label><input type="checkbox" name="data_subjects[]" value="website_visitors"> Website Visitors</label>
+      <label><input type="checkbox" name="data_subjects[]" value="prospects"> Prospects/Leads</label>
+      <label><input type="checkbox" name="data_subjects[]" value="suppliers"> Suppliers/Vendors</label>
+      <label><input type="checkbox" name="data_subjects[]" value="minors"> Minors (under 18)</label>
+    </div>
+
+    <!-- Legal Basis - NEW -->
+    <label for="legal_basis">Legal Basis for Processing (Article 6)</label>
+    <select name="legal_basis" id="legal_basis">
+      <option value="">Select</option>
+      <option value="consent">Consent (Article 6(1)(a))</option>
+      <option value="contract">Contract Performance (Article 6(1)(b))</option>
+      <option value="legal_obligation">Legal Obligation (Article 6(1)(c))</option>
+      <option value="vital_interests">Vital Interests (Article 6(1)(d))</option>
+      <option value="public_task">Public Task (Article 6(1)(e))</option>
+      <option value="legitimate_interests">Legitimate Interests (Article 6(1)(f))</option>
+      <option value="multiple">Multiple Legal Bases</option>
+    </select>
+
+    <!-- Data Retention Period - NEW -->
+    <label for="data_retention_period">Data Retention Period</label>
+    <select name="data_retention_period" id="data_retention_period">
+      <option value="">Select</option>
+      <option value="6_months">6 months</option>
+      <option value="1_year">1 year</option>
+      <option value="2_years">2 years</option>
+      <option value="3_years">3 years</option>
+      <option value="5_years">5 years</option>
+      <option value="7_years">7 years</option>
+      <option value="10_years">10+ years</option>
+      <option value="until_purpose_fulfilled">Until purpose is fulfilled</option>
+      <option value="until_consent_withdrawn">Until consent is withdrawn</option>
+      <option value="as_required_by_law">As required by law</option>
+    </select>
+
+    <!-- International Transfers -->
+    <div class="form-grid">
+      <div>
+        <label for="international_transfers">International Data Transfers</label>
+        <select name="international_transfers" id="international_transfers">
+          <option value="">Select</option>
+          <option value="no">No international transfers</option>
+          <option value="within_eea">Within EEA only</option>
+          <option value="outside_eea">Outside EEA</option>
+        </select>
+      </div>
+      <div>
+        <label for="transfer_countries">If outside EEA, which countries?</label>
+        <input type="text" id="transfer_countries" name="transfer_countries" placeholder="e.g., USA, India, Singapore">
+      </div>
+    </div>
+
+    <!-- Transfer Safeguards - NEW -->
+    <label for="transfer_safeguards">Transfer Safeguards (if outside EEA)</label>
+    <select name="transfer_safeguards" id="transfer_safeguards">
+      <option value="">Select</option>
+      <option value="adequacy_decision">Adequacy Decision (e.g., UK, Japan, Canada)</option>
+      <option value="sccs">Standard Contractual Clauses (SCCs)</option>
+      <option value="bcrs">Binding Corporate Rules (BCRs)</option>
+      <option value="codes_of_conduct">Approved Codes of Conduct</option>
+      <option value="certification">Approved Certification Mechanisms</option>
+      <option value="consent">Explicit Consent</option>
+      <option value="contract_necessity">Contract Necessity</option>
+      <option value="legal_claims">Legal Claims</option>
+      <option value="public_interest">Public Interest</option>
+      <option value="not_applicable">Not Applicable</option>
+    </select>
+
+    <!-- Security Measures -->
+    <label><strong>Security measures in place</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="security_measures[]" value="encryption"> Data Encryption</label>
+      <label><input type="checkbox" name="security_measures[]" value="access_controls"> Access Controls</label>
+      <label><input type="checkbox" name="security_measures[]" value="training"> Employee Training</label>
+      <label><input type="checkbox" name="security_measures[]" value="backups"> Regular Backups</label>
+      <label><input type="checkbox" name="security_measures[]" value="mfa"> Multi-Factor Auth</label>
+      <label><input type="checkbox" name="security_measures[]" value="monitoring"> Security Monitoring</label>
+      <label><input type="checkbox" name="security_measures[]" value="pseudonymisation"> Pseudonymisation</label>
+      <label><input type="checkbox" name="security_measures[]" value="incident_response"> Incident Response Plan</label>
+    </div>
+
+    <!-- Automated Decisions - NEW -->
+    <div class="form-grid">
+      <div>
+        <label for="automated_decisions">Automated Decision-Making/Profiling? (Article 22)</label>
+        <select name="automated_decisions" id="automated_decisions">
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="automated_decisions_details">If yes, describe the logic</label>
+        <input type="text" id="automated_decisions_details" name="automated_decisions_details" placeholder="e.g., Credit scoring, personalization algorithms">
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== GDPR ADVANCED: EU REPRESENTATIVE ==================== -->
+  <div class="field-group gdpr-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('gdpr-eu-rep')">
+      🏢 Advanced: EU Representative (Article 27)
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="gdpr-eu-rep" class="collapsible-content" style="display: none;">
+      <p class="section-note">Required if you process EU residents' data but have no establishment in the EU. The representative must be located in one of the EU member states where your data subjects are.</p>
+      
+      <div class="form-grid">
+        <div>
+          <label for="eu_representative">EU Representative Name</label>
+          <input type="text" id="eu_representative" name="eu_representative" placeholder="Person or company name">
+        </div>
+        <div>
+          <label for="eu_representative_email">EU Representative Email</label>
+          <input type="email" id="eu_representative_email" name="eu_representative_email" placeholder="contact@eu-rep.com">
+        </div>
+      </div>
+      
+      <label for="eu_representative_address">EU Representative Address</label>
+      <textarea id="eu_representative_address" name="eu_representative_address" rows="2" placeholder="Full address within the EU (street, city, postal code, country)"></textarea>
+      
+      <div class="form-grid">
+        <div>
+          <label for="eu_representative_phone">EU Representative Phone</label>
+          <input type="tel" id="eu_representative_phone" name="eu_representative_phone" placeholder="+49 XXX XXXXXXX">
+        </div>
+        <div>
+          <label for="eu_representative_country">EU Member State</label>
+          <select name="eu_representative_country" id="eu_representative_country">
+            <option value="">Select</option>
+            <option value="Austria">Austria</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Cyprus">Cyprus</option>
+            <option value="Czech Republic">Czech Republic</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Finland">Finland</option>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Greece">Greece</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Italy">Italy</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Malta">Malta</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Romania">Romania</option>
+            <option value="Slovakia">Slovakia</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="Spain">Spain</option>
+            <option value="Sweden">Sweden</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HIPAA SECTION ==================== -->
+  <div class="field-group hipaa-specific" style="display: none;">
+    <div class="field-group-title">🏥 HIPAA Compliance Details</div>
+    
+    <label for="covered_entity_type">HIPAA Covered Entity Type</label>
+    <select name="covered_entity_type" id="covered_entity_type">
+      <option value="">Select</option>
+      <option value="Healthcare Provider">Healthcare Provider</option>
+      <option value="Health Plan">Health Plan</option>
+      <option value="Healthcare Clearinghouse">Healthcare Clearinghouse</option>
+      <option value="Business Associate">Business Associate</option>
+    </select>
+
+    <label for="phi_types">Types of PHI handled</label>
+    <textarea name="phi_types" id="phi_types" rows="3" placeholder="E.g., medical records, billing info, insurance data, treatment plans, lab results"></textarea>
+
+    <div class="form-grid">
+      <div>
+        <label for="patient_volume">Patient/Individual Count</label>
+        <input type="number" id="patient_volume" name="patient_volume" placeholder="e.g., 5000">
+      </div>
+      <div>
+        <label for="hipaa_compliance_date">Last HIPAA Review Date</label>
+        <input type="date" id="hipaa_compliance_date" name="hipaa_compliance_date">
+      </div>
+    </div>
+
+    <label for="business_associates">Business Associates Handling PHI</label>
+    <textarea name="business_associates" id="business_associates" rows="3" placeholder="E.g., AWS, Stripe, DocuSign, Zoom"></textarea>
+  </div>
+  <!-- ==================== POPIA CORE SECTION ==================== -->
+  <div class="field-group popia-specific" style="display: none;">
+    <div class="field-group-title">🇿🇦 POPIA Compliance Details</div>
+    
+    <!-- Information Officer (Section 55) -->
+    <h4 class="subsection-title">Information Officer (Section 55 - Mandatory)</h4>
+    
+    <div class="form-grid">
+      <div>
+        <label for="information_officer">Information Officer Name</label>
+        <input type="text" id="information_officer" name="information_officer" placeholder="Required by POPIA">
+      </div>
+      <div>
+        <label for="information_officer_email">IO Email</label>
+        <input type="email" id="information_officer_email" name="information_officer_email">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="information_officer_phone">IO Phone</label>
+        <input type="tel" id="information_officer_phone" name="information_officer_phone" placeholder="+27 XX XXX XXXX">
+      </div>
+      <div>
+        <label for="io_appointment_date">IO Appointment Date</label>
+        <input type="date" id="io_appointment_date" name="io_appointment_date">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="io_registration_date">IO Registration Date</label>
+        <input type="date" id="io_registration_date" name="io_registration_date">
+      </div>
+      <div>
+        <label for="io_registration_reference">Regulator Reference</label>
+        <input type="text" id="io_registration_reference" name="io_registration_reference" placeholder="e.g., IR/2024/REG/12345">
+      </div>
+    </div>
+
+    <!-- Deputy IO (Section 56) -->
+    <h4 class="subsection-title">Deputy Information Officer (Section 56)</h4>
+    
+    <div class="form-grid">
+      <div>
+        <label for="deputy_information_officer">Deputy IO Name</label>
+        <input type="text" id="deputy_information_officer" name="deputy_information_officer" placeholder="Recommended">
+      </div>
+      <div>
+        <label for="deputy_information_officer_email">Deputy IO Email</label>
+        <input type="email" id="deputy_information_officer_email" name="deputy_information_officer_email">
+      </div>
+    </div>
+
+    <label for="deputy_information_officer_department">Deputy IO Department</label>
+    <input type="text" id="deputy_information_officer_department" name="deputy_information_officer_department" placeholder="e.g., Legal & Compliance">
+
+    <!-- Data Processing -->
+    <h4 class="subsection-title">Data Processing Activities</h4>
+
+    <div class="form-grid">
+      <div>
+        <label for="special_data">Special Personal Information? (S.26)</label>
+        <select name="special_data" id="special_data">
+          <option value="">Select</option>
+          <option value="Yes">Yes - race, health, biometrics</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="special_data_authorisation">Authorisation Basis</label>
+        <select name="special_data_authorisation" id="special_data_authorisation">
+          <option value="">Select</option>
+          <option value="Consent">Explicit consent</option>
+          <option value="Legal obligation">Legal obligation</option>
+          <option value="Vital interest">Vital interest</option>
+          <option value="Not applicable">Not applicable</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="children_data">Children's Info? (S.34)</label>
+        <select name="children_data" id="children_data">
+          <option value="">Select</option>
+          <option value="Yes">Yes (under 18)</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="children_consent_process">Guardian Consent Method</label>
+        <input type="text" id="children_consent_process" name="children_consent_process" placeholder="e.g., Written parent consent">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="cross_border">Transfer Outside SA? (S.72)</label>
+        <select name="cross_border" id="cross_border">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="recipient_countries">Which Countries?</label>
+        <input type="text" id="recipient_countries" name="recipient_countries" placeholder="e.g., USA, EU, UK">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="direct_marketing">Direct Marketing? (S.69)</label>
+        <select name="direct_marketing" id="direct_marketing">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="marketing_consent">Consent Method</label>
+        <select name="marketing_consent" id="marketing_consent">
+          <option value="">Select</option>
+          <option value="Opt-in">Explicit opt-in</option>
+          <option value="Opt-out">Opt-out</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="automated_decisions_popia">Automated Decisions? (S.71)</label>
+        <select name="automated_decisions_popia" id="automated_decisions_popia">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="automated_decision_types">Types of Automated Decisions</label>
+        <input type="text" id="automated_decision_types" name="automated_decision_types" placeholder="e.g., Credit scoring, fraud detection">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="directory_listing">Directory Listing? (S.70)</label>
+        <select name="directory_listing" id="directory_listing">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div>
+        <label for="paia_manual">Have PAIA Manual?</label>
+        <select name="paia_manual" id="paia_manual">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No, need one</option>
+          <option value="Unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="paia_manual_last_update">PAIA Manual Last Updated</label>
+        <input type="date" id="paia_manual_last_update" name="paia_manual_last_update">
+      </div>
+      <div>
+        <label for="data_subjects_popia">Data Subjects in SA</label>
+        <input type="number" id="data_subjects_popia" name="data_subjects_popia" placeholder="Approximate number">
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div>
+        <label for="prior_authorization">Prior Authorisation? (S.57)</label>
+        <select name="prior_authorization" id="prior_authorization">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Unsure">Unsure</option>
+        </select>
+      </div>
+      <div>
+        <label for="policy_version">Privacy Policy Version</label>
+        <input type="text" id="policy_version" name="policy_version" placeholder="e.g., 2.0">
+      </div>
+    </div>
+
+    <label for="training_version">Training Materials Version</label>
+    <input type="text" id="training_version" name="training_version" placeholder="e.g., 2024.1">
+
+    <!-- Documents Needed -->
+    <label><strong>POPIA Documents Needed</strong></label>
+    <div class="checkbox-grid">
+      <label><input type="checkbox" name="popia_docs[]" value="PAIA Manual"> PAIA Manual</label>
+      <label><input type="checkbox" name="popia_docs[]" value="POPIA Privacy Policy"> Privacy Policy</label>
+      <label><input type="checkbox" name="popia_docs[]" value="Information Officer Appointment"> IO Appointment</label>
+      <label><input type="checkbox" name="popia_docs[]" value="POPIA Training"> Training</label>
+      <label><input type="checkbox" name="popia_docs[]" value="Data Processing Agreement"> DPA (Operator)</label>
+      <label><input type="checkbox" name="popia_docs[]" value="Audit Documentation"> Audit Docs</label>
+      <label><input type="checkbox" name="popia_docs[]" value="Data Retention Schedule"> Retention Schedule</label>
+      <label><input type="checkbox" name="popia_docs[]" value="Incident Response Procedure"> Incident Response</label>
+      <label><input type="checkbox" name="popia_docs[]" value="Prior Authorisation Register"> PA Register</label>
+    </div>
+  </div>
+  <!-- ==================== POPIA ADVANCED: OPERATOR DPA DETAILS ==================== -->
+  <div class="field-group popia-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('popia-operator-dpa')">
+      🏢 Advanced: Operator DPA Details
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="popia-operator-dpa" class="collapsible-content" style="display: none;">
+      <p class="section-note">Schedules A-D for Data Processing Agreements</p>
+      
+      <h4 class="subsection-title">Schedule A: Processing Details</h4>
+      <div class="form-grid">
+        <div>
+          <label for="data_subject_categories">Data Subject Categories</label>
+          <input type="text" id="data_subject_categories" name="data_subject_categories" placeholder="e.g., Customers, employees, vendors">
+        </div>
+        <div>
+          <label for="processing_nature">Nature of Processing</label>
+          <input type="text" id="processing_nature" name="processing_nature" placeholder="e.g., Collection, storage, analysis">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="processing_purpose">Purpose of Processing</label>
+          <input type="text" id="processing_purpose" name="processing_purpose" placeholder="e.g., Service delivery">
+        </div>
+        <div>
+          <label for="processing_duration">Duration of Processing</label>
+          <input type="text" id="processing_duration" name="processing_duration" placeholder="e.g., Agreement + 5 years">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Schedule B: Security Measures</h4>
+      <div class="form-grid">
+        <div>
+          <label for="technical_measures">Technical Measures</label>
+          <input type="text" id="technical_measures" name="technical_measures" placeholder="e.g., Encryption, access controls">
+        </div>
+        <div>
+          <label for="organisational_measures">Organisational Measures</label>
+          <input type="text" id="organisational_measures" name="organisational_measures" placeholder="e.g., Policies, training">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="security_certifications">Security Certifications</label>
+          <input type="text" id="security_certifications" name="security_certifications" placeholder="e.g., ISO 27001, SOC 2">
+        </div>
+        <div>
+          <label for="approved_sub_operators">Approved Sub-Operators</label>
+          <input type="text" id="approved_sub_operators" name="approved_sub_operators" placeholder="e.g., AWS, Google Cloud">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Schedule D: Cross-Border Transfers</h4>
+      <div class="form-grid">
+        <div>
+          <label for="approved_transfer_countries">Approved Countries</label>
+          <input type="text" id="approved_transfer_countries" name="approved_transfer_countries" placeholder="e.g., USA (SCCs), EU">
+        </div>
+        <div>
+          <label for="transfer_mechanism">Transfer Mechanism</label>
+          <select name="transfer_mechanism" id="transfer_mechanism">
+            <option value="">Select</option>
+            <option value="Standard Contractual Clauses">SCCs</option>
+            <option value="Binding Corporate Rules">BCRs</option>
+            <option value="Consent">Consent</option>
+            <option value="Adequacy Decision">Adequacy</option>
+          </select>
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Response & Liability</h4>
+      <div class="form-grid">
+        <div>
+          <label for="response_timeframe">Response Timeframe</label>
+          <input type="text" id="response_timeframe" name="response_timeframe" placeholder="e.g., 5 business days">
+        </div>
+        <div>
+          <label for="destruction_timeframe">Destruction Timeframe</label>
+          <input type="text" id="destruction_timeframe" name="destruction_timeframe" placeholder="e.g., 30 days">
+        </div>
+      </div>
+      <label for="insurance_cover">Insurance Cover (ZAR)</label>
+      <input type="text" id="insurance_cover" name="insurance_cover" placeholder="e.g., R10,000,000">
+    </div>
+  </div>
+
+  <!-- ==================== POPIA ADVANCED: PRIOR AUTHORISATION ==================== -->
+  <div class="field-group popia-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('popia-prior-auth')">
+      📝 Advanced: Prior Authorisation Details
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="popia-prior-auth" class="collapsible-content" style="display: none;">
+      <p class="section-note">Section 57 Prior Authorisation status and register</p>
+      
+      <h4 class="subsection-title">Processing Status</h4>
+      <div class="form-grid">
+        <div>
+          <label for="unique_id_status">Unique Identifier Processing</label>
+          <select name="unique_id_status" id="unique_id_status">
+            <option value="Not applicable">Not applicable</option>
+            <option value="Authorised">Authorised</option>
+            <option value="Pending">Pending</option>
+            <option value="Required">Required</option>
+          </select>
+        </div>
+        <div>
+          <label for="criminal_processing_status">Criminal Data Processing</label>
+          <select name="criminal_processing_status" id="criminal_processing_status">
+            <option value="Not applicable">Not applicable</option>
+            <option value="Authorised">Authorised</option>
+            <option value="Pending">Pending</option>
+            <option value="Required">Required</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="credit_reporting_status">Credit Reporting</label>
+          <select name="credit_reporting_status" id="credit_reporting_status">
+            <option value="Not applicable">Not applicable</option>
+            <option value="Authorised">Authorised</option>
+            <option value="Pending">Pending</option>
+            <option value="Required">Required</option>
+          </select>
+        </div>
+        <div>
+          <label for="special_transfer_status">Special Transfer</label>
+          <select name="special_transfer_status" id="special_transfer_status">
+            <option value="Not applicable">Not applicable</option>
+            <option value="Authorised">Authorised</option>
+            <option value="Pending">Pending</option>
+            <option value="Required">Required</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label for="prior_auth_applications">PA Applications</label>
+          <input type="text" id="prior_auth_applications" name="prior_auth_applications" placeholder="e.g., None">
+        </div>
+        <div>
+          <label for="prior_auth_references">PA References</label>
+          <input type="text" id="prior_auth_references" name="prior_auth_references" placeholder="e.g., PA/2024/001">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="prior_auth_approval_status">Approval Status</label>
+          <input type="text" id="prior_auth_approval_status" name="prior_auth_approval_status" placeholder="e.g., Approved">
+        </div>
+        <div>
+          <label for="applicable_codes">Applicable Codes</label>
+          <input type="text" id="applicable_codes" name="applicable_codes" placeholder="e.g., Banking Code">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="last_pa_review">Last PA Review</label>
+          <input type="date" id="last_pa_review" name="last_pa_review">
+        </div>
+        <div>
+          <label for="next_pa_review">Next PA Review</label>
+          <input type="date" id="next_pa_review" name="next_pa_review">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">PA Register Entries</h4>
+      
+      <!-- Entry 1 -->
+      <div class="pa-entry">
+        <strong>Entry 1:</strong>
+        <div class="form-grid">
+          <div>
+            <label for="pa_001_category">Category</label>
+            <select name="pa_001_category" id="pa_001_category">
+              <option value="N/A">N/A</option>
+              <option value="Unique Identifiers">Unique Identifiers</option>
+              <option value="Criminal Information">Criminal Info</option>
+              <option value="Credit Reporting">Credit Reporting</option>
+              <option value="Special Transfer">Special Transfer</option>
             </select>
-
-            <!-- ORIGINAL UNIVERSAL FIELDS - PRESERVED -->
-            <label for="data">What type of user or business data do you collect?</label>
-            <textarea name="data" id="data" rows="3" required placeholder="E.g., names, emails, health info, purchase history"></textarea>
-
-            <label for="thirdparty">List any third-party tools or platforms used</label>
-            <textarea name="thirdparty" id="thirdparty" rows="3" required placeholder="E.g., Google Analytics, Stripe, Firebase"></textarea>
-
-            <label for="service_provider_name">Primary Service Provider/Vendor (For DPAs)</label>
-            <input type="text" id="service_provider_name" name="service_provider_name" required placeholder="Main vendor for Data Processing Agreements">
           </div>
-
-          <!-- CCPA SPECIFIC FIELDS -->
-          <div class="field-group ccpa-specific" style="display: none;">
-            <div class="field-group-title">CCPA/CPRA Data Practices</div>
-            
-            <!-- Data Collection Categories -->
-            <label><strong>Categories of Personal Information Collected</strong></label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="ccpa_categories[]" value="identifiers"> Identifiers (name, email, IP, account info)</label>
-              <label><input type="checkbox" name="ccpa_categories[]" value="commercial"> Commercial Information (purchases, history)</label>
-              <label><input type="checkbox" name="ccpa_categories[]" value="internet"> Internet/Network Activity</label>
-              <label><input type="checkbox" name="ccpa_categories[]" value="geolocation"> Geolocation Data</label>
-              <label><input type="checkbox" name="ccpa_categories[]" value="professional"> Professional/Employment Information</label>
-              <label><input type="checkbox" name="ccpa_categories[]" value="inferences"> Inferences (profiling, preferences)</label>
-            </div>
-
-            <!-- Sensitive Personal Information -->
-            <label><strong>Sensitive Personal Information Collected</strong></label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="government_id"> Government IDs (SSN, license, passport)</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="financial"> Financial Account & Login Credentials</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="precise_geo"> Precise Geolocation</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="racial"> Racial/Ethnic Origin</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="health"> Health Information</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="sexual_orientation"> Sexual Orientation/Health Data</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="union"> Union Membership</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="biometric"> Biometric Information</label>
-              <label><input type="checkbox" name="ccpa_sensitive[]" value="communications"> Email/Text Message Contents</label>
-            </div>
-
-            <!-- Data Practices -->
-            <div class="form-grid">
-              <div>
-                <label for="ccpa_sell">Do you SELL personal information?</label>
-                <select name="ccpa_sell" id="ccpa_sell">
-                  <option value="">Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-              <div>
-                <label for="ccpa_share">Do you SHARE for cross-context advertising?</label>
-                <select name="ccpa_share" id="ccpa_share">
-                  <option value="">Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div>
-                <label for="ccpa_retention">Data Retention Period</label>
-                <input type="text" id="ccpa_retention" name="ccpa_retention" placeholder="e.g., 2 years, until deletion">
-              </div>
-              <div>
-                <label for="ccpa_minors">Collect data from minors under 16?</label>
-                <select name="ccpa_minors" id="ccpa_minors">
-                  <option value="">Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Purposes of Collection -->
-            <label for="ccpa_purposes"><strong>Purposes for Data Collection</strong></label>
-            <select name="ccpa_purposes[]" id="ccpa_purposes" multiple>
-              <option value="service_delivery">Service Delivery</option>
-              <option value="payment">Payment Processing</option>
-              <option value="marketing">Marketing & Advertising</option>
-              <option value="personalization">Personalization</option>
-              <option value="security">Security & Fraud Prevention</option>
-              <option value="analytics">Analytics & Improvement</option>
-              <option value="legal">Legal Compliance</option>
-            </select>
-
-            <!-- Methods for Consumer Requests -->
-            <label><strong>Methods for Consumer Rights Requests</strong></label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="ccpa_methods[]" value="webform"> Online Web Form</label>
-              <label><input type="checkbox" name="ccpa_methods[]" value="tollfree"> Toll-Free Phone Number</label>
-              <label><input type="checkbox" name="ccpa_methods[]" value="email"> Dedicated Email Address</label>
-              <label><input type="checkbox" name="ccpa_methods[]" value="postal"> Postal Address</label>
-            </div>
+          <div>
+            <label for="pa_001_activity">Activity</label>
+            <input type="text" id="pa_001_activity" name="pa_001_activity">
           </div>
-
-          <!-- GDPR SPECIFIC FIELDS -->
-          <div class="field-group gdpr-specific" style="display: none;">
-            <div class="field-group-title">GDPR Data Processing Details</div>
-            
-            <label>What are your main purposes for processing personal data?</label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="processing_purposes[]" value="service_delivery"> Service Delivery</label>
-              <label><input type="checkbox" name="processing_purposes[]" value="marketing"> Marketing</label>
-              <label><input type="checkbox" name="processing_purposes[]" value="analytics"> Analytics</label>
-              <label><input type="checkbox" name="processing_purposes[]" value="legal_compliance"> Legal Compliance</label>
-              <label><input type="checkbox" name="processing_purposes[]" value="other"> Other</label>
-            </div>
-
-            <label>What categories of personal data do you process?</label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="data_categories[]" value="contact_info"> Contact Information</label>
-              <label><input type="checkbox" name="data_categories[]" value="financial"> Financial Data</label>
-              <label><input type="checkbox" name="data_categories[]" value="health"> Health Data</label>
-              <label><input type="checkbox" name="data_categories[]" value="location"> Location Data</label>
-              <label><input type="checkbox" name="data_categories[]" value="online_identifiers"> Online Identifiers</label>
-            </div>
-
-            <label>Who are your data subjects?</label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="data_subjects[]" value="customers"> Customers</label>
-              <label><input type="checkbox" name="data_subjects[]" value="employees"> Employees</label>
-              <label><input type="checkbox" name="data_subjects[]" value="website_visitors"> Website Visitors</label>
-              <label><input type="checkbox" name="data_subjects[]" value="prospects"> Prospects/Leads</label>
-            </div>
-
-            <div class="form-grid">
-              <div>
-                <label for="retention_period">Standard Data Retention Period</label>
-                <select name="retention_period" id="retention_period">
-                  <option value="">Select</option>
-                  <option>1-3 years</option>
-                  <option>3-5 years</option>
-                  <option>5-7 years</option>
-                  <option>7+ years</option>
-                  <option>Until deletion requested</option>
-                </select>
-              </div>
-              <div>
-                <label for="international_transfers">International Data Transfers</label>
-                <select name="international_transfers" id="international_transfers">
-                  <option value="">Select</option>
-                  <option value="no">No</option>
-                  <option value="within_eea">Within EEA only</option>
-                  <option value="outside_eea">Outside EEA</option>
-                </select>
-              </div>
-            </div>
-
-            <label for="transfer_countries">If outside EEA, which countries?</label>
-            <input type="text" id="transfer_countries" name="transfer_countries" placeholder="e.g., USA, India, etc.">
-
-            <label>What security measures do you have in place?</label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="security_measures[]" value="encryption"> Data Encryption</label>
-              <label><input type="checkbox" name="security_measures[]" value="access_controls"> Access Controls</label>
-              <label><input type="checkbox" name="security_measures[]" value="training"> Employee Training</label>
-              <label><input type="checkbox" name="security_measures[]" value="backups"> Regular Backups</label>
-            </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label for="pa_001_department">Department</label>
+            <input type="text" id="pa_001_department" name="pa_001_department">
           </div>
-
-          <!-- HIPAA SPECIFIC FIELDS -->
-          <div class="field-group hipaa-specific" style="display: none;">
-            <div class="field-group-title">HIPAA Compliance Details</div>
-            
-            <label for="covered_entity_type">HIPAA Covered Entity Type</label>
-            <select name="covered_entity_type" id="covered_entity_type">
-              <option value="">Select</option>
-              <option>Healthcare Provider</option>
-              <option>Health Plan</option>
-              <option>Healthcare Clearinghouse</option>
-              <option>Business Associate</option>
-            </select>
-
-            <label for="phi_types">What types of Protected Health Information (PHI) do you handle?</label>
-            <textarea name="phi_types" id="phi_types" rows="3" placeholder="E.g., medical records, billing information, insurance data, treatment plans"></textarea>
-
-            <label for="patient_volume">Approximate number of patients/individuals whose data you handle</label>
-            <input type="number" id="patient_volume" name="patient_volume" placeholder="e.g., 1000">
-
-            <label for="business_associates">List Business Associates handling PHI</label>
-            <textarea name="business_associates" id="business_associates" rows="3" placeholder="E.g., cloud providers, billing companies, IT vendors"></textarea>
+          <div>
+            <label for="pa_001_date">Date</label>
+            <input type="date" id="pa_001_date" name="pa_001_date">
           </div>
-
-          <!-- POPIA SPECIFIC FIELDS -->
-          <div class="field-group popia-specific" style="display: none;">
-            <div class="field-group-title">POPIA Compliance Details</div>
-            
-            <div class="form-grid">
-              <div>
-                <label for="information_officer">Information Officer Name (POPIA Required)</label>
-                <input type="text" id="information_officer" name="information_officer" placeholder="POPIA Section 55 requires this appointment">
-              </div>
-              <div>
-                <label for="information_officer_email">Information Officer Email</label>
-                <input type="email" id="information_officer_email" name="information_officer_email">
-              </div>
-            </div>
-
-            <label for="information_officer_phone">Information Officer Phone</label>
-            <input type="tel" id="information_officer_phone" name="information_officer_phone" placeholder="+27 ">
-
-            <div class="form-grid">
-              <div>
-                <label for="special_data">Do you process Special Personal Information? (POPIA Section 26)</label>
-                <select name="special_data" id="special_data">
-                  <option value="">Select</option>
-                  <option value="Yes">Yes - race, health, biometrics, etc.</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-              <div>
-                <label for="children_data">Do you process children's information? (POPIA Section 34)</label>
-                <select name="children_data" id="children_data">
-                  <option value="">Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div>
-                <label for="cross_border">Do you transfer data outside South Africa? (POPIA Section 72)</label>
-                <select name="cross_border" id="cross_border">
-                  <option value="">Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-              <div>
-                <label for="direct_marketing">Do you conduct direct marketing? (POPIA Section 69)</label>
-                <select name="direct_marketing" id="direct_marketing">
-                  <option value="">Select</option>
-                  <option value="Yes">Yes - email/SMS marketing</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-            </div>
-
-            <label for="marketing_consent">How do you obtain marketing consent?</label>
-            <select name="marketing_consent" id="marketing_consent">
-              <option value="">Select</option>
-              <option value="Opt-in">Explicit opt-in (POPIA required)</option>
-              <option value="Opt-out">Opt-out</option>
-              <option value="Both">Both methods</option>
-            </select>
-
-            <label for="paia_manual">Do you have a PAIA Manual? (Mandatory in South Africa)</label>
-            <select name="paia_manual" id="paia_manual">
-              <option value="">Select</option>
-              <option value="Yes">Yes, we have one</option>
-              <option value="No">No, we need one</option>
-              <option value="Unsure">Unsure</option>
-            </select>
-
-            <label for="data_subjects_popia">Estimated number of data subjects in South Africa</label>
-            <input type="number" id="data_subjects_popia" name="data_subjects_popia" placeholder="Approximate number">
-
-            <label for="prior_authorization">Do you require Prior Authorization? (POPIA Section 57)</label>
-            <select name="prior_authorization" id="prior_authorization">
-              <option value="">Select</option>
-              <option value="Yes">Yes - processing unique identifiers or credit reporting</option>
-              <option value="No">No</option>
-              <option value="Unsure">Unsure</option>
-            </select>
-
-            <label><strong>POPIA-Specific Documents Needed</strong></label>
-            <div class="checkbox-grid">
-              <label><input type="checkbox" name="popia_docs[]" value="PAIA Manual"> PAIA Manual (Mandatory)</label>
-              <label><input type="checkbox" name="popia_docs[]" value="POPIA Privacy Policy"> POPIA-Specific Privacy Policy</label>
-              <label><input type="checkbox" name="popia_docs[]" value="Information Officer Appointment"> Information Officer Appointment Letter</label>
-              <label><input type="checkbox" name="popia_docs[]" value="POPIA Training"> POPIA Employee Training</label>
-              <label><input type="checkbox" name="popia_docs[]" value="Data Processing Agreement"> Data Processing Agreement</label>
-              <label><input type="checkbox" name="popia_docs[]" value="Audit Documentation"> Audit-Ready Documentation</label>
-            </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label for="pa_001_regulator_ref">Regulator Ref</label>
+            <input type="text" id="pa_001_regulator_ref" name="pa_001_regulator_ref">
           </div>
-
-          <!-- DOCUMENTS NEEDED -->
-          <div class="field-group">
-            <div class="field-group-title">Document Selection</div>
-            
-            <label for="docs-needed">Which document do you need?</label>
-            <select name="docs" id="docs-needed" required>
-              <option value="">Select one document</option>
-              <option value="Privacy Policy">Privacy Policy</option>
-              <option value="Data Processing Agreement">Data Processing Agreement</option>
-              <option value="Employee Training Script">Employee Training Script</option>
-              <option value="Audit-Ready Documentation">Audit-Ready Documentation</option>
+          <div>
+            <label for="pa_001_status">Status</label>
+            <select name="pa_001_status" id="pa_001_status">
+              <option value="N/A">N/A</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
             </select>
+          </div>
+        </div>
+        <input type="hidden" name="pa_001_status_class" id="pa_001_status_class" value="na">
+      </div>
 
-            <label for="updates">Would you like real-time legal update tracking included?</label>
-            <select name="updates" id="updates" required>
-              <option value="">Select</option>
-              <option value="Yes">Yes, auto-update my documents</option>
-              <option value="No">No, one-time compliance only</option>
+      <!-- Entry 2 -->
+      <div class="pa-entry">
+        <strong>Entry 2:</strong>
+        <div class="form-grid">
+          <div>
+            <label for="pa_002_category">Category</label>
+            <select name="pa_002_category" id="pa_002_category">
+              <option value="N/A">N/A</option>
+              <option value="Unique Identifiers">Unique Identifiers</option>
+              <option value="Criminal Information">Criminal Info</option>
+              <option value="Credit Reporting">Credit Reporting</option>
+              <option value="Special Transfer">Special Transfer</option>
             </select>
-
-            <label for="trainer_name">Training Coordinator Name (For Training Scripts)</label>
-            <input type="text" id="trainer_name" name="trainer_name" required placeholder="Name of person conducting employee training">
           </div>
-
-          <!-- LEGAL DISCLAIMER -->
-          <div class="legal-disclaimer">
-            <div class="disclaimer-icon">⚠️</div>
-            <div class="disclaimer-content">
-              <h4>Important Legal Disclaimer</h4>
-              <p>This AI-generated compliance documentation has not been verified by legal authorities or a legal team. 
-              We recommend having all documents reviewed by a qualified legal professional before implementation.</p>
-              <p>3CH0 provides these templates as a starting point only and does not constitute legal advice. 
-              By using our service, you acknowledge that you understand these documents should be reviewed by 
-              appropriate legal counsel for your specific situation.</p>
-              
-              <p>Please Note, we are currently seeking legal partnership to verify our documents so that 
-                we can become your number one trusted regulation helper.</p>
-            </div>
+          <div>
+            <label for="pa_002_activity">Activity</label>
+            <input type="text" id="pa_002_activity" name="pa_002_activity">
           </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label for="pa_002_department">Department</label>
+            <input type="text" id="pa_002_department" name="pa_002_department">
+          </div>
+          <div>
+            <label for="pa_002_date">Date</label>
+            <input type="date" id="pa_002_date" name="pa_002_date">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label for="pa_002_regulator_ref">Regulator Ref</label>
+            <input type="text" id="pa_002_regulator_ref" name="pa_002_regulator_ref">
+          </div>
+          <div>
+            <label for="pa_002_status">Status</label>
+            <select name="pa_002_status" id="pa_002_status">
+              <option value="N/A">N/A</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" name="pa_002_status_class" id="pa_002_status_class" value="na">
+      </div>
 
-          <br><br>
-          <button type="submit" class="submit-btn">Generate My AI Compliance Pack</button>
-        </form>
+      <!-- Entry 3 -->
+      <div class="pa-entry">
+        <strong>Entry 3:</strong>
+        <div class="form-grid">
+          <div>
+            <label for="pa_003_category">Category</label>
+            <select name="pa_003_category" id="pa_003_category">
+              <option value="N/A">N/A</option>
+              <option value="Unique Identifiers">Unique Identifiers</option>
+              <option value="Criminal Information">Criminal Info</option>
+              <option value="Credit Reporting">Credit Reporting</option>
+              <option value="Special Transfer">Special Transfer</option>
+            </select>
+          </div>
+          <div>
+            <label for="pa_003_activity">Activity</label>
+            <input type="text" id="pa_003_activity" name="pa_003_activity">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label for="pa_003_department">Department</label>
+            <input type="text" id="pa_003_department" name="pa_003_department">
+          </div>
+          <div>
+            <label for="pa_003_date">Date</label>
+            <input type="date" id="pa_003_date" name="pa_003_date">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label for="pa_003_regulator_ref">Regulator Ref</label>
+            <input type="text" id="pa_003_regulator_ref" name="pa_003_regulator_ref">
+          </div>
+          <div>
+            <label for="pa_003_status">Status</label>
+            <select name="pa_003_status" id="pa_003_status">
+              <option value="N/A">N/A</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" name="pa_003_status_class" id="pa_003_status_class" value="na">
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== POPIA ADVANCED: AUDIT & COMPLIANCE ==================== -->
+  <div class="field-group popia-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('popia-audit')">
+      📊 Advanced: Audit & Compliance Metrics
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="popia-audit" class="collapsible-content" style="display: none;">
+      <p class="section-note">Compliance status, audit dates, and metrics</p>
+      
+      <h4 class="subsection-title">Compliance Status</h4>
+      <div class="form-grid">
+        <div>
+          <label for="compliance_status">Overall Status</label>
+          <select name="compliance_status" id="compliance_status">
+            <option value="">Select</option>
+            <option value="Compliant">Compliant</option>
+            <option value="Partially Compliant">Partially Compliant</option>
+            <option value="Non-Compliant">Non-Compliant</option>
+            <option value="Under Review">Under Review</option>
+          </select>
+        </div>
+        <div>
+          <label for="audit_preparer">Audit Prepared By</label>
+          <input type="text" id="audit_preparer" name="audit_preparer" placeholder="e.g., Internal Team">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="audit_start_date">Audit Period Start</label>
+          <input type="date" id="audit_start_date" name="audit_start_date">
+        </div>
+        <div>
+          <label for="audit_end_date">Audit Period End</label>
+          <input type="date" id="audit_end_date" name="audit_end_date">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="last_audit_date">Last Full Audit</label>
+          <input type="date" id="last_audit_date" name="last_audit_date">
+        </div>
+        <div>
+          <label for="next_review_date">Next Review</label>
+          <input type="date" id="next_review_date" name="next_review_date">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Training & Awareness</h4>
+      <div class="form-grid">
+        <div>
+          <label for="last_training_date">Last Training</label>
+          <input type="date" id="last_training_date" name="last_training_date">
+        </div>
+        <div>
+          <label for="employees_trained">Employees Trained</label>
+          <input type="number" id="employees_trained" name="employees_trained">
+        </div>
+      </div>
+      <label for="training_frequency">Training Frequency</label>
+      <input type="text" id="training_frequency" name="training_frequency" placeholder="e.g., Annual">
+
+      <h4 class="subsection-title">Risk Assessments</h4>
+      <div class="form-grid">
+        <div>
+          <label for="risk_assessment_date">Assessment Date</label>
+          <input type="date" id="risk_assessment_date" name="risk_assessment_date">
+        </div>
+        <div>
+          <label for="risk_assessment_summary">Summary</label>
+          <input type="text" id="risk_assessment_summary" name="risk_assessment_summary" placeholder="e.g., Low risk">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="last_risk_assessment">Last Assessment</label>
+          <input type="date" id="last_risk_assessment" name="last_risk_assessment">
+        </div>
+        <div>
+          <label for="next_risk_assessment">Next Assessment</label>
+          <input type="date" id="next_risk_assessment" name="next_risk_assessment">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Cybersecurity Audit</h4>
+      <div class="form-grid">
+        <div>
+          <label for="cybersecurity_audit_date">Cyber Audit Date</label>
+          <input type="date" id="cybersecurity_audit_date" name="cybersecurity_audit_date">
+        </div>
+        <div>
+          <label for="cybersecurity_auditor">Auditor</label>
+          <input type="text" id="cybersecurity_auditor" name="cybersecurity_auditor">
+        </div>
+      </div>
+      <label for="cybersecurity_findings">Findings</label>
+      <textarea id="cybersecurity_findings" name="cybersecurity_findings" rows="2" placeholder="e.g., No critical findings"></textarea>
+
+      <h4 class="subsection-title">Retention Reviews</h4>
+      <div class="form-grid">
+        <div>
+          <label for="last_retention_review">Last Review</label>
+          <input type="date" id="last_retention_review" name="last_retention_review">
+        </div>
+        <div>
+          <label for="next_retention_review">Next Review</label>
+          <input type="date" id="next_retention_review" name="next_retention_review">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Request & Incident Metrics</h4>
+      <div class="form-grid">
+        <div>
+          <label for="average_response_time">Avg Response Time</label>
+          <input type="text" id="average_response_time" name="average_response_time" placeholder="e.g., 5 days">
+        </div>
+        <div>
+          <label for="requests_last_year">Requests Last Year</label>
+          <input type="number" id="requests_last_year" name="requests_last_year">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="incidents_last_year">Incidents Last Year</label>
+          <input type="number" id="incidents_last_year" name="incidents_last_year">
+        </div>
+        <div>
+          <label for="number_of_operators">Number of Operators</label>
+          <input type="number" id="number_of_operators" name="number_of_operators">
+        </div>
+      </div>
+
+      <h4 class="subsection-title">Previous Audits</h4>
+      <div class="form-grid">
+        <div>
+          <label for="previous_audit_1">Previous Audit 1</label>
+          <input type="text" id="previous_audit_1" name="previous_audit_1" placeholder="Date - Description">
+        </div>
+        <div>
+          <label for="previous_audit_2">Previous Audit 2</label>
+          <input type="text" id="previous_audit_2" name="previous_audit_2" placeholder="Date - Description">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="outstanding_items">Outstanding Items</label>
+          <input type="text" id="outstanding_items" name="outstanding_items" placeholder="e.g., None">
+        </div>
+        <div>
+          <label for="remediation_status">Remediation Status</label>
+          <select name="remediation_status" id="remediation_status">
+            <option value="">Select</option>
+            <option value="Complete">Complete</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Not Started">Not Started</option>
+            <option value="N/A">N/A</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== POPIA ADVANCED: RISK REGISTER ==================== -->
+  <div class="field-group popia-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('popia-risk')">
+      ⚠️ Advanced: Risk Register
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="popia-risk" class="collapsible-content" style="display: none;">
+      <p class="section-note">Risk assessment for different threat categories</p>
+      
+      <!-- External Breach Risk -->
+      <h4 class="subsection-title">External Breach Risk</h4>
+      <div class="form-grid">
+        <div>
+          <label for="risk_ext_breach_likelihood">Likelihood</label>
+          <select name="risk_ext_breach_likelihood" id="risk_ext_breach_likelihood">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_ext_breach_impact">Impact</label>
+          <select name="risk_ext_breach_impact" id="risk_ext_breach_impact">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="risk_ext_breach_rating">Rating</label>
+          <select name="risk_ext_breach_rating" id="risk_ext_breach_rating">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_ext_breach_mitigation">Mitigation</label>
+          <input type="text" id="risk_ext_breach_mitigation" name="risk_ext_breach_mitigation" placeholder="e.g., Firewall, IDS">
+        </div>
+      </div>
+
+      <!-- Internal Breach Risk -->
+      <h4 class="subsection-title">Internal Breach Risk</h4>
+      <div class="form-grid">
+        <div>
+          <label for="risk_internal_likelihood">Likelihood</label>
+          <select name="risk_internal_likelihood" id="risk_internal_likelihood">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_internal_impact">Impact</label>
+          <select name="risk_internal_impact" id="risk_internal_impact">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="risk_internal_rating">Rating</label>
+          <select name="risk_internal_rating" id="risk_internal_rating">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_internal_mitigation">Mitigation</label>
+          <input type="text" id="risk_internal_mitigation" name="risk_internal_mitigation" placeholder="e.g., Training, access controls">
+        </div>
+      </div>
+
+      <!-- Data Loss Risk -->
+      <h4 class="subsection-title">Data Loss Risk</h4>
+      <div class="form-grid">
+        <div>
+          <label for="risk_loss_likelihood">Likelihood</label>
+          <select name="risk_loss_likelihood" id="risk_loss_likelihood">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_loss_impact">Impact</label>
+          <select name="risk_loss_impact" id="risk_loss_impact">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="risk_loss_rating">Rating</label>
+          <select name="risk_loss_rating" id="risk_loss_rating">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_loss_mitigation">Mitigation</label>
+          <input type="text" id="risk_loss_mitigation" name="risk_loss_mitigation" placeholder="e.g., Backups, DR">
+        </div>
+      </div>
+
+      <!-- Operator Breach Risk -->
+      <h4 class="subsection-title">Operator Breach Risk</h4>
+      <div class="form-grid">
+        <div>
+          <label for="risk_operator_likelihood">Likelihood</label>
+          <select name="risk_operator_likelihood" id="risk_operator_likelihood">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_operator_impact">Impact</label>
+          <select name="risk_operator_impact" id="risk_operator_impact">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="risk_operator_rating">Rating</label>
+          <select name="risk_operator_rating" id="risk_operator_rating">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="risk_operator_mitigation">Mitigation</label>
+          <input type="text" id="risk_operator_mitigation" name="risk_operator_mitigation" placeholder="e.g., Contracts, audits">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== POPIA ADVANCED: INCIDENT RESPONSE ==================== -->
+  <div class="field-group popia-specific" style="display: none;">
+    <div class="field-group-title collapsible-header" onclick="toggleSection('popia-incident')">
+      🚨 Advanced: Incident Response Team
+      <span class="toggle-icon">▼</span>
+    </div>
+    
+    <div id="popia-incident" class="collapsible-content" style="display: none;">
+      <p class="section-note">POPIA-specific incident response contacts</p>
+      
+      <div class="form-grid">
+        <div>
+          <label for="it_security_contact">IT Security Contact</label>
+          <input type="text" id="it_security_contact" name="it_security_contact">
+        </div>
+        <div>
+          <label for="after_hours_contact">After Hours Contact</label>
+          <input type="text" id="after_hours_contact" name="after_hours_contact" placeholder="24/7 emergency line">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div>
+          <label for="legal_contact">Legal Contact</label>
+          <input type="text" id="legal_contact" name="legal_contact">
+        </div>
+        <div>
+          <label for="communications_contact">Comms Contact</label>
+          <input type="text" id="communications_contact" name="communications_contact">
+        </div>
+      </div>
+      <label for="hr_contact">HR Contact</label>
+      <input type="text" id="hr_contact" name="hr_contact">
+      
+      <div class="form-grid">
+        <div>
+          <label for="last_incident_test">Last Incident Test</label>
+          <input type="date" id="last_incident_test" name="last_incident_test">
+        </div>
+        <div>
+          <label for="next_incident_test">Next Incident Test</label>
+          <input type="date" id="next_incident_test" name="next_incident_test">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ==================== DOCUMENT SELECTION ==================== -->
+  <div class="field-group">
+    <div class="field-group-title">📄 Document Selection</div>
+    
+    <label for="docs-needed">Which document do you need? *</label>
+    <select name="docs" id="docs-needed" required>
+      <option value="">Select a document</option>
+      
+      <optgroup label="── Core Documents (All Regulations) ──">
+        <option value="Privacy Policy">Privacy Policy</option>
+        <option value="Data Processing Agreement">Data Processing Agreement</option>
+        <option value="Employee Training Script">Employee Training Script</option>
+        <option value="Audit-Ready Documentation">Audit-Ready Documentation</option>
+      </optgroup>
+      
+      <optgroup label="── 🇪🇺 GDPR Specific ──">
+        <option value="GDPR - Privacy Policy">GDPR Privacy Policy</option>
+        <option value="GDPR - DPIA">DPIA (Data Protection Impact Assessment)</option>
+        <option value="GDPR - DSAR Procedure">DSAR Procedure</option>
+        <option value="GDPR - ROPA">Records of Processing Activities</option>
+      </optgroup>
+      
+      <optgroup label="── 🇺🇸 CCPA/CPRA Specific ──">
+        <option value="CCPA - Privacy Policy">CCPA Privacy Policy</option>
+        <option value="CCPA - Consumer Request Form">Consumer Request Form</option>
+        <option value="CCPA - Request Log Template">Consumer Request Log</option>
+        <option value="CCPA - Vendor Assessment">Vendor Assessment Checklist</option>
+        <option value="CCPA - Breach Response Plan">Data Breach Response Plan</option>
+        <option value="CCPA - DPA">CCPA Service Provider Agreement</option>
+        <option value="CCPA - Training">CCPA Employee Training</option>
+        <option value="CCPA - Audit Documentation">CCPA Audit Documentation</option>
+      </optgroup>
+      
+      <optgroup label="── 🏥 HIPAA Specific ──">
+        <option value="HIPAA - Notice of Privacy Practices">Notice of Privacy Practices</option>
+        <option value="HIPAA - Business Associate Agreement">Business Associate Agreement</option>
+        <option value="HIPAA - Authorization Form">Patient Authorization Form</option>
+        <option value="HIPAA - Breach Notification Policy">Breach Notification Policy</option>
+        <option value="HIPAA - Sanction Policy">Sanction Policy</option>
+        <option value="HIPAA - Risk Assessment">Risk Assessment Template</option>
+        <option value="HIPAA - Training">HIPAA Employee Training</option>
+        <option value="HIPAA - Audit Documentation">HIPAA Audit Documentation</option>
+      </optgroup>
+      
+      <optgroup label="── 🇿🇦 POPIA Specific ──">
+        <option value="POPIA - Privacy Policy">POPIA Privacy Policy</option>
+        <option value="POPIA - PAIA Manual">PAIA Manual (Mandatory)</option>
+        <option value="POPIA - DPA">POPIA Operator Agreement</option>
+        <option value="POPIA - Training">POPIA Employee Training</option>
+        <option value="POPIA - Audit Documentation">POPIA Audit Documentation</option>
+        <option value="POPIA - Data Retention Schedule">Data Retention Schedule</option>
+        <option value="POPIA - Incident Response">Incident Response Procedure</option>
+        <option value="POPIA - Prior Authorisation Register">Prior Authorisation Register</option>
+      </optgroup>
+
+      <optgroup label="── 📦 Complete Compliance Packs ──">
+        <option value="GDPR - Complete Pack">GDPR Complete Pack</option>
+        <option value="CCPA - Complete Pack">CCPA/CPRA Complete Pack</option>
+        <option value="HIPAA - Complete Pack">HIPAA Complete Pack</option>
+        <option value="POPIA - Complete Pack">POPIA Complete Pack</option>
+        <option value="Global - Complete Pack">Global Multi-Regulation Pack</option>
+      </optgroup>
+    </select>
+
+    <label for="updates">Real-time legal update tracking?</label>
+    <select name="updates" id="updates" required>
+      <option value="">Select</option>
+      <option value="Yes">Yes, auto-update my documents</option>
+      <option value="No">No, one-time generation only</option>
+    </select>
+  </div>
+
+  <!-- LEGAL DISCLAIMER -->
+  <div class="legal-disclaimer">
+    <div class="disclaimer-icon">⚠️</div>
+    <div class="disclaimer-content">
+      <h4>Important Legal Disclaimer</h4>
+      <p>This AI-generated compliance documentation has not been verified by legal authorities or a legal team. 
+      We recommend having all documents reviewed by a qualified legal professional before implementation.</p>
+      <p>3CH0 provides these templates as a starting point only and does not constitute legal advice. 
+      By using our service, you acknowledge that you understand these documents should be reviewed by 
+      appropriate legal counsel for your specific situation.</p>
+      <p><strong>Note:</strong> We are currently seeking legal partnership to verify our documents.</p>
+    </div>
+  </div>
+
+  <br><br>
+  <button type="submit" class="submit-btn">🚀 Generate My Compliance Document</button>
+</form>
       </div>
     </section>
 
@@ -1672,116 +3670,176 @@
     const TESTING_MODE = false;  // ← CHANGE TO false BEFORE GOING LIVE!
 
     // ======================
+    // COLLAPSIBLE SECTIONS HANDLER (NEW)
+    // ======================
+    function toggleSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        if (section) {
+            var isHidden = section.style.display === 'none' || section.style.display === '';
+            section.style.display = isHidden ? 'block' : 'none';
+            
+            // Update toggle icon in parent
+            var parent = section.closest('.field-group');
+            if (parent) {
+                var icon = parent.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.textContent = isHidden ? '▲' : '▼';
+                }
+            }
+        }
+    }
+
+    // ======================
     // ENHANCED FORM DYNAMICS
     // ======================
     function initializeDynamicForm() {
-      const regulationsSelect = document.getElementById('regulations');
-      
-      if (regulationsSelect) {
-        regulationsSelect.addEventListener('change', function() {
-          const selectedRegulation = this.value;
-          
-          // Hide all regulation-specific fields
-          document.querySelectorAll('.ccpa-specific, .gdpr-specific, .hipaa-specific, .popia-specific').forEach(field => {
-            field.style.display = 'none';
-          });
-          
-          // Show fields for selected regulation
-          switch(selectedRegulation) {
-            case 'CCPA':
-              document.querySelector('.ccpa-specific').style.display = 'block';
-              break;
-            case 'GDPR':
-              document.querySelector('.gdpr-specific').style.display = 'block';
-              break;
-            case 'HIPAA':
-              document.querySelector('.hipaa-specific').style.display = 'block';
-              break;
-            case 'POPIA':
-              document.querySelector('.popia-specific').style.display = 'block';
-              break;
-            case 'Multiple / Global':
-              // Show all regulation-specific fields for multiple compliance
-              document.querySelectorAll('.ccpa-specific, .gdpr-specific, .hipaa-specific, .popia-specific').forEach(field => {
-                field.style.display = 'block';
-              });
-              break;
-          }
-        });
-      }
+        var regulationsSelect = document.getElementById('regulations');
+        
+        if (regulationsSelect) {
+            regulationsSelect.addEventListener('change', function() {
+                var selectedRegulation = this.value;
+                
+                // Hide all regulation-specific fields
+                var allSpecific = document.querySelectorAll('.ccpa-specific, .gdpr-specific, .hipaa-specific, .popia-specific');
+                for (var i = 0; i < allSpecific.length; i++) {
+                    allSpecific[i].style.display = 'none';
+                }
+                
+                // Show fields for selected regulation
+                var classToShow = '';
+                if (selectedRegulation === 'CCPA') {
+                    classToShow = '.ccpa-specific';
+                } else if (selectedRegulation === 'GDPR') {
+                    classToShow = '.gdpr-specific';
+                } else if (selectedRegulation === 'HIPAA') {
+                    classToShow = '.hipaa-specific';
+                } else if (selectedRegulation === 'POPIA') {
+                    classToShow = '.popia-specific';
+                } else if (selectedRegulation === 'Multiple / Global') {
+                    classToShow = '.ccpa-specific, .gdpr-specific, .hipaa-specific, .popia-specific';
+                }
+                
+                if (classToShow) {
+                    var toShow = document.querySelectorAll(classToShow);
+                    for (var j = 0; j < toShow.length; j++) {
+                        toShow[j].style.display = 'block';
+                    }
+                }
+                
+                // Reset collapsible sections
+                var collapsibles = document.querySelectorAll('.collapsible-content');
+                for (var k = 0; k < collapsibles.length; k++) {
+                    collapsibles[k].style.display = 'none';
+                }
+                var icons = document.querySelectorAll('.toggle-icon');
+                for (var l = 0; l < icons.length; l++) {
+                    icons[l].textContent = '▼';
+                }
+                
+                // Update document dropdown
+                updateDocumentOptions(selectedRegulation);
+            });
+        }
 
-      // Initialize multi-select for CCPA purposes
-      const ccpaPurposes = document.getElementById('ccpa_purposes');
-      if (ccpaPurposes) {
-        ccpaPurposes.size = 7; // Show all options
-        ccpaPurposes.multiple = true;
-      }
+        // Initialize conditional field handlers (NEW)
+        initializeConditionalFields();
+    }
+
+    // ======================
+    // CONDITIONAL FIELD HANDLERS (NEW)
+    // ======================
+    function initializeConditionalFields() {
+        // CCPA Financial Incentives
+        var financialSelect = document.getElementById('ccpa_financial_incentives');
+        if (financialSelect) {
+            financialSelect.addEventListener('change', function() {
+                var details = document.getElementById('financial-incentives-details');
+                if (details) {
+                    details.style.display = this.value === 'Yes' ? 'block' : 'none';
+                }
+            });
+        }
+
+        // PA Status handlers
+        var paStatuses = ['001', '002', '003'];
+        for (var i = 0; i < paStatuses.length; i++) {
+            (function(num) {
+                var statusSelect = document.getElementById('pa_' + num + '_status');
+                var statusClass = document.getElementById('pa_' + num + '_status_class');
+                if (statusSelect && statusClass) {
+                    statusSelect.addEventListener('change', function() {
+                        var map = {'N/A': 'na', 'Pending': 'pending', 'Approved': 'approved', 'Rejected': 'rejected'};
+                        statusClass.value = map[this.value] || 'na';
+                    });
+                }
+            })(paStatuses[i]);
+        }
+    }
+
+    // ======================
+    // DOCUMENT OPTIONS UPDATER
+    // ======================
+    function updateDocumentOptions(regulation) {
+        var docsSelect = document.getElementById('docs-needed');
+        if (!docsSelect) return;
+        
+        var optgroups = docsSelect.querySelectorAll('optgroup');
+        for (var i = 0; i < optgroups.length; i++) {
+            optgroups[i].style.display = '';
+            optgroups[i].style.fontWeight = 'normal';
+        }
+        
+        docsSelect.value = '';
     }
 
     // ======================
     // SECURITY CONFIGURATION
     // ======================
-    const SECURITY_CONFIG = {
+    var SECURITY_CONFIG = {
         webhookUrl: 'https://hook.us2.make.com/rxu5mdjft2evqirbr9w1rvcqlkvnxslu',
         newsApiKey: 'f639d0fd3bd742a3a179f80f0c23edb5',
-        
-        // Security Settings
         enableCSRF: true,
         enableInputSanitization: true,
         enableRateLimiting: true,
         enableActivityMonitoring: true,
-        
-        // Rate Limiting - FIXED VALUES
-        freeSubmissions: 1,              // 1 free submission per month
-        rateLimitPeriod: 60000,          // 1 minute between submissions
-        maxFormFillTime: 1800000,        // 30 minutes to fill form
-        minFormFillTime: 3000,           // 3 seconds minimum (bot protection)
-        csrfTokenLifetime: 3600000       // 1 hour token validity
+        freeSubmissions: 1,
+        rateLimitPeriod: 60000,
+        maxFormFillTime: 1800000,
+        minFormFillTime: 3000,
+        csrfTokenLifetime: 3600000
     };
 
     // ======================
     // SECURITY UTILITIES
     // ======================
-    const SecurityUtils = {
-        generateCSRFToken() {
-            // Use cryptographically secure random values
-            const array = new Uint8Array(32);
+    var SecurityUtils = {
+        generateCSRFToken: function() {
+            var array = new Uint8Array(32);
             crypto.getRandomValues(array);
-            const token = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
-            
+            var token = Array.from(array, function(byte) { 
+                return byte.toString(16).padStart(2, '0'); 
+            }).join('');
             localStorage.setItem('csrf_token', token);
             localStorage.setItem('csrf_timestamp', Date.now().toString());
             return token;
         },
 
-        validateCSRFToken(token) {
-            // TESTING MODE: Skip validation
+        validateCSRFToken: function(token) {
             if (TESTING_MODE) {
                 console.log('🧪 TESTING MODE: Skipping CSRF validation');
                 return true;
             }
-            
-            const storedToken = localStorage.getItem('csrf_token');
-            const timestamp = localStorage.getItem('csrf_timestamp');
-            const now = Date.now();
-            const tokenLifetime = SECURITY_CONFIG.csrfTokenLifetime || 3600000;
-            
-            if (!storedToken || !timestamp) {
-                console.log('CSRF: No stored token or timestamp');
-                return false;
-            }
-            
-            if ((now - parseInt(timestamp)) > tokenLifetime) {
-                console.log('CSRF: Token expired');
-                return false;
-            }
-            
+            var storedToken = localStorage.getItem('csrf_token');
+            var timestamp = localStorage.getItem('csrf_timestamp');
+            var now = Date.now();
+            var tokenLifetime = SECURITY_CONFIG.csrfTokenLifetime || 3600000;
+            if (!storedToken || !timestamp) return false;
+            if ((now - parseInt(timestamp)) > tokenLifetime) return false;
             return storedToken === token;
         },
 
-        sanitizeInput(input) {
+        sanitizeInput: function(input) {
             if (typeof input !== 'string') return input;
-            
             return input
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
@@ -1791,22 +3849,22 @@
                 .trim();
         },
 
-        validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        validateEmail: function(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         },
 
-        validateURL(url) {
+        validateURL: function(url) {
             try {
                 new URL(url);
                 return true;
-            } catch {
+            } catch (e) {
                 return false;
             }
         },
 
-        logSecurityEvent(eventType, details) {
-            const eventData = {
+        logSecurityEvent: function(eventType, details) {
+            var eventData = {
                 type: eventType,
                 timestamp: new Date().toISOString(),
                 url: window.location.href,
@@ -1814,21 +3872,14 @@
                 details: details,
                 testingMode: TESTING_MODE
             };
-            
             console.log('🔒 Security Event:', eventData);
             
-            // Only log important events to webhook (not every click)
-            if (['form_submission_success', 'form_submission_error', 'honeypot_triggered'].includes(eventType)) {
+            if (['form_submission_success', 'form_submission_error', 'honeypot_triggered'].indexOf(eventType) !== -1) {
                 fetch(SECURITY_CONFIG.webhookUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        security_event: true,
-                        ...eventData
-                    })
-                }).catch(console.error);
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ security_event: true, ...eventData })
+                }).catch(function(err) { console.error(err); });
             }
         }
     };
@@ -1836,10 +3887,10 @@
     // ======================
     // ENHANCED FORM HANDLER
     // ======================
-    const SecureFormHandler = {
+    var SecureFormHandler = {
         formStartTime: null,
 
-        init() {
+        init: function() {
             this.formStartTime = Date.now();
             this.addCSRFToken();
             this.initializeFormHandler();
@@ -1847,80 +3898,46 @@
             this.startTokenRefresh();
             this.cleanupOldData();
             this.showTestingModeIndicator();
-            
-            SecurityUtils.logSecurityEvent('page_loaded', {
-                page: 'home',
-                formStartTime: this.formStartTime
-            });
+            SecurityUtils.logSecurityEvent('page_loaded', { page: 'home', formStartTime: this.formStartTime });
         },
 
-        // Show testing mode indicator on page
-        showTestingModeIndicator() {
+        showTestingModeIndicator: function() {
             if (TESTING_MODE) {
-                const indicator = document.createElement('div');
+                var indicator = document.createElement('div');
                 indicator.id = 'testing-mode-indicator';
-                indicator.innerHTML = `
-                    <div style="
-                        position: fixed;
-                        top: 90px;
-                        right: 20px;
-                        background: rgba(245, 158, 11, 0.9);
-                        color: #000;
-                        padding: 10px 16px;
-                        border-radius: 8px;
-                        font-size: 12px;
-                        font-weight: 600;
-                        z-index: 9999;
-                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    ">
-                        <span style="font-size: 16px;">🧪</span>
-                        <div>
-                            <div>TESTING MODE</div>
-                            <div style="font-weight: 400; font-size: 10px; opacity: 0.8;">Unlimited submissions enabled</div>
-                        </div>
-                    </div>
-                `;
+                indicator.innerHTML = '<div style="position: fixed; top: 90px; right: 20px; background: rgba(245, 158, 11, 0.9); color: #000; padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"><span style="font-size: 16px;">🧪</span> TESTING MODE</div>';
                 document.body.appendChild(indicator);
-                console.log('🧪 TESTING MODE ACTIVE - All security checks bypassed, unlimited submissions allowed');
+                console.log('🧪 TESTING MODE ACTIVE');
             }
         },
 
-        // Clean up old rate limit data on page load
-        cleanupOldData() {
+        cleanupOldData: function() {
             if (TESTING_MODE) {
-                // In testing mode, clear all rate limit data
                 localStorage.removeItem('lastSubmissionTime');
-                console.log('🧪 TESTING MODE: Cleared rate limit data');
                 return;
             }
-            
-            const lastSubmission = localStorage.getItem('lastSubmissionTime');
+            var lastSubmission = localStorage.getItem('lastSubmissionTime');
             if (lastSubmission) {
-                const now = Date.now();
+                var now = Date.now();
                 if ((now - parseInt(lastSubmission)) > SECURITY_CONFIG.rateLimitPeriod) {
                     localStorage.removeItem('lastSubmissionTime');
                 }
             }
         },
 
-        // Auto-refresh token to prevent expiry while user fills form
-        startTokenRefresh() {
-            setInterval(() => {
-                console.log('Auto-refreshing CSRF token...');
-                this.addCSRFToken();
-                this.formStartTime = Date.now();
-            }, 15 * 60 * 1000); // Refresh every 15 minutes
+        startTokenRefresh: function() {
+            var self = this;
+            setInterval(function() {
+                self.addCSRFToken();
+                self.formStartTime = Date.now();
+            }, 15 * 60 * 1000);
         },
 
-        addCSRFToken() {
-            const form = document.getElementById('ComplianceFormWebhook');
+        addCSRFToken: function() {
+            var form = document.getElementById('ComplianceFormWebhook');
             if (form) {
-                const csrfToken = SecurityUtils.generateCSRFToken();
-                let csrfField = form.querySelector('input[name="csrf_token"]');
-                
+                var csrfToken = SecurityUtils.generateCSRFToken();
+                var csrfField = form.querySelector('input[name="csrf_token"]');
                 if (!csrfField) {
                     csrfField = document.createElement('input');
                     csrfField.type = 'hidden';
@@ -1933,333 +3950,229 @@
             }
         },
 
-        initializeFormHandler() {
-            const form = document.getElementById('ComplianceFormWebhook');
+        initializeFormHandler: function() {
+            var form = document.getElementById('ComplianceFormWebhook');
+            var self = this;
             if (form) {
-                form.addEventListener('submit', (e) => this.handleSecureSubmit(e));
+                form.addEventListener('submit', function(e) { self.handleSecureSubmit(e); });
                 this.addInputSanitization(form);
             }
         },
 
-        addInputSanitization(form) {
-            const inputs = form.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-                input.addEventListener('blur', (e) => {
-                    if (e.target.value) {
+        addInputSanitization: function(form) {
+            var inputs = form.querySelectorAll('input, textarea, select');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener('blur', function(e) {
+                    if (e.target.value && e.target.type !== 'checkbox' && e.target.type !== 'radio') {
                         e.target.value = SecurityUtils.sanitizeInput(e.target.value);
                     }
                 });
-            });
+            }
         },
 
-        async handleSecureSubmit(e) {
+        handleSecureSubmit: function(e) {
             e.preventDefault();
-            const form = e.target;
-            
-            const securityChecks = this.performSecurityChecks(form);
+            var form = e.target;
+            var securityChecks = this.performSecurityChecks(form);
             if (!securityChecks.isValid) {
                 this.showSecurityError(securityChecks.errors);
                 return;
             }
-
-            const formData = this.prepareSecureFormData(form);
-            await this.submitToMakeWebhook(formData);
+            var formData = this.prepareSecureFormData(form);
+            this.submitToMakeWebhook(formData);
         },
 
-        // Security checks with testing mode bypass
-        performSecurityChecks(form) {
-            const errors = [];
-            const now = Date.now();
-            const formFillTime = now - this.formStartTime;
+        performSecurityChecks: function(form) {
+            var errors = [];
+            var now = Date.now();
+            var formFillTime = now - this.formStartTime;
 
-            // TESTING MODE: Skip all security checks except required fields
             if (TESTING_MODE) {
-                console.log('🧪 TESTING MODE: Skipping security checks');
-                
-                // Still validate required fields even in testing mode
-                const requiredFields = form.querySelectorAll('[required]');
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        const label = form.querySelector(`label[for="${field.id}"]`)?.textContent || field.name;
-                        errors.push(`${label.replace('*', '').trim()} is required`);
+                var requiredFields = form.querySelectorAll('[required]');
+                for (var i = 0; i < requiredFields.length; i++) {
+                    if (!requiredFields[i].value.trim()) {
+                        var label = form.querySelector('label[for="' + requiredFields[i].id + '"]');
+                        var labelText = label ? label.textContent : requiredFields[i].name;
+                        errors.push(labelText.replace('*', '').trim() + ' is required');
                     }
-                });
-                
-                return {
-                    isValid: errors.length === 0,
-                    errors: errors
-                };
+                }
+                return { isValid: errors.length === 0, errors: errors };
             }
 
-            // PRODUCTION MODE: Full security checks
-            
-            // Bot check - too fast means automated
             if (formFillTime < SECURITY_CONFIG.minFormFillTime) {
                 errors.push('Please take a moment to review the form before submitting');
             }
 
-            // Session timeout - refresh instead of blocking
             if (formFillTime > SECURITY_CONFIG.maxFormFillTime) {
-                console.log('Form session was long, refreshing token...');
                 this.formStartTime = Date.now() - 10000;
                 SecurityUtils.generateCSRFToken();
                 this.addCSRFToken();
             }
 
-            // Rate limiting check
             if (this.isRateLimited()) {
-                const waitTime = Math.ceil(SECURITY_CONFIG.rateLimitPeriod / 1000);
-                errors.push(`Please wait ${waitTime} seconds between submissions`);
+                errors.push('Please wait ' + Math.ceil(SECURITY_CONFIG.rateLimitPeriod / 1000) + ' seconds between submissions');
             }
 
-            // CSRF validation with auto-recovery
-            const csrfToken = form.querySelector('input[name="csrf_token"]')?.value;
-            if (!csrfToken) {
+            var csrfToken = form.querySelector('input[name="csrf_token"]');
+            if (!csrfToken || !csrfToken.value) {
                 this.addCSRFToken();
                 errors.push('Security session refreshed. Please click submit again.');
-            } else if (!SecurityUtils.validateCSRFToken(csrfToken)) {
+            } else if (!SecurityUtils.validateCSRFToken(csrfToken.value)) {
                 this.addCSRFToken();
                 errors.push('Security session expired. Please click submit again.');
             }
 
-            // Honeypot check - silent for bots
-            const honeypot = form.querySelector('input[name="website"]')?.value;
-            if (honeypot && honeypot.length > 0) {
+            var honeypot = form.querySelector('input[name="website"]');
+            if (honeypot && honeypot.value && honeypot.value.length > 0) {
                 SecurityUtils.logSecurityEvent('honeypot_triggered', {});
                 errors.push('Submission blocked');
             }
 
-            // Required fields validation with better labels
-            const requiredFields = form.querySelectorAll('[required]');
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    const label = form.querySelector(`label[for="${field.id}"]`)?.textContent || field.name;
-                    errors.push(`${label.replace('*', '').trim()} is required`);
+            var requiredFields = form.querySelectorAll('[required]');
+            for (var i = 0; i < requiredFields.length; i++) {
+                if (!requiredFields[i].value.trim()) {
+                    var label = form.querySelector('label[for="' + requiredFields[i].id + '"]');
+                    var labelText = label ? label.textContent : requiredFields[i].name;
+                    errors.push(labelText.replace('*', '').trim() + ' is required');
                 }
-            });
+            }
 
-            return {
-                isValid: errors.length === 0,
-                errors: errors
-            };
+            return { isValid: errors.length === 0, errors: errors };
         },
 
-        prepareSecureFormData(form) {
-            const formData = new FormData(form);
-            const secureData = {};
+        prepareSecureFormData: function(form) {
+            var formData = new FormData(form);
+            var secureData = {};
+            var entries = formData.entries();
+            var entry = entries.next();
+            while (!entry.done) {
+                var key = entry.value[0];
+                var value = entry.value[1];
+                if (key.endsWith('[]')) {
+                    var cleanKey = key.slice(0, -2);
+                    if (!secureData[cleanKey]) secureData[cleanKey] = [];
+                    secureData[cleanKey].push(SecurityUtils.sanitizeInput(value));
+                } else {
+                    secureData[key] = SecurityUtils.sanitizeInput(value);
+                }
+                entry = entries.next();
+            }
             
-            for (let [key, value] of formData.entries()) {
-                secureData[key] = SecurityUtils.sanitizeInput(value);
+            // Convert arrays to strings
+            for (var k in secureData) {
+                if (Array.isArray(secureData[k])) {
+                    secureData[k] = secureData[k].join(', ');
+                }
             }
             
             secureData.security_metadata = {
                 submission_time: new Date().toISOString(),
                 user_agent: navigator.userAgent,
                 form_fill_time: Date.now() - this.formStartTime,
-                ip_hash: this.hashUserData(navigator.userAgent + window.location.href),
                 testing_mode: TESTING_MODE
             };
-            
             return secureData;
         },
 
-        async submitToMakeWebhook(formData) {
-            try {
-                this.setLoadingState(true);
-                
-                const response = await fetch(SECURITY_CONFIG.webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-
+        submitToMakeWebhook: function(formData) {
+            var self = this;
+            this.setLoadingState(true);
+            
+            fetch(SECURITY_CONFIG.webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(function(response) {
                 if (response.ok) {
-                    // Record submission time only on success (skip in testing mode)
                     if (!TESTING_MODE) {
-                        this.recordSuccessfulSubmission();
-                        this.updateSubmissionCounter();
-                    } else {
-                        console.log('🧪 TESTING MODE: Skipping submission tracking');
+                        self.recordSuccessfulSubmission();
+                        self.updateSubmissionCounter();
                     }
-                    
-                    SecurityUtils.logSecurityEvent('form_submission_success', {
-                        formData: Object.keys(formData).filter(k => k !== 'security_metadata')
-                    });
-                    
-                    // Show success message
-                    this.showSuccessMessage();
+                    SecurityUtils.logSecurityEvent('form_submission_success', {});
+                    self.showSuccessMessage();
                 } else {
-                    throw new Error(`Server error: ${response.status}`);
+                    throw new Error('Server error: ' + response.status);
                 }
-                
-            } catch (error) {
-                SecurityUtils.logSecurityEvent('form_submission_error', {
-                    error: error.message
-                });
-                this.showError('Submission failed. Please check your connection and try again.');
-            } finally {
-                this.setLoadingState(false);
-            }
+            })
+            .catch(function(error) {
+                SecurityUtils.logSecurityEvent('form_submission_error', { error: error.message });
+                self.showError('Submission failed. Please check your connection and try again.');
+            })
+            .finally(function() {
+                self.setLoadingState(false);
+            });
         },
 
-        // Show success message with option to submit again in testing mode
-        showSuccessMessage() {
-            const formContainer = document.getElementById('form-container');
-            
+        showSuccessMessage: function() {
+            var formContainer = document.getElementById('form-container');
             if (formContainer) {
                 if (TESTING_MODE) {
-                    // Testing mode: Show success with "Test Again" button
-                    formContainer.innerHTML = `
-                        <div style="text-align: center; padding: 60px 20px;">
-                            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
-                            <h2 style="color: #10b981; margin-bottom: 12px; font-size: 28px;">Test Submission Successful!</h2>
-                            <p style="color: #a0a0a0; font-size: 16px; margin-bottom: 24px;">
-                                Your form was submitted to Make.com webhook.<br>
-                                Check your Make.com scenario to verify the data.
-                            </p>
-                            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                                <button onclick="location.reload()" class="btn" style="padding: 14px 32px; background: var(--gradient); color: #0a0a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-                                    🔄 Test Again
-                                </button>
-                                <a href="checkout-agency.html" class="btn" style="display: inline-block; padding: 14px 32px; background: transparent; color: var(--accent); text-decoration: none; border-radius: 8px; font-weight: 600; border: 1px solid var(--accent);">
-                                    Continue to Payment →
-                                </a>
-                            </div>
-                            <p style="color: #f59e0b; font-size: 12px; margin-top: 24px;">
-                                🧪 Testing Mode Active - Remember to set TESTING_MODE = false before launch!
-                            </p>
-                        </div>
-                    `;
+                    formContainer.innerHTML = '<div style="text-align: center; padding: 60px 20px;"><div style="font-size: 64px; margin-bottom: 20px;">✅</div><h2 style="color: #10b981; margin-bottom: 12px;">Test Submission Successful!</h2><p style="color: #a0a0a0; margin-bottom: 24px;">Check your Make.com scenario to verify the data.</p><button onclick="location.reload()" class="btn" style="padding: 14px 32px; background: var(--gradient); color: #0a0a0a; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">🔄 Test Again</button></div>';
                 } else {
-                    // Production mode: Show success with payment link
-                    formContainer.innerHTML = `
-                        <div style="text-align: center; padding: 60px 20px;">
-                            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
-                            <h2 style="color: #10b981; margin-bottom: 12px; font-size: 28px;">Request Submitted Successfully!</h2>
-                            <p style="color: #a0a0a0; font-size: 16px; margin-bottom: 24px;">
-                                Your compliance documents are being generated.<br>
-                                Check your email within the next few minutes.
-                            </p>
-                            <a href="checkout-agency.html" class="btn" style="display: inline-block; padding: 14px 32px; background: var(--gradient); color: #0a0a0a; text-decoration: none; border-radius: 8px; font-weight: 600;">
-                                Continue to Payment
-                            </a>
-                        </div>
-                    `;
+                    formContainer.innerHTML = '<div style="text-align: center; padding: 60px 20px;"><div style="font-size: 64px; margin-bottom: 20px;">✅</div><h2 style="color: #10b981; margin-bottom: 12px;">Request Submitted Successfully!</h2><p style="color: #a0a0a0; margin-bottom: 24px;">Your compliance documents are being generated.</p><a href="checkout-agency.html" class="btn" style="display: inline-block; padding: 14px 32px; background: var(--gradient); color: #0a0a0a; text-decoration: none; border-radius: 8px; font-weight: 600;">Continue to Payment</a></div>';
                 }
             }
         },
 
-        updateSubmissionCounter() {
-            const now = new Date();
-            const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
-            const currentCount = parseInt(localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions);
-            const newCount = currentCount - 1;
-            
+        updateSubmissionCounter: function() {
+            var now = new Date();
+            var storageKey = 'submissions-' + now.getMonth() + '-' + now.getFullYear();
+            var currentCount = parseInt(localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions);
+            var newCount = currentCount - 1;
             localStorage.setItem(storageKey, newCount);
-            const counterEl = document.getElementById('submissions-count');
+            var counterEl = document.getElementById('submissions-count');
             if (counterEl) counterEl.textContent = newCount;
-            
-            if (newCount <= 0) {
-                const rateLimitMsg = document.getElementById('rateLimitMessage');
-                if (rateLimitMsg) rateLimitMsg.style.display = 'block';
-            }
         },
 
-        // Only check rate limit, don't set timestamp here
-        isRateLimited() {
-            // TESTING MODE: Never rate limited
-            if (TESTING_MODE) {
-                console.log('🧪 TESTING MODE: Skipping rate limit check');
-                return false;
-            }
-            
-            const lastSubmission = localStorage.getItem('lastSubmissionTime');
-            const now = Date.now();
-            
-            if (lastSubmission && (now - parseInt(lastSubmission)) < SECURITY_CONFIG.rateLimitPeriod) {
-                return true;
-            }
-            
-            return false;
+        isRateLimited: function() {
+            if (TESTING_MODE) return false;
+            var lastSubmission = localStorage.getItem('lastSubmissionTime');
+            var now = Date.now();
+            return lastSubmission && (now - parseInt(lastSubmission)) < SECURITY_CONFIG.rateLimitPeriod;
         },
 
-        // Record submission time only after successful submission
-        recordSuccessfulSubmission() {
+        recordSuccessfulSubmission: function() {
             localStorage.setItem('lastSubmissionTime', Date.now().toString());
         },
 
-        hashUserData(data) {
-            let hash = 0;
-            for (let i = 0; i < data.length; i++) {
-                const char = data.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
+        showSecurityError: function(errors) {
+            var existing = document.querySelector('.form-security-error');
+            if (existing) existing.remove();
+            
+            var errorList = '';
+            for (var i = 0; i < errors.length; i++) {
+                errorList += '<li style="margin-bottom: 4px;">' + errors[i] + '</li>';
             }
-            return Math.abs(hash).toString(16);
-        },
-
-        // Better error display with auto-dismiss
-        showSecurityError(errors) {
-            const existingError = document.querySelector('.form-security-error');
-            if (existingError) existingError.remove();
             
-            const errorHtml = `
-                <div class="form-security-error" style="
-                    background: rgba(239, 68, 68, 0.1);
-                    border: 1px solid rgba(239, 68, 68, 0.3);
-                    border-radius: 12px;
-                    padding: 16px 20px;
-                    margin-bottom: 20px;
-                    color: #fca5a5;
-                ">
-                    <div style="display: flex; align-items: flex-start; gap: 12px;">
-                        <span style="font-size: 20px;">⚠️</span>
-                        <div>
-                            <strong style="color: #f87171; display: block; margin-bottom: 8px;">Please fix the following:</strong>
-                            <ul style="margin: 0; padding-left: 20px; color: #fca5a5;">
-                                ${errors.map(error => `<li style="margin-bottom: 4px;">${error}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            `;
+            var errorHtml = '<div class="form-security-error" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; color: #fca5a5;"><div style="display: flex; align-items: flex-start; gap: 12px;"><span style="font-size: 20px;">⚠️</span><div><strong style="color: #f87171; display: block; margin-bottom: 8px;">Please fix the following:</strong><ul style="margin: 0; padding-left: 20px;">' + errorList + '</ul></div></div></div>';
             
-            const form = document.getElementById('ComplianceFormWebhook');
+            var form = document.getElementById('ComplianceFormWebhook');
             if (form) {
                 form.insertAdjacentHTML('afterbegin', errorHtml);
                 form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Auto-remove after 10 seconds
-                setTimeout(() => {
-                    const error = document.querySelector('.form-security-error');
-                    if (error) error.remove();
+                setTimeout(function() {
+                    var err = document.querySelector('.form-security-error');
+                    if (err) err.remove();
                 }, 10000);
             }
         },
 
-        showError(message) {
+        showError: function(message) {
             this.showSecurityError([message]);
         },
 
-        setLoadingState(loading) {
-            const submitBtn = document.querySelector('.submit-btn');
+        setLoadingState: function(loading) {
+            var submitBtn = document.querySelector('.submit-btn');
             if (submitBtn) {
                 submitBtn.disabled = loading;
-                submitBtn.textContent = loading ? 'Generating Documents...' : 'Generate My AI Compliance Pack';
+                submitBtn.textContent = loading ? 'Generating Documents...' : '🚀 Generate My Compliance Document';
                 submitBtn.style.opacity = loading ? '0.7' : '1';
             }
         },
 
-        initializeSecurityMonitoring() {
-            // Simplified - only log form inputs, not every click
-            document.addEventListener('input', (e) => {
-                if (e.target.form?.id === 'ComplianceFormWebhook') {
-                    // Just log locally, don't send to webhook for every keystroke
-                    console.log('Form input:', e.target.name);
-                }
-            });
+        initializeSecurityMonitoring: function() {
+            // Simplified monitoring
         }
     };
 
@@ -2267,187 +4180,170 @@
     // EXISTING FUNCTIONALITY
     // ======================
     function checkCookieConsent() {
-        if (!localStorage.getItem('cookiesAccepted')) {
-            document.getElementById('cookieConsent').style.display = 'flex';
+        var el = document.getElementById('cookieConsent');
+        if (el && !localStorage.getItem('cookiesAccepted')) {
+            el.style.display = 'flex';
         }
     }
     
     function acceptCookies() {
         localStorage.setItem('cookiesAccepted', 'true');
-        document.getElementById('cookieConsent').style.display = 'none';
-        SecurityUtils.logSecurityEvent('cookies_accepted', {});
+        var el = document.getElementById('cookieConsent');
+        if (el) el.style.display = 'none';
     }
     
     function checkRateLimit() {
-        // TESTING MODE: Never show rate limit message
         if (TESTING_MODE) {
-            const rateLimitMsg = document.getElementById('rateLimitMessage');
-            if (rateLimitMsg) rateLimitMsg.style.display = 'none';
+            var msg = document.getElementById('rateLimitMessage');
+            if (msg) msg.style.display = 'none';
             return false;
         }
-        
-        const lastSubmission = localStorage.getItem('lastSubmissionTime');
-        const now = Date.now();
-        
+        var lastSubmission = localStorage.getItem('lastSubmissionTime');
+        var now = Date.now();
+        var msg = document.getElementById('rateLimitMessage');
         if (lastSubmission && (now - parseInt(lastSubmission)) < SECURITY_CONFIG.rateLimitPeriod) {
-            const rateLimitMsg = document.getElementById('rateLimitMessage');
-            if (rateLimitMsg) rateLimitMsg.style.display = 'block';
+            if (msg) msg.style.display = 'block';
             return true;
         }
-        
-        const rateLimitMsg = document.getElementById('rateLimitMessage');
-        if (rateLimitMsg) rateLimitMsg.style.display = 'none';
+        if (msg) msg.style.display = 'none';
         return false;
     }
 
-    async function loadBusinessNews() {
-        const newsContainer = document.getElementById('news-container');
-        const refreshBtn = document.getElementById('refresh-news-btn');
+    function loadBusinessNews() {
+        var newsContainer = document.getElementById('news-container');
+        var refreshBtn = document.getElementById('refresh-news-btn');
         
-        try {
-            newsContainer.innerHTML = `
-                <div class="loading-skeleton"></div>
-                <div class="loading-skeleton" style="animation-delay: 0.2s;"></div>
-                <div class="loading-skeleton" style="animation-delay: 0.4s;"></div>
-            `;
-            
-            refreshBtn.innerHTML = `
-                <svg class="rotating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C15.76 2 19 3.89 20.9 6.86M22 12H18M12 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Loading Business News...
-            `;
-            
-            const response = await fetch(
-                `https://newsapi.org/v2/top-headlines?category=business&language=en&pageSize=3&apiKey=${SECURITY_CONFIG.newsApiKey}`
-            );
-            
-            if (!response.ok) throw new Error('Failed to fetch news');
-            const data = await response.json();
-            
-            newsContainer.innerHTML = '';
-            
-            data.articles.forEach(article => {
-                const newsCard = document.createElement('div');
-                newsCard.className = 'news-card glass-panel';
-                newsCard.innerHTML = `
-                    ${article.urlToImage ? `
-                        <img src="${article.urlToImage}" alt="${article.title}" class="news-image" onerror="this.style.display='none'">
-                    ` : ''}
-                    <div class="news-content">
-                        <h3 class="news-title">
-                            <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title || 'Business Update'}</a>
-                        </h3>
-                        <p class="news-desc">${article.description || 'Latest global business news'}</p>
-                        <div class="news-meta">
-                            <span>${article.source?.name || 'Source'}</span>
-                            <span>${new Date(article.publishedAt).toLocaleDateString()}</span>
-                        </div>
-                    </div>
-                `;
-                newsContainer.appendChild(newsCard);
-            });
-            
-        } catch (error) {
-            console.error("News error:", error);
-            newsContainer.innerHTML = `
-                <div style="grid-column:1/-1; text-align:center; padding:30px; color:#ccc;">
-                    <h3 style="margin-top:0;">⚠️ News Feed Temporarily Unavailable</h3>
-                    <p>We couldn't load the latest updates. Please try again later.</p>
-                    <button onclick="loadBusinessNews()" class="btn" style="margin-top:15px;">Retry</button>
-                </div>
-            `;
-        } finally {
-            refreshBtn.innerHTML = `
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C15.76 2 19 3.89 20.9 6.86M22 12H18M12 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Refresh Business News
-            `;
+        if (!newsContainer) return;
+        
+        newsContainer.innerHTML = '<div class="loading-skeleton"></div><div class="loading-skeleton" style="animation-delay: 0.2s;"></div><div class="loading-skeleton" style="animation-delay: 0.4s;"></div>';
+        
+        if (refreshBtn) {
+            refreshBtn.innerHTML = '<svg class="rotating" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C15.76 2 19 3.89 20.9 6.86M22 12H18M12 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Loading...';
         }
+        
+        fetch('https://newsapi.org/v2/top-headlines?category=business&language=en&pageSize=3&apiKey=' + SECURITY_CONFIG.newsApiKey)
+            .then(function(response) {
+                if (!response.ok) throw new Error('Failed to fetch news');
+                return response.json();
+            })
+            .then(function(data) {
+                newsContainer.innerHTML = '';
+                if (data.articles) {
+                    for (var i = 0; i < data.articles.length; i++) {
+                        var article = data.articles[i];
+                        var card = document.createElement('div');
+                        card.className = 'news-card glass-panel';
+                        var imgHtml = article.urlToImage ? '<img src="' + article.urlToImage + '" alt="" class="news-image" onerror="this.style.display=\'none\'">' : '';
+                        card.innerHTML = imgHtml + '<div class="news-content"><h3 class="news-title"><a href="' + article.url + '" target="_blank">' + (article.title || 'Business Update') + '</a></h3><p class="news-desc">' + (article.description || '') + '</p><div class="news-meta"><span>' + (article.source ? article.source.name : '') + '</span><span>' + new Date(article.publishedAt).toLocaleDateString() + '</span></div></div>';
+                        newsContainer.appendChild(card);
+                    }
+                }
+            })
+            .catch(function(error) {
+                console.error('News error:', error);
+                newsContainer.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:30px; color:#ccc;"><h3>⚠️ News Unavailable</h3><p>Please try again later.</p><button onclick="loadBusinessNews()" class="btn" style="margin-top:15px;">Retry</button></div>';
+            })
+            .finally(function() {
+                if (refreshBtn) {
+                    refreshBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C15.76 2 19 3.89 20.9 6.86M22 12H18M12 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Refresh Business News';
+                }
+            });
     }
 
     // ======================
     // INITIALIZE EVERYTHING
     // ======================
     document.addEventListener("DOMContentLoaded", function() {
-        // Initialize dynamic form functionality
+        // Initialize form functionality
         initializeDynamicForm();
         
-        // Initialize submission counter (show unlimited in testing mode)
-        const now = new Date();
-        const storageKey = `submissions-${now.getMonth()}-${now.getFullYear()}`;
-        const currentCount = localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions;
-        const counterEl = document.getElementById('submissions-count');
+        // Initialize counter
+        var now = new Date();
+        var storageKey = 'submissions-' + now.getMonth() + '-' + now.getFullYear();
+        var currentCount = localStorage.getItem(storageKey) || SECURITY_CONFIG.freeSubmissions;
+        var counterEl = document.getElementById('submissions-count');
         if (counterEl) {
             counterEl.textContent = TESTING_MODE ? '∞' : currentCount;
         }
 
-        // Initialize secure form handler
-        SecureFormHandler.init();
+        // Initialize form handler only if form exists
+        if (document.getElementById('ComplianceFormWebhook')) {
+            SecureFormHandler.init();
+        }
         
-        // Initialize existing functionality
+        // Initialize other functionality
         checkCookieConsent();
         checkRateLimit();
-        
-        // Load news
         loadBusinessNews();
         
         // Animation on scroll
-        const animateElements = document.querySelectorAll('.animate');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        var animateElements = document.querySelectorAll('.animate');
+        if (animateElements.length > 0 && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                for (var i = 0; i < entries.length; i++) {
+                    if (entries[i].isIntersecting) {
+                        entries[i].target.classList.add('visible');
+                    }
                 }
-            });
-        }, { threshold: 0.1 });
-        
-        animateElements.forEach(el => {
-            observer.observe(el);
-        });
-
-        // CTA button handlers
-        document.getElementById('cta-generate-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            const formContainer = document.getElementById('form-container');
-            const toggleFormBtn = document.getElementById('toggle-form-btn');
+            }, { threshold: 0.1 });
             
-            if (!formContainer.classList.contains('visible')) {
-                formContainer.classList.add('visible');
-                toggleFormBtn.classList.add('rotated');
+            for (var i = 0; i < animateElements.length; i++) {
+                observer.observe(animateElements[i]);
             }
-            formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        }
+
+        // CTA button handler
+        var ctaBtn = document.getElementById('cta-generate-btn');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                var formContainer = document.getElementById('form-container');
+                var toggleFormBtn = document.getElementById('toggle-form-btn');
+                if (formContainer && !formContainer.classList.contains('visible')) {
+                    formContainer.classList.add('visible');
+                    if (toggleFormBtn) toggleFormBtn.classList.add('rotated');
+                }
+                if (formContainer) formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
 
         // Toggle form handler
-        document.getElementById('toggle-form-btn').addEventListener('click', () => {
-            const formContainer = document.getElementById('form-container');
-            const toggleFormBtn = document.getElementById('toggle-form-btn');
-            
-            formContainer.classList.toggle('visible');
-            toggleFormBtn.classList.toggle('rotated');
-            
-            if (formContainer.classList.contains('visible')) {
-                formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
+        var toggleFormBtn = document.getElementById('toggle-form-btn');
+        if (toggleFormBtn) {
+            toggleFormBtn.addEventListener('click', function() {
+                var formContainer = document.getElementById('form-container');
+                if (formContainer) {
+                    formContainer.classList.toggle('visible');
+                    toggleFormBtn.classList.toggle('rotated');
+                    if (formContainer.classList.contains('visible')) {
+                        formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        }
+
+        // News refresh button
+        var refreshNewsBtn = document.getElementById('refresh-news-btn');
+        if (refreshNewsBtn) {
+            refreshNewsBtn.addEventListener('click', loadBusinessNews);
+        }
+
+        // Initialize collapsible sections
+        var collapsibles = document.querySelectorAll('.collapsible-content');
+        for (var i = 0; i < collapsibles.length; i++) {
+            collapsibles[i].style.display = 'none';
+        }
     });
 
-    // Manual refresh handler for news
-    document.getElementById('refresh-news-btn').addEventListener('click', loadBusinessNews);
-
-    // Session timeout for data clearing
-    let inactivityTimer;
+    // Session timeout
+    var inactivityTimer;
     function resetInactivityTimer() {
         clearTimeout(inactivityTimer);
-        inactivityTimer = setTimeout(() => {
+        inactivityTimer = setTimeout(function() {
             localStorage.removeItem('invoiceClientData');
             localStorage.removeItem('currentInvoice');
-            console.log('Session data cleared due to inactivity');
         }, 30 * 60 * 1000);
     }
-
     document.addEventListener('mousemove', resetInactivityTimer);
     document.addEventListener('keypress', resetInactivityTimer);
     document.addEventListener('click', resetInactivityTimer);
