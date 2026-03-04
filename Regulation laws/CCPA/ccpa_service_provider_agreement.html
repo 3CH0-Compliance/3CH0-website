@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCPA Service Provider Agreement - {{1.company}}</title>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.8; max-width: 850px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; background: #fff; }
+        h1 { color: #1e40af; text-align: center; font-size: 22px; margin-bottom: 5px; }
+        h2 { color: #1e40af; font-size: 15px; margin-top: 30px; border-bottom: 2px solid #3b82f6; padding-bottom: 5px; text-transform: uppercase; }
+        h3 { color: #1e3a8a; font-size: 13px; margin-top: 20px; }
+        .download-section { text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 10px; border: 1px solid #3b82f6; }
+        .download-btn { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .document-header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 3px solid #1e40af; }
+        .doc-badge { display: inline-block; background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 8px 20px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .parties { background-color: #f8fafc; padding: 20px; margin: 25px 0; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .party-block { margin-bottom: 15px; padding: 15px; background: white; border-radius: 6px; border-left: 4px solid #3b82f6; }
+        .party-label { font-weight: bold; color: #1e40af; font-size: 14px; margin-bottom: 8px; display: block; }
+        .section { margin: 25px 0; }
+        .section-content { margin-left: 20px; }
+        .subsection { margin: 15px 0 15px 25px; padding-left: 15px; border-left: 2px solid #e5e7eb; }
+        .definition { margin: 12px 0 12px 30px; padding: 10px 15px; background: #f8fafc; border-radius: 6px; }
+        .definition-term { font-weight: bold; color: #1e40af; }
+        .schedule { background-color: #fefce8; padding: 25px; margin: 30px 0; border-radius: 10px; border: 2px solid #facc15; }
+        .schedule-title { color: #854d0e; font-weight: bold; font-size: 16px; margin-bottom: 15px; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #d1d5db; padding: 10px; text-align: left; font-size: 12px; }
+        th { background-color: #1e40af; color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        .signature-area { margin-top: 60px; page-break-inside: avoid; border-top: 3px solid #1e40af; padding-top: 30px; }
+        .signature-block { display: inline-block; width: 45%; vertical-align: top; margin-top: 30px; }
+        .signature-line { border-bottom: 1px solid #000; margin: 50px 0 8px 0; }
+        .legal-notice { background-color: #fef2f2; border-left: 4px solid #dc2626; padding: 15px; margin: 25px 0; font-size: 11px; }
+        .ccpa-reference { color: #6b7280; font-size: 10px; font-style: italic; margin-top: 5px; }
+        .effective-date { text-align: center; font-size: 14px; color: #4b5563; margin-bottom: 30px; font-weight: 600; }
+        .article-ref { background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+        ol { counter-reset: item; list-style-type: none; padding-left: 0; }
+        ol > li { margin: 12px 0; }
+        ul { margin: 10px 0 10px 20px; }
+        ul li { margin: 5px 0; }
+        .highlight-box { background: #eff6ff; border: 1px solid #3b82f6; border-radius: 8px; padding: 15px; margin: 15px 0; }
+        @media print { 
+            .download-section { display: none !important; } 
+            @page { margin: 2cm; size: letter; }
+            body { font-size: 11pt; }
+            h1 { font-size: 18pt; }
+            h2 { font-size: 12pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+        <p style="margin-top: 10px; font-size: 12px; color: #4b5563;">Use your browser's print function to save as PDF</p>
+    </div>
+
+    <div class="document-header">
+        <span class="doc-badge">🇺🇸 CCPA/CPRA COMPLIANT</span>
+        <h1>CALIFORNIA CONSUMER PRIVACY ACT<br>SERVICE PROVIDER AGREEMENT</h1>
+        <p class="ccpa-reference">Pursuant to California Civil Code §§ 1798.100(d) and 1798.140(ag)<br>Effective January 1, 2025</p>
+    </div>
+
+    <p class="effective-date"><strong>Agreement Effective Date:</strong> {{formatDate(now; "MMMM D, YYYY")}}</p>
+
+    <div class="parties">
+        <div class="party-block">
+            <span class="party-label">🏢 BUSINESS ("Company")</span>
+            <strong>{{1.company}}</strong><br>
+            {{1.company_address}}<br>
+            Registration: {{1.company_registration}}<br>
+            Primary Contact: {{1.email}}<br>
+            Phone: {{1.phone_number}}
+        </div>
+        <div class="party-block">
+            <span class="party-label">🔧 SERVICE PROVIDER ("Provider")</span>
+            <strong>{{1.service_provider_name}}</strong><br>
+            {{1.service_provider_address}}<br>
+            Contact: {{1.service_provider_contact}}
+        </div>
+    </div>
+
+    <div class="section">
+        <p><strong>RECITALS</strong></p>
+        <p><strong>WHEREAS</strong>, the California Consumer Privacy Act of 2018, as amended by the California Privacy Rights Act of 2020 (collectively, "CCPA"), imposes obligations on businesses that collect, use, and share personal information of California consumers;</p>
+        <p><strong>WHEREAS</strong>, Company is a "Business" as defined under CCPA Civil Code § 1798.140(d) and desires to engage Provider to perform certain services involving the processing of Personal Information;</p>
+        <p><strong>WHEREAS</strong>, Provider agrees to act as a "Service Provider" as defined under CCPA Civil Code § 1798.140(ag) and process Personal Information only as permitted under this Agreement and the CCPA;</p>
+        <p><strong>NOW, THEREFORE</strong>, in consideration of the mutual promises contained herein, the parties agree as follows:</p>
+    </div>
+
+    <h2>Article 1: Definitions</h2>
+    <div class="section-content">
+        <p>Capitalized terms not defined herein shall have the meanings in the CCPA (Civil Code § 1798.140).</p>
+        
+        <div class="definition">
+            <span class="definition-term">"Business Purpose"</span> — Use of Personal Information for Company's operational purposes as specified in Schedule A, or purposes permitted under CCPA § 1798.140(e).
+        </div>
+        <div class="definition">
+            <span class="definition-term">"Consumer"</span> — A natural person who is a California resident (CCPA § 1798.140(i)).
+        </div>
+        <div class="definition">
+            <span class="definition-term">"Personal Information"</span> — Information that identifies, relates to, or could reasonably be linked to a Consumer or household (CCPA § 1798.140(v)).
+        </div>
+        <div class="definition">
+            <span class="definition-term">"Sell"</span> — Selling, renting, disclosing, or transferring Personal Information for monetary or other valuable consideration (CCPA § 1798.140(ad)).
+        </div>
+        <div class="definition">
+            <span class="definition-term">"Share"</span> — Disclosing Personal Information for cross-context behavioral advertising (CCPA § 1798.140(ah)).
+        </div>
+        <div class="definition">
+            <span class="definition-term">"Sensitive Personal Information"</span> — Categories specified in CCPA § 1798.140(ae), including government IDs, financial account information, precise geolocation, and other protected categories.
+        </div>
+    </div>
+
+    <h2>Article 2: Service Provider Obligations</h2>
+    <div class="section-content">
+        <p class="ccpa-reference"><span class="article-ref">§ 1798.100(d)</span> <span class="article-ref">§ 1798.140(ag)</span></p>
+        
+        <p><strong>2.1 Prohibited Activities.</strong> Provider shall NOT:</p>
+        <div class="subsection">
+            (a) <strong>Sell</strong> the Personal Information received from Company;<br><br>
+            (b) <strong>Share</strong> the Personal Information for cross-context behavioral advertising;<br><br>
+            (c) <strong>Retain, use, or disclose</strong> Personal Information for any purpose other than the Business Purposes specified in this Agreement;<br><br>
+            (d) <strong>Retain, use, or disclose</strong> Personal Information outside of the direct business relationship with Company;<br><br>
+            (e) <strong>Combine</strong> Personal Information received from Company with Personal Information from other sources, except as permitted under CCPA § 1798.140(ag)(1)(D).
+        </div>
+
+        <p><strong>2.2 Permitted Use.</strong> Provider may process Personal Information ONLY for:</p>
+        <div class="subsection">
+            (a) The specific Business Purposes in Schedule A;<br><br>
+            (b) Services reasonably necessary under the underlying service agreement;<br><br>
+            (c) Purposes otherwise permitted by the CCPA.
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>2.3 CERTIFICATION</strong></p>
+            <p>Provider hereby <strong>CERTIFIES</strong> that it understands and will comply with the restrictions in Section 2.1, as required by CCPA § 1798.140(ag)(1)(B).</p>
+        </div>
+
+        <p><strong>2.4 Compliance Monitoring.</strong> Provider agrees that Company may monitor compliance through:</p>
+        <div class="subsection">
+            (a) Manual reviews and automated scans;<br><br>
+            (b) Regular assessments, audits, or technical testing;<br><br>
+            (c) Such monitoring at least once every <strong>twelve (12) months</strong>.
+        </div>
+        <p class="ccpa-reference">As required by CCPA § 1798.140(ag)(1)(C)</p>
+    </div>
+
+    <h2>Article 3: Consumer Rights Assistance</h2>
+    <div class="section-content">
+        <p><strong>3.1 Consumer Requests.</strong> Provider shall assist Company in responding to verifiable consumer requests:</p>
+        <div class="subsection">
+            <table>
+                <tr><th>Right</th><th>CCPA Section</th></tr>
+                <tr><td>Right to Know / Access</td><td>§ 1798.110</td></tr>
+                <tr><td>Right to Delete</td><td>§ 1798.105</td></tr>
+                <tr><td>Right to Correct</td><td>§ 1798.106</td></tr>
+                <tr><td>Right to Opt-Out of Sale/Sharing</td><td>§ 1798.120</td></tr>
+                <tr><td>Right to Limit Sensitive PI Use</td><td>§ 1798.121</td></tr>
+            </table>
+        </div>
+
+        <p><strong>3.2 Response Timeline.</strong> Provider shall respond to Company's requests within <strong>{{1.sp_response_days}} business days</strong>.</p>
+
+        <p><strong>3.3 Direct Consumer Requests.</strong> If Provider receives a request directly from a Consumer:</p>
+        <div class="subsection">
+            (a) Promptly notify Company;<br><br>
+            (b) Do not respond directly unless authorized by Company;<br><br>
+            (c) Assist Company as directed.
+        </div>
+    </div>
+
+    <h2>Article 4: Data Security</h2>
+    <div class="section-content">
+        <p class="ccpa-reference"><span class="article-ref">§ 1798.100(e)</span> <span class="article-ref">§ 1798.150</span></p>
+
+        <p><strong>4.1 Security Measures.</strong> Provider shall implement reasonable security procedures appropriate to the nature of the Personal Information, including:</p>
+        <div class="highlight-box">
+            {{1.security_measures}}
+        </div>
+
+        <p><strong>4.2 Breach Notification.</strong> Upon discovery of a security breach, Provider shall:</p>
+        <div class="subsection">
+            (a) Notify Company within <strong>{{1.breach_notification_hours}} hours</strong>;<br><br>
+            (b) Provide all information needed for Company's breach notification obligations;<br><br>
+            (c) Cooperate with investigation and remediation;<br><br>
+            (d) Take immediate steps to mitigate and prevent recurrence.
+        </div>
+
+        <p><strong>4.3 Company Security Contacts:</strong></p>
+        <table>
+            <tr><th>Role</th><th>Name</th><th>Contact</th></tr>
+            <tr><td>Security Officer</td><td>{{1.security_officer}}</td><td>{{1.security_officer_email}}<br>{{1.security_officer_phone}}</td></tr>
+            <tr><td>Privacy Officer</td><td>{{1.privacy_officer}}</td><td>{{1.email}}</td></tr>
+            <tr><td>Incident Commander</td><td>{{1.incident_commander}}</td><td>{{1.incident_commander_email}}<br>{{1.incident_commander_phone}}</td></tr>
+        </table>
+    </div>
+
+    <h2>Article 5: Sub-Contractors</h2>
+    <div class="section-content">
+        <p class="ccpa-reference"><span class="article-ref">§ 1798.140(ag)(2)</span></p>
+        
+        <p><strong>5.1</strong> If Provider engages any sub-contractor to process Personal Information:</p>
+        <div class="subsection">
+            (a) Provider shall <strong>notify Company</strong> of such engagement;<br><br>
+            (b) Provider shall enter a <strong>written contract</strong> binding sub-contractor to identical obligations;<br><br>
+            (c) Provider remains <strong>fully liable</strong> for sub-contractor acts and omissions.
+        </div>
+    </div>
+
+    <h2>Article 6: Compliance & Remediation</h2>
+    <div class="section-content">
+        <p class="ccpa-reference"><span class="article-ref">§ 1798.100(d)(4)-(5)</span></p>
+        
+        <p><strong>6.1 Non-Compliance Notification.</strong> Provider shall <strong>immediately notify</strong> Company if Provider determines it can no longer meet its CCPA obligations.</p>
+
+        <p><strong>6.2 Company Remediation Rights.</strong> Upon such notification, Company may:</p>
+        <div class="subsection">
+            (a) Take reasonable steps to <strong>stop unauthorized use</strong>;<br><br>
+            (b) <strong>Remediate</strong> any unauthorized use;<br><br>
+            (c) <strong>Terminate</strong> this Agreement and underlying service agreement.
+        </div>
+    </div>
+
+    <h2>Article 7: Retention & Deletion</h2>
+    <div class="section-content">
+        <p><strong>7.1 Retention Period.</strong> Provider shall retain Personal Information only as necessary, and no longer than: <strong>{{1.ccpa_retention}}</strong></p>
+
+        <p><strong>7.2 Deletion Requirements.</strong> Upon termination or Company's request, Provider shall:</p>
+        <div class="subsection">
+            (a) Delete all Personal Information in its possession;<br><br>
+            (b) Direct sub-contractors to delete;<br><br>
+            (c) Provide written certification of deletion;<br><br>
+            (d) Complete within <strong>thirty (30) days</strong>.
+        </div>
+    </div>
+
+    <h2>Article 8: Indemnification</h2>
+    <div class="section-content">
+        <p><strong>8.1</strong> Provider shall <strong>indemnify, defend, and hold harmless</strong> Company from claims arising from:</p>
+        <div class="subsection">
+            (a) Provider's breach of this Agreement;<br><br>
+            (b) Provider's CCPA violations;<br><br>
+            (c) Unauthorized Sale or Sharing of Personal Information;<br><br>
+            (d) Security breaches due to Provider's failure to implement reasonable security.
+        </div>
+    </div>
+
+    <h2>Article 9: Term & Termination</h2>
+    <div class="section-content">
+        <p><strong>9.1 Term.</strong> This Agreement continues for as long as Provider processes Personal Information for Company.</p>
+
+        <p><strong>9.2 Termination.</strong> Either party may terminate:</p>
+        <div class="subsection">
+            (a) Upon thirty (30) days written notice;<br><br>
+            (b) Immediately upon material breach;<br><br>
+            (c) Immediately if required by law.
+        </div>
+
+        <p><strong>9.3 Survival.</strong> Articles 4, 7, and 8 survive termination.</p>
+    </div>
+
+    <h2>Article 10: General Provisions</h2>
+    <div class="section-content">
+        <p><strong>10.1 Governing Law.</strong> This Agreement is governed by California law.</p>
+        <p><strong>10.2 Entire Agreement.</strong> This constitutes the complete agreement regarding CCPA compliance.</p>
+        <p><strong>10.3 Amendments.</strong> Amendments require written agreement signed by both parties.</p>
+        <p><strong>10.4 Severability.</strong> Invalid provisions do not affect remaining provisions.</p>
+    </div>
+
+    <!-- SCHEDULE A -->
+    <div class="schedule">
+        <div class="schedule-title">📋 Schedule A: Business Purposes & Personal Information</div>
+        
+        <h3>A.1 Authorized Business Purposes</h3>
+        <p>Provider may process Personal Information solely for:</p>
+        <div class="highlight-box" style="background: white;">
+            <strong>{{1.business_purposes}}</strong>
+        </div>
+        <p class="ccpa-reference">As defined in CCPA § 1798.140(e)</p>
+
+        <h3>A.2 Categories of Personal Information</h3>
+        <table>
+            <tr><th>Category</th><th>Collected</th></tr>
+            <tr><td colspan="2"><strong>{{1.ccpa_categories}}</strong></td></tr>
+        </table>
+
+        <h3>A.3 Sensitive Personal Information</h3>
+        <table>
+            <tr><th>Category</th><th>Collected?</th><th>Purpose</th></tr>
+            <tr><td>Social Security Number</td><td>{{1.collects_ssn}}</td><td>{{1.ssn_purpose}}</td></tr>
+            <tr><td>Account Login/Credentials</td><td>{{1.collects_login}}</td><td>{{1.login_purpose}}</td></tr>
+            <tr><td>Precise Geolocation</td><td>{{1.collects_geolocation}}</td><td>{{1.geolocation_purpose}}</td></tr>
+            <tr><td>Racial/Ethnic Origin</td><td>{{1.collects_race}}</td><td>{{1.race_purpose}}</td></tr>
+            <tr><td>Religious Beliefs</td><td>{{1.collects_religion}}</td><td>{{1.religion_purpose}}</td></tr>
+            <tr><td>Union Membership</td><td>{{1.collects_union}}</td><td>{{1.union_purpose}}</td></tr>
+            <tr><td>Mail/Email/Text Contents</td><td>{{1.collects_communications}}</td><td>{{1.communications_purpose}}</td></tr>
+            <tr><td>Genetic Data</td><td>{{1.collects_genetic}}</td><td>{{1.genetic_purpose}}</td></tr>
+            <tr><td>Biometric Information</td><td>{{1.collects_biometric}}</td><td>{{1.biometric_purpose}}</td></tr>
+            <tr><td>Health Information</td><td>{{1.collects_health}}</td><td>{{1.health_purpose}}</td></tr>
+            <tr><td>Sex Life/Orientation</td><td>{{1.collects_sex_life}}</td><td>{{1.sex_life_purpose}}</td></tr>
+            <tr><td>Citizenship/Immigration</td><td>{{1.collects_citizenship}}</td><td>{{1.citizenship_purpose}}</td></tr>
+        </table>
+
+        <h3>A.4 Consumer Request Methods</h3>
+        <table>
+            <tr><th>Method</th><th>Contact</th></tr>
+            <tr><td>Toll-Free Number</td><td>{{1.ccpa_tollfree}}</td></tr>
+            <tr><td>Web Form URL</td><td>{{1.ccpa_webform_url}}</td></tr>
+            <tr><td>Email</td><td>{{1.email}}</td></tr>
+        </table>
+
+        <h3>A.5 Data Handling Practices</h3>
+        <table>
+            <tr><th>Practice</th><th>Status</th></tr>
+            <tr><td>Sells Personal Information?</td><td>{{1.ccpa_sell}}</td></tr>
+            <tr><td>Shares for Advertising?</td><td>{{1.ccpa_share}}</td></tr>
+            <tr><td>Processes Minors' Data?</td><td>{{1.ccpa_minors}}</td></tr>
+            <tr><td>Honors GPC Signals?</td><td>{{1.ccpa_gpc}}</td></tr>
+            <tr><td>Financial Incentives?</td><td>{{1.ccpa_financial_incentives}}</td></tr>
+        </table>
+    </div>
+
+    <!-- SCHEDULE B -->
+    <div class="schedule">
+        <div class="schedule-title">🔒 Schedule B: Security & Incident Response</div>
+        
+        <h3>B.1 Required Security Measures</h3>
+        <div class="highlight-box" style="background: white;">
+            {{1.security_measures}}
+        </div>
+
+        <h3>B.2 Incident Response Team</h3>
+        <table>
+            <tr><th>Role</th><th>Name</th><th>Email</th><th>Phone</th></tr>
+            <tr><td>Incident Commander</td><td>{{1.incident_commander}}</td><td>{{1.incident_commander_email}}</td><td>{{1.incident_commander_phone}}</td></tr>
+            <tr><td>IT Security Lead</td><td>{{1.it_security_lead}}</td><td>{{1.it_security_email}}</td><td>{{1.it_security_phone}}</td></tr>
+            <tr><td>Legal Counsel</td><td>{{1.legal_counsel}}</td><td>{{1.legal_email}}</td><td>{{1.legal_phone}}</td></tr>
+            <tr><td>Communications Lead</td><td>{{1.comms_lead}}</td><td>{{1.comms_email}}</td><td>{{1.comms_phone}}</td></tr>
+        </table>
+
+        <h3>B.3 External Resources</h3>
+        <table>
+            <tr><th>Resource</th><th>Provider</th><th>Contact</th></tr>
+            <tr><td>Outside Counsel</td><td>{{1.outside_counsel}}</td><td>{{1.outside_counsel_phone}}</td></tr>
+            <tr><td>Forensics Firm</td><td>{{1.forensics_firm}}</td><td>{{1.forensics_phone}}</td></tr>
+            <tr><td>Cyber Insurance</td><td>{{1.cyber_insurance}}</td><td>{{1.insurance_phone}}<br>Policy: {{1.insurance_policy}}</td></tr>
+            <tr><td>Credit Monitoring</td><td>{{1.credit_monitoring}}</td><td>{{1.credit_monitoring_phone}}</td></tr>
+        </table>
+
+        <h3>B.4 Response Timeframes</h3>
+        <table>
+            <tr><th>Requirement</th><th>Timeframe</th></tr>
+            <tr><td>Breach Notification to Company</td><td><strong>{{1.breach_notification_hours}} hours</strong></td></tr>
+            <tr><td>Consumer Request Assistance</td><td><strong>{{1.sp_response_days}} business days</strong></td></tr>
+            <tr><td>Data Deletion</td><td><strong>30 days</strong></td></tr>
+        </table>
+    </div>
+
+    <!-- SIGNATURE AREA -->
+    <div class="signature-area">
+        <h2 style="text-align: center;">Execution</h2>
+        <p style="text-align: center;">IN WITNESS WHEREOF, the parties execute this CCPA Service Provider Agreement as of the Effective Date.</p>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 50px;">
+            <div class="signature-block">
+                <p><strong>COMPANY:</strong></p>
+                <p style="font-size: 14px; color: #1e40af;">{{1.company}}</p>
+                <div class="signature-line"></div>
+                <p><strong>Name:</strong> {{1.authorized_signatory}}</p>
+                <p><strong>Title:</strong> {{1.signatory_title}}</p>
+                <p><strong>Date:</strong> _______________________</p>
+            </div>
+            <div class="signature-block">
+                <p><strong>SERVICE PROVIDER:</strong></p>
+                <p style="font-size: 14px; color: #1e40af;">{{1.service_provider_name}}</p>
+                <div class="signature-line"></div>
+                <p><strong>Name:</strong> _______________________</p>
+                <p><strong>Title:</strong> _______________________</p>
+                <p><strong>Date:</strong> _______________________</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-notice">
+        <p><strong>⚠️ Legal Disclaimer:</strong> This document is a template generated by 3CH0 Compliance and has not been reviewed by legal counsel. We strongly recommend having this agreement reviewed by a qualified attorney before execution. This template is based on CCPA requirements effective January 1, 2025.</p>
+        <p><strong>Document Generated:</strong> {{formatDate(now; "MMMM D, YYYY")}} | <strong>Version:</strong> {{1.plan_version}}</p>
+    </div>
+
+    <div class="download-section">
+        <button class="download-btn" onclick="window.print()">📄 Download as PDF</button>
+    </div>
+</body>
+</html>

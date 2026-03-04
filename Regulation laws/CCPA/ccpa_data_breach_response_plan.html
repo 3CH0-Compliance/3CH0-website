@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCPA Data Breach Response Plan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #1a5276; font-size: 24px; margin: 30px 0 15px 0; border-bottom: 2px solid #1a5276; padding-bottom: 10px; }
+        h2 { color: #2874a6; font-size: 18px; margin: 20px 0 10px 0; }
+        h3 { color: #2e86ab; font-size: 16px; margin: 15px 0 8px 0; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 10px 0 15px 25px; }
+        li { margin-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 12px; text-align: left; vertical-align: top; }
+        th { background-color: #1a5276; color: white; }
+        .title { text-align: center; color: #1a5276; font-size: 28px; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #2874a6; font-size: 18px; margin-bottom: 30px; }
+        .header-box { background-color: #eaf2f8; border: 1px solid #ccc; padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .warning-box { background-color: #fdf2f2; border: 2px solid #c0392b; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .alert-box { background-color: #fff3cd; border: 2px solid #856404; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .success-box { background-color: #d4edda; border: 2px solid #155724; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .info-row { background-color: #eaf2f8; width: 35%; }
+        .checklist { list-style-type: none; margin-left: 0; padding-left: 0; }
+        .checklist li { padding: 10px 0 10px 35px; position: relative; border-bottom: 1px solid #eee; }
+        .checklist li:before { content: "☐"; position: absolute; left: 5px; font-size: 18px; }
+        .text-area { border: 1px solid #ccc; min-height: 100px; padding: 10px; margin: 10px 0; }
+        strong { color: #1a5276; }
+        .footer { text-align: center; color: #666; font-style: italic; margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; }
+        .timeline { background-color: #e8f4fc; padding: 15px; border-left: 4px solid #2874a6; margin: 15px 0; }
+        .critical { color: #c0392b; font-weight: bold; }
+        @media print { body { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="title">DATA BREACH RESPONSE PLAN</div>
+    <div class="subtitle">CCPA Incident Response Procedures</div>
+
+    <div class="warning-box">
+        <strong>⚠️ IMPORTANT:</strong> A data breach involving unencrypted personal information may result in significant penalties under California Civil Code § 1798.82 and the CCPA. Time is critical - immediate action is required upon discovery of any suspected breach.
+    </div>
+
+    <div class="header-box">
+        <p><strong>Company:</strong> [COMPANY NAME]</p>
+        <p><strong>Plan Version:</strong> [VERSION]</p>
+        <p><strong>Effective Date:</strong> [DATE]</p>
+        <p><strong>Last Updated:</strong> [DATE]</p>
+        <p><strong>Plan Owner:</strong> [PRIVACY OFFICER NAME]</p>
+        <p><strong>Next Review Date:</strong> [DATE]</p>
+    </div>
+
+    <h1>1. INCIDENT RESPONSE TEAM</h1>
+    <p>The following individuals comprise the Data Breach Response Team. Contact immediately upon discovery of any suspected breach.</p>
+    
+    <table>
+        <tr>
+            <th>Role</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Backup</th>
+        </tr>
+        <tr>
+            <td><strong>Incident Commander</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+        <tr>
+            <td><strong>Privacy Officer</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+        <tr>
+            <td><strong>IT Security Lead</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+        <tr>
+            <td><strong>Legal Counsel</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+        <tr>
+            <td><strong>Communications Lead</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+        <tr>
+            <td><strong>Executive Sponsor</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+        <tr>
+            <td><strong>HR Representative</strong></td>
+            <td>[NAME]</td>
+            <td>[PHONE]</td>
+            <td>[EMAIL]</td>
+            <td>[BACKUP NAME]</td>
+        </tr>
+    </table>
+
+    <h2>External Contacts</h2>
+    <table>
+        <tr>
+            <th>Resource</th>
+            <th>Contact</th>
+            <th>Phone</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>Outside Legal Counsel</td>
+            <td>[NAME/FIRM]</td>
+            <td>[PHONE]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Forensics Firm</td>
+            <td>[NAME/FIRM]</td>
+            <td>[PHONE]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Cyber Insurance</td>
+            <td>[COMPANY]</td>
+            <td>[PHONE]</td>
+            <td>Policy #: [NUMBER]</td>
+        </tr>
+        <tr>
+            <td>PR/Communications Firm</td>
+            <td>[NAME/FIRM]</td>
+            <td>[PHONE]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Credit Monitoring Service</td>
+            <td>[COMPANY]</td>
+            <td>[PHONE]</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h1>2. BREACH RESPONSE PHASES</h1>
+
+    <div class="timeline">
+        <strong>Response Timeline Overview:</strong><br>
+        • <strong>Phase 1:</strong> Immediate Response (0-24 hours)<br>
+        • <strong>Phase 2:</strong> Investigation (24-72 hours)<br>
+        • <strong>Phase 3:</strong> Notification (As required by law)<br>
+        • <strong>Phase 4:</strong> Remediation (Ongoing)<br>
+        • <strong>Phase 5:</strong> Post-Incident Review (Within 30 days)
+    </div>
+
+    <h2>PHASE 1: IMMEDIATE RESPONSE (0-24 HOURS)</h2>
+    <div class="alert-box">
+        <strong>Priority:</strong> Contain the breach and preserve evidence. Do NOT destroy any logs or data.
+    </div>
+    
+    <ul class="checklist">
+        <li><strong>CONTAIN:</strong> Isolate affected systems immediately</li>
+        <li><strong>PRESERVE:</strong> Do not destroy logs, emails, or any potential evidence</li>
+        <li><strong>ACTIVATE:</strong> Alert Incident Response Team members</li>
+        <li><strong>DOCUMENT:</strong> Begin incident log - record all actions with timestamps</li>
+        <li><strong>ASSESS:</strong> Perform initial scope assessment</li>
+        <li><strong>IDENTIFY:</strong> Determine what systems and data may be affected</li>
+        <li><strong>SECURE:</strong> Change compromised credentials</li>
+        <li><strong>NOTIFY:</strong> Alert executive leadership</li>
+        <li><strong>ENGAGE:</strong> Contact legal counsel</li>
+        <li><strong>INSURANCE:</strong> Notify cyber insurance carrier</li>
+        <li><strong>VENDORS:</strong> Notify service providers if their systems are involved</li>
+    </ul>
+
+    <h2>PHASE 2: INVESTIGATION (24-72 HOURS)</h2>
+    <ul class="checklist">
+        <li>Determine root cause of the breach</li>
+        <li>Identify all affected systems and databases</li>
+        <li>Determine if data was actually accessed, acquired, or exfiltrated</li>
+        <li>Assess whether encryption was in place and if it was compromised</li>
+        <li>Identify specific data elements involved</li>
+        <li>Determine number of individuals affected</li>
+        <li>Identify California residents affected</li>
+        <li>Determine if Sensitive Personal Information was involved</li>
+        <li>Engage forensics firm if needed</li>
+        <li>Document all investigation findings</li>
+        <li>Assess notification requirements</li>
+        <li>Prepare preliminary incident report</li>
+    </ul>
+
+    <h2>PHASE 3: NOTIFICATION</h2>
+    
+    <h3>California Breach Notification Requirements (Cal. Civ. Code § 1798.82)</h3>
+    <p>Notification is required when unencrypted personal information was, or is reasonably believed to have been, acquired by an unauthorized person.</p>
+
+    <div class="warning-box">
+        <strong>Notification Triggers - Personal Information includes:</strong>
+        <ul>
+            <li>Name + SSN</li>
+            <li>Name + Driver's license/CA ID number</li>
+            <li>Name + Financial account number with access codes</li>
+            <li>Name + Medical/health insurance information</li>
+            <li>Name + Unique biometric data</li>
+            <li>Username/email + password/security question answers</li>
+        </ul>
+    </div>
+
+    <h3>Consumer Notification Content Requirements</h3>
+    <p>Notification must be written in plain language and include:</p>
+    <ul class="checklist">
+        <li>Name and contact information of the reporting company</li>
+        <li>List of types of personal information involved</li>
+        <li>Date of breach (if known) or estimated date range</li>
+        <li>Date of notice</li>
+        <li>Whether notification was delayed due to law enforcement investigation</li>
+        <li>General description of the breach incident</li>
+        <li>Toll-free numbers and addresses of major credit bureaus (if SSN involved)</li>
+        <li>Toll-free number, email, and address for company contact</li>
+        <li>Advice on what consumers can do to protect themselves</li>
+    </ul>
+
+    <h3>Notification Methods</h3>
+    <ul class="checklist">
+        <li><strong>Written notice:</strong> Sent to last known mailing address</li>
+        <li><strong>Electronic notice:</strong> If consistent with E-SIGN Act</li>
+        <li><strong>Substitute notice:</strong> If cost exceeds $250,000, more than 500,000 consumers affected, or insufficient contact information</li>
+    </ul>
+
+    <h3>Attorney General Notification</h3>
+    <div class="alert-box">
+        <strong>REQUIRED:</strong> If more than 500 California residents are affected, you must submit a sample copy of the notification to the California Attorney General.
+        <br><br>
+        <strong>Submit to:</strong> <a href="https://oag.ca.gov/privacy/databreach/reporting">https://oag.ca.gov/privacy/databreach/reporting</a>
+    </div>
+
+    <h3>Notification Timeline</h3>
+    <ul class="checklist">
+        <li>Notify in the "most expedient time possible"</li>
+        <li>Notify "without unreasonable delay"</li>
+        <li>May delay if law enforcement determines notification would impede investigation</li>
+        <li>Document any delay and reason</li>
+    </ul>
+
+    <h2>PHASE 4: REMEDIATION</h2>
+    <ul class="checklist">
+        <li>Fix vulnerabilities that caused the breach</li>
+        <li>Update security measures and controls</li>
+        <li>Implement additional monitoring</li>
+        <li>Retrain employees if human error was involved</li>
+        <li>Review and update security policies</li>
+        <li>Review and update vendor agreements if vendor was involved</li>
+        <li>Consider offering credit monitoring/identity protection services</li>
+        <li>Set up dedicated response line/email for affected consumers</li>
+        <li>Monitor for misuse of compromised data</li>
+    </ul>
+
+    <h2>PHASE 5: POST-INCIDENT REVIEW (Within 30 Days)</h2>
+    <ul class="checklist">
+        <li>Conduct post-incident review meeting</li>
+        <li>Document lessons learned</li>
+        <li>Update incident response plan based on lessons learned</li>
+        <li>Update security policies and procedures</li>
+        <li>Implement additional preventive controls</li>
+        <li>Schedule follow-up security assessment</li>
+        <li>Prepare final incident report</li>
+        <li>Archive all incident documentation</li>
+    </ul>
+
+    <h1>3. BREACH DOCUMENTATION FORM</h1>
+    <table>
+        <tr><td class="info-row"><strong>Incident ID:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Date/Time Discovered:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Discovered By:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Date/Time Breach Occurred:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Duration of Breach:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Incident Description:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Systems Affected:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Data Categories Involved:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Sensitive PI Involved?</strong></td><td>☐ Yes &nbsp;&nbsp; ☐ No<br>If yes, specify:</td></tr>
+        <tr><td class="info-row"><strong>Total Individuals Affected:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>California Residents Affected:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Was Data Encrypted?</strong></td><td>☐ Yes &nbsp;&nbsp; ☐ No &nbsp;&nbsp; ☐ Partially</td></tr>
+        <tr><td class="info-row"><strong>Was Encryption Compromised?</strong></td><td>☐ Yes &nbsp;&nbsp; ☐ No &nbsp;&nbsp; ☐ Unknown</td></tr>
+        <tr><td class="info-row"><strong>Root Cause:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Attack Vector (if applicable):</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Service Provider Involved?</strong></td><td>☐ Yes &nbsp;&nbsp; ☐ No<br>If yes, name:</td></tr>
+    </table>
+
+    <h2>Containment Actions Taken:</h2>
+    <div class="text-area"></div>
+
+    <h2>Notification Log:</h2>
+    <table>
+        <tr>
+            <th>Notification Type</th>
+            <th>Date</th>
+            <th>Method</th>
+            <th>Completed By</th>
+        </tr>
+        <tr>
+            <td>Executive Leadership</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Legal Counsel</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Cyber Insurance</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Law Enforcement</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>California AG</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Affected Consumers</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Service Providers</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h1>4. CONSUMER NOTIFICATION TEMPLATE</h1>
+    <div class="header-box">
+        <p><strong>[COMPANY NAME]</strong></p>
+        <p><strong>Notice of Data Breach</strong></p>
+        <p><strong>Date:</strong> [DATE]</p>
+        <br>
+        <p>Dear [CONSUMER NAME],</p>
+        <br>
+        <p>We are writing to inform you of a data security incident that may have affected your personal information.</p>
+        <br>
+        <p><strong>What Happened:</strong><br>[DESCRIPTION OF INCIDENT]</p>
+        <br>
+        <p><strong>What Information Was Involved:</strong><br>[LIST OF DATA TYPES]</p>
+        <br>
+        <p><strong>What We Are Doing:</strong><br>[DESCRIPTION OF RESPONSE ACTIONS]</p>
+        <br>
+        <p><strong>What You Can Do:</strong><br>[RECOMMENDATIONS FOR CONSUMERS]</p>
+        <br>
+        <p><strong>For More Information:</strong><br>
+        If you have questions, please contact us at:<br>
+        Phone: [TOLL-FREE NUMBER]<br>
+        Email: [EMAIL]<br>
+        Address: [ADDRESS]</p>
+        <br>
+        <p>[If SSN involved, include credit bureau contact information]</p>
+        <br>
+        <p>Sincerely,<br>[NAME]<br>[TITLE]<br>[COMPANY NAME]</p>
+    </div>
+
+    <h1>5. PLAN MAINTENANCE</h1>
+    <ul class="checklist">
+        <li>Review and update this plan at least annually</li>
+        <li>Update contact information quarterly</li>
+        <li>Conduct tabletop exercises at least annually</li>
+        <li>Update plan after any actual incident</li>
+        <li>Train new team members on their roles</li>
+        <li>Test notification procedures</li>
+        <li>Verify external contact information</li>
+    </ul>
+
+    <h2>Plan Review Log:</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Reviewed By</th>
+            <th>Changes Made</th>
+        </tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </table>
+
+    <div class="footer">
+        <p>This Data Breach Response Plan is part of [COMPANY NAME]'s CCPA compliance program.</p>
+        <p>Review and update at least annually. Test procedures regularly.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCPA Consumer Request Log Template</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333; max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #1a5276; font-size: 24px; margin: 30px 0 15px 0; border-bottom: 2px solid #1a5276; padding-bottom: 10px; }
+        h2 { color: #2874a6; font-size: 18px; margin: 20px 0 10px 0; }
+        p { margin-bottom: 12px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; }
+        th { background-color: #1a5276; color: white; font-size: 12px; }
+        td { font-size: 12px; }
+        .title { text-align: center; color: #1a5276; font-size: 28px; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #2874a6; font-size: 18px; margin-bottom: 30px; }
+        .header-box { background-color: #eaf2f8; border: 1px solid #ccc; padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .warning-box { background-color: #fff8e1; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; }
+        .info-row { background-color: #eaf2f8; }
+        .code-table { width: auto; }
+        .code-table td, .code-table th { padding: 8px 15px; }
+        strong { color: #1a5276; }
+        .footer { text-align: center; color: #666; font-style: italic; margin-top: 40px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; }
+        .metrics-table th { background-color: #2874a6; }
+        .log-table { font-size: 11px; }
+        .log-table th, .log-table td { padding: 8px; }
+        @media print { 
+            body { padding: 10px; font-size: 11px; }
+            .log-table { font-size: 9px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="title">CONSUMER REQUEST LOG</div>
+    <div class="subtitle">CCPA 24-Month Record Retention</div>
+
+    <div class="header-box">
+        <p><strong>Company:</strong> [COMPANY NAME]</p>
+        <p><strong>Log Period:</strong> [START DATE] to [END DATE]</p>
+        <p><strong>Privacy Officer:</strong> [NAME]</p>
+        <p><strong>Last Updated:</strong> [DATE]</p>
+    </div>
+
+    <div class="warning-box">
+        <strong>⚠️ Retention Requirement:</strong> Maintain records of all consumer requests and how they were responded to for at least 24 months (Cal. Civ. Code § 1798.130). This log serves as evidence of CCPA compliance.
+    </div>
+
+    <h1>REQUEST TYPE CODES</h1>
+    <table class="code-table">
+        <tr><th>Code</th><th>Request Type</th><th>Description</th></tr>
+        <tr><td><strong>KNOW-C</strong></td><td>Right to Know (Categories)</td><td>Request for categories of PI collected</td></tr>
+        <tr><td><strong>KNOW-S</strong></td><td>Right to Know (Specific)</td><td>Request for specific pieces of PI</td></tr>
+        <tr><td><strong>DEL</strong></td><td>Right to Delete</td><td>Request to delete personal information</td></tr>
+        <tr><td><strong>CORR</strong></td><td>Right to Correct</td><td>Request to correct inaccurate PI</td></tr>
+        <tr><td><strong>OPT-SALE</strong></td><td>Opt-Out of Sale</td><td>Request to stop selling PI</td></tr>
+        <tr><td><strong>OPT-SHARE</strong></td><td>Opt-Out of Sharing</td><td>Request to stop sharing for behavioral ads</td></tr>
+        <tr><td><strong>LIMIT</strong></td><td>Right to Limit</td><td>Request to limit use of sensitive PI</td></tr>
+    </table>
+
+    <h1>OUTCOME CODES</h1>
+    <table class="code-table">
+        <tr><th>Code</th><th>Outcome</th><th>Description</th></tr>
+        <tr><td><strong>COMP</strong></td><td>Completed</td><td>Request fully completed</td></tr>
+        <tr><td><strong>PART</strong></td><td>Partially Completed</td><td>Request partially completed (explain in notes)</td></tr>
+        <tr><td><strong>DENY-V</strong></td><td>Denied - Verification</td><td>Unable to verify consumer identity</td></tr>
+        <tr><td><strong>DENY-E</strong></td><td>Denied - Exception</td><td>Legal exception applies</td></tr>
+        <tr><td><strong>DENY-N</strong></td><td>Denied - No Data</td><td>No data found for consumer</td></tr>
+        <tr><td><strong>DENY-R</strong></td><td>Denied - Not Resident</td><td>Not a California resident</td></tr>
+        <tr><td><strong>WDRN</strong></td><td>Withdrawn</td><td>Consumer withdrew request</td></tr>
+        <tr><td><strong>PEND</strong></td><td>Pending</td><td>Request still being processed</td></tr>
+    </table>
+
+    <h1>REQUEST TRACKING LOG</h1>
+    <table class="log-table">
+        <tr>
+            <th>Request ID</th>
+            <th>Date Received</th>
+            <th>Consumer ID</th>
+            <th>Request Type</th>
+            <th>Method</th>
+            <th>45-Day Deadline</th>
+            <th>Extended?</th>
+            <th>Response Date</th>
+            <th>Days to Complete</th>
+            <th>Outcome</th>
+            <th>Assigned To</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+
+    <h1>QUARTERLY METRICS SUMMARY</h1>
+    <table class="metrics-table">
+        <tr>
+            <th>Metric</th>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>YTD Total</th>
+        </tr>
+        <tr><td><strong>Total Requests Received</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Right to Know (Categories)</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Right to Know (Specific)</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Right to Delete</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Right to Correct</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Opt-Out of Sale</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Opt-Out of Sharing</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Right to Limit Sensitive PI</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td colspan="6" style="background-color: #f8f9fa;"><strong>Response Metrics</strong></td></tr>
+        <tr><td>Completed within 45 Days</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Completed within 45 Days (%)</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Extensions Used</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Average Response Time (Days)</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td colspan="6" style="background-color: #f8f9fa;"><strong>Denial Metrics</strong></td></tr>
+        <tr><td>Denied - Unable to Verify</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Denied - Exception Applied</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Denied - No Data Found</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Denied - Not CA Resident</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Withdrawn by Consumer</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td colspan="6" style="background-color: #f8f9fa;"><strong>Request Method</strong></td></tr>
+        <tr><td>Via Web Form</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Via Email</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Via Phone</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Via Mail</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Via Authorized Agent</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+
+    <h1>ANNUAL SUMMARY</h1>
+    <table>
+        <tr><td class="info-row" style="width: 50%;"><strong>Total Requests Received:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Total Requests Completed:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Completion Rate:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Average Response Time:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>On-Time Completion Rate (within 45 days):</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Most Common Request Type:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Most Common Denial Reason:</strong></td><td></td></tr>
+    </table>
+
+    <h1>GLOBAL PRIVACY CONTROL (GPC) SIGNALS</h1>
+    <table>
+        <tr>
+            <th>Month</th>
+            <th>GPC Signals Received</th>
+            <th>Signals Honored</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td>January</td><td></td><td></td><td></td></tr>
+        <tr><td>February</td><td></td><td></td><td></td></tr>
+        <tr><td>March</td><td></td><td></td><td></td></tr>
+        <tr><td>April</td><td></td><td></td><td></td></tr>
+        <tr><td>May</td><td></td><td></td><td></td></tr>
+        <tr><td>June</td><td></td><td></td><td></td></tr>
+        <tr><td>July</td><td></td><td></td><td></td></tr>
+        <tr><td>August</td><td></td><td></td><td></td></tr>
+        <tr><td>September</td><td></td><td></td><td></td></tr>
+        <tr><td>October</td><td></td><td></td><td></td></tr>
+        <tr><td>November</td><td></td><td></td><td></td></tr>
+        <tr><td>December</td><td></td><td></td><td></td></tr>
+        <tr><td><strong>Total</strong></td><td></td><td></td><td></td></tr>
+    </table>
+
+    <h1>LOG MAINTENANCE</h1>
+    <table>
+        <tr><td class="info-row"><strong>Log Maintained By:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Review Frequency:</strong></td><td>☐ Weekly &nbsp;&nbsp; ☐ Monthly &nbsp;&nbsp; ☐ Quarterly</td></tr>
+        <tr><td class="info-row"><strong>Last Review Date:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Next Review Date:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Reviewed By:</strong></td><td></td></tr>
+        <tr><td class="info-row"><strong>Signature:</strong></td><td></td></tr>
+    </table>
+
+    <div class="footer">
+        <p>This log is part of [COMPANY NAME]'s CCPA compliance documentation.</p>
+        <p>Records must be retained for at least 24 months per Cal. Civ. Code § 1798.130.</p>
+        <p>Review and update regularly to ensure accuracy.</p>
+    </div>
+</body>
+</html>
